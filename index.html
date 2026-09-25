@@ -1,0 +1,2767 @@
+<!-- Generated & Polished by Antigravity for KPI Departemen Wahdah Islamiyah -->
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>KPI Departemen - Wahdah Islamiyah</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Amiri:wght@700&display=swap"
+        rel="stylesheet">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        arabic: ['Amiri', 'serif']
+                    },
+                    colors: {
+                        wahdah: {
+                            50: '#eefaf4', 100: '#d6f1e2', 200: '#aee2c8', 300: '#7ccca9', 400: '#48ac83',
+                            500: '#25906a', 600: '#177355', 700: '#145c46', 800: '#124a3a', 900: '#0e3a2e', 950: '#07211a'
+                        },
+                        gold: {
+                            50: '#fbf8ee', 100: '#f5eed3', 200: '#ebdaa9', 300: '#dec077', 400: '#d1a74d',
+                            500: '#c9a24b', 600: '#a9843a', 700: '#87652e', 800: '#6c4f29', 900: '#583f25'
+                        }
+                    },
+                    boxShadow: {
+                        soft: '0 2px 10px -2px rgba(14,58,46,0.06), 0 8px 24px -8px rgba(14,58,46,0.08)',
+                        card: '0 4px 20px -4px rgba(14,58,46,0.06), 0 1px 3px rgba(14,58,46,0.04)',
+                        softer: '0 1px 4px rgba(14,58,46,0.05)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .view-fade {
+            animation: viewFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes viewFade {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #aee2c8;
+            border-radius: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7ccca9;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .pattern-bg {
+            background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.12) 1px, transparent 0);
+            background-size: 16px 16px;
+        }
+
+        .icon-badge {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #ffffff 0%, #f7faf8 100%);
+            border: 2px solid #e6c65c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .icon-badge i {
+            font-size: 20px;
+            color: #c9a24b;
+        }
+
+        /* Modal Transitions */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(7, 33, 26, 0.55);
+            z-index: 60;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+            backdrop-filter: blur(4px);
+            padding: 1rem;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 1.25rem;
+            width: 100%;
+            max-width: 540px;
+            padding: 1.75rem;
+            transform: scale(0.96) translateY(10px);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 20px 40px -10px rgba(14, 58, 46, 0.2);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .d-none {
+            display: none !important;
+        }
+
+        .auth-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body class="bg-wahdah-50/50 text-wahdah-950 w-full overflow-hidden flex h-[100dvh]">
+
+    <!-- Loading Overlay -->
+    <div id="fullPageLoading"
+        class="fixed inset-0 bg-white/80 backdrop-blur-sm z-[999] flex flex-col items-center justify-center d-none transition-opacity duration-300">
+        <div class="relative flex items-center justify-center mb-4">
+            <div class="w-14 h-14 border-4 border-wahdah-100 border-t-wahdah-600 rounded-full animate-spin"></div>
+            <i class="fa-solid fa-kaaba absolute text-wahdah-700 text-lg"></i>
+        </div>
+        <h2 class="text-wahdah-900 font-bold text-sm tracking-wide" id="loadingText">Menghubungkan Database...</h2>
+        <p class="text-wahdah-500 text-xs mt-1">Mohon tunggu sebentar</p>
+    </div>
+
+    <!-- ROOT 1: LOGIN PAGE -->
+    <section id="loginPage"
+        class="auth-page w-full h-[100dvh] fixed inset-0 z-50 bg-gradient-to-b from-wahdah-50/70 via-white to-wahdah-100/40">
+        <div class="view-fade flex flex-col items-center justify-center w-full px-4 h-full">
+            <div
+                class="bg-white rounded-3xl shadow-card border border-wahdah-100/80 p-8 sm:p-10 w-full max-w-md text-center relative overflow-hidden">
+                <div
+                    class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-wahdah-600 via-gold-500 to-wahdah-700">
+                </div>
+
+                <div
+                    class="w-16 h-16 rounded-2xl bg-gradient-to-br from-wahdah-50 to-wahdah-100 text-wahdah-700 flex items-center justify-center mx-auto mb-4 text-2xl shadow-soft border border-wahdah-200/60">
+                    <i class="fa-solid fa-chart-pie text-wahdah-700"></i>
+                </div>
+                <h2 class="text-2xl font-extrabold text-wahdah-900 mb-1">Akses Sistem KPI</h2>
+                <p class="text-xs text-wahdah-600 mb-6 font-medium">Sistem Monitoring Kinerja Departemen Wahdah
+                    Islamiyah</p>
+
+                <form id="formLogin" class="space-y-4" onsubmit="event.preventDefault(); handleLogin();">
+                    <div class="text-left">
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5 flex items-center gap-1.5">
+                            <i class="fa-regular fa-user text-wahdah-600"></i> Username / Email
+                        </label>
+                        <input type="text" id="inpUserId" required placeholder="Contoh: admin atau dakwah"
+                            class="w-full rounded-xl border border-wahdah-200 px-4 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 focus:border-wahdah-500 outline-none bg-wahdah-50/20 hover:bg-white focus:bg-white transition-all">
+                    </div>
+                    <div class="text-left">
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5 flex items-center gap-1.5">
+                            <i class="fa-solid fa-lock text-wahdah-600"></i> Password / PIN
+                        </label>
+                        <div class="relative">
+                            <input type="password" id="inpPin" required placeholder="••••••••"
+                                class="w-full rounded-xl border border-wahdah-200 px-4 py-2.5 pr-10 text-sm focus:ring-2 focus:ring-wahdah-500 focus:border-wahdah-500 outline-none bg-wahdah-50/20 hover:bg-white focus:bg-white transition-all">
+                            <button type="button" onclick="togglePasswordVisibility('inpPin', this)"
+                                class="absolute right-3 top-1/2 -translate-y-1/2 text-wahdah-400 hover:text-wahdah-700 text-sm">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="btnLoginSubmit"
+                        class="w-full bg-gradient-to-r from-wahdah-700 to-wahdah-800 hover:from-wahdah-800 hover:to-wahdah-900 text-white font-semibold text-sm rounded-xl py-3 mt-3 shadow-md shadow-wahdah-800/15 hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                        <span>Masuk ke Dashboard</span> <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </form>
+
+                <div
+                    class="mt-6 p-3.5 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-2xl text-xs text-yellow-900 border border-yellow-200/70 text-left">
+                    <p class="font-bold mb-1.5 flex items-center gap-1.5 text-yellow-800"><i
+                            class="fas fa-info-circle"></i> Info Akun Bawaan:</p>
+                    <div class="space-y-1 text-[11px] font-mono">
+                        <p><span class="font-bold text-gray-700 font-sans">Admin Pusat:</span> user: <code
+                                class="bg-yellow-200/60 px-1 py-0.5 rounded">admin</code> | pwd: <code
+                                class="bg-yellow-200/60 px-1 py-0.5 rounded">Admin@2026</code></p>
+                        <p><span class="font-bold text-gray-700 font-sans">User Dept:</span> user: <code
+                                class="bg-yellow-200/60 px-1 py-0.5 rounded">dakwah</code> / <code
+                                class="bg-yellow-200/60 px-1 py-0.5 rounded">kaderisasi</code></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROOT 2: MAIN APP SHELL -->
+    <aside id="sidebar"
+        class="fixed inset-y-0 left-0 z-40 w-72 -translate-x-full transition-transform duration-300 ease-in-out bg-wahdah-900 text-white flex flex-col shadow-2xl d-none">
+        <!-- Sidebar Header -->
+        <div class="px-5 py-5 border-b border-white/10 flex items-center justify-between bg-wahdah-950/40">
+            <div class="flex items-center gap-3">
+                <div class="icon-badge">
+                    <i class="fa-solid fa-chart-pie"></i>
+                </div>
+                <div>
+                    <p class="font-extrabold leading-tight text-base tracking-wide text-white">Wahdah Islamiyah</p>
+                    <p class="text-gold-400 text-[10px] tracking-wider uppercase font-semibold">KPI & Kinerja</p>
+                </div>
+            </div>
+            <button type="button" onclick="toggleSidebar()"
+                class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-wahdah-200 hover:text-white flex items-center justify-center transition-colors shrink-0"
+                title="Sembunyikan Sidebar">
+                <i class="fa-solid fa-chevron-left text-sm"></i>
+            </button>
+        </div>
+
+        <!-- Sidebar Navigation -->
+        <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
+            <!-- Menu Admin -->
+            <div class="admin-only d-none space-y-1.5">
+                <p class="px-3 text-[10px] uppercase tracking-widest text-wahdah-300 font-bold mb-2">Menu Administrator
+                </p>
+                <button type="button"
+                    class="nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all"
+                    onclick="showPage('viewDashboardAdmin', this)">
+                    <i class="fa-solid fa-chart-line w-5 text-center text-gold-400"></i> <span>Dashboard Utama</span>
+                </button>
+                <button type="button"
+                    class="nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all"
+                    onclick="showPage('viewPersetujuanProker', this)">
+                    <i class="fa-solid fa-clipboard-check w-5 text-center text-gold-400"></i> <span>Persetujuan Proker</span>
+                    <span id="navBadgeMenungguProker"
+                        class="d-none ml-auto min-w-[20px] h-5 px-1.5 rounded-full bg-rose-500 text-white text-[10px] font-bold flex items-center justify-center"></span>
+                </button>
+                <button type="button"
+                    class="nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all"
+                    onclick="showPage('viewEvaluasiAdmin', this)">
+                    <i class="fa-solid fa-medal w-5 text-center text-gold-400"></i> <span>Evaluasi Kualitatif</span>
+                </button>
+                <button type="button"
+                    class="nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all"
+                    onclick="showPage('viewDepartemenAdmin', this)">
+                    <i class="fa-solid fa-sitemap w-5 text-center text-gold-400"></i> <span>Master Departemen</span>
+                </button>
+                <button type="button"
+                    class="nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all"
+                    onclick="showPage('viewUsersAdmin', this)">
+                    <i class="fa-solid fa-users-gear w-5 text-center text-gold-400"></i> <span>Kelola Pengguna</span>
+                </button>
+            </div>
+
+            <!-- Menu User / Departemen -->
+            <div class="user-only d-none space-y-1.5">
+                <p class="px-3 text-[10px] uppercase tracking-widest text-wahdah-300 font-bold mb-2">Menu Departemen</p>
+                <button type="button"
+                    class="nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all"
+                    onclick="showPage('viewManajemenProker', this)">
+                    <i class="fa-solid fa-briefcase w-5 text-center text-gold-400"></i> <span>Manajemen Proker</span>
+                </button>
+                <button type="button"
+                    class="nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all"
+                    onclick="showPage('viewEvaluasiUser', this)">
+                    <i class="fa-solid fa-star-half-stroke w-5 text-center text-gold-400"></i> <span>Feedback &
+                        Evaluasi</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="px-5 py-4 border-t border-white/10 bg-wahdah-950/50 flex items-center justify-between">
+            <div class="min-w-0 flex-1 pr-2">
+                <p id="sidebarUserName" class="text-xs font-bold text-white truncate">Belum Login</p>
+                <p id="sidebarUserRole" class="text-[10px] text-gold-300/90 font-medium truncate">-</p>
+            </div>
+            <div class="flex items-center gap-1.5">
+                <button
+                    class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+                    title="Ubah Password" onclick="openModal('modalChangePassword')">
+                    <i class="fa-solid fa-key text-xs"></i>
+                </button>
+                <button
+                    class="w-8 h-8 rounded-lg bg-red-500/20 hover:bg-red-500 text-red-200 hover:text-white flex items-center justify-center transition-colors"
+                    title="Logout" onclick="logout()">
+                    <i class="fa-solid fa-arrow-right-from-bracket text-xs"></i>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Sidebar Overlay -->
+    <div id="sidebarOverlay"
+        class="fixed inset-0 bg-wahdah-950/60 backdrop-blur-sm z-30 d-none transition-opacity duration-300"
+        onclick="toggleSidebar()"></div>
+
+    <!-- Main Content Area -->
+    <div id="mainContentWrapper" class="flex-1 flex flex-col min-w-0 h-full overflow-hidden relative d-none">
+
+        <!-- Top App Bar -->
+        <header
+            class="shrink-0 sticky top-0 z-20 bg-white/90 backdrop-blur-md border-b border-wahdah-100/80 px-4 md:px-8 py-3.5 flex items-center gap-4 shadow-softer">
+            <button
+                class="w-10 h-10 rounded-xl bg-white hover:bg-wahdah-50 text-wahdah-800 hover:text-wahdah-950 flex items-center justify-center transition-all border border-wahdah-200 shadow-sm shrink-0"
+                onclick="toggleSidebar()" title="Buka / Tutup Menu Sidebar" id="btnToggleSidebar">
+                <i class="fa-solid fa-bars-staggered text-base text-wahdah-700"></i>
+            </button>
+            <div>
+                <h1 id="pageTitle" class="font-extrabold text-wahdah-900 text-base sm:text-lg leading-tight">Dashboard
+                    Utama</h1>
+                <p id="pageSubtitle" class="text-wahdah-600 text-[11px] font-medium">Sistem Monitoring Kinerja</p>
+            </div>
+            <div class="ml-auto flex items-center gap-2">
+                <button type="button" onclick="loadAppData(null)" title="Segarkan Data"
+                    class="w-9 h-9 rounded-xl hover:bg-wahdah-50 text-wahdah-700 flex items-center justify-center transition-colors border border-wahdah-200 shrink-0">
+                    <i class="fa-solid fa-arrows-rotate text-sm"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Scrollable Body -->
+        <main class="flex-1 overflow-y-auto p-4 md:p-8 relative w-full">
+
+            <!-- ========================================== -->
+            <!-- 1. PAGE: DASHBOARD ADMIN -->
+            <!-- ========================================== -->
+            <div id="viewDashboardAdmin" class="app-page d-none view-fade max-w-6xl mx-auto space-y-6">
+                <!-- Pending Approval Banner -->
+                <div id="dashPendingApprovalBanner"
+                    class="d-none bg-amber-50 border border-amber-200 rounded-2xl px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold text-amber-900"><span id="dashPendingApprovalCount">0</span>
+                                Proker menunggu persetujuan Anda</p>
+                            <p class="text-xs text-amber-700">Departemen telah mengunggah LPJ dan menunggu tinjauan
+                                Admin.</p>
+                        </div>
+                    </div>
+                    <button
+                        onclick="showPage('viewPersetujuanProker', document.querySelector('.admin-only .nav-btn[onclick*=&quot;viewPersetujuanProker&quot;]'))"
+                        class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold rounded-xl transition-colors shrink-0 self-start sm:self-auto">
+                        Tinjau Sekarang
+                    </button>
+                </div>
+
+                <!-- Summary Stat Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div
+                        class="bg-gradient-to-br from-wahdah-900 via-wahdah-800 to-wahdah-950 rounded-2xl shadow-card p-5 text-white pattern-bg flex items-center justify-between">
+                        <div>
+                            <p class="text-wahdah-200 text-xs font-semibold mb-1">Rata-rata Capaian KPI</p>
+                            <div class="flex items-baseline gap-1.5">
+                                <span id="dashRataCapaian" class="text-3xl font-extrabold">0</span>
+                                <span class="text-sm text-gold-400 font-bold">%</span>
+                            </div>
+                        </div>
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-xl text-gold-400 border border-white/20">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-gradient-to-br from-sky-700 to-sky-900 rounded-2xl shadow-card p-5 text-white pattern-bg flex items-center justify-between">
+                        <div>
+                            <p class="text-sky-200 text-xs font-semibold mb-1">Total Proker Aktif</p>
+                            <div class="flex items-baseline gap-1.5">
+                                <span id="dashTotalProker" class="text-3xl font-extrabold">0</span>
+                                <span class="text-xs text-sky-200">Program</span>
+                            </div>
+                        </div>
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-xl text-white border border-white/20">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-gradient-to-br from-gold-600 via-amber-700 to-amber-900 rounded-2xl shadow-card p-5 text-white pattern-bg flex items-center justify-between">
+                        <div>
+                            <p class="text-gold-100 text-xs font-semibold mb-1">Serapan Anggaran</p>
+                            <div class="flex items-baseline gap-1.5">
+                                <span id="dashSerapanAnggaran" class="text-3xl font-extrabold">0</span>
+                                <span class="text-sm text-gold-200 font-bold">%</span>
+                            </div>
+                        </div>
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-xl text-white border border-white/20">
+                            <i class="fa-solid fa-coins"></i>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-gradient-to-br from-emerald-700 to-teal-900 rounded-2xl shadow-card p-5 text-white pattern-bg flex items-center justify-between">
+                        <div>
+                            <p class="text-emerald-200 text-xs font-semibold mb-1">Total Departemen</p>
+                            <div class="flex items-baseline gap-1.5">
+                                <span id="dashTotalDept" class="text-3xl font-extrabold">0</span>
+                                <span class="text-xs text-emerald-200">Departemen</span>
+                            </div>
+                        </div>
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-xl text-white border border-white/20">
+                            <i class="fa-solid fa-sitemap"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 bg-white rounded-2xl shadow-card border border-wahdah-100/80 p-5 md:p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-sm font-bold text-wahdah-900 flex items-center gap-2">
+                                <i class="fa-solid fa-chart-simple text-wahdah-600"></i> Rata-rata Capaian per
+                                Departemen
+                            </h3>
+                        </div>
+                        <div class="relative h-72 w-full">
+                            <canvas id="kpiChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-white rounded-2xl shadow-card border border-wahdah-100/80 p-5 md:p-6 flex flex-col justify-between">
+                        <h3 class="text-sm font-bold text-wahdah-900 mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-pie text-wahdah-600"></i> Distribusi Status Proker
+                        </h3>
+                        <div class="relative h-60 w-full flex items-center justify-center">
+                            <canvas id="prokerStatusChart"></canvas>
+                        </div>
+                        <div id="prokerStatusLegend"
+                            class="grid grid-cols-2 gap-2 text-xs pt-3 border-t border-wahdah-50 mt-2"></div>
+                    </div>
+                </div>
+
+                <!-- Traffic Light Status Table -->
+                <div class="bg-white rounded-2xl shadow-card border border-wahdah-100/80 overflow-hidden">
+                    <div
+                        class="px-6 py-4 border-b border-wahdah-100/80 bg-wahdah-50/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <h3 class="text-sm font-bold text-wahdah-900 flex items-center gap-2">
+                            <i class="fa-solid fa-traffic-light text-wahdah-600"></i> Peringkat Kinerja & Traffic Light
+                        </h3>
+                        <div class="flex items-center gap-2">
+                            <button onclick="exportTableToCSV('adminTrafficTable', 'Kinerja_Departemen_Wahdah')"
+                                class="px-3 py-1.5 bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 text-xs font-semibold rounded-lg border border-wahdah-200 transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-file-csv"></i> Unduh CSV
+                            </button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-wahdah-50/70 border-b border-wahdah-100">
+                                <tr class="text-wahdah-800 text-xs uppercase tracking-wider">
+                                    <th class="text-left font-bold px-6 py-3.5">Departemen</th>
+                                    <th class="text-center font-bold px-4 py-3.5">Jumlah Proker</th>
+                                    <th class="text-right font-bold px-4 py-3.5">Anggaran (R / A)</th>
+                                    <th class="text-center font-bold px-4 py-3.5">Rata-rata Capaian</th>
+                                    <th class="text-center font-bold px-6 py-3.5">Status Traffic Light</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminTrafficTable" class="divide-y divide-wahdah-50 bg-white"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- 2. PAGE: EVALUASI KUALITATIF (ADMIN) -->
+            <!-- ========================================== -->
+            <div id="viewEvaluasiAdmin" class="app-page d-none view-fade max-w-6xl mx-auto space-y-6">
+                <!-- Form Input Evaluasi -->
+                <div class="bg-white rounded-2xl shadow-card border border-wahdah-100/80 p-6">
+                    <h3
+                        class="text-sm font-bold text-wahdah-900 mb-4 flex items-center gap-2 border-b border-wahdah-100 pb-3">
+                        <div
+                            class="w-8 h-8 rounded-xl bg-wahdah-50 text-wahdah-700 flex items-center justify-center border border-wahdah-200">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        Form Input Evaluasi Kualitatif & Rekomendasi
+                    </h3>
+                    <form id="formEvaluasi" class="space-y-4" onsubmit="event.preventDefault(); submitEvaluasi();">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Pilih Departemen</label>
+                                <select id="evDepartemen" required
+                                    class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none bg-white">
+                                    <!-- Injected -->
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Periode Evaluasi (Contoh:
+                                    Q1-2026 / Semester 1)</label>
+                                <input type="text" id="evPeriode" required placeholder="Q1-2026"
+                                    class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Nilai Soliditas Tim (Skala
+                                    1 - 10)</label>
+                                <input type="number" id="evSoliditas" min="1" max="10" step="0.5" required
+                                    placeholder="Contoh: 8.5"
+                                    class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Nilai Kolaborasi Lintas
+                                    Sektoral (Skala 1 - 10)</label>
+                                <input type="number" id="evKolaborasi" min="1" max="10" step="0.5" required
+                                    placeholder="Contoh: 9.0"
+                                    class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Catatan, Arahan, & Feedback
+                                Pimpinan</label>
+                            <textarea id="evCatatan" rows="3" required
+                                placeholder="Tuliskan catatan evaluasi kualitatif pimpinan untuk departemen ini..."
+                                class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none resize-none"></textarea>
+                        </div>
+                        <button type="submit" id="btnSubmitEv"
+                            class="bg-gradient-to-r from-wahdah-700 to-wahdah-800 hover:from-wahdah-800 hover:to-wahdah-900 text-white font-semibold text-sm rounded-xl px-6 py-2.5 transition-all shadow-sm">
+                            <i class="fa-solid fa-floppy-disk mr-1.5"></i> Simpan Evaluasi
+                        </button>
+                    </form>
+                </div>
+
+                <!-- History Evaluasi List -->
+                <div class="bg-white rounded-2xl shadow-card border border-wahdah-100/80 overflow-hidden">
+                    <div
+                        class="px-6 py-4 border-b border-wahdah-100/80 bg-wahdah-50/40 flex justify-between items-center">
+                        <h3 class="text-sm font-bold text-wahdah-900 flex items-center gap-2">
+                            <i class="fa-solid fa-list-check text-wahdah-600"></i> Riwayat Evaluasi Pimpinan
+                        </h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-wahdah-50/70 border-b border-wahdah-100">
+                                <tr class="text-wahdah-800 text-xs uppercase tracking-wider">
+                                    <th class="text-left font-bold px-6 py-3.5">Departemen</th>
+                                    <th class="text-center font-bold px-4 py-3.5">Periode</th>
+                                    <th class="text-center font-bold px-4 py-3.5">Soliditas</th>
+                                    <th class="text-center font-bold px-4 py-3.5">Kolaborasi</th>
+                                    <th class="text-left font-bold px-6 py-3.5">Catatan Pimpinan</th>
+                                    <th class="text-center font-bold px-4 py-3.5">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="evaluasiAdminTableBody" class="divide-y divide-wahdah-50 bg-white"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- 3. PAGE: MASTER DEPARTEMEN (ADMIN) -->
+            <!-- ========================================== -->
+            <div id="viewDepartemenAdmin" class="app-page d-none view-fade max-w-6xl mx-auto space-y-6">
+                <div
+                    class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-5 rounded-2xl shadow-card border border-wahdah-100">
+                    <div>
+                        <h3 class="text-base font-extrabold text-wahdah-900">Master Data Departemen</h3>
+                        <p class="text-xs text-wahdah-600">Kelola departemen dan struktur organisasi</p>
+                    </div>
+                    <button onclick="openModal('modalAddDepartemen')"
+                        class="bg-gold-500 hover:bg-gold-600 text-white px-4 py-2.5 rounded-xl transition-all text-xs sm:text-sm font-bold flex items-center gap-2 shadow-sm">
+                        <i class="fa-solid fa-plus"></i> Tambah Departemen
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-card border border-wahdah-100/80 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-wahdah-50/70 border-b border-wahdah-100">
+                                <tr class="text-wahdah-800 text-xs uppercase tracking-wider">
+                                    <th class="text-left font-bold px-6 py-3.5">ID Dept</th>
+                                    <th class="text-left font-bold px-6 py-3.5">Nama Departemen</th>
+                                    <th class="text-center font-bold px-4 py-3.5">Jumlah Proker</th>
+                                    <th class="text-center font-bold px-6 py-3.5">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="departemenTableBody" class="divide-y divide-wahdah-50 bg-white"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- 4. PAGE: PENGGUNA SISTEM (ADMIN) -->
+            <!-- ========================================== -->
+            <div id="viewUsersAdmin" class="app-page d-none view-fade max-w-6xl mx-auto space-y-6">
+                <div
+                    class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-5 rounded-2xl shadow-card border border-wahdah-100">
+                    <div>
+                        <h3 class="text-base font-extrabold text-wahdah-900">Manajemen Pengguna</h3>
+                        <p class="text-xs text-wahdah-600">Kelola akun akses admin dan pengurus departemen</p>
+                    </div>
+                    <button onclick="openAddUserModal()"
+                        class="bg-gold-500 hover:bg-gold-600 text-white px-4 py-2.5 rounded-xl transition-all text-xs sm:text-sm font-bold flex items-center gap-2 shadow-sm">
+                        <i class="fa-solid fa-user-plus"></i> Tambah Pengguna
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-card border border-wahdah-100/80 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-wahdah-50/70 border-b border-wahdah-100">
+                                <tr class="text-wahdah-800 text-xs uppercase tracking-wider">
+                                    <th class="text-left font-bold px-6 py-3.5">Nama Lengkap</th>
+                                    <th class="text-left font-bold px-6 py-3.5">Username / Email</th>
+                                    <th class="text-center font-bold px-4 py-3.5">Role</th>
+                                    <th class="text-left font-bold px-6 py-3.5">Departemen Terkait</th>
+                                    <th class="text-center font-bold px-6 py-3.5">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody" class="divide-y divide-wahdah-50 bg-white"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- 4B. PAGE: PERSETUJUAN PROKER (ADMIN) -->
+            <!-- ========================================== -->
+            <div id="viewPersetujuanProker" class="app-page d-none view-fade max-w-6xl mx-auto space-y-6">
+                <div
+                    class="bg-gradient-to-br from-wahdah-900 via-wahdah-800 to-wahdah-950 rounded-3xl shadow-card p-6 md:p-8 text-white pattern-bg flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div>
+                        <span
+                            class="px-3 py-1 bg-gold-500/30 text-gold-300 border border-gold-400/30 rounded-full text-xs font-semibold uppercase tracking-wider">Approval</span>
+                        <h2 class="text-2xl md:text-3xl font-extrabold mt-2 text-white">Persetujuan Program Kerja</h2>
+                        <p class="text-wahdah-200 text-xs mt-1">Tinjau LPJ/laporan yang diunggah setiap departemen,
+                            lalu setujui atau tolak</p>
+                    </div>
+                </div>
+
+                <!-- Persetujuan Table & Filters -->
+                <div class="bg-white rounded-2xl shadow-card border border-wahdah-100/80 overflow-hidden">
+                    <div
+                        class="px-6 py-4 border-b border-wahdah-100/80 bg-wahdah-50/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 flex-1">
+                            <div class="relative w-full sm:max-w-xs">
+                                <i
+                                    class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-wahdah-400 text-xs"></i>
+                                <input type="text" id="searchPersetujuanInput" oninput="filterPersetujuanTable()"
+                                    placeholder="Cari program kerja..."
+                                    class="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-wahdah-200 focus:ring-2 focus:ring-wahdah-500 outline-none bg-white">
+                            </div>
+                            <select id="filterPersetujuanDept" onchange="filterPersetujuanTable()"
+                                class="text-xs rounded-xl border border-wahdah-200 px-3 py-2 outline-none bg-white focus:ring-2 focus:ring-wahdah-500">
+                                <option value="">Semua Departemen</option>
+                            </select>
+                            <select id="filterPersetujuanStatus" onchange="filterPersetujuanTable()"
+                                class="text-xs rounded-xl border border-wahdah-200 px-3 py-2 outline-none bg-white focus:ring-2 focus:ring-wahdah-500">
+                                <option value="">Semua Status</option>
+                                <option value="Menunggu Persetujuan">Menunggu Persetujuan</option>
+                                <option value="Disetujui">Disetujui</option>
+                                <option value="Ditolak">Ditolak</option>
+                                <option value="Berjalan">Berjalan</option>
+                                <option value="Belum Mulai">Belum Mulai</option>
+                                <option value="Terkendala">Terkendala</option>
+                            </select>
+                        </div>
+                        <button onclick="exportTableToCSV('persetujuanProkerTableBody', 'Persetujuan_Proker_Wahdah')"
+                            class="px-3 py-1.5 bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 text-xs font-semibold rounded-lg border border-wahdah-200 transition-colors flex items-center gap-1.5 shrink-0 self-end sm:self-auto">
+                            <i class="fa-solid fa-file-csv"></i> Unduh CSV
+                        </button>
+                    </div>
+
+                    <div class="overflow-x-auto min-h-[300px]">
+                        <table class="w-full text-sm">
+                            <thead class="bg-wahdah-50/70 border-b border-wahdah-100">
+                                <tr class="text-wahdah-800 text-xs uppercase tracking-wider">
+                                    <th class="text-left font-bold px-6 py-3.5 min-w-[240px]">Program Kerja /
+                                        Departemen</th>
+                                    <th class="text-left font-bold px-4 py-3.5">Target</th>
+                                    <th class="text-center font-bold px-4 py-3.5">Realisasi</th>
+                                    <th class="text-center font-bold px-4 py-3.5">Progress</th>
+                                    <th class="text-right font-bold px-4 py-3.5 min-w-[160px]">Anggaran (R / A)</th>
+                                    <th class="text-center font-bold px-4 py-3.5">Status</th>
+                                    <th class="text-center font-bold px-6 py-3.5">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="persetujuanProkerTableBody" class="divide-y divide-wahdah-50 bg-white"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- 5. PAGE: MANAJEMEN PROKER (USER / DEPARTEMEN) -->
+            <!-- ========================================== -->
+            <div id="viewManajemenProker" class="app-page d-none view-fade max-w-6xl mx-auto space-y-6">
+                <!-- Dept Header Summary -->
+                <div
+                    class="bg-gradient-to-br from-wahdah-900 via-wahdah-800 to-wahdah-950 rounded-3xl shadow-card p-6 md:p-8 text-white pattern-bg flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div>
+                        <span
+                            class="px-3 py-1 bg-gold-500/30 text-gold-300 border border-gold-400/30 rounded-full text-xs font-semibold uppercase tracking-wider"
+                            id="userDeptBadge">Departemen</span>
+                        <h2 class="text-2xl md:text-3xl font-extrabold mt-2 text-white" id="userDeptTitle">Manajemen
+                            Program Kerja</h2>
+                        <p class="text-wahdah-200 text-xs mt-1">Perbarui realisasi angka, anggaran, dan unggah berkas
+                            LPJ</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="bg-white/10 backdrop-blur border border-white/15 px-5 py-3.5 rounded-2xl text-center">
+                            <p class="text-[11px] text-wahdah-200 font-medium">Capaian KPI Rata-rata</p>
+                            <div class="flex items-baseline justify-center gap-1 mt-0.5">
+                                <span id="deptRataCapaian" class="text-3xl font-extrabold text-white">0</span>
+                                <span class="text-sm font-bold text-gold-400">%</span>
+                            </div>
+                        </div>
+                        <button onclick="openModal('modalAddProker')"
+                            class="bg-gradient-to-r from-gold-500 to-amber-600 hover:from-gold-600 hover:to-amber-700 text-white px-5 py-3.5 rounded-2xl transition-all text-sm font-bold flex items-center gap-2 shadow-lg shadow-gold-600/20 shrink-0">
+                            <i class="fa-solid fa-plus"></i> Tambah Proker
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Proker Table & Filters -->
+                <div class="bg-white rounded-2xl shadow-card border border-wahdah-100/80 overflow-hidden">
+                    <div
+                        class="px-6 py-4 border-b border-wahdah-100/80 bg-wahdah-50/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div class="flex items-center gap-3 flex-1 max-w-md">
+                            <div class="relative w-full">
+                                <i
+                                    class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-wahdah-400 text-xs"></i>
+                                <input type="text" id="searchProkerInput" oninput="filterProkerTable()"
+                                    placeholder="Cari program kerja..."
+                                    class="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-wahdah-200 focus:ring-2 focus:ring-wahdah-500 outline-none bg-white">
+                            </div>
+                            <select id="filterProkerStatus" onchange="filterProkerTable()"
+                                class="text-xs rounded-xl border border-wahdah-200 px-3 py-2 outline-none bg-white focus:ring-2 focus:ring-wahdah-500">
+                                <option value="">Semua Status</option>
+                                <option value="Belum Mulai">Belum Mulai</option>
+                                <option value="Berjalan">Berjalan</option>
+                                <option value="Menunggu Persetujuan">Menunggu Persetujuan</option>
+                                <option value="Disetujui">Disetujui</option>
+                                <option value="Ditolak">Ditolak</option>
+                                <option value="Terkendala">Terkendala</option>
+                            </select>
+                        </div>
+                        <button onclick="exportTableToCSV('prokerTableBody', 'Program_Kerja_Departemen')"
+                            class="px-3 py-1.5 bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 text-xs font-semibold rounded-lg border border-wahdah-200 transition-colors flex items-center gap-1.5 shrink-0 self-end sm:self-auto">
+                            <i class="fa-solid fa-file-csv"></i> Unduh CSV
+                        </button>
+                    </div>
+
+                    <div class="overflow-x-auto min-h-[300px]">
+                        <table class="w-full text-sm">
+                            <thead class="bg-wahdah-50/70 border-b border-wahdah-100">
+                                <tr class="text-wahdah-800 text-xs uppercase tracking-wider">
+                                    <th class="text-left font-bold px-6 py-3.5 min-w-[220px]">Nama Program</th>
+                                    <th class="text-left font-bold px-4 py-3.5">Target</th>
+                                    <th class="text-center font-bold px-4 py-3.5">Realisasi</th>
+                                    <th class="text-center font-bold px-4 py-3.5 min-w-[130px]">Progress (%)</th>
+                                    <th class="text-right font-bold px-4 py-3.5 min-w-[160px]">Anggaran (R / A)</th>
+                                    <th class="text-center font-bold px-4 py-3.5">Status</th>
+                                    <th class="text-center font-bold px-6 py-3.5">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="prokerTableBody" class="divide-y divide-wahdah-50 bg-white"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- 6. PAGE: EVALUASI & FEEDBACK (USER / DEPT) -->
+            <!-- ========================================== -->
+            <div id="viewEvaluasiUser" class="app-page d-none view-fade max-w-6xl mx-auto space-y-6">
+                <div class="bg-white p-6 rounded-2xl shadow-card border border-wahdah-100">
+                    <h3 class="text-base font-extrabold text-wahdah-900 flex items-center gap-2">
+                        <i class="fa-solid fa-comments text-wahdah-600"></i> Catatan & Rekomendasi Pimpinan Eksekutif
+                    </h3>
+                    <p class="text-xs text-wahdah-600 mt-0.5">Penilaian kualitatif, evaluasi soliditas tim, dan sinergi
+                        lintas sektoral untuk departemen Anda</p>
+                </div>
+
+                <div id="userEvaluasiList" class="space-y-4">
+                    <!-- Injected dynamically -->
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODALS & DIALOGS -->
+    <!-- ========================================== -->
+
+    <!-- MODAL: ADD PROKER -->
+    <div id="modalAddProker" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-5 border-b border-wahdah-100 pb-3">
+                <h3 class="text-base font-bold text-wahdah-900 flex items-center gap-2">
+                    <i class="fa-solid fa-plus-circle text-wahdah-600"></i> Tambah Program Kerja Baru
+                </h3>
+                <button onclick="closeModal('modalAddProker')"
+                    class="text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-lg flex items-center justify-center transition-colors">
+                    <i class="fas fa-times text-xs"></i>
+                </button>
+            </div>
+            <form id="formAddProker" onsubmit="event.preventDefault(); submitAddProker();" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Nama Program Kerja</label>
+                    <input type="text" id="addNamaProgram" required placeholder="Contoh: Pembinaan Dai Pedalaman"
+                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Target Kuantitatif</label>
+                        <input type="number" id="addTargetAngka" step="any" required placeholder="Contoh: 50"
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Satuan Target</label>
+                        <input type="text" id="addSatuan" required placeholder="Contoh: Titik / Orang / Kegiatan"
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Rencana Anggaran (Rp)</label>
+                    <input type="number" id="addAnggaran" required placeholder="Contoh: 25000000"
+                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                </div>
+                <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
+                    <button type="button" onclick="closeModal('modalAddProker')"
+                        class="px-5 py-2.5 border border-wahdah-200 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 hover:bg-wahdah-50 transition-colors">Batal</button>
+                    <button type="submit" id="btnSaveProker"
+                        class="px-5 py-2.5 bg-wahdah-700 text-white rounded-xl text-xs sm:text-sm font-semibold hover:bg-wahdah-800 transition-colors flex items-center gap-2 shadow-sm">
+                        <i class="fa-solid fa-check"></i> Simpan Proker
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: EDIT PROKER DETAILS -->
+    <div id="modalEditProker" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-5 border-b border-wahdah-100 pb-3">
+                <h3 class="text-base font-bold text-wahdah-900 flex items-center gap-2">
+                    <i class="fa-solid fa-pen-nib text-wahdah-600"></i> Edit Detail Program Kerja
+                </h3>
+                <button onclick="closeModal('modalEditProker')"
+                    class="text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-lg flex items-center justify-center transition-colors">
+                    <i class="fas fa-times text-xs"></i>
+                </button>
+            </div>
+            <form id="formEditProker" onsubmit="event.preventDefault(); submitEditProker();" class="space-y-4">
+                <input type="hidden" id="editIdProker">
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Nama Program Kerja</label>
+                    <input type="text" id="editNamaProgram" required
+                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Target Kuantitatif</label>
+                        <input type="number" id="editTargetAngka" step="any" required
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Satuan Target</label>
+                        <input type="text" id="editSatuan" required
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Rencana Anggaran (Rp)</label>
+                    <input type="number" id="editAnggaran" required
+                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                </div>
+                <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
+                    <button type="button" onclick="closeModal('modalEditProker')"
+                        class="px-5 py-2.5 border border-wahdah-200 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 hover:bg-wahdah-50">Batal</button>
+                    <button type="submit" id="btnSaveEditProker"
+                        class="px-5 py-2.5 bg-wahdah-700 text-white rounded-xl text-xs sm:text-sm font-semibold hover:bg-wahdah-800 flex items-center gap-2 shadow-sm">
+                        <i class="fa-solid fa-save"></i> Perbarui
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: UPDATE REALISASI PROKER & UPLOAD LPJ -->
+    <div id="modalUpdateProker" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-5 border-b border-wahdah-100 pb-3">
+                <h3 class="text-base font-bold text-wahdah-900 flex items-center gap-2">
+                    <i class="fa-solid fa-pen-to-square text-wahdah-600"></i> Update Realisasi & Berkas LPJ
+                </h3>
+                <button onclick="closeModal('modalUpdateProker')"
+                    class="text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-lg flex items-center justify-center transition-colors">
+                    <i class="fas fa-times text-xs"></i>
+                </button>
+            </div>
+            <form id="formUpdateProker" onsubmit="event.preventDefault(); submitUpdateProker();" class="space-y-4">
+                <input type="hidden" id="updIdProker">
+
+                <div class="p-3.5 bg-wahdah-50/70 rounded-2xl border border-wahdah-100 mb-2">
+                    <p class="text-[11px] text-wahdah-600 font-medium">Program Kerja:</p>
+                    <p class="text-sm font-extrabold text-wahdah-900 mt-0.5" id="updNamaProgram">-</p>
+                    <p class="text-xs text-wahdah-700 mt-1">Target: <span id="updTargetInfo" class="font-bold"></span>
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Realisasi Angka Saat Ini</label>
+                        <input type="number" id="updRealisasiAngka" step="any" required
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Realisasi Anggaran (Rp)</label>
+                        <input type="number" id="updRealisasiAnggaran" required
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Status Pelaksanaan Proker</label>
+                    <select id="updStatus" required
+                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none bg-white">
+                        <option value="Belum Mulai">Belum Mulai</option>
+                        <option value="Berjalan">Berjalan</option>
+                        <option value="Terkendala">Terkendala</option>
+                        <option value="Menunggu Persetujuan">Ajukan Persetujuan Admin (Selesai + LPJ)</option>
+                    </select>
+                    <p class="text-[11px] text-wahdah-500 mt-1.5">Pilih "Ajukan Persetujuan Admin" setelah proker
+                        selesai dan LPJ siap diunggah. Status final "Disetujui" hanya bisa diberikan oleh Admin.</p>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">
+                        Upload Berkas LPJ / Laporan <span class="text-red-500 font-semibold">(Wajib jika mengajukan
+                            persetujuan)</span>
+                    </label>
+                    <input type="file" id="updFileLpj" accept=".pdf,.doc,.docx,.xlsx,.xls,.png,.jpg,.jpeg"
+                        class="w-full rounded-xl border border-wahdah-200 px-3 py-2 text-xs focus:ring-2 focus:ring-wahdah-500 outline-none file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-wahdah-50 file:text-wahdah-700 hover:file:bg-wahdah-100 cursor-pointer">
+                    <input type="hidden" id="updFileLpjOld">
+                    <div id="updFileLpjCurrent" class="mt-2 text-xs text-wahdah-600 d-none flex items-center gap-1.5">
+                        <i class="fa-solid fa-paperclip text-wahdah-500"></i>
+                        <span>Berkas tersimpan:</span>
+                        <a href="#" target="_blank" class="text-sky-600 font-bold hover:underline"
+                            id="updFileLpjLink">Buka Berkas LPJ</a>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
+                    <button type="button" onclick="closeModal('modalUpdateProker')"
+                        class="px-5 py-2.5 border border-wahdah-200 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 hover:bg-wahdah-50">Batal</button>
+                    <button type="submit" id="btnSaveUpdate"
+                        class="px-5 py-2.5 bg-wahdah-700 text-white rounded-xl text-xs sm:text-sm font-semibold hover:bg-wahdah-800 transition-colors shadow-sm">
+                        Simpan Perubahan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: ADD DEPARTEMEN -->
+    <div id="modalAddDepartemen" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-5 border-b border-wahdah-100 pb-3">
+                <h3 class="text-base font-bold text-wahdah-900 flex items-center gap-2">
+                    <i class="fa-solid fa-sitemap text-wahdah-600"></i> Tambah Master Departemen
+                </h3>
+                <button onclick="closeModal('modalAddDepartemen')"
+                    class="text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-lg flex items-center justify-center transition-colors">
+                    <i class="fas fa-times text-xs"></i>
+                </button>
+            </div>
+            <form id="formAddDepartemen" onsubmit="event.preventDefault(); submitAddDepartemen();" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Nama Departemen</label>
+                    <input type="text" id="addNamaDepartemen" required placeholder="Contoh: Departemen Humas & Media"
+                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                </div>
+                <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
+                    <button type="button" onclick="closeModal('modalAddDepartemen')"
+                        class="px-5 py-2.5 border border-wahdah-200 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 hover:bg-wahdah-50">Batal</button>
+                    <button type="submit" id="btnSaveDepartemen"
+                        class="px-5 py-2.5 bg-wahdah-700 text-white rounded-xl text-xs sm:text-sm font-semibold hover:bg-wahdah-800">Simpan
+                        Departemen</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: EDIT DEPARTEMEN -->
+    <div id="modalEditDepartemen" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-5 border-b border-wahdah-100 pb-3">
+                <h3 class="text-base font-bold text-wahdah-900 flex items-center gap-2">
+                    <i class="fa-solid fa-pen text-wahdah-600"></i> Edit Data Departemen
+                </h3>
+                <button onclick="closeModal('modalEditDepartemen')"
+                    class="text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-lg flex items-center justify-center transition-colors">
+                    <i class="fas fa-times text-xs"></i>
+                </button>
+            </div>
+            <form id="formEditDepartemen" onsubmit="event.preventDefault(); submitEditDepartemen();" class="space-y-4">
+                <input type="hidden" id="editIdDepartemen">
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Nama Departemen</label>
+                    <input type="text" id="editNamaDepartemen" required
+                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                </div>
+                <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
+                    <button type="button" onclick="closeModal('modalEditDepartemen')"
+                        class="px-5 py-2.5 border border-wahdah-200 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 hover:bg-wahdah-50">Batal</button>
+                    <button type="submit" id="btnSaveEditDepartemen"
+                        class="px-5 py-2.5 bg-wahdah-700 text-white rounded-xl text-xs sm:text-sm font-semibold hover:bg-wahdah-800">Perbarui</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: ADD USER -->
+    <div id="modalAddUser" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-5 border-b border-wahdah-100 pb-3">
+                <h3 class="text-base font-bold text-wahdah-900 flex items-center gap-2">
+                    <i class="fa-solid fa-user-plus text-wahdah-600"></i> Tambah Pengguna Baru
+                </h3>
+                <button onclick="closeModal('modalAddUser')"
+                    class="text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-lg flex items-center justify-center transition-colors">
+                    <i class="fas fa-times text-xs"></i>
+                </button>
+            </div>
+            <form id="formAddUser" onsubmit="event.preventDefault(); submitAddUser();" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Nama Lengkap</label>
+                    <input type="text" id="addUNama" required placeholder="Contoh: Ust. Ahmad Fauzi"
+                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Email / Username Login</label>
+                    <input type="text" id="addUEmail" required placeholder="Contoh: dakwah2 atau user@wahdah.or.id"
+                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Role Pengguna</label>
+                        <select id="addURole"
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none bg-white"
+                            onchange="toggleAddUserDeptWrap(this.value)">
+                            <option value="User">User (Departemen)</option>
+                            <option value="Admin">Admin Eksekutif</option>
+                        </select>
+                    </div>
+                    <div id="addUDeptWrap">
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Pilih Departemen</label>
+                        <select id="addUDept"
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none bg-white"></select>
+                    </div>
+                </div>
+                <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900">
+                    <i class="fa-solid fa-shield-halved text-amber-600 mr-1"></i>
+                    PIN/Password awal akan digenerate otomatis 6 digit dan ditampilkan setelah disimpan.
+                </div>
+                <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
+                    <button type="button" onclick="closeModal('modalAddUser')"
+                        class="px-5 py-2.5 border border-wahdah-200 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 hover:bg-wahdah-50">Batal</button>
+                    <button type="submit" id="btnSaveUser"
+                        class="px-5 py-2.5 bg-wahdah-700 text-white rounded-xl text-xs sm:text-sm font-semibold hover:bg-wahdah-800">Simpan
+                        Pengguna</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: EDIT USER -->
+    <div id="modalEditUser" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-5 border-b border-wahdah-100 pb-3">
+                <h3 class="text-base font-bold text-wahdah-900 flex items-center gap-2">
+                    <i class="fa-solid fa-user-pen text-wahdah-600"></i> Edit Data Pengguna
+                </h3>
+                <button onclick="closeModal('modalEditUser')"
+                    class="text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-lg flex items-center justify-center transition-colors">
+                    <i class="fas fa-times text-xs"></i>
+                </button>
+            </div>
+            <form id="formEditUser" onsubmit="event.preventDefault(); submitEditUser();" class="space-y-4">
+                <input type="hidden" id="editUId">
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Nama Lengkap</label>
+                    <input type="text" id="editUNama" required
+                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Email / Username</label>
+                    <input type="text" id="editUEmail" required
+                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Role</label>
+                        <select id="editURole"
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none bg-white"
+                            onchange="toggleEditUserDeptWrap(this.value)">
+                            <option value="User">User</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+                    <div id="editUDeptWrap">
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Departemen</label>
+                        <select id="editUDept"
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none bg-white"></select>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
+                    <button type="button" onclick="closeModal('modalEditUser')"
+                        class="px-5 py-2.5 border border-wahdah-200 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 hover:bg-wahdah-50">Batal</button>
+                    <button type="submit" id="btnSaveEditUser"
+                        class="px-5 py-2.5 bg-wahdah-700 text-white rounded-xl text-xs sm:text-sm font-semibold hover:bg-wahdah-800">Perbarui</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: UBAH PASSWORD SENDIRI -->
+    <div id="modalChangePassword" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-5 border-b border-wahdah-100 pb-3">
+                <h3 class="text-base font-bold text-wahdah-900 flex items-center gap-2">
+                    <i class="fa-solid fa-key text-wahdah-600"></i> Ganti Password / PIN Akun
+                </h3>
+                <button onclick="closeModal('modalChangePassword')"
+                    class="text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-lg flex items-center justify-center transition-colors">
+                    <i class="fas fa-times text-xs"></i>
+                </button>
+            </div>
+            <form id="formChangePassword" onsubmit="event.preventDefault(); submitChangePassword();" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Password / PIN Saat Ini</label>
+                    <input type="password" id="chgOldPin" required placeholder="••••••••"
+                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Password / PIN Baru</label>
+                    <input type="password" id="chgNewPin" required placeholder="Minimal 4 karakter"
+                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Konfirmasi Password Baru</label>
+                    <input type="password" id="chgConfirmPin" required placeholder="Ulangi password baru"
+                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                </div>
+                <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
+                    <button type="button" onclick="closeModal('modalChangePassword')"
+                        class="px-5 py-2.5 border border-wahdah-200 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 hover:bg-wahdah-50">Batal</button>
+                    <button type="submit" id="btnSaveChgPass"
+                        class="px-5 py-2.5 bg-wahdah-700 text-white rounded-xl text-xs sm:text-sm font-semibold hover:bg-wahdah-800">Simpan
+                        Password Baru</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- APPLICATION JAVASCRIPT LOGIC -->
+    <!-- ========================================== -->
+    <script>
+            (function () {
+                // Configuration URL (Optional fallback for external REST testing)
+                // WAJIB DIISI: Tempel URL Web App hasil "Deploy" dari Google Apps Script di sini.
+                // Contoh: https://script.google.com/macros/s/AKfycbx.../exec
+                const API_URL = "https://script.google.com/macros/s/AKfycbzOU-urEBDsnvsWicvVsUc6GhzSN7Dzhm-rQH5KrsTA39jJMtBs5Stq9nq7CmErHMdHiA/exec";
+
+                const Auth = {
+                    setToken: (token) => sessionStorage.setItem('kpi_token', token),
+                    getToken: () => sessionStorage.getItem('kpi_token'),
+                    setUser: (user) => sessionStorage.setItem('kpi_user', JSON.stringify(user)),
+                    getUser: () => JSON.parse(sessionStorage.getItem('kpi_user') || 'null'),
+                    clear: () => { sessionStorage.removeItem('kpi_token'); sessionStorage.removeItem('kpi_user'); }
+                };
+
+                let appState = {
+                    departemen: [],
+                    users: [],
+                    proker: [],
+                    evaluasi: [],
+                    kpiChartInstance: null,
+                    statusChartInstance: null
+                };
+
+                // MOCK DATABASE FALLBACK (For offline browser preview / testing)
+                const MOCK_DB = {
+                    departemen: [
+                        { id_departemen: 'd1', nama_departemen: 'Departemen Dakwah', id_ketua: 'u2' },
+                        { id_departemen: 'd2', nama_departemen: 'Departemen Kaderisasi', id_ketua: 'u3' },
+                        { id_departemen: 'd3', nama_departemen: 'Departemen Humas & Media', id_ketua: '' }
+                    ],
+                    users: [
+                        { id_user: 'u1', nama_lengkap: 'Admin Eksekutif', email: 'admin', role: 'Admin', id_departemen: '' },
+                        { id_user: 'u2', nama_lengkap: 'Ketua Dakwah', email: 'dakwah', role: 'User', id_departemen: 'd1' },
+                        { id_user: 'u3', nama_lengkap: 'Ketua Kaderisasi', email: 'kaderisasi', role: 'User', id_departemen: 'd2' }
+                    ],
+                    proker: [
+                        { id_proker: 'PROK-001', id_departemen: 'd1', nama_program: 'Tebar Dai Nusantara', target_angka: 50, satuan_target: 'Titik', realisasi_angka: 45, anggaran_rencana: 50000000, anggaran_realisasi: 45000000, status_proker: 'Berjalan', file_lpj: '', catatan_admin: '', updated_at: '2026-03-20 10:00:00' },
+                        { id_proker: 'PROK-002', id_departemen: 'd1', nama_program: 'Kajian Akbar Bulanan', target_angka: 12, satuan_target: 'Kegiatan', realisasi_angka: 12, anggaran_rencana: 15000000, anggaran_realisasi: 14500000, status_proker: 'Disetujui', file_lpj: 'https://drive.google.com', catatan_admin: '', updated_at: '2026-03-22 14:30:00' },
+                        { id_proker: 'PROK-003', id_departemen: 'd2', nama_program: 'Daurah Murabbi Dasar', target_angka: 100, satuan_target: 'Peserta', realisasi_angka: 60, anggaran_rencana: 25000000, anggaran_realisasi: 18000000, status_proker: 'Menunggu Persetujuan', file_lpj: 'https://drive.google.com', catatan_admin: '', updated_at: '2026-03-24 09:15:00' },
+                        { id_proker: 'PROK-004', id_departemen: 'd2', nama_program: 'Pelatihan Instruktur Nasional', target_angka: 30, satuan_target: 'Orang', realisasi_angka: 0, anggaran_rencana: 15000000, anggaran_realisasi: 0, status_proker: 'Belum Mulai', file_lpj: '', catatan_admin: '', updated_at: '2026-03-25 11:00:00' }
+                    ],
+                    evaluasi: [
+                        { id_evaluasi: 'EVAL-001', id_departemen: 'd1', periode: 'Q1-2026', nilai_soliditas: 9, nilai_kolaborasi: 8.5, catatan_pimpinan: 'Pelaksanaan program dakwah sangat masif dan tepat sasaran. Mohon lengkapi seluruh LPJ.', updated_at: '2026-03-24 16:00:00' },
+                        { id_evaluasi: 'EVAL-002', id_departemen: 'd2', periode: 'Q1-2026', nilai_soliditas: 8.5, nilai_kolaborasi: 9, catatan_pimpinan: 'Kaderisasi berjalan sangat terstruktur, tingkatkan follow up pasca daurah.', updated_at: '2026-03-24 16:10:00' }
+                    ]
+                };
+
+                // ==========================================
+                // UNIVERSAL API SERVICE
+                // ==========================================
+                async function apiService(action, payload = {}) {
+                    // Method 1: Google Apps Script Native RPC (Fastest & No CORS issue)
+                    if (typeof google !== 'undefined' && google.script && google.script.run) {
+                        return new Promise((resolve) => {
+                            google.script.run
+                                .withSuccessHandler((res) => {
+                                    if (res && res.sessionExpired) {
+                                        handleSessionExpired();
+                                        resolve({ success: false, message: 'Sesi berakhir' });
+                                    } else {
+                                        resolve(res);
+                                    }
+                                })
+                                .withFailureHandler((err) => {
+                                    resolve({ success: false, message: err.message || 'Gagal terhubung ke GAS' });
+                                })
+                                .apiHandler(action, Auth.getToken(), payload);
+                        });
+                    }
+
+                    // Method 2: External HTTP POST Fetch API
+                    if (API_URL && API_URL.startsWith("http") && API_URL !== "GANTI_DENGAN_URL_GAS_ANDA") {
+                        try {
+                            // Catatan: Content-Type sengaja "text/plain" (bukan application/json) agar browser
+                            // TIDAK mengirim preflight OPTIONS ke Google Apps Script (GAS tidak mendukung
+                            // preflight CORS). Isi body tetap JSON dan tetap diparsing normal oleh doPost().
+                            const response = await fetch(API_URL, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                                body: JSON.stringify({ action, token: Auth.getToken(), payload })
+                            });
+                            const data = await response.json();
+                            if (data.sessionExpired) {
+                                handleSessionExpired();
+                                return { success: false, message: 'Sesi habis' };
+                            }
+                            return data;
+                        } catch (error) {
+                            return { success: false, message: 'Terjadi kesalahan koneksi jaringan API.' };
+                        }
+                    }
+
+                    // Method 3: Local Mock DB (Offline Preview)
+                    return new Promise((resolve) => {
+                        setTimeout(() => {
+                            let res = { success: false, message: 'Aksi tidak didukung' };
+
+                            if (action === 'login') {
+                                const user = MOCK_DB.users.find(u => u.email.toLowerCase() === payload.email.toLowerCase());
+                                if (user && (payload.pin === 'Admin@2026' || payload.pin === '123456')) {
+                                    res = { success: true, user: user, token: 'mock-token-' + Date.now() };
+                                } else {
+                                    res = { success: false, message: 'Email/Username atau Password salah (Coba: Admin@2026)' };
+                                }
+                            } else if (action === 'getAllData') {
+                                const user = Auth.getUser() || { role: 'Admin' };
+                                if (user.role === 'Admin') {
+                                    res = { success: true, data: JSON.parse(JSON.stringify(MOCK_DB)) };
+                                } else {
+                                    res = {
+                                        success: true,
+                                        data: {
+                                            departemen: MOCK_DB.departemen,
+                                            users: [],
+                                            proker: MOCK_DB.proker.filter(p => p.id_departemen === user.id_departemen),
+                                            evaluasi: MOCK_DB.evaluasi.filter(e => e.id_departemen === user.id_departemen)
+                                        }
+                                    };
+                                }
+                            } else if (action === 'addProker') {
+                                const newId = 'PROK-' + Date.now().toString().slice(-4);
+                                MOCK_DB.proker.push({
+                                    id_proker: newId,
+                                    id_departemen: payload.id_departemen,
+                                    nama_program: payload.nama_program,
+                                    target_angka: Number(payload.target_angka),
+                                    satuan_target: payload.satuan_target,
+                                    realisasi_angka: 0,
+                                    anggaran_rencana: Number(payload.anggaran_rencana),
+                                    anggaran_realisasi: 0,
+                                    status_proker: 'Belum Mulai',
+                                    file_lpj: '',
+                                    updated_at: new Date().toISOString().replace('T', ' ').slice(0, 19)
+                                });
+                                res = { success: true, message: 'Proker berhasil ditambahkan' };
+                            } else if (action === 'editProker') {
+                                const p = MOCK_DB.proker.find(x => x.id_proker === payload.id_proker);
+                                if (p) {
+                                    p.nama_program = payload.nama_program;
+                                    p.target_angka = Number(payload.target_angka);
+                                    p.satuan_target = payload.satuan_target;
+                                    p.anggaran_rencana = Number(payload.anggaran_rencana);
+                                    res = { success: true, message: 'Proker berhasil diperbarui' };
+                                }
+                            } else if (action === 'updateProkerRealisasi') {
+                                const p = MOCK_DB.proker.find(x => x.id_proker === payload.id_proker);
+                                if (p) {
+                                    p.realisasi_angka = Number(payload.realisasi_angka);
+                                    p.anggaran_realisasi = Number(payload.anggaran_realisasi);
+                                    p.status_proker = payload.status_proker;
+                                    if (payload.fileName) {
+                                        p.file_lpj = 'https://drive.google.com/lpj/' + payload.fileName;
+                                    }
+                                    if (payload.status_proker === 'Menunggu Persetujuan') {
+                                        p.catatan_admin = '';
+                                    }
+                                    res = { success: true, message: payload.status_proker === 'Menunggu Persetujuan' ? 'LPJ diajukan, menunggu persetujuan Admin (mock)' : 'Realisasi berhasil diupdate' };
+                                }
+                            } else if (action === 'approveProker') {
+                                const p = MOCK_DB.proker.find(x => x.id_proker === payload.id_proker);
+                                if (p) {
+                                    p.status_proker = 'Disetujui';
+                                    res = { success: true, message: 'Proker disetujui (mock)' };
+                                }
+                            } else if (action === 'rejectProker') {
+                                const p = MOCK_DB.proker.find(x => x.id_proker === payload.id_proker);
+                                if (p) {
+                                    p.status_proker = 'Ditolak';
+                                    p.catatan_admin = payload.catatan_admin || '';
+                                    res = { success: true, message: 'Proker ditolak (mock)' };
+                                }
+                            } else if (action === 'deleteProker') {
+                                const idx = MOCK_DB.proker.findIndex(x => x.id_proker === payload.id_proker);
+                                if (idx > -1) {
+                                    MOCK_DB.proker.splice(idx, 1);
+                                    res = { success: true, message: 'Proker berhasil dihapus' };
+                                }
+                            } else if (action === 'saveEvaluasi') {
+                                const newId = 'EVAL-' + Date.now().toString().slice(-4);
+                                MOCK_DB.evaluasi.push({
+                                    id_evaluasi: newId,
+                                    id_departemen: payload.id_departemen,
+                                    periode: payload.periode,
+                                    nilai_soliditas: Number(payload.nilai_soliditas),
+                                    nilai_kolaborasi: Number(payload.nilai_kolaborasi),
+                                    catatan_pimpinan: payload.catatan_pimpinan,
+                                    updated_at: new Date().toISOString().replace('T', ' ').slice(0, 19)
+                                });
+                                res = { success: true, message: 'Evaluasi tersimpan' };
+                            } else if (action === 'deleteEvaluasi') {
+                                const idx = MOCK_DB.evaluasi.findIndex(x => x.id_evaluasi === payload.id_evaluasi);
+                                if (idx > -1) {
+                                    MOCK_DB.evaluasi.splice(idx, 1);
+                                    res = { success: true, message: 'Evaluasi dihapus' };
+                                }
+                            } else if (action === 'addDepartemen') {
+                                const idDept = 'd' + (MOCK_DB.departemen.length + 1);
+                                MOCK_DB.departemen.push({ id_departemen: idDept, nama_departemen: payload.nama_departemen, id_ketua: '' });
+                                res = { success: true, message: 'Departemen ditambahkan', data: { id_departemen: idDept } };
+                            } else if (action === 'editDepartemen') {
+                                const d = MOCK_DB.departemen.find(x => x.id_departemen === payload.id_departemen);
+                                if (d) {
+                                    d.nama_departemen = payload.nama_departemen;
+                                    res = { success: true, message: 'Departemen diperbarui' };
+                                }
+                            } else if (action === 'deleteDepartemen') {
+                                const idx = MOCK_DB.departemen.findIndex(x => x.id_departemen === payload.id_departemen);
+                                if (idx > -1) {
+                                    MOCK_DB.departemen.splice(idx, 1);
+                                    res = { success: true, message: 'Departemen dihapus' };
+                                }
+                            } else if (action === 'addUser') {
+                                const newId = 'u' + (MOCK_DB.users.length + 1);
+                                const newPin = String(Math.floor(100000 + Math.random() * 900000));
+                                MOCK_DB.users.push({
+                                    id_user: newId,
+                                    nama_lengkap: payload.nama_lengkap,
+                                    email: payload.email,
+                                    role: payload.role,
+                                    id_departemen: payload.id_departemen || ''
+                                });
+                                res = { success: true, message: 'Pengguna ditambahkan', data: { id_user: newId, pin_awal: newPin } };
+                            } else if (action === 'editUser') {
+                                const u = MOCK_DB.users.find(x => x.id_user === payload.id_user);
+                                if (u) {
+                                    u.nama_lengkap = payload.nama_lengkap;
+                                    u.email = payload.email;
+                                    u.role = payload.role;
+                                    u.id_departemen = payload.role === 'User' ? (payload.id_departemen || '') : '';
+                                    res = { success: true, message: 'Pengguna diperbarui' };
+                                }
+                            } else if (action === 'deleteUser') {
+                                const idx = MOCK_DB.users.findIndex(x => x.id_user === payload.id_user);
+                                if (idx > -1) {
+                                    MOCK_DB.users.splice(idx, 1);
+                                    res = { success: true, message: 'Pengguna dihapus' };
+                                }
+                            } else if (action === 'resetUserPin') {
+                                const newPin = String(Math.floor(100000 + Math.random() * 900000));
+                                res = { success: true, message: 'PIN direset', data: { pin_baru: newPin } };
+                            } else if (action === 'changeOwnPassword') {
+                                res = { success: true, message: 'Password berhasil diperbarui' };
+                            }
+
+                            resolve(res);
+                        }, 400);
+                    });
+                }
+
+                // ==========================================
+                // FORMATTERS & UTILITIES
+                // ==========================================
+                const formatRp = (angka) => 'Rp ' + Number(angka || 0).toLocaleString('id-ID');
+                const escapeHTML = (str) => String(str == null ? '' : str).replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag]));
+
+                const getTrafficLightClasses = (persen) => {
+                    if (persen >= 80) return 'bg-emerald-100 text-emerald-800 border-emerald-300';
+                    if (persen >= 50) return 'bg-amber-100 text-amber-800 border-amber-300';
+                    return 'bg-rose-100 text-rose-800 border-rose-300';
+                };
+
+                const getStatusBadgeClasses = (status) => {
+                    switch (status) {
+                        case 'Disetujui':
+                        case 'Selesai': return 'bg-emerald-100 text-emerald-800 border-emerald-200';
+                        case 'Menunggu Persetujuan': return 'bg-amber-100 text-amber-800 border-amber-200';
+                        case 'Ditolak': return 'bg-rose-100 text-rose-800 border-rose-200';
+                        case 'Berjalan': return 'bg-sky-100 text-sky-800 border-sky-200';
+                        case 'Terkendala': return 'bg-red-100 text-red-800 border-red-200';
+                        default: return 'bg-gray-100 text-gray-700 border-gray-200';
+                    }
+                };
+
+                const calculatePersen = (realisasi, target) => {
+                    if (!target || Number(target) === 0) return 0;
+                    return Math.round((Number(realisasi) / Number(target)) * 100);
+                };
+
+                const showLoading = (text = 'Memuat Data...') => {
+                    document.getElementById('loadingText').innerText = text;
+                    document.getElementById('fullPageLoading').classList.remove('d-none');
+                };
+                const hideLoading = () => document.getElementById('fullPageLoading').classList.add('d-none');
+
+                const toast = (msg, icon = 'success') => Swal.fire({
+                    toast: true, position: 'top-end', icon: icon, title: msg, showConfirmButton: false, timer: 3000
+                });
+
+                window.togglePasswordVisibility = function (inputId, btn) {
+                    const inp = document.getElementById(inputId);
+                    const icon = btn.querySelector('i');
+                    if (inp.type === 'password') {
+                        inp.type = 'text';
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                    } else {
+                        inp.type = 'password';
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                    }
+                };
+
+                // ==========================================
+                // AUTH & NAVIGATION
+                // ==========================================
+                window.toggleSidebar = function () {
+                    const sidebar = document.getElementById('sidebar');
+                    const overlay = document.getElementById('sidebarOverlay');
+                    if (!sidebar || !overlay) return;
+
+                    const isHidden = sidebar.classList.contains('-translate-x-full');
+                    if (isHidden) {
+                        sidebar.classList.remove('-translate-x-full');
+                        sidebar.classList.add('translate-x-0');
+                        overlay.classList.remove('d-none');
+                    } else {
+                        sidebar.classList.add('-translate-x-full');
+                        sidebar.classList.remove('translate-x-0');
+                        overlay.classList.add('d-none');
+                    }
+                };
+
+                window.showPage = function (pageId, btnElement) {
+                    document.querySelectorAll('.app-page').forEach(el => el.classList.add('d-none'));
+
+                    const targetView = document.getElementById(pageId);
+                    if (targetView) {
+                        targetView.classList.remove('d-none');
+                        targetView.classList.remove('view-fade');
+                        void targetView.offsetWidth;
+                        targetView.classList.add('view-fade');
+                    }
+
+                    if (btnElement) {
+                        document.querySelectorAll('.nav-btn').forEach(btn => {
+                            btn.classList.remove('bg-white/15', 'text-white', 'shadow-sm');
+                            btn.classList.add('text-wahdah-100');
+                        });
+                        btnElement.classList.add('bg-white/15', 'text-white', 'shadow-sm');
+                        btnElement.classList.remove('text-wahdah-100');
+
+                        const spanText = btnElement.querySelector('span');
+                        if (spanText) document.getElementById('pageTitle').textContent = spanText.textContent;
+                    }
+
+                    // Automatically hide sidebar after selecting a menu item
+                    const sidebar = document.getElementById('sidebar');
+                    const overlay = document.getElementById('sidebarOverlay');
+                    if (sidebar && overlay) {
+                        sidebar.classList.add('-translate-x-full');
+                        sidebar.classList.remove('translate-x-0');
+                        overlay.classList.add('d-none');
+                    }
+                };
+
+                window.handleSessionExpired = function () {
+                    Auth.clear();
+                    Swal.fire({
+                        title: 'Sesi Berakhir',
+                        text: 'Sesi Anda telah berakhir. Silakan login kembali.',
+                        icon: 'warning',
+                        confirmButtonColor: '#177355'
+                    }).then(checkLoginState);
+                };
+
+                window.checkLoginState = function () {
+                    const token = Auth.getToken();
+                    const user = Auth.getUser();
+
+                    if (token && user) {
+                        document.getElementById('loginPage').classList.add('d-none');
+                        document.getElementById('mainContentWrapper').classList.remove('d-none');
+                        document.getElementById('sidebar').classList.remove('d-none');
+
+                        // Sidebar automatically hidden by default
+                        const sidebar = document.getElementById('sidebar');
+                        const overlay = document.getElementById('sidebarOverlay');
+                        if (sidebar) {
+                            sidebar.classList.add('-translate-x-full');
+                            sidebar.classList.remove('translate-x-0');
+                        }
+                        if (overlay) {
+                            overlay.classList.add('d-none');
+                        }
+
+                        document.getElementById('sidebarUserName').textContent = escapeHTML(user.nama_lengkap);
+                        document.getElementById('sidebarUserRole').textContent = user.role === 'Admin' ? 'Admin Eksekutif' : ('Pengurus ' + (getDeptName(user.id_departemen) || 'Departemen'));
+
+                        document.querySelectorAll('.admin-only, .user-only').forEach(el => el.classList.add('d-none'));
+
+                        if (user.role === 'Admin') {
+                            document.querySelectorAll('.admin-only').forEach(el => el.classList.remove('d-none'));
+                            document.getElementById('pageSubtitle').textContent = 'Portal Eksekutif Wahdah Islamiyah';
+                            loadAppData('viewDashboardAdmin');
+                        } else {
+                            document.querySelectorAll('.user-only').forEach(el => el.classList.remove('d-none'));
+                            document.getElementById('pageSubtitle').textContent = 'Ruang Kerja ' + (getDeptName(user.id_departemen) || 'Departemen');
+                            loadAppData('viewManajemenProker');
+                        }
+                    } else {
+                        document.getElementById('loginPage').classList.remove('d-none');
+                        document.getElementById('mainContentWrapper').classList.add('d-none');
+                        document.getElementById('sidebar').classList.add('d-none');
+                    }
+                };
+
+                window.handleLogin = async function () {
+                    const email = document.getElementById('inpUserId').value.trim();
+                    const pin = document.getElementById('inpPin').value;
+                    const btn = document.getElementById('btnLoginSubmit');
+
+                    btn.disabled = true;
+                    btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Memverifikasi...';
+
+                    const res = await apiService('login', { email, pin });
+                    btn.disabled = false;
+                    btn.innerHTML = '<span>Masuk ke Dashboard</span> <i class="fa-solid fa-arrow-right"></i>';
+
+                    if (res.success) {
+                        Auth.setToken(res.token);
+                        Auth.setUser(res.user);
+                        document.getElementById('formLogin').reset();
+                        checkLoginState();
+                    } else {
+                        Swal.fire({
+                            title: 'Login Gagal',
+                            text: res.message || 'Kredensial tidak valid',
+                            icon: 'error',
+                            confirmButtonColor: '#177355'
+                        });
+                    }
+                };
+
+                window.logout = function () {
+                    Swal.fire({
+                        title: 'Konfirmasi Logout',
+                        text: 'Apakah Anda yakin ingin keluar dari sistem KPI?',
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#177355',
+                        cancelButtonColor: '#6b7280',
+                        confirmButtonText: 'Ya, Keluar',
+                        cancelButtonText: 'Batal'
+                    }).then((res) => {
+                        if (res.isConfirmed) {
+                            apiService('logout');
+                            Auth.clear();
+                            checkLoginState();
+                        }
+                    });
+                };
+
+                // ==========================================
+                // DATA LOADING & RENDERING
+                // ==========================================
+                function getDeptName(id) {
+                    const d = appState.departemen.find(x => x.id_departemen === id);
+                    return d ? d.nama_departemen : id;
+                }
+
+                window.loadAppData = async function (defaultView) {
+                    showLoading('Memuat data sistem...');
+                    const res = await apiService('getAllData');
+                    hideLoading();
+
+                    if (res.success && res.data) {
+                        appState = Object.assign(appState, res.data);
+                        const user = Auth.getUser();
+
+                        // Populate Department Selects
+                        populateDeptSelects();
+
+                        if (user && user.role === 'Admin') {
+                            renderDashboardAdmin();
+                            renderPersetujuanProker();
+                            renderEvaluasiAdminTable();
+                            renderDepartemenTable();
+                            renderUsersTable();
+                            if (defaultView) {
+                                showPage(defaultView, document.querySelector(`.admin-only .nav-btn[onclick*="${defaultView}"]`) || document.querySelector('.admin-only .nav-btn'));
+                            }
+                        } else if (user && user.role === 'User') {
+                            renderManajemenProker(user.id_departemen);
+                            renderEvaluasiUserView(user.id_departemen);
+                            if (defaultView) {
+                                showPage(defaultView, document.querySelector(`.user-only .nav-btn[onclick*="${defaultView}"]`) || document.querySelector('.user-only .nav-btn'));
+                            }
+                        }
+                    } else {
+                        toast('Gagal memuat data: ' + (res.message || ''), 'error');
+                    }
+                };
+
+                function populateDeptSelects() {
+                    const options = appState.departemen.map(d => `<option value="${d.id_departemen}">${escapeHTML(d.nama_departemen)}</option>`).join('');
+
+                    const selEval = document.getElementById('evDepartemen');
+                    if (selEval) selEval.innerHTML = `<option value="" disabled selected>Pilih Departemen...</option>` + options;
+
+                    const selUserAdd = document.getElementById('addUDept');
+                    if (selUserAdd) selUserAdd.innerHTML = options;
+
+                    const selUserEdit = document.getElementById('editUDept');
+                    if (selUserEdit) selUserEdit.innerHTML = options;
+
+                    const selFilterPersetujuanDept = document.getElementById('filterPersetujuanDept');
+                    if (selFilterPersetujuanDept) selFilterPersetujuanDept.innerHTML = `<option value="">Semua Departemen</option>` + options;
+                }
+
+                // ==========================================
+                // 1. ADMIN DASHBOARD RENDERING
+                // ==========================================
+                function renderDashboardAdmin() {
+                    let totalAnggaranRencana = 0, totalAnggaranRealisasi = 0, totalProkerAktif = 0;
+                    let statusCounts = { 'Disetujui': 0, 'Menunggu Persetujuan': 0, 'Berjalan': 0, 'Belum Mulai': 0, 'Ditolak': 0, 'Terkendala': 0 };
+                    let deptStats = {};
+
+                    appState.departemen.forEach(d => {
+                        deptStats[d.id_departemen] = {
+                            id: d.id_departemen,
+                            nama: d.nama_departemen,
+                            count: 0,
+                            sumPersen: 0,
+                            rencana: 0,
+                            realisasi: 0
+                        };
+                    });
+
+                    appState.proker.forEach(p => {
+                        totalAnggaranRencana += Number(p.anggaran_rencana || 0);
+                        totalAnggaranRealisasi += Number(p.anggaran_realisasi || 0);
+
+                        let st = p.status_proker || 'Belum Mulai';
+                        if (st === 'Selesai') st = 'Disetujui'; // legacy status from before approval workflow
+                        if (statusCounts[st] !== undefined) statusCounts[st]++;
+                        if (st !== 'Belum Mulai') totalProkerAktif++;
+
+                        let persen = calculatePersen(p.realisasi_angka, p.target_angka);
+                        if (deptStats[p.id_departemen]) {
+                            deptStats[p.id_departemen].count++;
+                            deptStats[p.id_departemen].sumPersen += persen;
+                            deptStats[p.id_departemen].rencana += Number(p.anggaran_rencana || 0);
+                            deptStats[p.id_departemen].realisasi += Number(p.anggaran_realisasi || 0);
+                        }
+                    });
+
+                    let totalPersenAll = 0, countWithProker = 0, chartLabels = [], chartData = [], tableHtml = '';
+
+                    const sortedDeptKeys = Object.keys(deptStats).sort((a, b) => {
+                        const avgA = deptStats[a].count > 0 ? (deptStats[a].sumPersen / deptStats[a].count) : 0;
+                        const avgB = deptStats[b].count > 0 ? (deptStats[b].sumPersen / deptStats[b].count) : 0;
+                        return avgB - avgA;
+                    });
+
+                    sortedDeptKeys.forEach(id => {
+                        const ds = deptStats[id];
+                        let avg = ds.count > 0 ? Math.round(ds.sumPersen / ds.count) : 0;
+                        if (ds.count > 0) {
+                            totalPersenAll += avg;
+                            countWithProker++;
+                        }
+
+                        chartLabels.push(ds.nama);
+                        chartData.push(avg);
+
+                        let tlClass = getTrafficLightClasses(avg);
+                        tableHtml += `
+                        <tr class="hover:bg-wahdah-50/50 transition-colors">
+                            <td class="px-6 py-4 font-bold text-wahdah-900">${escapeHTML(ds.nama)}</td>
+                            <td class="px-4 py-4 text-center font-semibold text-wahdah-800">${ds.count}</td>
+                            <td class="px-4 py-4 text-right text-xs">
+                                <span class="text-gray-500">R: ${formatRp(ds.rencana)}</span><br>
+                                <span class="font-bold text-wahdah-900">A: ${formatRp(ds.realisasi)}</span>
+                            </td>
+                            <td class="px-4 py-4 text-center font-extrabold text-wahdah-900 text-sm">${avg}%</td>
+                            <td class="px-6 py-4 text-center">
+                                <span class="px-3.5 py-1.5 border rounded-full text-xs font-bold tracking-wide inline-flex items-center gap-1.5 ${tlClass}">
+                                    <span class="w-2 h-2 rounded-full ${avg >= 80 ? 'bg-emerald-500' : avg >= 50 ? 'bg-amber-500' : 'bg-rose-500'}"></span>
+                                    ${avg}%
+                                </span>
+                            </td>
+                        </tr>
+                    `;
+                    });
+
+                    let overallAvg = countWithProker > 0 ? Math.round(totalPersenAll / countWithProker) : 0;
+                    let serapan = totalAnggaranRencana > 0 ? Math.round((totalAnggaranRealisasi / totalAnggaranRencana) * 100) : 0;
+
+                    document.getElementById('dashRataCapaian').innerText = overallAvg;
+                    document.getElementById('dashTotalProker').innerText = totalProkerAktif;
+                    document.getElementById('dashSerapanAnggaran').innerText = serapan;
+                    document.getElementById('dashTotalDept').innerText = appState.departemen.length;
+                    document.getElementById('adminTrafficTable').innerHTML = tableHtml || `<tr><td colspan="5" class="text-center py-6 text-gray-500">Belum ada data departemen</td></tr>`;
+
+                    // Render Bar Chart
+                    if (appState.kpiChartInstance) appState.kpiChartInstance.destroy();
+                    const ctx = document.getElementById('kpiChart').getContext('2d');
+                    appState.kpiChartInstance = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: chartLabels,
+                            datasets: [{
+                                label: 'Rata-rata Capaian (%)',
+                                data: chartData,
+                                backgroundColor: '#177355',
+                                hoverBackgroundColor: '#0e3a2e',
+                                borderRadius: 8,
+                                barThickness: 28
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: { beginAtZero: true, max: 100, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { callback: v => v + '%' } },
+                                x: { grid: { display: false } }
+                            },
+                            plugins: {
+                                legend: { display: false },
+                                tooltip: { callbacks: { label: (ctx) => ` Capaian: ${ctx.raw}%` } }
+                            }
+                        }
+                    });
+
+                    // Render Doughnut Chart for Proker Status
+                    if (appState.statusChartInstance) appState.statusChartInstance.destroy();
+                    const sCtx = document.getElementById('prokerStatusChart').getContext('2d');
+                    appState.statusChartInstance = new Chart(sCtx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Disetujui', 'Menunggu Persetujuan', 'Berjalan', 'Belum Mulai', 'Ditolak', 'Terkendala'],
+                            datasets: [{
+                                data: [statusCounts['Disetujui'], statusCounts['Menunggu Persetujuan'], statusCounts['Berjalan'], statusCounts['Belum Mulai'], statusCounts['Ditolak'], statusCounts['Terkendala']],
+                                backgroundColor: ['#10b981', '#f59e0b', '#0284c7', '#9ca3af', '#f43f5e', '#dc2626'],
+                                borderWidth: 2,
+                                borderColor: '#ffffff'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: { legend: { display: false } },
+                            cutout: '70%'
+                        }
+                    });
+
+                    document.getElementById('prokerStatusLegend').innerHTML = `
+                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Disetujui: <b>${statusCounts['Disetujui']}</b></div>
+                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Menunggu: <b>${statusCounts['Menunggu Persetujuan']}</b></div>
+                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-sky-500"></span> Berjalan: <b>${statusCounts['Berjalan']}</b></div>
+                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-gray-400"></span> Belum: <b>${statusCounts['Belum Mulai']}</b></div>
+                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> Ditolak: <b>${statusCounts['Ditolak']}</b></div>
+                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#dc2626"></span> Kendala: <b>${statusCounts['Terkendala']}</b></div>
+                `;
+                }
+
+                // ==========================================
+                // 1B. PERSETUJUAN PROKER (ADMIN)
+                // ==========================================
+                function renderPersetujuanProker() {
+                    const tbody = document.getElementById('persetujuanProkerTableBody');
+                    if (!tbody) return;
+
+                    let html = '';
+                    let pendingCount = 0;
+
+                    // Show items awaiting approval first
+                    const sorted = appState.proker.slice().sort((a, b) => {
+                        const rank = (s) => s === 'Menunggu Persetujuan' ? 0 : 1;
+                        return rank(a.status_proker) - rank(b.status_proker);
+                    });
+
+                    sorted.forEach(p => {
+                        if (p.status_proker === 'Menunggu Persetujuan') pendingCount++;
+
+                        let persen = calculatePersen(p.realisasi_angka, p.target_angka);
+                        let statusBadge = getStatusBadgeClasses(p.status_proker);
+
+                        let lpjLink = p.file_lpj
+                            ? `<a href="${escapeHTML(p.file_lpj)}" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-sky-600 font-semibold hover:underline mt-1"><i class="fa-solid fa-paperclip"></i> Lihat Berkas LPJ</a>`
+                            : `<span class="text-[10px] text-gray-400 italic block mt-0.5">LPJ belum ada</span>`;
+
+                        let catatanHtml = p.catatan_admin
+                            ? `<p class="text-[11px] text-rose-600 italic mt-1"><i class="fa-solid fa-comment-dots"></i> ${escapeHTML(p.catatan_admin)}</p>`
+                            : '';
+
+                        let aksi = `<span class="text-[11px] text-gray-400">-</span>`;
+                        if (p.status_proker === 'Menunggu Persetujuan') {
+                            aksi = `
+                            <div class="flex items-center justify-center gap-1.5">
+                                <button onclick="approveProkerAction('${p.id_proker}', '${escapeHTML(p.nama_program)}')" class="w-8 h-8 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Setujui Proker">
+                                    <i class="fa-solid fa-check text-xs"></i>
+                                </button>
+                                <button onclick="rejectProkerAction('${p.id_proker}', '${escapeHTML(p.nama_program)}')" class="w-8 h-8 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Tolak Proker">
+                                    <i class="fa-solid fa-xmark text-xs"></i>
+                                </button>
+                            </div>`;
+                        }
+
+                        html += `
+                        <tr class="hover:bg-wahdah-50/50 transition-colors persetujuan-row" data-name="${escapeHTML(p.nama_program).toLowerCase()}" data-status="${escapeHTML(p.status_proker)}" data-dept="${escapeHTML(p.id_departemen)}">
+                            <td class="px-6 py-4">
+                                <p class="font-extrabold text-wahdah-900">${escapeHTML(p.nama_program)}</p>
+                                <p class="text-[11px] text-wahdah-600 font-semibold mt-0.5">${escapeHTML(getDeptName(p.id_departemen))}</p>
+                                ${lpjLink}
+                                ${catatanHtml}
+                            </td>
+                            <td class="px-4 py-4 text-xs font-semibold text-wahdah-800">${p.target_angka} ${escapeHTML(p.satuan_target)}</td>
+                            <td class="px-4 py-4 text-center font-extrabold text-wahdah-900">${p.realisasi_angka}</td>
+                            <td class="px-4 py-4 text-center">
+                                <span class="px-2.5 py-0.5 border rounded-full text-[10px] font-bold ${getTrafficLightClasses(persen)}">${persen}%</span>
+                            </td>
+                            <td class="px-4 py-4 text-right text-xs">
+                                <span class="text-gray-500">R: ${formatRp(p.anggaran_rencana)}</span><br>
+                                <span class="font-bold text-wahdah-900">A: ${formatRp(p.anggaran_realisasi)}</span>
+                            </td>
+                            <td class="px-4 py-4 text-center"><span class="px-2.5 py-1 text-[10px] rounded-full font-bold border ${statusBadge}">${escapeHTML(p.status_proker)}</span></td>
+                            <td class="px-6 py-4 text-center">${aksi}</td>
+                        </tr>
+                    `;
+                    });
+
+                    tbody.innerHTML = html || `<tr><td colspan="7" class="text-center py-8 text-gray-500 font-medium">Belum ada Program Kerja dari departemen manapun.</td></tr>`;
+
+                    // Pending-approval badge on the nav item
+                    const badge = document.getElementById('navBadgeMenungguProker');
+                    if (badge) {
+                        if (pendingCount > 0) { badge.textContent = pendingCount; badge.classList.remove('d-none'); }
+                        else { badge.classList.add('d-none'); }
+                    }
+
+                    // Dashboard banner
+                    const banner = document.getElementById('dashPendingApprovalBanner');
+                    const bannerCount = document.getElementById('dashPendingApprovalCount');
+                    if (banner && bannerCount) {
+                        if (pendingCount > 0) { bannerCount.textContent = pendingCount; banner.classList.remove('d-none'); }
+                        else { banner.classList.add('d-none'); }
+                    }
+                }
+
+                window.filterPersetujuanTable = function () {
+                    const search = document.getElementById('searchPersetujuanInput').value.toLowerCase().trim();
+                    const status = document.getElementById('filterPersetujuanStatus').value;
+                    const dept = document.getElementById('filterPersetujuanDept').value;
+                    const rows = document.querySelectorAll('.persetujuan-row');
+
+                    rows.forEach(row => {
+                        const name = row.getAttribute('data-name') || '';
+                        const st = row.getAttribute('data-status') || '';
+                        const dp = row.getAttribute('data-dept') || '';
+                        const matchName = !search || name.includes(search);
+                        const matchStatus = !status || st === status;
+                        const matchDept = !dept || dp === dept;
+                        row.style.display = (matchName && matchStatus && matchDept) ? '' : 'none';
+                    });
+                };
+
+                window.approveProkerAction = function (id, nama) {
+                    Swal.fire({
+                        title: 'Setujui Program Kerja?',
+                        html: `Program kerja <b>${escapeHTML(nama)}</b> akan disetujui dan berstatus <b>Disetujui</b>.`,
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#177355',
+                        cancelButtonColor: '#6b7280',
+                        confirmButtonText: 'Ya, Setujui',
+                        cancelButtonText: 'Batal'
+                    }).then(async (r) => {
+                        if (r.isConfirmed) {
+                            showLoading('Menyetujui program kerja...');
+                            const res = await apiService('approveProker', { id_proker: id });
+                            hideLoading();
+                            if (res.success) {
+                                toast(res.message || 'Proker disetujui');
+                                loadAppData();
+                            } else {
+                                Swal.fire('Gagal', res.message || 'Gagal menyetujui proker', 'error');
+                            }
+                        }
+                    });
+                };
+
+                window.rejectProkerAction = function (id, nama) {
+                    Swal.fire({
+                        title: 'Tolak Program Kerja?',
+                        html: `Berikan alasan penolakan untuk <b>${escapeHTML(nama)}</b>. Departemen akan diminta merevisi dan mengunggah ulang LPJ.`,
+                        input: 'textarea',
+                        inputPlaceholder: 'Tuliskan alasan penolakan...',
+                        inputValidator: (value) => !value ? 'Alasan penolakan wajib diisi' : undefined,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#e11d48',
+                        cancelButtonColor: '#6b7280',
+                        confirmButtonText: 'Ya, Tolak',
+                        cancelButtonText: 'Batal'
+                    }).then(async (r) => {
+                        if (r.isConfirmed) {
+                            showLoading('Memproses penolakan...');
+                            const res = await apiService('rejectProker', { id_proker: id, catatan_admin: r.value });
+                            hideLoading();
+                            if (res.success) {
+                                toast(res.message || 'Proker ditolak', 'info');
+                                loadAppData();
+                            } else {
+                                Swal.fire('Gagal', res.message || 'Gagal menolak proker', 'error');
+                            }
+                        }
+                    });
+                };
+
+                // ==========================================
+                // 2. EVALUASI (ADMIN & USER)
+                // ==========================================
+                function renderEvaluasiAdminTable() {
+                    const tbody = document.getElementById('evaluasiAdminTableBody');
+                    let html = '';
+
+                    appState.evaluasi.forEach(e => {
+                        html += `
+                        <tr class="hover:bg-wahdah-50/50 transition-colors">
+                            <td class="px-6 py-4 font-bold text-wahdah-900">${escapeHTML(getDeptName(e.id_departemen))}</td>
+                            <td class="px-4 py-4 text-center font-semibold text-xs text-wahdah-700"><span class="bg-wahdah-50 border border-wahdah-200 px-2 py-1 rounded-lg">${escapeHTML(e.periode)}</span></td>
+                            <td class="px-4 py-4 text-center font-extrabold text-wahdah-900"><span class="bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-lg text-xs">${e.nilai_soliditas}/10</span></td>
+                            <td class="px-4 py-4 text-center font-extrabold text-wahdah-900"><span class="bg-sky-50 text-sky-700 px-2.5 py-1 rounded-lg text-xs">${e.nilai_kolaborasi}/10</span></td>
+                            <td class="px-6 py-4 text-xs text-wahdah-800 max-w-xs">${escapeHTML(e.catatan_pimpinan || '-')}</td>
+                            <td class="px-4 py-4 text-center">
+                                <button onclick="deleteEvaluasi('${e.id_evaluasi}')" class="w-8 h-8 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 flex items-center justify-center transition-colors mx-auto" title="Hapus Evaluasi">
+                                    <i class="fa-solid fa-trash text-xs"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                    });
+
+                    tbody.innerHTML = html || `<tr><td colspan="6" class="text-center py-6 text-gray-500">Belum ada catatan evaluasi</td></tr>`;
+                }
+
+                window.submitEvaluasi = async function () {
+                    const payload = {
+                        id_departemen: document.getElementById('evDepartemen').value,
+                        periode: document.getElementById('evPeriode').value.trim(),
+                        nilai_soliditas: document.getElementById('evSoliditas').value,
+                        nilai_kolaborasi: document.getElementById('evKolaborasi').value,
+                        catatan_pimpinan: document.getElementById('evCatatan').value.trim()
+                    };
+
+                    const btn = document.getElementById('btnSubmitEv');
+                    btn.disabled = true;
+                    showLoading('Menyimpan evaluasi...');
+
+                    const res = await apiService('saveEvaluasi', payload);
+                    hideLoading();
+                    btn.disabled = false;
+
+                    if (res.success) {
+                        toast(res.message || 'Evaluasi tersimpan');
+                        document.getElementById('formEvaluasi').reset();
+                        loadAppData();
+                    } else {
+                        Swal.fire('Gagal', res.message || 'Gagal menyimpan evaluasi', 'error');
+                    }
+                };
+
+                window.deleteEvaluasi = function (id) {
+                    Swal.fire({
+                        title: 'Hapus Evaluasi?',
+                        text: 'Data evaluasi ini akan dihapus permanen.',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#e11d48',
+                        confirmButtonText: 'Ya, Hapus'
+                    }).then(async (r) => {
+                        if (r.isConfirmed) {
+                            showLoading('Menghapus evaluasi...');
+                            const res = await apiService('deleteEvaluasi', { id_evaluasi: id });
+                            hideLoading();
+                            if (res.success) {
+                                toast(res.message || 'Evaluasi dihapus');
+                                loadAppData();
+                            } else {
+                                Swal.fire('Gagal', res.message, 'error');
+                            }
+                        }
+                    });
+                };
+
+                function renderEvaluasiUserView(idDept) {
+                    const container = document.getElementById('userEvaluasiList');
+                    const evals = appState.evaluasi.filter(e => e.id_departemen === idDept);
+
+                    if (evals.length === 0) {
+                        container.innerHTML = `
+                        <div class="bg-white rounded-2xl shadow-card border border-wahdah-100 p-8 text-center text-gray-500">
+                            <i class="fa-solid fa-comments text-3xl text-wahdah-300 mb-2"></i>
+                            <p class="font-bold text-sm text-wahdah-900">Belum Ada Catatan Evaluasi</p>
+                            <p class="text-xs text-gray-400 mt-1">Pimpinan eksekutif belum menerbitkan evaluasi kualitatif untuk departemen ini.</p>
+                        </div>
+                    `;
+                        return;
+                    }
+
+                    container.innerHTML = evals.map(e => `
+                    <div class="bg-white rounded-2xl shadow-card border border-wahdah-100 p-6 space-y-4">
+                        <div class="flex items-center justify-between border-b border-wahdah-50 pb-3">
+                            <div>
+                                <span class="px-3 py-1 bg-wahdah-50 text-wahdah-800 border border-wahdah-200 rounded-full text-xs font-bold uppercase tracking-wider">${escapeHTML(e.periode)}</span>
+                                <span class="text-xs text-gray-400 ml-2">${escapeHTML(e.updated_at || '')}</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="text-right">
+                                    <span class="text-[10px] text-gray-500 block">Soliditas</span>
+                                    <span class="text-sm font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-lg border border-emerald-200">${e.nilai_soliditas}/10</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-[10px] text-gray-500 block">Kolaborasi</span>
+                                    <span class="text-sm font-extrabold text-sky-700 bg-sky-50 px-2.5 py-0.5 rounded-lg border border-sky-200">${e.nilai_kolaborasi}/10</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-wahdah-50/50 p-4 rounded-xl border border-wahdah-100/60">
+                            <p class="text-xs font-bold text-wahdah-900 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-quote-left text-wahdah-600"></i> Catatan & Arahan Pimpinan:</p>
+                            <p class="text-sm text-wahdah-800 leading-relaxed">${escapeHTML(e.catatan_pimpinan || 'Tidak ada catatan khusus.')}</p>
+                        </div>
+                    </div>
+                `).join('');
+                }
+
+                // ==========================================
+                // 3. MASTER DEPARTEMEN CRUD
+                // ==========================================
+                function renderDepartemenTable() {
+                    const tbody = document.getElementById('departemenTableBody');
+                    let html = '';
+
+                    appState.departemen.forEach(d => {
+                        const prokerCount = appState.proker.filter(p => p.id_departemen === d.id_departemen).length;
+                        html += `
+                        <tr class="hover:bg-wahdah-50/50 transition-colors">
+                            <td class="px-6 py-4 font-mono text-xs font-bold text-wahdah-700">${escapeHTML(d.id_departemen)}</td>
+                            <td class="px-6 py-4 font-bold text-wahdah-900">${escapeHTML(d.nama_departemen)}</td>
+                            <td class="px-4 py-4 text-center font-bold text-xs"><span class="bg-wahdah-50 px-2.5 py-1 rounded-lg border border-wahdah-200">${prokerCount} Proker</span></td>
+                            <td class="px-6 py-4 text-center">
+                                <div class="flex items-center justify-center gap-2">
+                                    <button onclick="openEditDepartemenModal('${d.id_departemen}', '${escapeHTML(d.nama_departemen)}')" class="w-8 h-8 rounded-lg bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 flex items-center justify-center transition-colors shadow-sm" title="Edit Departemen">
+                                        <i class="fa-solid fa-pen text-xs"></i>
+                                    </button>
+                                    <button onclick="deleteDepartemen('${d.id_departemen}')" class="w-8 h-8 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 flex items-center justify-center transition-colors shadow-sm" title="Hapus Departemen">
+                                        <i class="fa-solid fa-trash text-xs"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                    });
+
+                    tbody.innerHTML = html || `<tr><td colspan="4" class="text-center py-6 text-gray-500">Belum ada departemen</td></tr>`;
+                }
+
+                window.submitAddDepartemen = async function () {
+                    const nama = document.getElementById('addNamaDepartemen').value.trim();
+                    const btn = document.getElementById('btnSaveDepartemen');
+
+                    btn.disabled = true;
+                    showLoading('Menambahkan departemen...');
+                    const res = await apiService('addDepartemen', { nama_departemen: nama });
+                    hideLoading();
+                    btn.disabled = false;
+
+                    if (res.success) {
+                        toast(res.message || 'Departemen ditambahkan');
+                        closeModal('modalAddDepartemen');
+                        document.getElementById('formAddDepartemen').reset();
+                        loadAppData();
+                    } else {
+                        Swal.fire('Gagal', res.message || 'Gagal menambahkan departemen', 'error');
+                    }
+                };
+
+                window.openEditDepartemenModal = function (id, nama) {
+                    document.getElementById('editIdDepartemen').value = id;
+                    document.getElementById('editNamaDepartemen').value = nama;
+                    openModal('modalEditDepartemen');
+                };
+
+                window.submitEditDepartemen = async function () {
+                    const id = document.getElementById('editIdDepartemen').value;
+                    const nama = document.getElementById('editNamaDepartemen').value.trim();
+                    const btn = document.getElementById('btnSaveEditDepartemen');
+
+                    btn.disabled = true;
+                    showLoading('Memperbarui departemen...');
+                    const res = await apiService('editDepartemen', { id_departemen: id, nama_departemen: nama });
+                    hideLoading();
+                    btn.disabled = false;
+
+                    if (res.success) {
+                        toast(res.message || 'Departemen diperbarui');
+                        closeModal('modalEditDepartemen');
+                        loadAppData();
+                    } else {
+                        Swal.fire('Gagal', res.message || 'Gagal memperbarui departemen', 'error');
+                    }
+                };
+
+                window.deleteDepartemen = function (id) {
+                    Swal.fire({
+                        title: 'Hapus Departemen?',
+                        text: 'Departemen ini akan dihapus dari sistem. Pastikan proker terkait sudah dipindahkan atau dihapus.',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#e11d48',
+                        confirmButtonText: 'Ya, Hapus'
+                    }).then(async (r) => {
+                        if (r.isConfirmed) {
+                            showLoading('Menghapus departemen...');
+                            const res = await apiService('deleteDepartemen', { id_departemen: id });
+                            hideLoading();
+                            if (res.success) {
+                                toast(res.message || 'Departemen dihapus');
+                                loadAppData();
+                            } else {
+                                Swal.fire('Gagal', res.message, 'error');
+                            }
+                        }
+                    });
+                };
+
+                // ==========================================
+                // 4. USERS CRUD
+                // ==========================================
+                function renderUsersTable() {
+                    const tbody = document.getElementById('usersTableBody');
+                    let html = '';
+
+                    appState.users.forEach(u => {
+                        const roleBadge = u.role === 'Admin'
+                            ? 'bg-purple-100 text-purple-800 border-purple-200'
+                            : 'bg-emerald-100 text-emerald-800 border-emerald-200';
+                        const deptLabel = u.role === 'User' ? (getDeptName(u.id_departemen) || '-') : '<span class="text-gray-400 font-normal">Seluruh Akses</span>';
+
+                        html += `
+                        <tr class="hover:bg-wahdah-50/50 transition-colors">
+                            <td class="px-6 py-4 font-bold text-wahdah-900">${escapeHTML(u.nama_lengkap)}</td>
+                            <td class="px-6 py-4 font-mono text-xs text-wahdah-700">${escapeHTML(u.email)}</td>
+                            <td class="px-4 py-4 text-center"><span class="px-2.5 py-1 text-[11px] font-bold rounded-full border ${roleBadge}">${escapeHTML(u.role)}</span></td>
+                            <td class="px-6 py-4 text-xs font-semibold text-wahdah-800">${deptLabel}</td>
+                            <td class="px-6 py-4 text-center">
+                                <div class="flex items-center justify-center gap-1.5">
+                                    <button onclick="openEditUserModal('${u.id_user}')" class="w-8 h-8 rounded-lg bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 flex items-center justify-center transition-colors" title="Edit Akun">
+                                        <i class="fa-solid fa-pen text-xs"></i>
+                                    </button>
+                                    <button onclick="resetUserPin('${u.id_user}', '${escapeHTML(u.nama_lengkap)}')" class="w-8 h-8 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-700 flex items-center justify-center transition-colors" title="Reset Password/PIN">
+                                        <i class="fa-solid fa-key text-xs"></i>
+                                    </button>
+                                    <button onclick="deleteUser('${u.id_user}', '${escapeHTML(u.nama_lengkap)}')" class="w-8 h-8 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 flex items-center justify-center transition-colors" title="Hapus Akun">
+                                        <i class="fa-solid fa-trash text-xs"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                    });
+
+                    tbody.innerHTML = html || `<tr><td colspan="5" class="text-center py-6 text-gray-500">Belum ada akun pengguna</td></tr>`;
+                }
+
+                window.openAddUserModal = function () {
+                    populateDeptSelects();
+                    document.getElementById('formAddUser').reset();
+                    toggleAddUserDeptWrap('User');
+                    openModal('modalAddUser');
+                };
+
+                window.toggleAddUserDeptWrap = function (role) {
+                    document.getElementById('addUDeptWrap').classList.toggle('d-none', role === 'Admin');
+                };
+
+                window.toggleEditUserDeptWrap = function (role) {
+                    document.getElementById('editUDeptWrap').classList.toggle('d-none', role === 'Admin');
+                };
+
+                window.submitAddUser = async function () {
+                    const role = document.getElementById('addURole').value;
+                    const payload = {
+                        nama_lengkap: document.getElementById('addUNama').value.trim(),
+                        email: document.getElementById('addUEmail').value.trim(),
+                        role: role,
+                        id_departemen: role === 'User' ? document.getElementById('addUDept').value : ''
+                    };
+
+                    const btn = document.getElementById('btnSaveUser');
+                    btn.disabled = true;
+                    showLoading('Menambahkan pengguna...');
+                    const res = await apiService('addUser', payload);
+                    hideLoading();
+                    btn.disabled = false;
+
+                    if (res.success) {
+                        closeModal('modalAddUser');
+                        document.getElementById('formAddUser').reset();
+                        Swal.fire({
+                            title: 'Pengguna Berhasil Ditambahkan!',
+                            html: `
+                            <p class="text-sm mb-3">Akun telah dibuat dengan PIN awal:</p>
+                            <div class="bg-wahdah-50 border border-wahdah-200 p-3 rounded-xl font-mono text-lg font-bold text-wahdah-900 tracking-wider">
+                                ${res.data.pin_awal}
+                            </div>
+                            <p class="text-xs text-gray-500 mt-3">Silakan berikan PIN ini kepada pengguna untuk login.</p>
+                        `,
+                            icon: 'success',
+                            confirmButtonColor: '#177355'
+                        });
+                        loadAppData();
+                    } else {
+                        Swal.fire('Gagal', res.message || 'Gagal menambahkan pengguna', 'error');
+                    }
+                };
+
+                window.openEditUserModal = function (id) {
+                    const u = appState.users.find(x => x.id_user === id);
+                    if (!u) return;
+
+                    populateDeptSelects();
+                    document.getElementById('editUId').value = u.id_user;
+                    document.getElementById('editUNama').value = u.nama_lengkap;
+                    document.getElementById('editUEmail').value = u.email;
+                    document.getElementById('editURole').value = u.role;
+                    document.getElementById('editUDept').value = u.id_departemen || '';
+                    toggleEditUserDeptWrap(u.role);
+
+                    openModal('modalEditUser');
+                };
+
+                window.submitEditUser = async function () {
+                    const role = document.getElementById('editURole').value;
+                    const payload = {
+                        id_user: document.getElementById('editUId').value,
+                        nama_lengkap: document.getElementById('editUNama').value.trim(),
+                        email: document.getElementById('editUEmail').value.trim(),
+                        role: role,
+                        id_departemen: role === 'User' ? document.getElementById('editUDept').value : ''
+                    };
+
+                    const btn = document.getElementById('btnSaveEditUser');
+                    btn.disabled = true;
+                    showLoading('Memperbarui pengguna...');
+                    const res = await apiService('editUser', payload);
+                    hideLoading();
+                    btn.disabled = false;
+
+                    if (res.success) {
+                        toast(res.message || 'Pengguna diperbarui');
+                        closeModal('modalEditUser');
+                        loadAppData();
+                    } else {
+                        Swal.fire('Gagal', res.message || 'Gagal memperbarui pengguna', 'error');
+                    }
+                };
+
+                window.resetUserPin = function (id, nama) {
+                    Swal.fire({
+                        title: 'Reset Password/PIN?',
+                        text: `Buat PIN baru secara acak untuk ${nama}?`,
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#c9a24b',
+                        confirmButtonText: 'Ya, Reset PIN'
+                    }).then(async (r) => {
+                        if (r.isConfirmed) {
+                            showLoading('Mereset PIN...');
+                            const res = await apiService('resetUserPin', { id_user: id });
+                            hideLoading();
+                            if (res.success) {
+                                Swal.fire({
+                                    title: 'PIN Berhasil Direset!',
+                                    html: `
+                                    <p class="text-sm mb-3">PIN Baru untuk <b>${escapeHTML(nama)}</b>:</p>
+                                    <div class="bg-wahdah-50 border border-wahdah-200 p-3 rounded-xl font-mono text-xl font-bold text-wahdah-900 tracking-widest">
+                                        ${res.data.pin_baru}
+                                    </div>
+                                `,
+                                    icon: 'success',
+                                    confirmButtonColor: '#177355'
+                                });
+                            } else {
+                                Swal.fire('Gagal', res.message, 'error');
+                            }
+                        }
+                    });
+                };
+
+                window.deleteUser = function (id, nama) {
+                    Swal.fire({
+                        title: 'Hapus Pengguna?',
+                        text: `Akun ${nama} akan dihapus dari sistem.`,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#e11d48',
+                        confirmButtonText: 'Ya, Hapus'
+                    }).then(async (r) => {
+                        if (r.isConfirmed) {
+                            showLoading('Menghapus akun...');
+                            const res = await apiService('deleteUser', { id_user: id });
+                            hideLoading();
+                            if (res.success) {
+                                toast(res.message || 'Akun dihapus');
+                                loadAppData();
+                            } else {
+                                Swal.fire('Gagal', res.message, 'error');
+                            }
+                        }
+                    });
+                };
+
+                // ==========================================
+                // 5. MANAJEMEN PROKER (USER / DEPARTEMEN)
+                // ==========================================
+                window.renderManajemenProker = function (idDept) {
+                    const tbody = document.getElementById('prokerTableBody');
+                    const myProker = appState.proker.filter(p => p.id_departemen === idDept);
+                    let sumPersen = 0, html = '';
+
+                    const deptName = getDeptName(idDept);
+                    document.getElementById('userDeptBadge').innerText = deptName;
+                    document.getElementById('userDeptTitle').innerText = 'Program Kerja ' + deptName;
+
+                    myProker.forEach(p => {
+                        let persen = calculatePersen(p.realisasi_angka, p.target_angka);
+                        sumPersen += persen;
+                        let tlClass = getTrafficLightClasses(persen);
+                        let statusBadge = getStatusBadgeClasses(p.status_proker);
+
+                        let lpjLink = p.file_lpj
+                            ? `<a href="${escapeHTML(p.file_lpj)}" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-sky-600 font-semibold hover:underline mt-1"><i class="fa-solid fa-paperclip"></i> Lihat Berkas LPJ</a>`
+                            : `<span class="text-[10px] text-gray-400 italic block mt-0.5">LPJ belum ada</span>`;
+
+                        let catatanHtml = (p.status_proker === 'Ditolak' && p.catatan_admin)
+                            ? `<p class="text-[11px] text-rose-600 italic mt-1"><i class="fa-solid fa-comment-dots"></i> Catatan Admin: ${escapeHTML(p.catatan_admin)}</p>`
+                            : '';
+
+                        html += `
+                        <tr class="hover:bg-wahdah-50/50 transition-colors proker-row" data-name="${escapeHTML(p.nama_program).toLowerCase()}" data-status="${escapeHTML(p.status_proker)}">
+                            <td class="px-6 py-4">
+                                <p class="font-extrabold text-wahdah-900">${escapeHTML(p.nama_program)}</p>
+                                ${lpjLink}
+                                ${catatanHtml}
+                            </td>
+                            <td class="px-4 py-4 text-xs font-semibold text-wahdah-800">${p.target_angka} ${escapeHTML(p.satuan_target)}</td>
+                            <td class="px-4 py-4 text-center font-extrabold text-wahdah-900">${p.realisasi_angka}</td>
+                            <td class="px-4 py-4 text-center">
+                                <div class="w-full bg-gray-100 rounded-full h-2 mb-1.5 overflow-hidden">
+                                    <div class="h-2 rounded-full ${persen >= 80 ? 'bg-emerald-500' : persen >= 50 ? 'bg-amber-500' : 'bg-rose-500'}" style="width: ${Math.min(100, persen)}%"></div>
+                                </div>
+                                <span class="px-2.5 py-0.5 border rounded-full text-[10px] font-bold ${tlClass}">${persen}%</span>
+                            </td>
+                            <td class="px-4 py-4 text-right text-xs">
+                                <span class="text-gray-500">R: ${formatRp(p.anggaran_rencana)}</span><br>
+                                <span class="font-bold text-wahdah-900">A: ${formatRp(p.anggaran_realisasi)}</span>
+                            </td>
+                            <td class="px-4 py-4 text-center"><span class="px-2.5 py-1 text-[10px] rounded-full font-bold border ${statusBadge}">${escapeHTML(p.status_proker)}</span></td>
+                            <td class="px-6 py-4 text-center">
+                                <div class="flex items-center justify-center gap-1.5">
+                                    <button onclick="openUpdateProker('${p.id_proker}')" class="w-8 h-8 bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Update Realisasi & LPJ">
+                                        <i class="fa-solid fa-pen-to-square text-xs"></i>
+                                    </button>
+                                    <button onclick="openEditProkerModal('${p.id_proker}')" class="w-8 h-8 bg-gray-50 hover:bg-gray-100 text-gray-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Edit Detail Proker">
+                                        <i class="fa-solid fa-gear text-xs"></i>
+                                    </button>
+                                    <button onclick="deleteProker('${p.id_proker}', '${escapeHTML(p.nama_program)}')" class="w-8 h-8 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Hapus Proker">
+                                        <i class="fa-solid fa-trash text-xs"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                    });
+
+                    let avg = myProker.length > 0 ? Math.round(sumPersen / myProker.length) : 0;
+                    document.getElementById('deptRataCapaian').innerText = avg;
+                    tbody.innerHTML = html || `<tr><td colspan="7" class="text-center py-8 text-gray-500 font-medium">Belum ada Program Kerja. Silakan klik "Tambah Proker".</td></tr>`;
+                };
+
+                window.filterProkerTable = function () {
+                    const search = document.getElementById('searchProkerInput').value.toLowerCase().trim();
+                    const status = document.getElementById('filterProkerStatus').value;
+                    const rows = document.querySelectorAll('.proker-row');
+
+                    rows.forEach(row => {
+                        const name = row.getAttribute('data-name') || '';
+                        const st = row.getAttribute('data-status') || '';
+                        const matchName = !search || name.includes(search);
+                        const matchStatus = !status || st === status;
+                        row.style.display = (matchName && matchStatus) ? '' : 'none';
+                    });
+                };
+
+                window.submitAddProker = async function () {
+                    const user = Auth.getUser();
+                    const payload = {
+                        id_departemen: user.id_departemen,
+                        nama_program: document.getElementById('addNamaProgram').value.trim(),
+                        target_angka: document.getElementById('addTargetAngka').value,
+                        satuan_target: document.getElementById('addSatuan').value.trim(),
+                        anggaran_rencana: document.getElementById('addAnggaran').value
+                    };
+
+                    const btn = document.getElementById('btnSaveProker');
+                    btn.disabled = true;
+                    showLoading('Menyimpan Program Kerja...');
+                    const res = await apiService('addProker', payload);
+                    hideLoading();
+                    btn.disabled = false;
+
+                    if (res.success) {
+                        toast(res.message || 'Proker ditambahkan');
+                        closeModal('modalAddProker');
+                        document.getElementById('formAddProker').reset();
+                        loadAppData();
+                    } else {
+                        Swal.fire('Gagal', res.message || 'Gagal menyimpan proker', 'error');
+                    }
+                };
+
+                window.openEditProkerModal = function (id) {
+                    const p = appState.proker.find(x => x.id_proker === id);
+                    if (!p) return;
+
+                    document.getElementById('editIdProker').value = p.id_proker;
+                    document.getElementById('editNamaProgram').value = p.nama_program;
+                    document.getElementById('editTargetAngka').value = p.target_angka;
+                    document.getElementById('editSatuan').value = p.satuan_target;
+                    document.getElementById('editAnggaran').value = p.anggaran_rencana;
+
+                    openModal('modalEditProker');
+                };
+
+                window.submitEditProker = async function () {
+                    const payload = {
+                        id_proker: document.getElementById('editIdProker').value,
+                        nama_program: document.getElementById('editNamaProgram').value.trim(),
+                        target_angka: document.getElementById('editTargetAngka').value,
+                        satuan_target: document.getElementById('editSatuan').value.trim(),
+                        anggaran_rencana: document.getElementById('editAnggaran').value
+                    };
+
+                    const btn = document.getElementById('btnSaveEditProker');
+                    btn.disabled = true;
+                    showLoading('Memperbarui Program Kerja...');
+                    const res = await apiService('editProker', payload);
+                    hideLoading();
+                    btn.disabled = false;
+
+                    if (res.success) {
+                        toast(res.message || 'Proker diperbarui');
+                        closeModal('modalEditProker');
+                        loadAppData();
+                    } else {
+                        Swal.fire('Gagal', res.message || 'Gagal memperbarui proker', 'error');
+                    }
+                };
+
+                window.openUpdateProker = function (id) {
+                    const p = appState.proker.find(x => x.id_proker === id);
+                    if (p) {
+                        document.getElementById('updIdProker').value = p.id_proker;
+                        document.getElementById('updNamaProgram').innerText = p.nama_program;
+                        document.getElementById('updTargetInfo').innerText = `${p.target_angka} ${p.satuan_target}`;
+                        document.getElementById('updRealisasiAngka').value = p.realisasi_angka;
+                        document.getElementById('updRealisasiAnggaran').value = p.anggaran_realisasi;
+                        const editableStatuses = ['Belum Mulai', 'Berjalan', 'Terkendala', 'Menunggu Persetujuan'];
+                        document.getElementById('updStatus').value = editableStatuses.includes(p.status_proker) ? p.status_proker : 'Berjalan';
+
+                        document.getElementById('updFileLpj').value = '';
+                        document.getElementById('updFileLpjOld').value = p.file_lpj || '';
+                        const currentFileText = document.getElementById('updFileLpjCurrent');
+                        const currentFileLink = document.getElementById('updFileLpjLink');
+
+                        if (p.file_lpj) {
+                            currentFileText.classList.remove('d-none');
+                            currentFileLink.href = p.file_lpj;
+                        } else {
+                            currentFileText.classList.add('d-none');
+                        }
+
+                        openModal('modalUpdateProker');
+                    }
+                };
+
+                window.submitUpdateProker = async function () {
+                    const btn = document.getElementById('btnSaveUpdate');
+                    const fileInput = document.getElementById('updFileLpj');
+                    const statusProker = document.getElementById('updStatus').value;
+                    const oldFile = document.getElementById('updFileLpjOld').value;
+
+                    // Requirement check: LPJ mandatory when submitting for Admin approval
+                    if (statusProker === 'Menunggu Persetujuan') {
+                        if (fileInput.files.length === 0 && !oldFile) {
+                            return Swal.fire({
+                                title: 'Unggah LPJ Diperlukan',
+                                text: 'Untuk mengajukan proker ke tahap persetujuan Admin, Anda wajib mengunggah berkas LPJ/Laporan pertanggungjawaban.',
+                                icon: 'warning',
+                                confirmButtonColor: '#177355'
+                            });
+                        }
+                    }
+
+                    let fileData = null, mimeType = null, fileName = null;
+
+                    const getBase64 = (file) => new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.readAsDataURL(file);
+                        reader.onload = () => resolve(reader.result.split(',')[1]);
+                        reader.onerror = error => reject(error);
+                    });
+
+                    if (fileInput.files.length > 0) {
+                        const file = fileInput.files[0];
+                        if (file.size > 8 * 1024 * 1024) {
+                            return Swal.fire('Berkas Terlalu Besar', 'Ukuran berkas maksimal 8MB.', 'warning');
+                        }
+                        showLoading('Memproses unggahan berkas LPJ...');
+                        fileData = await getBase64(file);
+                        mimeType = file.type;
+                        fileName = file.name;
+                    }
+
+                    btn.disabled = true;
+                    showLoading('Menyimpan realisasi proker...');
+
+                    const payload = {
+                        id_proker: document.getElementById('updIdProker').value,
+                        realisasi_angka: document.getElementById('updRealisasiAngka').value,
+                        anggaran_realisasi: document.getElementById('updRealisasiAnggaran').value,
+                        status_proker: statusProker,
+                        old_file_lpj: oldFile,
+                        fileData: fileData,
+                        mimeType: mimeType,
+                        fileName: fileName
+                    };
+
+                    const res = await apiService('updateProkerRealisasi', payload);
+                    hideLoading();
+                    btn.disabled = false;
+
+                    if (res.success) {
+                        toast(res.message || 'Realisasi berhasil diupdate');
+                        closeModal('modalUpdateProker');
+                        loadAppData();
+                    } else {
+                        Swal.fire('Gagal', res.message || 'Gagal mengupdate proker', 'error');
+                    }
+                };
+
+                window.deleteProker = function (id, nama) {
+                    Swal.fire({
+                        title: 'Hapus Proker?',
+                        text: `Program kerja "${nama}" akan dihapus permanen.`,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#e11d48',
+                        confirmButtonText: 'Ya, Hapus'
+                    }).then(async (r) => {
+                        if (r.isConfirmed) {
+                            showLoading('Menghapus program kerja...');
+                            const res = await apiService('deleteProker', { id_proker: id });
+                            hideLoading();
+                            if (res.success) {
+                                toast(res.message || 'Proker dihapus');
+                                loadAppData();
+                            } else {
+                                Swal.fire('Gagal', res.message, 'error');
+                            }
+                        }
+                    });
+                };
+
+                // ==========================================
+                // 6. UBAH PASSWORD SENDIRI
+                // ==========================================
+                window.submitChangePassword = async function () {
+                    const oldPin = document.getElementById('chgOldPin').value;
+                    const newPin = document.getElementById('chgNewPin').value;
+                    const confPin = document.getElementById('chgConfirmPin').value;
+
+                    if (newPin !== confPin) {
+                        return Swal.fire('Tidak Cocok', 'Konfirmasi password baru tidak sesuai.', 'warning');
+                    }
+
+                    const btn = document.getElementById('btnSaveChgPass');
+                    btn.disabled = true;
+                    showLoading('Memperbarui password...');
+
+                    const res = await apiService('changeOwnPassword', { old_pin: oldPin, new_pin: newPin });
+                    hideLoading();
+                    btn.disabled = false;
+
+                    if (res.success) {
+                        closeModal('modalChangePassword');
+                        document.getElementById('formChangePassword').reset();
+                        Swal.fire('Berhasil!', res.message || 'Password berhasil diperbarui', 'success');
+                    } else {
+                        Swal.fire('Gagal', res.message || 'Gagal mengganti password', 'error');
+                    }
+                };
+
+                // ==========================================
+                // 7. EXPORT DATA TO CSV
+                // ==========================================
+                window.exportTableToCSV = function (tableBodyId, filename = 'Export_KPI') {
+                    const tbody = document.getElementById(tableBodyId);
+                    if (!tbody) return;
+
+                    const rows = tbody.querySelectorAll('tr');
+                    let csv = [];
+
+                    rows.forEach(row => {
+                        const cols = row.querySelectorAll('td');
+                        let rowData = [];
+                        cols.forEach(col => {
+                            let text = col.innerText.replace(/(\r\n|\n|\r)/gm, ' ').replace(/\s+/g, ' ').trim();
+                            text = text.replace(/"/g, '""');
+                            rowData.push(`"${text}"`);
+                        });
+                        if (rowData.length > 0) csv.push(rowData.join(';'));
+                    });
+
+                    if (csv.length === 0) return toast('Tidak ada data untuk diexport', 'warning');
+
+                    const blob = new Blob(['\uFEFF' + csv.join('\n')], { type: 'text/csv;charset=utf-8;' });
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.setAttribute('download', `${filename}_${new Date().toISOString().slice(0, 10)}.csv`);
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                };
+
+                // Modal helpers
+                window.openModal = (id) => {
+                    const el = document.getElementById(id);
+                    if (el) el.classList.add('show');
+                };
+                window.closeModal = (id) => {
+                    const el = document.getElementById(id);
+                    if (el) el.classList.remove('show');
+                };
+
+                // Initialize Web App
+                document.addEventListener("DOMContentLoaded", checkLoginState);
+            })();
+    </script>
+</body>
+
+</html>
