@@ -160,6 +160,19 @@
             align-items: center;
             justify-content: center;
         }
+
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; }
+            .shadow-card, .shadow-sm, .shadow-md, .shadow-lg { box-shadow: none !important; }
+            table { border: 1px solid #ccc !important; }
+            th, td { border: 1px solid #ccc !important; padding: 8px !important; }
+        }
+
+        .dark body, body.dark {
+            background-color: #0f172a !important;
+            color: #e2e8f0 !important;
+        }
     </style>
 </head>
 
@@ -190,24 +203,24 @@
                     class="w-16 h-16 rounded-2xl bg-gradient-to-br from-wahdah-50 to-wahdah-100 text-wahdah-700 flex items-center justify-center mx-auto mb-4 text-2xl shadow-soft border border-wahdah-200/60">
                     <i class="fa-solid fa-chart-pie text-wahdah-700"></i>
                 </div>
-                <h2 class="text-2xl font-extrabold text-wahdah-900 mb-1">Akses Sistem KPI</h2>
+                <h2 class="text-2xl font-extrabold text-wahdah-900 mb-1">Akses Sistem</h2>
                 <p class="text-xs text-wahdah-600 mb-6 font-medium">Sistem Monitoring Kinerja Departemen Wahdah
-                    Islamiyah</p>
+                    Islamiyah Makassar</p>
 
                 <form id="formLogin" class="space-y-4" onsubmit="event.preventDefault(); handleLogin();">
                     <div class="text-left">
                         <label class="block text-xs font-bold text-wahdah-800 mb-1.5 flex items-center gap-1.5">
-                            <i class="fa-regular fa-user text-wahdah-600"></i> Username / Email
+                            <i class="fa-regular fa-user text-wahdah-600"></i> Username
                         </label>
-                        <input type="text" id="inpUserId" required placeholder="Contoh: admin atau dakwah"
+                        <input type="text" id="inpUserId" required placeholder="username"
                             class="w-full rounded-xl border border-wahdah-200 px-4 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 focus:border-wahdah-500 outline-none bg-wahdah-50/20 hover:bg-white focus:bg-white transition-all">
                     </div>
                     <div class="text-left">
                         <label class="block text-xs font-bold text-wahdah-800 mb-1.5 flex items-center gap-1.5">
-                            <i class="fa-solid fa-lock text-wahdah-600"></i> Password / PIN
+                            <i class="fa-solid fa-lock text-wahdah-600"></i> PIN
                         </label>
                         <div class="relative">
-                            <input type="password" id="inpPin" required placeholder="••••••••"
+                            <input type="password" id="inpPin" required placeholder="••••••"
                                 class="w-full rounded-xl border border-wahdah-200 px-4 py-2.5 pr-10 text-sm focus:ring-2 focus:ring-wahdah-500 focus:border-wahdah-500 outline-none bg-wahdah-50/20 hover:bg-white focus:bg-white transition-all">
                             <button type="button" onclick="togglePasswordVisibility('inpPin', this)"
                                 class="absolute right-3 top-1/2 -translate-y-1/2 text-wahdah-400 hover:text-wahdah-700 text-sm">
@@ -218,23 +231,9 @@
 
                     <button type="submit" id="btnLoginSubmit"
                         class="w-full bg-gradient-to-r from-wahdah-700 to-wahdah-800 hover:from-wahdah-800 hover:to-wahdah-900 text-white font-semibold text-sm rounded-xl py-3 mt-3 shadow-md shadow-wahdah-800/15 hover:shadow-lg transition-all flex items-center justify-center gap-2">
-                        <span>Masuk ke Dashboard</span> <i class="fa-solid fa-arrow-right"></i>
+                        <span>Masuk</span> <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </form>
-
-                <div
-                    class="mt-6 p-3.5 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-2xl text-xs text-yellow-900 border border-yellow-200/70 text-left">
-                    <p class="font-bold mb-1.5 flex items-center gap-1.5 text-yellow-800"><i
-                            class="fas fa-info-circle"></i> Info Akun Bawaan:</p>
-                    <div class="space-y-1 text-[11px] font-mono">
-                        <p><span class="font-bold text-gray-700 font-sans">Admin Pusat:</span> user: <code
-                                class="bg-yellow-200/60 px-1 py-0.5 rounded">admin</code> | pwd: <code
-                                class="bg-yellow-200/60 px-1 py-0.5 rounded">Admin@2026</code></p>
-                        <p><span class="font-bold text-gray-700 font-sans">User Dept:</span> user: <code
-                                class="bg-yellow-200/60 px-1 py-0.5 rounded">dakwah</code> / <code
-                                class="bg-yellow-200/60 px-1 py-0.5 rounded">kaderisasi</code></p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -293,6 +292,21 @@
                     onclick="showPage('viewUsersAdmin', this)">
                     <i class="fa-solid fa-users-gear w-5 text-center text-gold-400"></i> <span>Kelola Pengguna</span>
                 </button>
+                    <button type="button"
+                        class="nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all"
+                        onclick="showPage('viewImportProkerAdmin', this)">
+                        <i class="fa-solid fa-file-import w-5 text-center text-gold-400"></i> <span>Import Proker</span>
+                    </button>
+                <button type="button"
+                    class="nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all"
+                    onclick="showPage('viewAuditLog', this)">
+                    <i class="fa-solid fa-clipboard-list w-5 text-center text-gold-400"></i> <span>Audit Log</span>
+                </button>
+                <button type="button"
+                    class="nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all"
+                    onclick="showPage('viewLoginHistory', this)">
+                    <i class="fa-solid fa-clock-rotate-left w-5 text-center text-gold-400"></i> <span>Riwayat Login</span>
+                </button>
             </div>
 
             <!-- Menu User / Departemen -->
@@ -316,7 +330,6 @@
         <div class="px-5 py-4 border-t border-white/10 bg-wahdah-950/50 flex items-center justify-between">
             <div class="min-w-0 flex-1 pr-2">
                 <p id="sidebarUserName" class="text-xs font-bold text-white truncate">Belum Login</p>
-                <p id="sidebarUserRole" class="text-[10px] text-gold-300/90 font-medium truncate">-</p>
             </div>
             <div class="flex items-center gap-1.5">
                 <button
@@ -355,9 +368,18 @@
                 <p id="pageSubtitle" class="text-wahdah-600 text-[11px] font-medium">Sistem Monitoring Kinerja</p>
             </div>
             <div class="ml-auto flex items-center gap-2">
+                <button type="button" onclick="toggleDarkMode()" title="Toggle Dark Mode"
+                    class="w-9 h-9 rounded-xl hover:bg-wahdah-50 text-wahdah-700 flex items-center justify-center transition-colors border border-wahdah-200 shrink-0">
+                    <i class="fa-solid fa-moon text-sm" id="darkModeIcon"></i>
+                </button>
                 <button type="button" onclick="loadAppData(null)" title="Segarkan Data"
                     class="w-9 h-9 rounded-xl hover:bg-wahdah-50 text-wahdah-700 flex items-center justify-center transition-colors border border-wahdah-200 shrink-0">
                     <i class="fa-solid fa-arrows-rotate text-sm"></i>
+                </button>
+                <button type="button" onclick="toggleNotifications()" title="Notifikasi"
+                    class="w-9 h-9 rounded-xl hover:bg-wahdah-50 text-wahdah-700 flex items-center justify-center transition-colors border border-wahdah-200 shrink-0 relative">
+                    <i class="fa-solid fa-bell text-sm"></i>
+                    <span id="notifBadge" class="d-none absolute -top-1 -right-1 w-4 h-4 bg-rose-500 text-white text-[9px] font-bold rounded-full flex items-center justify-center">0</span>
                 </button>
             </div>
         </header>
@@ -489,6 +511,10 @@
                             <i class="fa-solid fa-traffic-light text-wahdah-600"></i> Peringkat Kinerja & Traffic Light
                         </h3>
                         <div class="flex items-center gap-2">
+                            <button onclick="exportProkerPDF()"
+                                class="px-3 py-1.5 bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 text-xs font-semibold rounded-lg border border-wahdah-200 transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-file-pdf"></i> Export PDF
+                            </button>
                             <button onclick="exportTableToCSV('adminTrafficTable', 'Kinerja_Departemen_Wahdah')"
                                 class="px-3 py-1.5 bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 text-xs font-semibold rounded-lg border border-wahdah-200 transition-colors flex items-center gap-1.5">
                                 <i class="fa-solid fa-file-csv"></i> Unduh CSV
@@ -577,6 +603,12 @@
                         <h3 class="text-sm font-bold text-wahdah-900 flex items-center gap-2">
                             <i class="fa-solid fa-list-check text-wahdah-600"></i> Riwayat Evaluasi Pimpinan
                         </h3>
+                        <div class="flex items-center gap-2">
+                            <button onclick="exportEvaluasiPDF()"
+                                class="px-3 py-1.5 bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 text-xs font-semibold rounded-lg border border-wahdah-200 transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-file-pdf"></i> Export PDF
+                            </button>
+                        </div>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-sm">
@@ -642,6 +674,10 @@
                     <button onclick="openAddUserModal()"
                         class="bg-gold-500 hover:bg-gold-600 text-white px-4 py-2.5 rounded-xl transition-all text-xs sm:text-sm font-bold flex items-center gap-2 shadow-sm">
                         <i class="fa-solid fa-user-plus"></i> Tambah Pengguna
+                    </button>
+                    <button onclick="openModal('modalBulkImportUsers')"
+                        class="bg-wahdah-700 hover:bg-wahdah-800 text-white px-4 py-2.5 rounded-xl transition-all text-xs sm:text-sm font-bold flex items-center gap-2 shadow-sm">
+                        <i class="fa-solid fa-file-import"></i> Import CSV
                     </button>
                 </div>
 
@@ -722,6 +758,7 @@
                                     <th class="text-center font-bold px-4 py-3.5">Progress</th>
                                     <th class="text-right font-bold px-4 py-3.5 min-w-[160px]">Anggaran (R / A)</th>
                                     <th class="text-center font-bold px-4 py-3.5">Status</th>
+                                    <th class="text-center font-bold px-4 py-3.5">Progres LPJ</th>
                                     <th class="text-center font-bold px-6 py-3.5">Aksi</th>
                                 </tr>
                             </thead>
@@ -802,10 +839,98 @@
                                     <th class="text-center font-bold px-4 py-3.5 min-w-[130px]">Progress (%)</th>
                                     <th class="text-right font-bold px-4 py-3.5 min-w-[160px]">Anggaran (R / A)</th>
                                     <th class="text-center font-bold px-4 py-3.5">Status</th>
+                                    <th class="text-center font-bold px-4 py-3.5">Progres LPJ</th>
                                     <th class="text-center font-bold px-6 py-3.5">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody id="prokerTableBody" class="divide-y divide-wahdah-50 bg-white"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- 5B. PAGE: IMPORT PROKER PER DEPARTEMEN (ADMIN) -->
+            <!-- ========================================== -->
+            <div id="viewImportProkerAdmin" class="app-page d-none view-fade max-w-6xl mx-auto space-y-6">
+                <!-- Dept Header Summary -->
+                <div
+                    class="bg-gradient-to-br from-wahdah-900 via-wahdah-800 to-wahdah-950 rounded-3xl shadow-card p-6 md:p-8 text-white pattern-bg flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div>
+                        <span
+                            class="px-3 py-1 bg-gold-500/30 text-gold-300 border border-gold-400/30 rounded-full text-xs font-semibold uppercase tracking-wider"
+                            id="importProkerDeptBadge">Departemen</span>
+                        <h2 class="text-2xl md:text-3xl font-extrabold mt-2 text-white" id="importProkerDeptTitle">Program Kerja Departemen</h2>
+                        <p class="text-wahdah-200 text-xs mt-1">Kelola program kerja untuk departemen yang dipilih</p>
+                        <select id="importProkerDeptSelect" onchange="onImportProkerDeptChange()"
+                            class="mt-3 text-xs rounded-xl border border-white/20 bg-white/10 text-white px-3 py-2 outline-none focus:ring-2 focus:ring-white/40">
+                            <option value="" disabled selected>Pilih Departemen...</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="bg-white/10 backdrop-blur border border-white/15 px-5 py-3.5 rounded-2xl text-center">
+                            <p class="text-[11px] text-wahdah-200 font-medium">Capaian KPI Rata-rata</p>
+                            <div class="flex items-baseline justify-center gap-1 mt-0.5">
+                                <span id="importProkerRataCapaian" class="text-3xl font-extrabold text-white">0</span>
+                                <span class="text-sm font-bold text-gold-400">%</span>
+                            </div>
+                        </div>
+                        <button onclick="openAddProkerForAdmin()"
+                            class="bg-gradient-to-r from-gold-500 to-amber-600 hover:from-gold-600 hover:to-amber-700 text-white px-5 py-3.5 rounded-2xl transition-all text-sm font-bold flex items-center gap-2 shadow-lg shadow-gold-600/20 shrink-0">
+                            <i class="fa-solid fa-plus"></i> Tambah Proker
+                        </button>
+                        <button onclick="openModal('modalBulkImportProker')"
+                            class="bg-wahdah-700 hover:bg-wahdah-800 text-white px-5 py-3.5 rounded-2xl transition-all text-sm font-bold flex items-center gap-2 shadow-lg shadow-wahdah-800/20 shrink-0">
+                            <i class="fa-solid fa-file-import"></i> Import CSV
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Proker Table & Filters -->
+                <div class="bg-white rounded-2xl shadow-card border border-wahdah-100/80 overflow-hidden">
+                    <div
+                        class="px-6 py-4 border-b border-wahdah-100/80 bg-wahdah-50/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div class="flex items-center gap-3 flex-1 max-w-md">
+                            <div class="relative w-full">
+                                <i
+                                    class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-wahdah-400 text-xs"></i>
+                                <input type="text" id="importProkerSearchInput" oninput="filterImportProkerTable()"
+                                    placeholder="Cari program kerja..."
+                                    class="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-wahdah-200 focus:ring-2 focus:ring-wahdah-500 outline-none bg-white">
+                            </div>
+                            <select id="importProkerFilterStatus" onchange="filterImportProkerTable()"
+                                class="text-xs rounded-xl border border-wahdah-200 px-3 py-2 outline-none bg-white focus:ring-2 focus:ring-wahdah-500">
+                                <option value="">Semua Status</option>
+                                <option value="Belum Mulai">Belum Mulai</option>
+                                <option value="Berjalan">Berjalan</option>
+                                <option value="Menunggu Persetujuan">Menunggu Persetujuan</option>
+                                <option value="Disetujui">Disetujui</option>
+                                <option value="Ditolak">Ditolak</option>
+                                <option value="Terkendala">Terkendala</option>
+                            </select>
+                        </div>
+                        <button onclick="exportTableToCSV('importProkerTableBody', 'Program_Kerja_Departemen')"
+                            class="px-3 py-1.5 bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 text-xs font-semibold rounded-lg border border-wahdah-200 transition-colors flex items-center gap-1.5 shrink-0 self-end sm:self-auto">
+                            <i class="fa-solid fa-file-csv"></i> Unduh CSV
+                        </button>
+                    </div>
+
+                    <div class="overflow-x-auto min-h-[300px]">
+                        <table class="w-full text-sm">
+                            <thead class="bg-wahdah-50/70 border-b border-wahdah-100">
+                                <tr class="text-wahdah-800 text-xs uppercase tracking-wider">
+                                    <th class="text-left font-bold px-6 py-3.5 min-w-[220px]">Nama Program</th>
+                                    <th class="text-left font-bold px-4 py-3.5">Target</th>
+                                    <th class="text-center font-bold px-4 py-3.5">Realisasi</th>
+                                    <th class="text-center font-bold px-4 py-3.5 min-w-[130px]">Progress (%)</th>
+                                    <th class="text-right font-bold px-4 py-3.5 min-w-[160px]">Anggaran (R / A)</th>
+                                    <th class="text-center font-bold px-4 py-3.5">Status</th>
+                                    <th class="text-center font-bold px-4 py-3.5">Progres LPJ</th>
+                                    <th class="text-center font-bold px-6 py-3.5">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="importProkerTableBody" class="divide-y divide-wahdah-50 bg-white"></tbody>
                         </table>
                     </div>
                 </div>
@@ -825,6 +950,64 @@
 
                 <div id="userEvaluasiList" class="space-y-4">
                     <!-- Injected dynamically -->
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- 7. PAGE: AUDIT LOG (ADMIN) -->
+            <!-- ========================================== -->
+            <div id="viewAuditLog" class="app-page d-none view-fade max-w-6xl mx-auto space-y-6">
+                <div class="bg-white p-5 rounded-2xl shadow-card border border-wahdah-100">
+                    <h3 class="text-base font-extrabold text-wahdah-900 flex items-center gap-2">
+                        <i class="fa-solid fa-clipboard-list text-wahdah-600"></i> Audit Log Sistem
+                    </h3>
+                    <p class="text-xs text-wahdah-600 mt-0.5">Riwayat semua aktivitas penting yang terjadi di sistem</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-card border border-wahdah-100/80 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-wahdah-50/70 border-b border-wahdah-100">
+                                <tr class="text-wahdah-800 text-xs uppercase tracking-wider">
+                                    <th class="text-left font-bold px-6 py-3.5">Waktu</th>
+                                    <th class="text-left font-bold px-6 py-3.5">Pengguna</th>
+                                    <th class="text-center font-bold px-4 py-3.5">Role</th>
+                                    <th class="text-left font-bold px-6 py-3.5">Aksi</th>
+                                    <th class="text-left font-bold px-6 py-3.5">Modul</th>
+                                    <th class="text-left font-bold px-6 py-3.5">Catatan</th>
+                                </tr>
+                            </thead>
+                            <tbody id="auditLogTableBody" class="divide-y divide-wahdah-50 bg-white"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- 8. PAGE: LOGIN HISTORY (ADMIN) -->
+            <!-- ========================================== -->
+            <div id="viewLoginHistory" class="app-page d-none view-fade max-w-6xl mx-auto space-y-6">
+                <div class="bg-white p-5 rounded-2xl shadow-card border border-wahdah-100">
+                    <h3 class="text-base font-extrabold text-wahdah-900 flex items-center gap-2">
+                        <i class="fa-solid fa-clock-rotate-left text-wahdah-600"></i> Riwayat Login Pengguna
+                    </h3>
+                    <p class="text-xs text-wahdah-600 mt-0.5">Monitor aktivitas masuk dan keluar semua pengguna sistem</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-card border border-wahdah-100/80 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-wahdah-50/70 border-b border-wahdah-100">
+                                <tr class="text-wahdah-800 text-xs uppercase tracking-wider">
+                                    <th class="text-left font-bold px-6 py-3.5">Waktu Login</th>
+                                    <th class="text-left font-bold px-6 py-3.5">Waktu Logout</th>
+                                    <th class="text-left font-bold px-6 py-3.5">Pengguna</th>
+                                    <th class="text-left font-bold px-6 py-3.5">Email</th>
+                                    <th class="text-center font-bold px-4 py-3.5">Role</th>
+                                    <th class="text-center font-bold px-4 py-3.5">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="loginHistoryTableBody" class="divide-y divide-wahdah-50 bg-white"></tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -955,8 +1138,8 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Realisasi Angka Saat Ini</label>
-                        <input type="number" id="updRealisasiAngka" step="any" required
-                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                        <input type="number" id="updRealisasiAngka" step="any" disabled
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none bg-gray-50">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Realisasi Anggaran (Rp)</label>
@@ -1003,6 +1186,78 @@
                     </button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- MODAL: LAPORAN REALISASI BERTAHAP -->
+    <div id="modalLaporanRealisasi" class="modal-overlay">
+        <div class="modal-content" style="max-width: 640px;">
+            <div class="flex justify-between items-center mb-5 border-b border-wahdah-100 pb-3">
+                <h3 class="text-base font-bold text-wahdah-900 flex items-center gap-2">
+                    <i class="fa-solid fa-clipboard-list text-wahdah-600"></i> Laporan Realisasi Bertahap
+                </h3>
+                <button onclick="closeModal('modalLaporanRealisasi')"
+                    class="text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-lg flex items-center justify-center transition-colors">
+                    <i class="fas fa-times text-xs"></i>
+                </button>
+            </div>
+            <div id="laporanRealisasiReadOnly" class="d-none">
+                <div class="p-3.5 bg-wahdah-50/70 rounded-2xl border border-wahdah-100 mb-4">
+                    <p class="text-[11px] text-wahdah-600 font-medium">Program Kerja:</p>
+                    <p class="text-sm font-extrabold text-wahdah-900 mt-0.5" id="laporanNamaProgram">-</p>
+                    <p class="text-xs text-wahdah-700 mt-1">Total Realisasi: <span id="laporanTotalRealisasi" class="font-bold">0</span> / <span id="laporanTargetInfo" class="font-bold"></span></p>
+                </div>
+                <div id="laporanRealisasiHistory" class="space-y-2 max-h-[300px] overflow-y-auto"></div>
+            </div>
+            <div id="laporanRealisasiForm" class="space-y-4">
+                <div class="p-3.5 bg-wahdah-50/70 rounded-2xl border border-wahdah-100 mb-2">
+                    <p class="text-[11px] text-wahdah-600 font-medium">Program Kerja:</p>
+                    <p class="text-sm font-extrabold text-wahdah-900 mt-0.5" id="laporanFormNamaProgram">-</p>
+                    <p class="text-xs text-wahdah-700 mt-1">Target: <span id="laporanFormTargetInfo" class="font-bold"></span></p>
+                </div>
+                <form id="formLaporanRealisasi" onsubmit="event.preventDefault(); submitLaporanRealisasi();" class="space-y-4">
+                    <input type="hidden" id="laporanIdProker">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Tanggal Realisasi</label>
+                            <input type="date" id="laporanTanggal" required
+                                class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Jumlah Realisasi</label>
+                            <input type="number" id="laporanJumlah" step="any" required value="1"
+                                class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Anggaran Realisasi (Rp)</label>
+                            <input type="number" id="laporanAnggaran" step="any" value="0"
+                                class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Catatan</label>
+                            <input type="text" id="laporanCatatan" placeholder="Opsional"
+                                class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">
+                            Upload Berkas LPJ <span class="text-red-500 font-semibold">(Wajib)</span>
+                        </label>
+                        <input type="file" id="laporanFileLpj" accept=".pdf,.doc,.docx,.xlsx,.xls,.png,.jpg,.jpeg"
+                            class="w-full rounded-xl border border-wahdah-200 px-3 py-2 text-xs focus:ring-2 focus:ring-wahdah-500 outline-none file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-wahdah-50 file:text-wahdah-700 hover:file:bg-wahdah-100 cursor-pointer">
+                    </div>
+                    <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
+                        <button type="button" onclick="closeModal('modalLaporanRealisasi')"
+                            class="px-5 py-2.5 border border-wahdah-200 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 hover:bg-wahdah-50 transition-colors">Batal</button>
+                        <button type="submit" id="btnSaveLaporan"
+                            class="px-5 py-2.5 bg-wahdah-700 text-white rounded-xl text-xs sm:text-sm font-semibold hover:bg-wahdah-800 transition-colors shadow-sm flex items-center gap-2">
+                            <i class="fa-solid fa-plus"></i> Tambah Laporan
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -1083,7 +1338,7 @@
                         class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Email / Username Login</label>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Username Login</label>
                     <input type="text" id="addUEmail" required placeholder="Contoh: dakwah2 atau user@wahdah.or.id"
                         class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
                 </div>
@@ -1094,7 +1349,7 @@
                             class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none bg-white"
                             onchange="toggleAddUserDeptWrap(this.value)">
                             <option value="User">User (Departemen)</option>
-                            <option value="Admin">Admin Eksekutif</option>
+                            <option value="Admin">Admin</option>
                         </select>
                     </div>
                     <div id="addUDeptWrap">
@@ -1173,7 +1428,7 @@
         <div class="modal-content">
             <div class="flex justify-between items-center mb-5 border-b border-wahdah-100 pb-3">
                 <h3 class="text-base font-bold text-wahdah-900 flex items-center gap-2">
-                    <i class="fa-solid fa-key text-wahdah-600"></i> Ganti Password / PIN Akun
+                    <i class="fa-solid fa-key text-wahdah-600"></i> Ganti PIN Akun
                 </h3>
                 <button onclick="closeModal('modalChangePassword')"
                     class="text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-lg flex items-center justify-center transition-colors">
@@ -1182,18 +1437,20 @@
             </div>
             <form id="formChangePassword" onsubmit="event.preventDefault(); submitChangePassword();" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Password / PIN Saat Ini</label>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">PIN Saat Ini</label>
                     <input type="password" id="chgOldPin" required placeholder="••••••••"
                         class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Password / PIN Baru</label>
-                    <input type="password" id="chgNewPin" required placeholder="Minimal 4 karakter"
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">PIN Baru</label>
+                    <input type="password" id="chgNewPin" required placeholder="Minimal 6 angka"
+                        inputmode="numeric" pattern="\d{6}" maxlength="6" minlength="6"
                         class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Konfirmasi Password Baru</label>
-                    <input type="password" id="chgConfirmPin" required placeholder="Ulangi password baru"
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Konfirmasi PIN Baru</label>
+                    <input type="password" id="chgConfirmPin" required placeholder="Ulangi PIN baru"
+                        inputmode="numeric" pattern="\d{6}" maxlength="6" minlength="6"
                         class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
                 </div>
                 <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
@@ -1201,7 +1458,127 @@
                         class="px-5 py-2.5 border border-wahdah-200 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 hover:bg-wahdah-50">Batal</button>
                     <button type="submit" id="btnSaveChgPass"
                         class="px-5 py-2.5 bg-wahdah-700 text-white rounded-xl text-xs sm:text-sm font-semibold hover:bg-wahdah-800">Simpan
-                        Password Baru</button>
+                        PIN Baru</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: BULK IMPORT USERS -->
+    <div id="modalBulkImportUsers" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-5 border-b border-wahdah-100 pb-3">
+                <h3 class="text-base font-bold text-wahdah-900 flex items-center gap-2">
+                    <i class="fa-solid fa-file-import text-wahdah-600"></i> Import Massal Pengguna
+                </h3>
+                <button onclick="closeModal('modalBulkImportUsers')"
+                    class="text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-lg flex items-center justify-center transition-colors">
+                    <i class="fas fa-times text-xs"></i>
+                </button>
+            </div>
+            <form id="formBulkImportUsers" onsubmit="event.preventDefault(); submitBulkImportUsers();" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">File CSV Pengguna</label>
+                    <input type="file" id="bulkImportUsersFile" accept=".csv" required
+                        class="w-full rounded-xl border border-wahdah-200 px-3 py-2 text-xs focus:ring-2 focus:ring-wahdah-500 outline-none file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-wahdah-50 file:text-wahdah-700 hover:file:bg-wahdah-100 cursor-pointer">
+                    <p class="text-[11px] text-wahdah-500 mt-1.5">Format: nama_lengkap, email, role, id_departemen (header baris pertama)</p>
+                </div>
+                <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
+                    <button type="button" onclick="closeModal('modalBulkImportUsers')"
+                        class="px-5 py-2.5 border border-wahdah-200 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 hover:bg-wahdah-50">Batal</button>
+                    <button type="submit" id="btnBulkImportUsers"
+                        class="px-5 py-2.5 bg-wahdah-700 text-white rounded-xl text-xs sm:text-sm font-semibold hover:bg-wahdah-800 flex items-center gap-2 shadow-sm">
+                        <i class="fa-solid fa-upload"></i> Import
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: BULK IMPORT PROKER -->
+    <div id="modalBulkImportProker" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-5 border-b border-wahdah-100 pb-3">
+                <h3 class="text-base font-bold text-wahdah-900 flex items-center gap-2">
+                    <i class="fa-solid fa-file-import text-wahdah-600"></i> Import Massal Program Kerja
+                </h3>
+                <button onclick="closeModal('modalBulkImportProker')"
+                    class="text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-lg flex items-center justify-center transition-colors">
+                    <i class="fas fa-times text-xs"></i>
+                </button>
+            </div>
+            <form id="formBulkImportProker" onsubmit="event.preventDefault(); submitBulkImportProker();" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">File CSV Proker</label>
+                    <input type="file" id="bulkImportProkerFile" accept=".csv" required
+                        class="w-full rounded-xl border border-wahdah-200 px-3 py-2 text-xs focus:ring-2 focus:ring-wahdah-500 outline-none file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-wahdah-50 file:text-wahdah-700 hover:file:bg-wahdah-100 cursor-pointer">
+                    <p class="text-[11px] text-wahdah-500 mt-1.5">Format: id_departemen, nama_program, target_angka, satuan_target, anggaran_rencana</p>
+                </div>
+                <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
+                    <button type="button" onclick="closeModal('modalBulkImportProker')"
+                        class="px-5 py-2.5 border border-wahdah-200 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 hover:bg-wahdah-50">Batal</button>
+                    <button type="submit" id="btnBulkImportProker"
+                        class="px-5 py-2.5 bg-wahdah-700 text-white rounded-xl text-xs sm:text-sm font-semibold hover:bg-wahdah-800 flex items-center gap-2 shadow-sm">
+                        <i class="fa-solid fa-upload"></i> Import
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: MILESTONE -->
+    <div id="modalMilestone" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-5 border-b border-wahdah-100 pb-3">
+                <h3 class="text-base font-bold text-wahdah-900 flex items-center gap-2">
+                    <i class="fa-solid fa-list-check text-wahdah-600"></i> Milestone / Tahapan Proker
+                </h3>
+                <button onclick="closeModal('modalMilestone')"
+                    class="text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-lg flex items-center justify-center transition-colors">
+                    <i class="fas fa-times text-xs"></i>
+                </button>
+            </div>
+            <form id="formMilestone" onsubmit="event.preventDefault(); submitMilestone();" class="space-y-4">
+                <input type="hidden" id="milestoneId">
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Nama Tahapan</label>
+                    <input type="text" id="milestoneNama" required placeholder="Contoh: Persiapan, Pelaksanaan, LPJ"
+                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Target Tanggal</label>
+                        <input type="date" id="milestoneTarget" required
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Realisasi Tanggal</label>
+                        <input type="date" id="milestoneRealisasi"
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Status Tahapan</label>
+                    <select id="milestoneStatus"
+                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none bg-white">
+                        <option value="Belum Mulai">Belum Mulai</option>
+                        <option value="Berjalan">Berjalan</option>
+                        <option value="Selesai">Selesai</option>
+                        <option value="Terkendala">Terkendala</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Catatan</label>
+                    <textarea id="milestoneCatatan" rows="2"
+                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none resize-none"></textarea>
+                </div>
+                <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
+                    <button type="button" onclick="closeModal('modalMilestone')"
+                        class="px-5 py-2.5 border border-wahdah-200 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 hover:bg-wahdah-50">Batal</button>
+                    <button type="submit" id="btnSaveMilestone"
+                        class="px-5 py-2.5 bg-wahdah-700 text-white rounded-xl text-xs sm:text-sm font-semibold hover:bg-wahdah-800 flex items-center gap-2 shadow-sm">
+                        <i class="fa-solid fa-check"></i> Simpan
+                    </button>
                 </div>
             </form>
         </div>
@@ -1230,8 +1607,12 @@
                     users: [],
                     proker: [],
                     evaluasi: [],
+                    auditLog: [],
+                    loginHistory: [],
                     kpiChartInstance: null,
-                    statusChartInstance: null
+                    statusChartInstance: null,
+                    notifications: [],
+                    darkMode: localStorage.getItem('kpi_dark_mode') === 'true'
                 };
 
                 // MOCK DATABASE FALLBACK (For offline browser preview / testing)
@@ -1242,20 +1623,22 @@
                         { id_departemen: 'd3', nama_departemen: 'Departemen Humas & Media', id_ketua: '' }
                     ],
                     users: [
-                        { id_user: 'u1', nama_lengkap: 'Admin Eksekutif', email: 'admin', role: 'Admin', id_departemen: '' },
-                        { id_user: 'u2', nama_lengkap: 'Ketua Dakwah', email: 'dakwah', role: 'User', id_departemen: 'd1' },
-                        { id_user: 'u3', nama_lengkap: 'Ketua Kaderisasi', email: 'kaderisasi', role: 'User', id_departemen: 'd2' }
+                        { id_user: 'u1', nama_lengkap: 'Admin Eksekutif', email: 'admin', role: 'Admin', id_departemen: '', is_deleted: 'false' },
+                        { id_user: 'u2', nama_lengkap: 'Ketua Dakwah', email: 'dakwah', role: 'User', id_departemen: 'd1', is_deleted: 'false' },
+                        { id_user: 'u3', nama_lengkap: 'Ketua Kaderisasi', email: 'kaderisasi', role: 'User', id_departemen: 'd2', is_deleted: 'false' }
                     ],
                     proker: [
-                        { id_proker: 'PROK-001', id_departemen: 'd1', nama_program: 'Tebar Dai Nusantara', target_angka: 50, satuan_target: 'Titik', realisasi_angka: 45, anggaran_rencana: 50000000, anggaran_realisasi: 45000000, status_proker: 'Berjalan', file_lpj: '', catatan_admin: '', updated_at: '2026-03-20 10:00:00' },
-                        { id_proker: 'PROK-002', id_departemen: 'd1', nama_program: 'Kajian Akbar Bulanan', target_angka: 12, satuan_target: 'Kegiatan', realisasi_angka: 12, anggaran_rencana: 15000000, anggaran_realisasi: 14500000, status_proker: 'Disetujui', file_lpj: 'https://drive.google.com', catatan_admin: '', updated_at: '2026-03-22 14:30:00' },
-                        { id_proker: 'PROK-003', id_departemen: 'd2', nama_program: 'Daurah Murabbi Dasar', target_angka: 100, satuan_target: 'Peserta', realisasi_angka: 60, anggaran_rencana: 25000000, anggaran_realisasi: 18000000, status_proker: 'Menunggu Persetujuan', file_lpj: 'https://drive.google.com', catatan_admin: '', updated_at: '2026-03-24 09:15:00' },
-                        { id_proker: 'PROK-004', id_departemen: 'd2', nama_program: 'Pelatihan Instruktur Nasional', target_angka: 30, satuan_target: 'Orang', realisasi_angka: 0, anggaran_rencana: 15000000, anggaran_realisasi: 0, status_proker: 'Belum Mulai', file_lpj: '', catatan_admin: '', updated_at: '2026-03-25 11:00:00' }
+                        { id_proker: 'PROK-demo1', id_departemen: 'd1', nama_program: 'Tebar Dai Nusantara', target_angka: 50, satuan_target: 'Titik', realisasi_angka: 45, anggaran_rencana: 50000000, anggaran_realisasi: 45000000, status_proker: 'Berjalan', file_lpj: '', catatan_admin: '', updated_at: '2026-03-20 10:00:00', is_deleted: 'false' },
+                        { id_proker: 'PROK-demo2', id_departemen: 'd1', nama_program: 'Kajian Akbar Bulanan', target_angka: 12, satuan_target: 'Kegiatan', realisasi_angka: 12, anggaran_rencana: 15000000, anggaran_realisasi: 14500000, status_proker: 'Disetujui', file_lpj: 'https://drive.google.com', catatan_admin: '', updated_at: '2026-03-22 14:30:00', is_deleted: 'false' },
+                        { id_proker: 'PROK-demo3', id_departemen: 'd2', nama_program: 'Daurah Murabbi Dasar', target_angka: 100, satuan_target: 'Peserta', realisasi_angka: 60, anggaran_rencana: 25000000, anggaran_realisasi: 18000000, status_proker: 'Menunggu Persetujuan', file_lpj: 'https://drive.google.com', catatan_admin: '', updated_at: '2026-03-24 09:15:00', is_deleted: 'false' },
+                        { id_proker: 'PROK-demo4', id_departemen: 'd2', nama_program: 'Pelatihan Instruktur Nasional', target_angka: 30, satuan_target: 'Orang', realisasi_angka: 0, anggaran_rencana: 15000000, anggaran_realisasi: 0, status_proker: 'Belum Mulai', file_lpj: '', catatan_admin: '', updated_at: '2026-03-25 11:00:00', is_deleted: 'false' }
                     ],
                     evaluasi: [
-                        { id_evaluasi: 'EVAL-001', id_departemen: 'd1', periode: 'Q1-2026', nilai_soliditas: 9, nilai_kolaborasi: 8.5, catatan_pimpinan: 'Pelaksanaan program dakwah sangat masif dan tepat sasaran. Mohon lengkapi seluruh LPJ.', updated_at: '2026-03-24 16:00:00' },
-                        { id_evaluasi: 'EVAL-002', id_departemen: 'd2', periode: 'Q1-2026', nilai_soliditas: 8.5, nilai_kolaborasi: 9, catatan_pimpinan: 'Kaderisasi berjalan sangat terstruktur, tingkatkan follow up pasca daurah.', updated_at: '2026-03-24 16:10:00' }
-                    ]
+                        { id_evaluasi: 'EVAL-demo1', id_departemen: 'd1', periode: 'Q1-2026', nilai_soliditas: 9, nilai_kolaborasi: 8, catatan_pimpinan: 'Kinerja program dakwah sangat baik dan terstruktur.', updated_at: '2026-03-24 16:00:00' },
+                        { id_evaluasi: 'EVAL-demo2', id_departemen: 'd2', periode: 'Q1-2026', nilai_soliditas: 8, nilai_kolaborasi: 9, catatan_pimpinan: 'Kaderisasi berjalan optimal, tingkatkan pembinaan lanjutan.', updated_at: '2026-03-24 16:10:00' }
+                    ],
+                    auditLog: [],
+                    loginHistory: []
                 };
 
                 // ==========================================
@@ -1326,7 +1709,9 @@
                                             departemen: MOCK_DB.departemen,
                                             users: [],
                                             proker: MOCK_DB.proker.filter(p => p.id_departemen === user.id_departemen),
-                                            evaluasi: MOCK_DB.evaluasi.filter(e => e.id_departemen === user.id_departemen)
+                                            evaluasi: MOCK_DB.evaluasi.filter(e => e.id_departemen === user.id_departemen),
+                                            auditLog: [],
+                                            loginHistory: []
                                         }
                                     };
                                 }
@@ -1453,6 +1838,40 @@
                                 res = { success: true, message: 'PIN direset', data: { pin_baru: newPin } };
                             } else if (action === 'changeOwnPassword') {
                                 res = { success: true, message: 'Password berhasil diperbarui' };
+                            } else if (action === 'softDeleteProker') {
+                                const pidx = MOCK_DB.proker.findIndex(x => x.id_proker === payload.id_proker);
+                                if (pidx > -1) { MOCK_DB.proker[pidx].is_deleted = 'true'; MOCK_DB.proker[pidx].status_proker = 'Dihapus'; res = { success: true, message: 'Proker diarsipkan' }; }
+                            } else if (action === 'restoreProker') {
+                                const pidx = MOCK_DB.proker.findIndex(x => x.id_proker === payload.id_proker);
+                                if (pidx > -1) { MOCK_DB.proker[pidx].is_deleted = 'false'; MOCK_DB.proker[pidx].status_proker = 'Belum Mulai'; res = { success: true, message: 'Proker dipulihkan' }; }
+                            } else if (action === 'softDeleteUser') {
+                                const uidx = MOCK_DB.users.findIndex(x => x.id_user === payload.id_user);
+                                if (uidx > -1) { MOCK_DB.users[uidx].is_deleted = 'true'; res = { success: true, message: 'User diarsipkan' }; }
+                            } else if (action === 'restoreUser') {
+                                const uidx = MOCK_DB.users.findIndex(x => x.id_user === payload.id_user);
+                                if (uidx > -1) { MOCK_DB.users[uidx].is_deleted = 'false'; res = { success: true, message: 'User dipulihkan' }; }
+                            } else if (action === 'getLoginHistory') {
+                                res = { success: true, data: MOCK_DB.loginHistory };
+                            } else if (action === 'getAuditLog') {
+                                res = { success: true, data: MOCK_DB.auditLog };
+                            } else if (action === 'addMilestone') {
+                                MOCK_DB.proker.find(x => x.id_proker === payload.id_proker) && (res = { success: true, message: 'Milestone ditambahkan' });
+                            } else if (action === 'updateMilestone') {
+                                res = { success: true, message: 'Milestone diperbarui' };
+                            } else if (action === 'deleteMilestone') {
+                                res = { success: true, message: 'Milestone dihapus' };
+                            } else if (action === 'getMilestonesByProker') {
+                                res = { success: true, data: [] };
+                            } else if (action === 'bulkImportUsers') {
+                                res = { success: true, message: 'Import users selesai (mock)', data: payload.data };
+                            } else if (action === 'bulkImportProker') {
+                                res = { success: true, message: 'Import proker selesai (mock)', data: payload.data };
+                            } else if (action === 'exportProkerToPDF') {
+                                res = { success: true, message: 'Laporan proker berhasil dibuat (mock)', url: '#' };
+                            } else if (action === 'exportEvaluasiToPDF') {
+                                res = { success: true, message: 'Laporan evaluasi berhasil dibuat (mock)', url: '#' };
+                            } else if (action === 'generateProkerNumber') {
+                                res = { success: true, number: 'PROK-' + (payload.id_departemen || 'UNK').toUpperCase() + '-' + new Date().getFullYear() + '-001' };
                             }
 
                             resolve(res);
@@ -1480,6 +1899,7 @@
                         case 'Ditolak': return 'bg-rose-100 text-rose-800 border-rose-200';
                         case 'Berjalan': return 'bg-sky-100 text-sky-800 border-sky-200';
                         case 'Terkendala': return 'bg-red-100 text-red-800 border-red-200';
+                        case 'Dihapus': return 'bg-gray-100 text-gray-600 border-gray-200';
                         default: return 'bg-gray-100 text-gray-700 border-gray-200';
                     }
                 };
@@ -1556,7 +1976,16 @@
                         if (spanText) document.getElementById('pageTitle').textContent = spanText.textContent;
                     }
 
-                    // Automatically hide sidebar after selecting a menu item
+                    if (pageId === 'viewImportProkerAdmin') {
+                        populateImportProkerDeptOptions();
+                        const sel = document.getElementById('importProkerDeptSelect');
+                        if (sel && sel.value) {
+                            renderImportProkerAdmin(sel.value);
+                        } else if (sel && sel.options.length > 1) {
+                            renderImportProkerAdmin(sel.options[1].value);
+                        }
+                    }
+
                     const sidebar = document.getElementById('sidebar');
                     const overlay = document.getElementById('sidebarOverlay');
                     if (sidebar && overlay) {
@@ -1564,6 +1993,20 @@
                         sidebar.classList.remove('translate-x-0');
                         overlay.classList.add('d-none');
                     }
+                };
+
+                window.openModal = function (modalId) {
+                    const modal = document.getElementById(modalId);
+                    if (!modal) return;
+                    modal.classList.add('show');
+                    document.body.style.overflow = 'hidden';
+                };
+
+                window.closeModal = function (modalId) {
+                    const modal = document.getElementById(modalId);
+                    if (!modal) return;
+                    modal.classList.remove('show');
+                    document.body.style.overflow = '';
                 };
 
                 window.handleSessionExpired = function () {
@@ -1597,7 +2040,6 @@
                         }
 
                         document.getElementById('sidebarUserName').textContent = escapeHTML(user.nama_lengkap);
-                        document.getElementById('sidebarUserRole').textContent = user.role === 'Admin' ? 'Admin Eksekutif' : ('Pengurus ' + (getDeptName(user.id_departemen) || 'Departemen'));
 
                         document.querySelectorAll('.admin-only, .user-only').forEach(el => el.classList.add('d-none'));
 
@@ -1623,11 +2065,11 @@
                     const btn = document.getElementById('btnLoginSubmit');
 
                     btn.disabled = true;
-                    btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Memverifikasi...';
+                    btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Memproses...';
 
                     const res = await apiService('login', { email, pin });
                     btn.disabled = false;
-                    btn.innerHTML = '<span>Masuk ke Dashboard</span> <i class="fa-solid fa-arrow-right"></i>';
+                    btn.innerHTML = '<span>Masuk</span> <i class="fa-solid fa-arrow-right"></i>';
 
                     if (res.success) {
                         Auth.setToken(res.token);
@@ -1680,7 +2122,6 @@
                         appState = Object.assign(appState, res.data);
                         const user = Auth.getUser();
 
-                        // Populate Department Selects
                         populateDeptSelects();
 
                         if (user && user.role === 'Admin') {
@@ -1689,6 +2130,8 @@
                             renderEvaluasiAdminTable();
                             renderDepartemenTable();
                             renderUsersTable();
+                            renderAuditLog();
+                            renderLoginHistory();
                             if (defaultView) {
                                 showPage(defaultView, document.querySelector(`.admin-only .nav-btn[onclick*="${defaultView}"]`) || document.querySelector('.admin-only .nav-btn'));
                             }
@@ -1893,9 +2336,14 @@
                             ? `<a href="${escapeHTML(p.file_lpj)}" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-sky-600 font-semibold hover:underline mt-1"><i class="fa-solid fa-paperclip"></i> Lihat Berkas LPJ</a>`
                             : `<span class="text-[10px] text-gray-400 italic block mt-0.5">LPJ belum ada</span>`;
 
-                        let catatanHtml = p.catatan_admin
-                            ? `<p class="text-[11px] text-rose-600 italic mt-1"><i class="fa-solid fa-comment-dots"></i> ${escapeHTML(p.catatan_admin)}</p>`
+                        let catatanHtml = (p.status_proker === 'Ditolak' && p.catatan_admin)
+                            ? `<p class="text-[11px] text-rose-600 italic mt-1"><i class="fa-solid fa-comment-dots"></i> Catatan Admin: ${escapeHTML(p.catatan_admin)}</p>`
                             : '';
+
+                        var laporanCount = (appState.realisasiLog || []).filter(function(r) { return r.id_proker === p.id_proker; }).length;
+                        var laporanBadge = laporanCount > 0
+                          ? `<span onclick="openLaporanRealisasiModal('${p.id_proker}', true)" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-sky-200 text-sky-700 bg-sky-50 cursor-pointer hover:bg-sky-100 transition-colors">${laporanCount} Laporan LPJ</span>`
+                          : `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-gray-200 text-gray-500 bg-gray-50">Belum ada LPJ</span>`;
 
                         let aksi = `<span class="text-[11px] text-gray-400">-</span>`;
                         if (p.status_proker === 'Menunggu Persetujuan') {
@@ -1915,7 +2363,6 @@
                             <td class="px-6 py-4">
                                 <p class="font-extrabold text-wahdah-900">${escapeHTML(p.nama_program)}</p>
                                 <p class="text-[11px] text-wahdah-600 font-semibold mt-0.5">${escapeHTML(getDeptName(p.id_departemen))}</p>
-                                ${lpjLink}
                                 ${catatanHtml}
                             </td>
                             <td class="px-4 py-4 text-xs font-semibold text-wahdah-800">${p.target_angka} ${escapeHTML(p.satuan_target)}</td>
@@ -1928,12 +2375,13 @@
                                 <span class="font-bold text-wahdah-900">A: ${formatRp(p.anggaran_realisasi)}</span>
                             </td>
                             <td class="px-4 py-4 text-center"><span class="px-2.5 py-1 text-[10px] rounded-full font-bold border ${statusBadge}">${escapeHTML(p.status_proker)}</span></td>
+                            <td class="px-4 py-4 text-center">${laporanBadge}</td>
                             <td class="px-6 py-4 text-center">${aksi}</td>
                         </tr>
                     `;
                     });
 
-                    tbody.innerHTML = html || `<tr><td colspan="7" class="text-center py-8 text-gray-500 font-medium">Belum ada Program Kerja dari departemen manapun.</td></tr>`;
+                    tbody.innerHTML = html || `<tr><td colspan="8" class="text-center py-8 text-gray-500 font-medium">Belum ada Program Kerja dari departemen manapun.</td></tr>`;
 
                     // Pending-approval badge on the nav item
                     const badge = document.getElementById('navBadgeMenungguProker');
@@ -2250,10 +2698,14 @@
                             ? 'bg-purple-100 text-purple-800 border-purple-200'
                             : 'bg-emerald-100 text-emerald-800 border-emerald-200';
                         const deptLabel = u.role === 'User' ? (getDeptName(u.id_departemen) || '-') : '<span class="text-gray-400 font-normal">Seluruh Akses</span>';
+                        const isDeleted = String(u.is_deleted || 'false') === 'true';
+                        const deleteBtn = isDeleted
+                            ? `<button onclick="restoreUser('${u.id_user}')" class="w-8 h-8 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 flex items-center justify-center transition-colors" title="Pulihkan Akun"><i class="fa-solid fa-rotate-left text-xs"></i></button>`
+                            : `<button onclick="softDeleteUser('${u.id_user}', '${escapeHTML(u.nama_lengkap)}')" class="w-8 h-8 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 flex items-center justify-center transition-colors" title="Arsipkan Akun"><i class="fa-solid fa-trash text-xs"></i></button>`;
 
                         html += `
-                        <tr class="hover:bg-wahdah-50/50 transition-colors">
-                            <td class="px-6 py-4 font-bold text-wahdah-900">${escapeHTML(u.nama_lengkap)}</td>
+                        <tr class="hover:bg-wahdah-50/50 transition-colors ${isDeleted ? 'opacity-60 bg-gray-50' : ''}">
+                            <td class="px-6 py-4 font-bold text-wahdah-900">${escapeHTML(u.nama_lengkap)} ${isDeleted ? '<span class="text-[10px] text-gray-400">(Diarsipkan)</span>' : ''}</td>
                             <td class="px-6 py-4 font-mono text-xs text-wahdah-700">${escapeHTML(u.email)}</td>
                             <td class="px-4 py-4 text-center"><span class="px-2.5 py-1 text-[11px] font-bold rounded-full border ${roleBadge}">${escapeHTML(u.role)}</span></td>
                             <td class="px-6 py-4 text-xs font-semibold text-wahdah-800">${deptLabel}</td>
@@ -2265,9 +2717,7 @@
                                     <button onclick="resetUserPin('${u.id_user}', '${escapeHTML(u.nama_lengkap)}')" class="w-8 h-8 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-700 flex items-center justify-center transition-colors" title="Reset Password/PIN">
                                         <i class="fa-solid fa-key text-xs"></i>
                                     </button>
-                                    <button onclick="deleteUser('${u.id_user}', '${escapeHTML(u.nama_lengkap)}')" class="w-8 h-8 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 flex items-center justify-center transition-colors" title="Hapus Akun">
-                                        <i class="fa-solid fa-trash text-xs"></i>
-                                    </button>
+                                    ${deleteBtn}
                                 </div>
                             </td>
                         </tr>
@@ -2404,22 +2854,22 @@
 
                 window.deleteUser = function (id, nama) {
                     Swal.fire({
-                        title: 'Hapus Pengguna?',
-                        text: `Akun ${nama} akan dihapus dari sistem.`,
-                        icon: 'warning',
+                        title: 'Arsipkan Pengguna?',
+                        text: `Akun ${nama} akan diarsipkan.`,
+                        icon: 'question',
                         showCancelButton: true,
-                        confirmButtonColor: '#e11d48',
-                        confirmButtonText: 'Ya, Hapus'
+                        confirmButtonColor: '#177355',
+                        confirmButtonText: 'Ya, Arsipkan'
                     }).then(async (r) => {
                         if (r.isConfirmed) {
-                            showLoading('Menghapus akun...');
-                            const res = await apiService('deleteUser', { id_user: id });
+                            showLoading('Mengarsipkan akun...');
+                            const res = await apiService('softDeleteUser', { id_user: id });
                             hideLoading();
                             if (res.success) {
-                                toast(res.message || 'Akun dihapus');
+                                toast(res.message || 'Pengguna diarsipkan');
                                 loadAppData();
                             } else {
-                                Swal.fire('Gagal', res.message, 'error');
+                                Swal.fire('Gagal', res.message || 'Gagal mengarsipkan pengguna', 'error');
                             }
                         }
                     });
@@ -2430,7 +2880,7 @@
                 // ==========================================
                 window.renderManajemenProker = function (idDept) {
                     const tbody = document.getElementById('prokerTableBody');
-                    const myProker = appState.proker.filter(p => p.id_departemen === idDept);
+                    const myProker = appState.proker.filter(p => p.id_departemen === idDept && String(p.is_deleted || 'false') !== 'true');
                     let sumPersen = 0, html = '';
 
                     const deptName = getDeptName(idDept);
@@ -2451,11 +2901,16 @@
                             ? `<p class="text-[11px] text-rose-600 italic mt-1"><i class="fa-solid fa-comment-dots"></i> Catatan Admin: ${escapeHTML(p.catatan_admin)}</p>`
                             : '';
 
+                        var laporanCount = (appState.realisasiLog || []).filter(function(r) { return r.id_proker === p.id_proker; }).length;
+                        var laporanBadge = laporanCount > 0
+                          ? `<span onclick="openLaporanRealisasiModal('${p.id_proker}', true)" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-sky-200 text-sky-700 bg-sky-50 cursor-pointer hover:bg-sky-100 transition-colors">${laporanCount} Laporan LPJ</span>`
+                          : `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-gray-200 text-gray-500 bg-gray-50">Belum ada LPJ</span>`;
+
                         html += `
                         <tr class="hover:bg-wahdah-50/50 transition-colors proker-row" data-name="${escapeHTML(p.nama_program).toLowerCase()}" data-status="${escapeHTML(p.status_proker)}">
                             <td class="px-6 py-4">
                                 <p class="font-extrabold text-wahdah-900">${escapeHTML(p.nama_program)}</p>
-                                ${lpjLink}
+                                <p class="text-[10px] text-gray-400 font-mono">${escapeHTML(p.id_proker)}</p>
                                 ${catatanHtml}
                             </td>
                             <td class="px-4 py-4 text-xs font-semibold text-wahdah-800">${p.target_angka} ${escapeHTML(p.satuan_target)}</td>
@@ -2471,6 +2926,7 @@
                                 <span class="font-bold text-wahdah-900">A: ${formatRp(p.anggaran_realisasi)}</span>
                             </td>
                             <td class="px-4 py-4 text-center"><span class="px-2.5 py-1 text-[10px] rounded-full font-bold border ${statusBadge}">${escapeHTML(p.status_proker)}</span></td>
+                            <td class="px-4 py-4 text-center">${laporanBadge}</td>
                             <td class="px-6 py-4 text-center">
                                 <div class="flex items-center justify-center gap-1.5">
                                     <button onclick="openUpdateProker('${p.id_proker}')" class="w-8 h-8 bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Update Realisasi & LPJ">
@@ -2479,7 +2935,13 @@
                                     <button onclick="openEditProkerModal('${p.id_proker}')" class="w-8 h-8 bg-gray-50 hover:bg-gray-100 text-gray-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Edit Detail Proker">
                                         <i class="fa-solid fa-gear text-xs"></i>
                                     </button>
-                                    <button onclick="deleteProker('${p.id_proker}', '${escapeHTML(p.nama_program)}')" class="w-8 h-8 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Hapus Proker">
+                                    <button onclick="openMilestoneModal('${p.id_proker}')" class="w-8 h-8 bg-sky-50 hover:bg-sky-100 text-sky-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Milestone">
+                                        <i class="fa-solid fa-list-check text-xs"></i>
+                                    </button>
+                                    <button onclick="openLaporanRealisasiModal('${p.id_proker}')" class="w-8 h-8 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Lapor Realisasi Bertahap">
+                                        <i class="fa-solid fa-clipboard-list text-xs"></i>
+                                    </button>
+                                    <button onclick="softDeleteProker('${p.id_proker}', '${escapeHTML(p.nama_program)}')" class="w-8 h-8 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Arsipkan Proker">
                                         <i class="fa-solid fa-trash text-xs"></i>
                                     </button>
                                 </div>
@@ -2488,9 +2950,35 @@
                     `;
                     });
 
+                    // Show archived proker for this dept with restore option
+                    const archivedProker = appState.proker.filter(p => p.id_departemen === idDept && String(p.is_deleted || 'false') === 'true');
+                    if (archivedProker.length > 0) {
+                        html += `<tr><td colspan="8" class="px-6 py-3 bg-gray-50 text-xs font-bold text-gray-500 uppercase tracking-wider">Arsip</td></tr>`;
+                        archivedProker.forEach(p => {
+                            html += `
+                            <tr class="bg-gray-50/50 opacity-70">
+                                <td class="px-6 py-3 text-xs text-gray-500"><s>${escapeHTML(p.nama_program)}</s></td>
+                                <td class="px-4 py-3 text-xs text-gray-400">${p.target_angka} ${escapeHTML(p.satuan_target)}</td>
+                                <td class="px-4 py-3 text-center text-xs text-gray-400">${p.realisasi_angka}</td>
+                                <td class="px-4 py-3 text-center text-xs text-gray-400">-</td>
+                                <td class="px-4 py-4 text-right text-xs text-gray-400">R: ${formatRp(p.anggaran_rencana)}<br>A: ${formatRp(p.anggaran_realisasi)}</td>
+                                <td class="px-4 py-4 text-center"><span class="px-2.5 py-1 text-[10px] rounded-full font-bold border bg-gray-100 text-gray-600 border-gray-200">Dihapus</span></td>
+                                <td class="px-4 py-4 text-center">
+                                    <span class="text-[10px] text-gray-400 italic block">-</span>
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <button onclick="restoreProker('${p.id_proker}')" class="px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-[10px] font-bold rounded-lg border border-emerald-200 transition-colors">
+                                        <i class="fa-solid fa-rotate-left"></i> Pulihkan
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                        });
+                    }
+
                     let avg = myProker.length > 0 ? Math.round(sumPersen / myProker.length) : 0;
                     document.getElementById('deptRataCapaian').innerText = avg;
-                    tbody.innerHTML = html || `<tr><td colspan="7" class="text-center py-8 text-gray-500 font-medium">Belum ada Program Kerja. Silakan klik "Tambah Proker".</td></tr>`;
+                    tbody.innerHTML = html || `<tr><td colspan="8" class="text-center py-8 text-gray-500 font-medium">Belum ada Program Kerja. Silakan klik "Tambah Proker".</td></tr>`;
                 };
 
                 window.filterProkerTable = function () {
@@ -2507,10 +2995,148 @@
                     });
                 };
 
+                window.populateImportProkerDeptOptions = function () {
+                    const options = appState.departemen.map(d => `<option value="${d.id_departemen}" style="color:#0f172a;background-color:#ffffff;">${escapeHTML(d.nama_departemen)}</option>`).join('');
+                    const sel = document.getElementById('importProkerDeptSelect');
+                    if (sel) {
+                        sel.innerHTML = `<option value="" disabled selected style="color:#6b7280;background-color:#ffffff;">Pilih Departemen...</option>` + options;
+                    }
+                };
+
+                window.onImportProkerDeptChange = function () {
+                    const sel = document.getElementById('importProkerDeptSelect');
+                    if (sel && sel.value) {
+                        renderImportProkerAdmin(sel.value);
+                    }
+                };
+
+                window.openAddProkerForAdmin = function () {
+                    const sel = document.getElementById('importProkerDeptSelect');
+                    window.currentImportProkerDept = sel && sel.value ? sel.value : '';
+                    openModal('modalAddProker');
+                };
+
+                window.renderImportProkerAdmin = function (idDept) {
+                    const tbody = document.getElementById('importProkerTableBody');
+                    const myProker = appState.proker.filter(p => p.id_departemen === idDept && String(p.is_deleted || 'false') !== 'true');
+                    let sumPersen = 0, html = '';
+
+                    const deptName = getDeptName(idDept);
+                    document.getElementById('importProkerDeptBadge').innerText = deptName;
+                    document.getElementById('importProkerDeptTitle').innerText = 'Program Kerja ' + deptName;
+
+                    myProker.forEach(p => {
+                        let persen = calculatePersen(p.realisasi_angka, p.target_angka);
+                        sumPersen += persen;
+                        let tlClass = getTrafficLightClasses(persen);
+                        let statusBadge = getStatusBadgeClasses(p.status_proker);
+
+                        let lpjLink = p.file_lpj
+                            ? `<a href="${escapeHTML(p.file_lpj)}" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-sky-600 font-semibold hover:underline mt-1"><i class="fa-solid fa-paperclip"></i> Lihat Berkas LPJ</a>`
+                            : `<span class="text-[10px] text-gray-400 italic block mt-0.5">LPJ belum ada</span>`;
+
+                        let catatanHtml = (p.status_proker === 'Ditolak' && p.catatan_admin)
+                            ? `<p class="text-[11px] text-rose-600 italic mt-1"><i class="fa-solid fa-comment-dots"></i> Catatan Admin: ${escapeHTML(p.catatan_admin)}</p>`
+                            : '';
+
+                        var laporanCount = (appState.realisasiLog || []).filter(function(r) { return r.id_proker === p.id_proker; }).length;
+                        var laporanBadge = laporanCount > 0
+                          ? `<span onclick="openLaporanRealisasiModal('${p.id_proker}', true)" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-sky-200 text-sky-700 bg-sky-50 cursor-pointer hover:bg-sky-100 transition-colors">${laporanCount} Laporan LPJ</span>`
+                          : `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-gray-200 text-gray-500 bg-gray-50">Belum ada LPJ</span>`;
+
+                        html += `
+                        <tr class="hover:bg-wahdah-50/50 transition-colors proker-row" data-name="${escapeHTML(p.nama_program).toLowerCase()}" data-status="${escapeHTML(p.status_proker)}">
+                            <td class="px-6 py-4">
+                                <p class="font-extrabold text-wahdah-900">${escapeHTML(p.nama_program)}</p>
+                                <p class="text-[10px] text-gray-400 font-mono">${escapeHTML(p.id_proker)}</p>
+                                ${catatanHtml}
+                            </td>
+                            <td class="px-4 py-4 text-xs font-semibold text-wahdah-800">${p.target_angka} ${escapeHTML(p.satuan_target)}</td>
+                            <td class="px-4 py-4 text-center font-extrabold text-wahdah-900">${p.realisasi_angka}</td>
+                            <td class="px-4 py-4 text-center">
+                                <div class="w-full bg-gray-100 rounded-full h-2 mb-1.5 overflow-hidden">
+                                    <div class="h-2 rounded-full ${persen >= 80 ? 'bg-emerald-500' : persen >= 50 ? 'bg-amber-500' : 'bg-rose-500'}" style="width: ${Math.min(100, persen)}%"></div>
+                                </div>
+                                <span class="px-2.5 py-0.5 border rounded-full text-[10px] font-bold ${tlClass}">${persen}%</span>
+                            </td>
+                            <td class="px-4 py-4 text-right text-xs">
+                                <span class="text-gray-500">R: ${formatRp(p.anggaran_rencana)}</span><br>
+                                <span class="font-bold text-wahdah-900">A: ${formatRp(p.anggaran_realisasi)}</span>
+                            </td>
+                            <td class="px-4 py-4 text-center"><span class="px-2.5 py-1 text-[10px] rounded-full font-bold border ${statusBadge}">${escapeHTML(p.status_proker)}</span></td>
+                            <td class="px-4 py-4 text-center">${laporanBadge}</td>
+                            <td class="px-6 py-4 text-center">
+                                <div class="flex items-center justify-center gap-1.5">
+                                    <button onclick="openUpdateProker('${p.id_proker}')" class="w-8 h-8 bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Update Realisasi & LPJ">
+                                        <i class="fa-solid fa-pen-to-square text-xs"></i>
+                                    </button>
+                                    <button onclick="openEditProkerModal('${p.id_proker}')" class="w-8 h-8 bg-gray-50 hover:bg-gray-100 text-gray-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Edit Detail Proker">
+                                        <i class="fa-solid fa-gear text-xs"></i>
+                                    </button>
+                                    <button onclick="openMilestoneModal('${p.id_proker}')" class="w-8 h-8 bg-sky-50 hover:bg-sky-100 text-sky-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Milestone">
+                                        <i class="fa-solid fa-list-check text-xs"></i>
+                                    </button>
+                                    <button onclick="openLaporanRealisasiModal('${p.id_proker}')" class="w-8 h-8 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Lapor Realisasi Bertahap">
+                                        <i class="fa-solid fa-clipboard-list text-xs"></i>
+                                    </button>
+                                    <button onclick="softDeleteProker('${p.id_proker}', '${escapeHTML(p.nama_program)}')" class="w-8 h-8 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Arsipkan Proker">
+                                        <i class="fa-solid fa-trash text-xs"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                    });
+
+                    const archivedProker = appState.proker.filter(p => p.id_departemen === idDept && String(p.is_deleted || 'false') === 'true');
+                    if (archivedProker.length > 0) {
+                        html += `<tr><td colspan="8" class="px-6 py-3 bg-gray-50 text-xs font-bold text-gray-500 uppercase tracking-wider">Arsip</td></tr>`;
+                        archivedProker.forEach(p => {
+                            html += `
+                            <tr class="bg-gray-50/50 opacity-70">
+                                <td class="px-6 py-3 text-xs text-gray-500"><s>${escapeHTML(p.nama_program)}</s></td>
+                                <td class="px-4 py-3 text-xs text-gray-400">${p.target_angka} ${escapeHTML(p.satuan_target)}</td>
+                                <td class="px-4 py-3 text-center text-xs text-gray-400">${p.realisasi_angka}</td>
+                                <td class="px-4 py-3 text-center text-xs text-gray-400">-</td>
+                                <td class="px-4 py-4 text-right text-xs text-gray-400">R: ${formatRp(p.anggaran_rencana)}<br>A: ${formatRp(p.anggaran_realisasi)}</td>
+                                <td class="px-4 py-4 text-center"><span class="px-2.5 py-1 text-[10px] rounded-full font-bold border bg-gray-100 text-gray-600 border-gray-200">Dihapus</span></td>
+                                <td class="px-4 py-4 text-center">
+                                    <span class="text-[10px] text-gray-400 italic block">-</span>
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <button onclick="restoreProker('${p.id_proker}')" class="px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-[10px] font-bold rounded-lg border border-emerald-200 transition-colors">
+                                        <i class="fa-solid fa-rotate-left"></i> Pulihkan
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                        });
+                    }
+
+                    let avg = myProker.length > 0 ? Math.round(sumPersen / myProker.length) : 0;
+                    document.getElementById('importProkerRataCapaian').innerText = avg;
+                    tbody.innerHTML = html || `<tr><td colspan="8" class="text-center py-8 text-gray-500 font-medium">Belum ada Program Kerja. Silakan klik "Tambah Proker".</td></tr>`;
+                };
+
+                window.filterImportProkerTable = function () {
+                    const search = document.getElementById('importProkerSearchInput').value.toLowerCase().trim();
+                    const status = document.getElementById('importProkerFilterStatus').value;
+                    const rows = document.querySelectorAll('#importProkerTableBody .proker-row');
+
+                    rows.forEach(row => {
+                        const name = row.getAttribute('data-name') || '';
+                        const st = row.getAttribute('data-status') || '';
+                        const matchName = !search || name.includes(search);
+                        const matchStatus = !status || st === status;
+                        row.style.display = (matchName && matchStatus) ? '' : 'none';
+                    });
+                };
+
                 window.submitAddProker = async function () {
                     const user = Auth.getUser();
+                    const isAdminImport = user.role === 'Admin' && window.currentImportProkerDept;
                     const payload = {
-                        id_departemen: user.id_departemen,
+                        id_departemen: isAdminImport ? window.currentImportProkerDept : user.id_departemen,
                         nama_program: document.getElementById('addNamaProgram').value.trim(),
                         target_angka: document.getElementById('addTargetAngka').value,
                         satuan_target: document.getElementById('addSatuan').value.trim(),
@@ -2528,7 +3154,11 @@
                         toast(res.message || 'Proker ditambahkan');
                         closeModal('modalAddProker');
                         document.getElementById('formAddProker').reset();
-                        loadAppData();
+                        if (isAdminImport) {
+                            renderImportProkerAdmin(window.currentImportProkerDept);
+                        } else {
+                            loadAppData();
+                        }
                     } else {
                         Swal.fire('Gagal', res.message || 'Gagal menyimpan proker', 'error');
                     }
@@ -2570,6 +3200,142 @@
                     } else {
                         Swal.fire('Gagal', res.message || 'Gagal memperbarui proker', 'error');
                     }
+                };
+
+                window.openLaporanRealisasiModal = function (idProker, readOnly) {
+                    const p = appState.proker.find(x => x.id_proker === idProker);
+                    if (!p) return;
+
+                    document.getElementById('laporanIdProker').value = idProker;
+                    document.getElementById('laporanNamaProgram').innerText = p.nama_program;
+                    document.getElementById('laporanFormNamaProgram').innerText = p.nama_program;
+                    document.getElementById('laporanTargetInfo').innerText = `${p.target_angka} ${p.satuan_target}`;
+                    document.getElementById('laporanFormTargetInfo').innerText = `${p.target_angka} ${p.satuan_target}`;
+
+                    const readOnlyWrap = document.getElementById('laporanRealisasiReadOnly');
+                    const formWrap = document.getElementById('laporanRealisasiForm');
+                    if (readOnly) {
+                        readOnlyWrap.classList.remove('d-none');
+                        formWrap.classList.add('d-none');
+                    } else {
+                        readOnlyWrap.classList.add('d-none');
+                        formWrap.classList.remove('d-none');
+                        document.getElementById('laporanTanggal').value = new Date().toISOString().split('T')[0];
+                        document.getElementById('laporanJumlah').value = 1;
+                        document.getElementById('laporanAnggaran').value = 0;
+                        document.getElementById('laporanCatatan').value = '';
+                        document.getElementById('laporanFileLpj').value = '';
+                    }
+
+                    window._laporanRealisasiRefresh = function () {
+                        apiService('getRealisasiLogByProker', { id_proker: idProker }).then(res => {
+                            const list = document.getElementById('laporanRealisasiHistory');
+                            const logs = (res.success && res.data) ? res.data : [];
+                            const totalJumlah = logs.reduce((sum, log) => sum + (parseFloat(log.jumlah_realisasi) || 0), 0);
+                            document.getElementById('laporanTotalRealisasi').innerText = totalJumlah;
+
+                            if (logs.length === 0) {
+                                list.innerHTML = `<p class="text-xs text-gray-500 text-center py-4">Belum ada laporan realisasi.</p>`;
+                                return;
+                            }
+
+                            list.innerHTML = logs.map(log => `
+                                <div class="flex items-start justify-between gap-3 p-3 bg-white rounded-xl border border-wahdah-100">
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-xs font-bold text-wahdah-900">${log.tanggal_realisasi || '-'}</p>
+                                        <p class="text-[11px] text-wahdah-700">Jumlah: <b>${log.jumlah_realisasi}</b> | Anggaran: <b>${formatRp(log.anggaran_realisasi)}</b></p>
+                                        ${log.catatan ? `<p class="text-[10px] text-gray-500 mt-0.5">${escapeHTML(log.catatan)}</p>` : ''}
+                                        ${log.file_lpj ? `<a href="${escapeHTML(log.file_lpj)}" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-sky-600 font-semibold hover:underline mt-1"><i class="fa-solid fa-paperclip"></i> Lihat LPJ</a>` : `<span class="text-[10px] text-gray-400 italic block mt-0.5">LPJ belum ada</span>`}
+                                    </div>
+                                    ${readOnly ? '' : `<button onclick="hapusLaporanRealisasi('${log.id_log}', '${idProker}')" class="shrink-0 w-8 h-8 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Hapus Laporan">
+                                        <i class="fa-solid fa-trash text-xs"></i>
+                                    </button>`}
+                                </div>
+                            `).join('');
+                        });
+                    };
+
+                    window._laporanRealisasiRefresh();
+                    openModal('modalLaporanRealisasi');
+                };
+
+                window.submitLaporanRealisasi = async function () {
+                    const btn = document.getElementById('btnSaveLaporan');
+                    const fileInput = document.getElementById('laporanFileLpj');
+                    const idProker = document.getElementById('laporanIdProker').value;
+
+                    let fileData = null, mimeType = null, fileName = null;
+                    const getBase64 = (file) => new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.readAsDataURL(file);
+                        reader.onload = () => resolve(reader.result.split(',')[1]);
+                        reader.onerror = error => reject(error);
+                    });
+
+                    if (fileInput.files.length > 0) {
+                        const file = fileInput.files[0];
+                        if (file.size > 8 * 1024 * 1024) {
+                            return Swal.fire('Berkas Terlalu Besar', 'Ukuran berkas maksimal 8MB.', 'warning');
+                        }
+                        showLoading('Memproses unggahan berkas LPJ...');
+                        fileData = await getBase64(file);
+                        mimeType = file.type;
+                        fileName = file.name;
+                    } else {
+                        return Swal.fire('LPJ Diperlukan', 'File LPJ wajib diunggah untuk setiap laporan realisasi.', 'warning');
+                    }
+
+                    btn.disabled = true;
+                    showLoading('Menyimpan laporan realisasi...');
+
+                    const payload = {
+                        id_proker: idProker,
+                        tanggal_realisasi: document.getElementById('laporanTanggal').value,
+                        jumlah_realisasi: document.getElementById('laporanJumlah').value,
+                        anggaran_realisasi: document.getElementById('laporanAnggaran').value,
+                        catatan: document.getElementById('laporanCatatan').value,
+                        fileData: fileData,
+                        mimeType: mimeType,
+                        fileName: fileName
+                    };
+
+                    const res = await apiService('addRealisasiLog', payload);
+                    hideLoading();
+                    btn.disabled = false;
+
+                    if (res.success) {
+                        toast(res.message || 'Laporan realisasi ditambahkan');
+                        document.getElementById('formLaporanRealisasi').reset();
+                        document.getElementById('laporanIdProker').value = idProker;
+                        window._laporanRealisasiRefresh();
+                        loadAppData();
+                    } else {
+                        Swal.fire('Gagal', res.message || 'Gagal menyimpan laporan', 'error');
+                    }
+                };
+
+                window.hapusLaporanRealisasi = function (idLog, idProker) {
+                    Swal.fire({
+                        title: 'Hapus Laporan Realisasi?',
+                        text: 'Laporan ini akan dihapus dan total realisasi akan dihitung ulang.',
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#c9a24b',
+                        confirmButtonText: 'Ya, Hapus'
+                    }).then(async (r) => {
+                        if (r.isConfirmed) {
+                            showLoading('Menghapus laporan...');
+                            const res = await apiService('deleteRealisasiLog', { id_log: idLog });
+                            hideLoading();
+                            if (res.success) {
+                                toast(res.message || 'Laporan dihapus');
+                                window._laporanRealisasiRefresh();
+                                loadAppData();
+                            } else {
+                                Swal.fire('Gagal', res.message || 'Gagal menghapus laporan', 'error');
+                            }
+                        }
+                    });
                 };
 
                 window.openUpdateProker = function (id) {
@@ -2666,22 +3432,22 @@
 
                 window.deleteProker = function (id, nama) {
                     Swal.fire({
-                        title: 'Hapus Proker?',
-                        text: `Program kerja "${nama}" akan dihapus permanen.`,
-                        icon: 'warning',
+                        title: 'Arsipkan Proker?',
+                        text: `Program kerja "${nama}" akan diarsipkan.`,
+                        icon: 'question',
                         showCancelButton: true,
-                        confirmButtonColor: '#e11d48',
-                        confirmButtonText: 'Ya, Hapus'
+                        confirmButtonColor: '#177355',
+                        confirmButtonText: 'Ya, Arsipkan'
                     }).then(async (r) => {
                         if (r.isConfirmed) {
-                            showLoading('Menghapus program kerja...');
-                            const res = await apiService('deleteProker', { id_proker: id });
+                            showLoading('Mengarsipkan program kerja...');
+                            const res = await apiService('softDeleteProker', { id_proker: id });
                             hideLoading();
                             if (res.success) {
-                                toast(res.message || 'Proker dihapus');
+                                toast(res.message || 'Proker diarsipkan');
                                 loadAppData();
                             } else {
-                                Swal.fire('Gagal', res.message, 'error');
+                                Swal.fire('Gagal', res.message || 'Gagal mengarsipkan proker', 'error');
                             }
                         }
                     });
@@ -2695,13 +3461,17 @@
                     const newPin = document.getElementById('chgNewPin').value;
                     const confPin = document.getElementById('chgConfirmPin').value;
 
+                    if (!/^\d{6}$/.test(newPin)) {
+                        return Swal.fire('PIN Tidak Valid', 'PIN baru harus tepat 6 digit angka.', 'warning');
+                    }
+
                     if (newPin !== confPin) {
-                        return Swal.fire('Tidak Cocok', 'Konfirmasi password baru tidak sesuai.', 'warning');
+                        return Swal.fire('Tidak Cocok', 'Konfirmasi PIN baru tidak sesuai.', 'warning');
                     }
 
                     const btn = document.getElementById('btnSaveChgPass');
                     btn.disabled = true;
-                    showLoading('Memperbarui password...');
+                    showLoading('Memperbarui PIN...');
 
                     const res = await apiService('changeOwnPassword', { old_pin: oldPin, new_pin: newPin });
                     hideLoading();
@@ -2710,9 +3480,9 @@
                     if (res.success) {
                         closeModal('modalChangePassword');
                         document.getElementById('formChangePassword').reset();
-                        Swal.fire('Berhasil!', res.message || 'Password berhasil diperbarui', 'success');
+                        Swal.fire('Berhasil!', res.message || 'PIN berhasil diperbarui', 'success');
                     } else {
-                        Swal.fire('Gagal', res.message || 'Gagal mengganti password', 'error');
+                        Swal.fire('Gagal', res.message || 'Gagal mengganti PIN', 'error');
                     }
                 };
 
@@ -2748,17 +3518,298 @@
                     document.body.removeChild(link);
                 };
 
-                // Modal helpers
-                window.openModal = (id) => {
-                    const el = document.getElementById(id);
-                    if (el) el.classList.add('show');
-                };
-                window.closeModal = (id) => {
-                    const el = document.getElementById(id);
-                    if (el) el.classList.remove('show');
+                // ==========================================
+                // DARK MODE
+                // ==========================================
+                window.toggleDarkMode = function () {
+                    appState.darkMode = !appState.darkMode;
+                    localStorage.setItem('kpi_dark_mode', appState.darkMode);
+                    applyDarkMode();
                 };
 
-                // Initialize Web App
+                function applyDarkMode() {
+                    const icon = document.getElementById('darkModeIcon');
+                    if (appState.darkMode) {
+                        document.body.classList.add('dark');
+                        if (icon) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+                    } else {
+                        document.body.classList.remove('dark');
+                        if (icon) { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+                    }
+                }
+
+                // ==========================================
+                // NOTIFICATIONS
+                // ==========================================
+                window.toggleNotifications = function () {
+                    const list = document.getElementById('notifDropdown');
+                    if (list) list.classList.toggle('d-none');
+                };
+
+                function addNotification(text, type = 'info') {
+                    appState.notifications.unshift({ text, type, time: new Date().toISOString() });
+                    updateNotifBadge();
+                }
+
+                function updateNotifBadge() {
+                    const badge = document.getElementById('notifBadge');
+                    if (badge) {
+                        const count = appState.notifications.length;
+                        badge.textContent = count > 9 ? '9+' : count;
+                        badge.classList.toggle('d-none', count === 0);
+                    }
+                }
+
+                // ==========================================
+                // BULK IMPORT
+                // ==========================================
+                window.submitBulkImportUsers = async function () {
+                    const fileInput = document.getElementById('bulkImportUsersFile');
+                    if (!fileInput.files.length) return toast('Pilih file CSV terlebih dahulu', 'warning');
+                    const text = await fileInput.files[0].text();
+                    const btn = document.getElementById('btnBulkImportUsers');
+                    btn.disabled = true;
+                    showLoading('Mengimport pengguna...');
+                    const res = await apiService('bulkImportUsers', { csv_data: text });
+                    hideLoading();
+                    btn.disabled = false;
+                    if (res.success) {
+                        toast(res.message || 'Import selesai');
+                        closeModal('modalBulkImportUsers');
+                        document.getElementById('formBulkImportUsers').reset();
+                        loadAppData();
+                    } else {
+                        Swal.fire('Gagal', res.message || 'Gagal import', 'error');
+                    }
+                };
+
+                window.submitBulkImportProker = async function () {
+                    const fileInput = document.getElementById('bulkImportProkerFile');
+                    if (!fileInput.files.length) return toast('Pilih file CSV terlebih dahulu', 'warning');
+                    const text = await fileInput.files[0].text();
+                    const btn = document.getElementById('btnBulkImportProker');
+                    btn.disabled = true;
+                    showLoading('Mengimport program kerja...');
+                    const res = await apiService('bulkImportProker', { csv_data: text });
+                    hideLoading();
+                    btn.disabled = false;
+                    if (res.success) {
+                        toast(res.message || 'Import selesai');
+                        closeModal('modalBulkImportProker');
+                        document.getElementById('formBulkImportProker').reset();
+                        loadAppData();
+                    } else {
+                        Swal.fire('Gagal', res.message || 'Gagal import', 'error');
+                    }
+                };
+
+                // ==========================================
+                // MILESTONE
+                // ==========================================
+                window.openMilestoneModal = function (idProker) {
+                    document.getElementById('milestoneId').value = idProker;
+                    document.getElementById('formMilestone').reset();
+                    document.getElementById('milestoneId').value = idProker;
+                    openModal('modalMilestone');
+                };
+
+                window.submitMilestone = async function () {
+                    const idProker = document.getElementById('milestoneId').value;
+                    const payload = {
+                        id_proker: idProker,
+                        nama_tahapan: document.getElementById('milestoneNama').value.trim(),
+                        target_tanggal: document.getElementById('milestoneTarget').value,
+                        realisasi_tanggal: document.getElementById('milestoneRealisasi').value,
+                        status_tahapan: document.getElementById('milestoneStatus').value,
+                        catatan: document.getElementById('milestoneCatatan').value.trim()
+                    };
+                    const btn = document.getElementById('btnSaveMilestone');
+                    btn.disabled = true;
+                    showLoading('Menyimpan milestone...');
+                    const res = await apiService('addMilestone', payload);
+                    hideLoading();
+                    btn.disabled = false;
+                    if (res.success) {
+                        toast(res.message || 'Milestone ditambahkan');
+                        closeModal('modalMilestone');
+                        document.getElementById('formMilestone').reset();
+                    } else {
+                        Swal.fire('Gagal', res.message || 'Gagal menyimpan milestone', 'error');
+                    }
+                };
+
+                // ==========================================
+                // SOFT DELETE & RESTORE
+                // ==========================================
+                window.softDeleteProker = function (id, nama) {
+                    Swal.fire({
+                        title: 'Arsipkan Proker?',
+                        text: `Program kerja "${nama}" akan diarsipkan dan tidak ditampilkan.`,
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#177355',
+                        confirmButtonText: 'Ya, Arsipkan'
+                    }).then(async (r) => {
+                        if (r.isConfirmed) {
+                            showLoading('Mengarsipkan program kerja...');
+                            const res = await apiService('softDeleteProker', { id_proker: id });
+                            hideLoading();
+                            if (res.success) {
+                                toast(res.message || 'Proker diarsipkan');
+                                loadAppData();
+                            } else {
+                                Swal.fire('Gagal', res.message, 'error');
+                            }
+                        }
+                    });
+                };
+
+                window.restoreProker = function (id) {
+                    Swal.fire({
+                        title: 'Pulihkan Proker?',
+                        text: 'Program kerja akan ditampilkan kembali.',
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#177355',
+                        confirmButtonText: 'Ya, Pulihkan'
+                    }).then(async (r) => {
+                        if (r.isConfirmed) {
+                            showLoading('Memulihkan program kerja...');
+                            const res = await apiService('restoreProker', { id_proker: id });
+                            hideLoading();
+                            if (res.success) {
+                                toast(res.message || 'Proker dipulihkan');
+                                loadAppData();
+                            } else {
+                                Swal.fire('Gagal', res.message, 'error');
+                            }
+                        }
+                    });
+                };
+
+                window.softDeleteUser = function (id, nama) {
+                    Swal.fire({
+                        title: 'Arsipkan Pengguna?',
+                        text: `Akun ${nama} akan diarsipkan.`,
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#177355',
+                        confirmButtonText: 'Ya, Arsipkan'
+                    }).then(async (r) => {
+                        if (r.isConfirmed) {
+                            showLoading('Mengarsipkan pengguna...');
+                            const res = await apiService('softDeleteUser', { id_user: id });
+                            hideLoading();
+                            if (res.success) {
+                                toast(res.message || 'Pengguna diarsipkan');
+                                loadAppData();
+                            } else {
+                                Swal.fire('Gagal', res.message, 'error');
+                            }
+                        }
+                    });
+                };
+
+                window.restoreUser = function (id) {
+                    Swal.fire({
+                        title: 'Pulihkan Pengguna?',
+                        text: 'Akun akan aktif kembali.',
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#177355',
+                        confirmButtonText: 'Ya, Pulihkan'
+                    }).then(async (r) => {
+                        if (r.isConfirmed) {
+                            showLoading('Memulihkan pengguna...');
+                            const res = await apiService('restoreUser', { id_user: id });
+                            hideLoading();
+                            if (res.success) {
+                                toast(res.message || 'Pengguna dipulihkan');
+                                loadAppData();
+                            } else {
+                                Swal.fire('Gagal', res.message, 'error');
+                            }
+                        }
+                    });
+                };
+
+                // ==========================================
+                // PDF EXPORT
+                // ==========================================
+                window.exportProkerPDF = async function () {
+                    showLoading('Membuat laporan PDF...');
+                    const res = await apiService('exportProkerToPDF');
+                    hideLoading();
+                    if (res.success && res.url) {
+                        window.open(res.url, '_blank');
+                        toast('Laporan berhasil dibuat');
+                    } else {
+                        Swal.fire('Gagal', res.message || 'Gagal export', 'error');
+                    }
+                };
+
+                window.exportEvaluasiPDF = async function () {
+                    showLoading('Membuat laporan PDF...');
+                    const res = await apiService('exportEvaluasiToPDF');
+                    hideLoading();
+                    if (res.success && res.url) {
+                        window.open(res.url, '_blank');
+                        toast('Laporan berhasil dibuat');
+                    } else {
+                        Swal.fire('Gagal', res.message || 'Gagal export', 'error');
+                    }
+                };
+
+                // ==========================================
+                // AUDIT LOG RENDERING
+                // ==========================================
+                function renderAuditLog() {
+                    const tbody = document.getElementById('auditLogTableBody');
+                    if (!tbody) return;
+                    const data = appState.auditLog || [];
+                    let html = '';
+                    data.forEach(a => {
+                        html += `
+                        <tr class="hover:bg-wahdah-50/50 transition-colors">
+                            <td class="px-6 py-4 text-xs text-wahdah-700">${escapeHTML(a.waktu || '')}</td>
+                            <td class="px-6 py-4 font-bold text-wahdah-900">${escapeHTML(a.nama_user || '-')}</td>
+                            <td class="px-4 py-4 text-center"><span class="px-2.5 py-1 text-[10px] font-bold rounded-full border ${a.role === 'Admin' ? 'bg-purple-100 text-purple-800 border-purple-200' : 'bg-emerald-100 text-emerald-800 border-emerald-200'}">${escapeHTML(a.role)}</span></td>
+                            <td class="px-6 py-4 text-xs font-semibold text-wahdah-800">${escapeHTML(a.aksi)}</td>
+                            <td class="px-6 py-4 text-xs text-wahdah-700">${escapeHTML(a.modul)}</td>
+                            <td class="px-6 py-4 text-xs text-wahdah-700">${escapeHTML(a.catatan || '-')}</td>
+                        </tr>
+                    `;
+                    });
+                    tbody.innerHTML = html || `<tr><td colspan="6" class="text-center py-6 text-gray-500">Belum ada log audit</td></tr>`;
+                }
+
+                // ==========================================
+                // LOGIN HISTORY RENDERING
+                // ==========================================
+                function renderLoginHistory() {
+                    const tbody = document.getElementById('loginHistoryTableBody');
+                    if (!tbody) return;
+                    const data = appState.loginHistory || [];
+                    let html = '';
+                    data.forEach(l => {
+                        html += `
+                        <tr class="hover:bg-wahdah-50/50 transition-colors">
+                            <td class="px-6 py-4 text-xs text-wahdah-700">${escapeHTML(l.waktu_login || '-')}</td>
+                            <td class="px-6 py-4 text-xs text-wahdah-700">${escapeHTML(l.waktu_logout || '-')}</td>
+                            <td class="px-6 py-4 font-bold text-wahdah-900">${escapeHTML(l.nama_user || '-')}</td>
+                            <td class="px-6 py-4 text-xs text-wahdah-700">${escapeHTML(l.email || '-')}</td>
+                            <td class="px-4 py-4 text-center"><span class="px-2.5 py-1 text-[10px] font-bold rounded-full border ${l.role === 'Admin' ? 'bg-purple-100 text-purple-800 border-purple-200' : 'bg-emerald-100 text-emerald-800 border-emerald-200'}">${escapeHTML(l.role)}</span></td>
+                            <td class="px-4 py-4 text-center"><span class="px-2.5 py-1 text-[10px] font-bold rounded-full border ${l.status === 'Login' ? 'bg-emerald-100 text-emerald-800 border-emerald-200' : 'bg-gray-100 text-gray-700 border-gray-200'}">${escapeHTML(l.status)}</span></td>
+                        </tr>
+                    `;
+                    });
+                    tbody.innerHTML = html || `<tr><td colspan="6" class="text-center py-6 text-gray-500">Belum ada riwayat login</td></tr>`;
+                }
+
+                // ==========================================
+                // INITIALIZATION
+                // ==========================================
+                applyDarkMode();
                 document.addEventListener("DOMContentLoaded", checkLoginState);
             })();
     </script>
