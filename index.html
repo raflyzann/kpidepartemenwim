@@ -784,9 +784,9 @@
                         <p class="text-wahdah-200 text-xs mt-1">Perbarui realisasi angka, anggaran, dan unggah berkas
                             LPJ</p>
                     </div>
-                    <div class="flex items-center gap-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-4 w-full md:w-auto">
                         <div
-                            class="bg-white/10 backdrop-blur border border-white/15 px-5 py-3.5 rounded-2xl text-center">
+                            class="bg-white/10 backdrop-blur border border-white/15 px-5 py-3.5 rounded-2xl text-center w-full sm:w-auto">
                             <p class="text-[11px] text-wahdah-200 font-medium">Capaian KPI Rata-rata</p>
                             <div class="flex items-baseline justify-center gap-1 mt-0.5">
                                 <span id="deptRataCapaian" class="text-3xl font-extrabold text-white">0</span>
@@ -794,7 +794,7 @@
                             </div>
                         </div>
                         <button onclick="openModal('modalAddProker')"
-                            class="bg-gradient-to-r from-gold-500 to-amber-600 hover:from-gold-600 hover:to-amber-700 text-white px-5 py-3.5 rounded-2xl transition-all text-sm font-bold flex items-center gap-2 shadow-lg shadow-gold-600/20 shrink-0">
+                            class="bg-gradient-to-r from-gold-500 to-amber-600 hover:from-gold-600 hover:to-amber-700 text-white px-5 py-3.5 rounded-2xl transition-all text-sm font-bold flex items-center justify-center gap-2 shadow-lg shadow-gold-600/20 w-full sm:w-auto">
                             <i class="fa-solid fa-plus"></i> Tambah Proker
                         </button>
                     </div>
@@ -863,27 +863,29 @@
                         <h2 class="text-2xl md:text-3xl font-extrabold mt-2 text-white" id="importProkerDeptTitle">Program Kerja Departemen</h2>
                         <p class="text-wahdah-200 text-xs mt-1">Kelola program kerja untuk departemen yang dipilih</p>
                         <select id="importProkerDeptSelect" onchange="onImportProkerDeptChange()"
-                            class="mt-3 text-xs rounded-xl border border-white/20 bg-white/10 text-white px-3 py-2 outline-none focus:ring-2 focus:ring-white/40">
+                            class="mt-3 text-xs rounded-xl border border-white/20 bg-white/10 text-white px-3 py-2 outline-none focus:ring-2 focus:ring-white/40 w-full sm:w-auto">
                             <option value="" disabled selected>Pilih Departemen...</option>
                         </select>
                     </div>
-                    <div class="flex items-center gap-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-4 w-full md:w-auto">
                         <div
-                            class="bg-white/10 backdrop-blur border border-white/15 px-5 py-3.5 rounded-2xl text-center">
+                            class="bg-white/10 backdrop-blur border border-white/15 px-5 py-3.5 rounded-2xl text-center w-full sm:w-auto">
                             <p class="text-[11px] text-wahdah-200 font-medium">Capaian KPI Rata-rata</p>
                             <div class="flex items-baseline justify-center gap-1 mt-0.5">
                                 <span id="importProkerRataCapaian" class="text-3xl font-extrabold text-white">0</span>
                                 <span class="text-sm font-bold text-gold-400">%</span>
                             </div>
                         </div>
-                        <button onclick="openAddProkerForAdmin()"
-                            class="bg-gradient-to-r from-gold-500 to-amber-600 hover:from-gold-600 hover:to-amber-700 text-white px-5 py-3.5 rounded-2xl transition-all text-sm font-bold flex items-center gap-2 shadow-lg shadow-gold-600/20 shrink-0">
-                            <i class="fa-solid fa-plus"></i> Tambah Proker
-                        </button>
-                        <button onclick="openModal('modalBulkImportProker')"
-                            class="bg-wahdah-700 hover:bg-wahdah-800 text-white px-5 py-3.5 rounded-2xl transition-all text-sm font-bold flex items-center gap-2 shadow-lg shadow-wahdah-800/20 shrink-0">
-                            <i class="fa-solid fa-file-import"></i> Import CSV
-                        </button>
+                        <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                            <button onclick="openAddProkerForAdmin()"
+                                class="bg-gradient-to-r from-gold-500 to-amber-600 hover:from-gold-600 hover:to-amber-700 text-white px-5 py-3.5 rounded-2xl transition-all text-sm font-bold flex items-center justify-center gap-2 shadow-lg shadow-gold-600/20 w-full sm:w-auto">
+                                <i class="fa-solid fa-plus"></i> Tambah Proker
+                            </button>
+                            <button onclick="openModal('modalBulkImportProker')"
+                                class="bg-wahdah-700 hover:bg-wahdah-800 text-white px-5 py-3.5 rounded-2xl transition-all text-sm font-bold flex items-center justify-center gap-2 shadow-lg shadow-wahdah-800/20 w-full sm:w-auto">
+                                <i class="fa-solid fa-file-import"></i> Import CSV
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -1155,26 +1157,8 @@
                         <option value="Belum Mulai">Belum Mulai</option>
                         <option value="Berjalan">Berjalan</option>
                         <option value="Terkendala">Terkendala</option>
-                        <option value="Menunggu Persetujuan">Ajukan Persetujuan Admin (Selesai + LPJ)</option>
                     </select>
-                    <p class="text-[11px] text-wahdah-500 mt-1.5">Pilih "Ajukan Persetujuan Admin" setelah proker
-                        selesai dan LPJ siap diunggah. Status final "Disetujui" hanya bisa diberikan oleh Admin.</p>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">
-                        Upload Berkas LPJ / Laporan <span class="text-red-500 font-semibold">(Wajib jika mengajukan
-                            persetujuan)</span>
-                    </label>
-                    <input type="file" id="updFileLpj" accept=".pdf,.doc,.docx,.xlsx,.xls,.png,.jpg,.jpeg"
-                        class="w-full rounded-xl border border-wahdah-200 px-3 py-2 text-xs focus:ring-2 focus:ring-wahdah-500 outline-none file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-wahdah-50 file:text-wahdah-700 hover:file:bg-wahdah-100 cursor-pointer">
-                    <input type="hidden" id="updFileLpjOld">
-                    <div id="updFileLpjCurrent" class="mt-2 text-xs text-wahdah-600 d-none flex items-center gap-1.5">
-                        <i class="fa-solid fa-paperclip text-wahdah-500"></i>
-                        <span>Berkas tersimpan:</span>
-                        <a href="#" target="_blank" class="text-sky-600 font-bold hover:underline"
-                            id="updFileLpjLink">Buka Berkas LPJ</a>
-                    </div>
+                    <p class="text-[11px] text-wahdah-500 mt-1.5">Ubah status manual jika diperlukan. Persetujuan Admin kini dilakukan per laporan realisasi.</p>
                 </div>
 
                 <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
@@ -1205,7 +1189,7 @@
                 <div class="p-3.5 bg-wahdah-50/70 rounded-2xl border border-wahdah-100 mb-4">
                     <p class="text-[11px] text-wahdah-600 font-medium">Program Kerja:</p>
                     <p class="text-sm font-extrabold text-wahdah-900 mt-0.5" id="laporanNamaProgram">-</p>
-                    <p class="text-xs text-wahdah-700 mt-1">Total Realisasi: <span id="laporanTotalRealisasi" class="font-bold">0</span> / <span id="laporanTargetInfo" class="font-bold"></span></p>
+                    <p class="text-xs text-wahdah-700 mt-1">Total Realisasi Disetujui: <span id="laporanTotalRealisasi" class="font-bold">0</span> / <span id="laporanTargetInfo" class="font-bold"></span></p>
                 </div>
                 <div id="laporanRealisasiHistory" class="space-y-2 max-h-[300px] overflow-y-auto"></div>
             </div>
@@ -1216,6 +1200,7 @@
                     <p class="text-xs text-wahdah-700 mt-1">Target: <span id="laporanFormTargetInfo" class="font-bold"></span></p>
                 </div>
                 <form id="formLaporanRealisasi" onsubmit="event.preventDefault(); submitLaporanRealisasi();" class="space-y-4">
+                    <input type="hidden" id="laporanIdLog">
                     <input type="hidden" id="laporanIdProker">
                     <div class="grid grid-cols-2 gap-4">
                         <div>
@@ -1243,17 +1228,20 @@
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-wahdah-800 mb-1.5">
-                            Upload Berkas LPJ <span class="text-red-500 font-semibold">(Wajib)</span>
+                            Upload Berkas LPJ <span id="laporanFileWajib" class="text-red-500 font-semibold">(Wajib)</span>
                         </label>
                         <input type="file" id="laporanFileLpj" accept=".pdf,.doc,.docx,.xlsx,.xls,.png,.jpg,.jpeg"
                             class="w-full rounded-xl border border-wahdah-200 px-3 py-2 text-xs focus:ring-2 focus:ring-wahdah-500 outline-none file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-wahdah-50 file:text-wahdah-700 hover:file:bg-wahdah-100 cursor-pointer">
+                        <p id="laporanFileCurrent" class="d-none text-[11px] text-gray-500 mt-1">
+                            Berkas saat ini: <a id="laporanFileCurrentLink" href="#" target="_blank" class="text-sky-600 font-semibold hover:underline">Buka Berkas LPJ</a>. Kosongkan jika tidak ingin mengganti.
+                        </p>
                     </div>
                     <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
-                        <button type="button" onclick="closeModal('modalLaporanRealisasi')"
+                        <button type="button" id="btnBatalLaporan" onclick="closeModal('modalLaporanRealisasi')"
                             class="px-5 py-2.5 border border-wahdah-200 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 hover:bg-wahdah-50 transition-colors">Batal</button>
                         <button type="submit" id="btnSaveLaporan"
                             class="px-5 py-2.5 bg-wahdah-700 text-white rounded-xl text-xs sm:text-sm font-semibold hover:bg-wahdah-800 transition-colors shadow-sm flex items-center gap-2">
-                            <i class="fa-solid fa-plus"></i> Tambah Laporan
+                            <span id="btnSaveLaporanText"><i class="fa-solid fa-plus"></i> Tambah Laporan</span>
                         </button>
                     </div>
                 </form>
@@ -1526,64 +1514,6 @@
         </div>
     </div>
 
-    <!-- MODAL: MILESTONE -->
-    <div id="modalMilestone" class="modal-overlay">
-        <div class="modal-content">
-            <div class="flex justify-between items-center mb-5 border-b border-wahdah-100 pb-3">
-                <h3 class="text-base font-bold text-wahdah-900 flex items-center gap-2">
-                    <i class="fa-solid fa-list-check text-wahdah-600"></i> Milestone / Tahapan Proker
-                </h3>
-                <button onclick="closeModal('modalMilestone')"
-                    class="text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-lg flex items-center justify-center transition-colors">
-                    <i class="fas fa-times text-xs"></i>
-                </button>
-            </div>
-            <form id="formMilestone" onsubmit="event.preventDefault(); submitMilestone();" class="space-y-4">
-                <input type="hidden" id="milestoneId">
-                <div>
-                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Nama Tahapan</label>
-                    <input type="text" id="milestoneNama" required placeholder="Contoh: Persiapan, Pelaksanaan, LPJ"
-                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Target Tanggal</label>
-                        <input type="date" id="milestoneTarget" required
-                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Realisasi Tanggal</label>
-                        <input type="date" id="milestoneRealisasi"
-                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Status Tahapan</label>
-                    <select id="milestoneStatus"
-                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none bg-white">
-                        <option value="Belum Mulai">Belum Mulai</option>
-                        <option value="Berjalan">Berjalan</option>
-                        <option value="Selesai">Selesai</option>
-                        <option value="Terkendala">Terkendala</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Catatan</label>
-                    <textarea id="milestoneCatatan" rows="2"
-                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none resize-none"></textarea>
-                </div>
-                <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
-                    <button type="button" onclick="closeModal('modalMilestone')"
-                        class="px-5 py-2.5 border border-wahdah-200 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 hover:bg-wahdah-50">Batal</button>
-                    <button type="submit" id="btnSaveMilestone"
-                        class="px-5 py-2.5 bg-wahdah-700 text-white rounded-xl text-xs sm:text-sm font-semibold hover:bg-wahdah-800 flex items-center gap-2 shadow-sm">
-                        <i class="fa-solid fa-check"></i> Simpan
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <!-- ========================================== -->
     <!-- APPLICATION JAVASCRIPT LOGIC -->
     <!-- ========================================== -->
@@ -1638,7 +1568,11 @@
                         { id_evaluasi: 'EVAL-demo2', id_departemen: 'd2', periode: 'Q1-2026', nilai_soliditas: 8, nilai_kolaborasi: 9, catatan_pimpinan: 'Kaderisasi berjalan optimal, tingkatkan pembinaan lanjutan.', updated_at: '2026-03-24 16:10:00' }
                     ],
                     auditLog: [],
-                    loginHistory: []
+                    loginHistory: [],
+                    realisasiLog: [
+                        { id_log: 'LOG-1', id_proker: 'PROK-demo1', id_departemen: 'd1', tanggal_realisasi: 'Sat Sep 26 2026', jumlah_realisasi: 10, anggaran_realisasi: 5000000, file_lpj: 'https://drive.google.com/lpj1', catatan: '', created_by: 'u2', created_at: '2026-09-26 08:00:00', status_approval: 'Disetujui', catatan_admin: '', approved_by: 'u1', approved_at: '2026-09-26 09:00:00' },
+                        { id_log: 'LOG-2', id_proker: 'PROK-demo1', id_departemen: 'd1', tanggal_realisasi: 'Sat Sep 26 2026', jumlah_realisasi: 5, anggaran_realisasi: 2500000, file_lpj: 'https://drive.google.com/lpj2', catatan: '', created_by: 'u2', created_at: '2026-09-26 10:00:00', status_approval: 'Menunggu Persetujuan', catatan_admin: '', approved_by: '', approved_at: '' }
+                    ]
                 };
 
                 // ==========================================
@@ -1711,7 +1645,8 @@
                                             proker: MOCK_DB.proker.filter(p => p.id_departemen === user.id_departemen),
                                             evaluasi: MOCK_DB.evaluasi.filter(e => e.id_departemen === user.id_departemen),
                                             auditLog: [],
-                                            loginHistory: []
+                                            loginHistory: [],
+                                            realisasiLog: MOCK_DB.realisasiLog.filter(r => r.id_departemen === user.id_departemen)
                                         }
                                     };
                                 }
@@ -1770,8 +1705,10 @@
                             } else if (action === 'deleteProker') {
                                 const idx = MOCK_DB.proker.findIndex(x => x.id_proker === payload.id_proker);
                                 if (idx > -1) {
+                                    const idp = MOCK_DB.proker[idx].id_proker;
                                     MOCK_DB.proker.splice(idx, 1);
-                                    res = { success: true, message: 'Proker berhasil dihapus' };
+                                    MOCK_DB.realisasiLog = MOCK_DB.realisasiLog.filter(x => x.id_proker !== idp);
+                                    res = { success: true, message: 'Proker beserta laporan berhasil dihapus (mock)' };
                                 }
                             } else if (action === 'saveEvaluasi') {
                                 const newId = 'EVAL-' + Date.now().toString().slice(-4);
@@ -1854,14 +1791,53 @@
                                 res = { success: true, data: MOCK_DB.loginHistory };
                             } else if (action === 'getAuditLog') {
                                 res = { success: true, data: MOCK_DB.auditLog };
-                            } else if (action === 'addMilestone') {
-                                MOCK_DB.proker.find(x => x.id_proker === payload.id_proker) && (res = { success: true, message: 'Milestone ditambahkan' });
-                            } else if (action === 'updateMilestone') {
-                                res = { success: true, message: 'Milestone diperbarui' };
-                            } else if (action === 'deleteMilestone') {
-                                res = { success: true, message: 'Milestone dihapus' };
-                            } else if (action === 'getMilestonesByProker') {
-                                res = { success: true, data: [] };
+                            } else if (action === 'addRealisasiLog') {
+                                const newId = 'LOG-' + Date.now().toString().slice(-4);
+                                MOCK_DB.realisasiLog.push({
+                                    id_log: newId,
+                                    id_proker: payload.id_proker,
+                                    id_departemen: payload.id_departemen || '',
+                                    tanggal_realisasi: payload.tanggal_realisasi || new Date().toISOString().split('T')[0],
+                                    jumlah_realisasi: Number(payload.jumlah_realisasi) || 0,
+                                    anggaran_realisasi: Number(payload.anggaran_realisasi) || 0,
+                                    file_lpj: 'https://drive.google.com/lpj/' + (payload.fileName || 'mock'),
+                                    catatan: payload.catatan || '',
+                                    created_by: 'u1',
+                                    created_at: new Date().toISOString().replace('T', ' ').slice(0, 19),
+                                    status_approval: 'Menunggu Persetujuan',
+                                    catatan_admin: '',
+                                    approved_by: '',
+                                    approved_at: ''
+                                });
+                                res = { success: true, message: 'Laporan realisasi ditambahkan (mock)', id_log: newId };
+                            } else if (action === 'deleteRealisasiLog') {
+                                const idx = MOCK_DB.realisasiLog.findIndex(x => x.id_log === payload.id_log);
+                                if (idx > -1) { MOCK_DB.realisasiLog.splice(idx, 1); res = { success: true, message: 'Laporan dihapus (mock)' }; }
+                            } else if (action === 'getRealisasiLogByProker') {
+                                const logs = MOCK_DB.realisasiLog.filter(x => x.id_proker === payload.id_proker).slice().sort((a, b) => b.created_at.localeCompare(a.created_at));
+                                res = { success: true, data: logs };
+                            } else if (action === 'approveRealisasiLog') {
+                                const log = MOCK_DB.realisasiLog.find(x => x.id_log === payload.id_log);
+                                if (log) { log.status_approval = 'Disetujui'; log.catatan_admin = payload.catatan_admin || ''; log.approved_by = 'u1'; log.approved_at = new Date().toISOString().replace('T', ' ').slice(0, 19); res = { success: true, message: 'Laporan disetujui (mock)' }; }
+                            } else if (action === 'rejectRealisasiLog') {
+                                const log = MOCK_DB.realisasiLog.find(x => x.id_log === payload.id_log);
+                                if (log) { log.status_approval = 'Ditolak'; log.catatan_admin = payload.catatan_admin || ''; log.approved_by = 'u1'; log.approved_at = new Date().toISOString().replace('T', ' ').slice(0, 19); res = { success: true, message: 'Laporan ditolak (mock)' }; }
+                            } else if (action === 'updateRealisasiLog') {
+                                const log = MOCK_DB.realisasiLog.find(x => x.id_log === payload.id_log);
+                                if (log) {
+                                    log.tanggal_realisasi = payload.tanggal_realisasi || log.tanggal_realisasi;
+                                    log.jumlah_realisasi = Number(payload.jumlah_realisasi) || log.jumlah_realisasi;
+                                    log.anggaran_realisasi = Number(payload.anggaran_realisasi) || log.anggaran_realisasi;
+                                    log.catatan = payload.catatan || log.catatan;
+                                    if (payload.fileData) { log.file_lpj = 'https://drive.google.com/lpj/' + (payload.fileName || 'mock'); }
+                                    log.status_approval = 'Menunggu Persetujuan';
+                                    log.catatan_admin = '';
+                                    log.approved_by = '';
+                                    log.approved_at = '';
+                                    res = { success: true, message: 'Laporan berhasil diperbarui (mock)' };
+                                } else {
+                                    res = { success: false, message: 'Laporan tidak ditemukan (mock)' };
+                                }
                             } else if (action === 'bulkImportUsers') {
                                 res = { success: true, message: 'Import users selesai (mock)', data: payload.data };
                             } else if (action === 'bulkImportProker') {
@@ -1916,7 +1892,7 @@
                 const hideLoading = () => document.getElementById('fullPageLoading').classList.add('d-none');
 
                 const toast = (msg, icon = 'success') => Swal.fire({
-                    toast: true, position: 'top-end', icon: icon, title: msg, showConfirmButton: false, timer: 3000
+                    toast: true, position: 'bottom-end', icon: icon, title: msg, showConfirmButton: false, timer: 3000
                 });
 
                 window.togglePasswordVisibility = function (inputId, btn) {
@@ -2320,14 +2296,18 @@
                     let html = '';
                     let pendingCount = 0;
 
-                    // Show items awaiting approval first
+                    // Show items with pending logs first
                     const sorted = appState.proker.slice().sort((a, b) => {
-                        const rank = (s) => s === 'Menunggu Persetujuan' ? 0 : 1;
-                        return rank(a.status_proker) - rank(b.status_proker);
+                        const pendingA = (appState.realisasiLog || []).filter(r => r.id_proker === a.id_proker && r.status_approval === 'Menunggu Persetujuan').length;
+                        const pendingB = (appState.realisasiLog || []).filter(r => r.id_proker === b.id_proker && r.status_approval === 'Menunggu Persetujuan').length;
+                        return pendingB - pendingA;
                     });
 
                     sorted.forEach(p => {
-                        if (p.status_proker === 'Menunggu Persetujuan') pendingCount++;
+                        const logs = (appState.realisasiLog || []).filter(r => r.id_proker === p.id_proker);
+                        const pendingLogs = logs.filter(r => r.status_approval === 'Menunggu Persetujuan');
+                        const approvedLogs = logs.filter(r => r.status_approval === 'Disetujui');
+                        pendingCount += pendingLogs.length;
 
                         let persen = calculatePersen(p.realisasi_angka, p.target_angka);
                         let statusBadge = getStatusBadgeClasses(p.status_proker);
@@ -2340,20 +2320,17 @@
                             ? `<p class="text-[11px] text-rose-600 italic mt-1"><i class="fa-solid fa-comment-dots"></i> Catatan Admin: ${escapeHTML(p.catatan_admin)}</p>`
                             : '';
 
-                        var laporanCount = (appState.realisasiLog || []).filter(function(r) { return r.id_proker === p.id_proker; }).length;
+                        var laporanCount = logs.length;
                         var laporanBadge = laporanCount > 0
-                          ? `<span onclick="openLaporanRealisasiModal('${p.id_proker}', true)" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-sky-200 text-sky-700 bg-sky-50 cursor-pointer hover:bg-sky-100 transition-colors">${laporanCount} Laporan LPJ</span>`
+                          ? `<span onclick="openLaporanRealisasiModal('${p.id_proker}', 'view')" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-sky-200 text-sky-700 bg-sky-50 cursor-pointer hover:bg-sky-100 transition-colors">${laporanCount} Laporan LPJ</span>`
                           : `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-gray-200 text-gray-500 bg-gray-50">Belum ada LPJ</span>`;
 
                         let aksi = `<span class="text-[11px] text-gray-400">-</span>`;
-                        if (p.status_proker === 'Menunggu Persetujuan') {
+                        if (pendingLogs.length > 0) {
                             aksi = `
                             <div class="flex items-center justify-center gap-1.5">
-                                <button onclick="approveProkerAction('${p.id_proker}', '${escapeHTML(p.nama_program)}')" class="w-8 h-8 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Setujui Proker">
-                                    <i class="fa-solid fa-check text-xs"></i>
-                                </button>
-                                <button onclick="rejectProkerAction('${p.id_proker}', '${escapeHTML(p.nama_program)}')" class="w-8 h-8 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Tolak Proker">
-                                    <i class="fa-solid fa-xmark text-xs"></i>
+                                <button onclick="openLaporanRealisasiModal('${p.id_proker}', 'admin')" class="w-8 h-8 bg-sky-50 hover:bg-sky-100 text-sky-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Tinjau Laporan">
+                                    <i class="fa-solid fa-clipboard-check text-xs"></i>
                                 </button>
                             </div>`;
                         }
@@ -2880,7 +2857,7 @@
                 // ==========================================
                 window.renderManajemenProker = function (idDept) {
                     const tbody = document.getElementById('prokerTableBody');
-                    const myProker = appState.proker.filter(p => p.id_departemen === idDept && String(p.is_deleted || 'false') !== 'true');
+                    const myProker = appState.proker.filter(p => p.id_departemen === idDept);
                     let sumPersen = 0, html = '';
 
                     const deptName = getDeptName(idDept);
@@ -2903,7 +2880,7 @@
 
                         var laporanCount = (appState.realisasiLog || []).filter(function(r) { return r.id_proker === p.id_proker; }).length;
                         var laporanBadge = laporanCount > 0
-                          ? `<span onclick="openLaporanRealisasiModal('${p.id_proker}', true)" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-sky-200 text-sky-700 bg-sky-50 cursor-pointer hover:bg-sky-100 transition-colors">${laporanCount} Laporan LPJ</span>`
+                          ? `<span onclick="openLaporanRealisasiModal('${p.id_proker}', 'manage')" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-sky-200 text-sky-700 bg-sky-50 cursor-pointer hover:bg-sky-100 transition-colors">${laporanCount} Laporan LPJ</span>`
                           : `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-gray-200 text-gray-500 bg-gray-50">Belum ada LPJ</span>`;
 
                         html += `
@@ -2935,13 +2912,10 @@
                                     <button onclick="openEditProkerModal('${p.id_proker}')" class="w-8 h-8 bg-gray-50 hover:bg-gray-100 text-gray-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Edit Detail Proker">
                                         <i class="fa-solid fa-gear text-xs"></i>
                                     </button>
-                                    <button onclick="openMilestoneModal('${p.id_proker}')" class="w-8 h-8 bg-sky-50 hover:bg-sky-100 text-sky-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Milestone">
-                                        <i class="fa-solid fa-list-check text-xs"></i>
-                                    </button>
                                     <button onclick="openLaporanRealisasiModal('${p.id_proker}')" class="w-8 h-8 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Lapor Realisasi Bertahap">
                                         <i class="fa-solid fa-clipboard-list text-xs"></i>
                                     </button>
-                                    <button onclick="softDeleteProker('${p.id_proker}', '${escapeHTML(p.nama_program)}')" class="w-8 h-8 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Arsipkan Proker">
+                                    <button onclick="deleteProker('${p.id_proker}', '${escapeHTML(p.nama_program)}')" class="w-8 h-8 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Hapus Proker">
                                         <i class="fa-solid fa-trash text-xs"></i>
                                     </button>
                                 </div>
@@ -2949,32 +2923,6 @@
                         </tr>
                     `;
                     });
-
-                    // Show archived proker for this dept with restore option
-                    const archivedProker = appState.proker.filter(p => p.id_departemen === idDept && String(p.is_deleted || 'false') === 'true');
-                    if (archivedProker.length > 0) {
-                        html += `<tr><td colspan="8" class="px-6 py-3 bg-gray-50 text-xs font-bold text-gray-500 uppercase tracking-wider">Arsip</td></tr>`;
-                        archivedProker.forEach(p => {
-                            html += `
-                            <tr class="bg-gray-50/50 opacity-70">
-                                <td class="px-6 py-3 text-xs text-gray-500"><s>${escapeHTML(p.nama_program)}</s></td>
-                                <td class="px-4 py-3 text-xs text-gray-400">${p.target_angka} ${escapeHTML(p.satuan_target)}</td>
-                                <td class="px-4 py-3 text-center text-xs text-gray-400">${p.realisasi_angka}</td>
-                                <td class="px-4 py-3 text-center text-xs text-gray-400">-</td>
-                                <td class="px-4 py-4 text-right text-xs text-gray-400">R: ${formatRp(p.anggaran_rencana)}<br>A: ${formatRp(p.anggaran_realisasi)}</td>
-                                <td class="px-4 py-4 text-center"><span class="px-2.5 py-1 text-[10px] rounded-full font-bold border bg-gray-100 text-gray-600 border-gray-200">Dihapus</span></td>
-                                <td class="px-4 py-4 text-center">
-                                    <span class="text-[10px] text-gray-400 italic block">-</span>
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    <button onclick="restoreProker('${p.id_proker}')" class="px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-[10px] font-bold rounded-lg border border-emerald-200 transition-colors">
-                                        <i class="fa-solid fa-rotate-left"></i> Pulihkan
-                                    </button>
-                                </td>
-                            </tr>
-                        `;
-                        });
-                    }
 
                     let avg = myProker.length > 0 ? Math.round(sumPersen / myProker.length) : 0;
                     document.getElementById('deptRataCapaian').innerText = avg;
@@ -3018,7 +2966,7 @@
 
                 window.renderImportProkerAdmin = function (idDept) {
                     const tbody = document.getElementById('importProkerTableBody');
-                    const myProker = appState.proker.filter(p => p.id_departemen === idDept && String(p.is_deleted || 'false') !== 'true');
+                    const myProker = appState.proker.filter(p => p.id_departemen === idDept);
                     let sumPersen = 0, html = '';
 
                     const deptName = getDeptName(idDept);
@@ -3041,7 +2989,7 @@
 
                         var laporanCount = (appState.realisasiLog || []).filter(function(r) { return r.id_proker === p.id_proker; }).length;
                         var laporanBadge = laporanCount > 0
-                          ? `<span onclick="openLaporanRealisasiModal('${p.id_proker}', true)" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-sky-200 text-sky-700 bg-sky-50 cursor-pointer hover:bg-sky-100 transition-colors">${laporanCount} Laporan LPJ</span>`
+                          ? `<span onclick="openLaporanRealisasiModal('${p.id_proker}', 'manage')" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-sky-200 text-sky-700 bg-sky-50 cursor-pointer hover:bg-sky-100 transition-colors">${laporanCount} Laporan LPJ</span>`
                           : `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-gray-200 text-gray-500 bg-gray-50">Belum ada LPJ</span>`;
 
                         html += `
@@ -3073,13 +3021,10 @@
                                     <button onclick="openEditProkerModal('${p.id_proker}')" class="w-8 h-8 bg-gray-50 hover:bg-gray-100 text-gray-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Edit Detail Proker">
                                         <i class="fa-solid fa-gear text-xs"></i>
                                     </button>
-                                    <button onclick="openMilestoneModal('${p.id_proker}')" class="w-8 h-8 bg-sky-50 hover:bg-sky-100 text-sky-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Milestone">
-                                        <i class="fa-solid fa-list-check text-xs"></i>
-                                    </button>
                                     <button onclick="openLaporanRealisasiModal('${p.id_proker}')" class="w-8 h-8 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Lapor Realisasi Bertahap">
                                         <i class="fa-solid fa-clipboard-list text-xs"></i>
                                     </button>
-                                    <button onclick="softDeleteProker('${p.id_proker}', '${escapeHTML(p.nama_program)}')" class="w-8 h-8 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Arsipkan Proker">
+                                    <button onclick="deleteProker('${p.id_proker}', '${escapeHTML(p.nama_program)}')" class="w-8 h-8 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Hapus Proker">
                                         <i class="fa-solid fa-trash text-xs"></i>
                                     </button>
                                 </div>
@@ -3087,31 +3032,6 @@
                         </tr>
                     `;
                     });
-
-                    const archivedProker = appState.proker.filter(p => p.id_departemen === idDept && String(p.is_deleted || 'false') === 'true');
-                    if (archivedProker.length > 0) {
-                        html += `<tr><td colspan="8" class="px-6 py-3 bg-gray-50 text-xs font-bold text-gray-500 uppercase tracking-wider">Arsip</td></tr>`;
-                        archivedProker.forEach(p => {
-                            html += `
-                            <tr class="bg-gray-50/50 opacity-70">
-                                <td class="px-6 py-3 text-xs text-gray-500"><s>${escapeHTML(p.nama_program)}</s></td>
-                                <td class="px-4 py-3 text-xs text-gray-400">${p.target_angka} ${escapeHTML(p.satuan_target)}</td>
-                                <td class="px-4 py-3 text-center text-xs text-gray-400">${p.realisasi_angka}</td>
-                                <td class="px-4 py-3 text-center text-xs text-gray-400">-</td>
-                                <td class="px-4 py-4 text-right text-xs text-gray-400">R: ${formatRp(p.anggaran_rencana)}<br>A: ${formatRp(p.anggaran_realisasi)}</td>
-                                <td class="px-4 py-4 text-center"><span class="px-2.5 py-1 text-[10px] rounded-full font-bold border bg-gray-100 text-gray-600 border-gray-200">Dihapus</span></td>
-                                <td class="px-4 py-4 text-center">
-                                    <span class="text-[10px] text-gray-400 italic block">-</span>
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    <button onclick="restoreProker('${p.id_proker}')" class="px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-[10px] font-bold rounded-lg border border-emerald-200 transition-colors">
-                                        <i class="fa-solid fa-rotate-left"></i> Pulihkan
-                                    </button>
-                                </td>
-                            </tr>
-                        `;
-                        });
-                    }
 
                     let avg = myProker.length > 0 ? Math.round(sumPersen / myProker.length) : 0;
                     document.getElementById('importProkerRataCapaian').innerText = avg;
@@ -3146,21 +3066,23 @@
                     const btn = document.getElementById('btnSaveProker');
                     btn.disabled = true;
                     showLoading('Menyimpan Program Kerja...');
-                    const res = await apiService('addProker', payload);
-                    hideLoading();
-                    btn.disabled = false;
-
-                    if (res.success) {
-                        toast(res.message || 'Proker ditambahkan');
-                        closeModal('modalAddProker');
-                        document.getElementById('formAddProker').reset();
-                        if (isAdminImport) {
-                            renderImportProkerAdmin(window.currentImportProkerDept);
+                    try {
+                        const res = await apiService('addProker', payload);
+                        if (res.success) {
+                            toast(res.message || 'Proker ditambahkan');
+                            closeModal('modalAddProker');
+                            document.getElementById('formAddProker').reset();
+                            if (isAdminImport) {
+                                renderImportProkerAdmin(window.currentImportProkerDept);
+                            } else {
+                                loadAppData();
+                            }
                         } else {
-                            loadAppData();
+                            Swal.fire('Gagal', res.message || 'Gagal menyimpan proker', 'error');
                         }
-                    } else {
-                        Swal.fire('Gagal', res.message || 'Gagal menyimpan proker', 'error');
+                    } finally {
+                        hideLoading();
+                        btn.disabled = false;
                     }
                 };
 
@@ -3202,9 +3124,12 @@
                     }
                 };
 
-                window.openLaporanRealisasiModal = function (idProker, readOnly) {
+                window.openLaporanRealisasiModal = function (idProker, mode) {
                     const p = appState.proker.find(x => x.id_proker === idProker);
                     if (!p) return;
+
+                    if (mode === true) mode = 'view';
+                    if (!mode) mode = 'edit';
 
                     document.getElementById('laporanIdProker').value = idProker;
                     document.getElementById('laporanNamaProgram').innerText = p.nama_program;
@@ -3214,7 +3139,9 @@
 
                     const readOnlyWrap = document.getElementById('laporanRealisasiReadOnly');
                     const formWrap = document.getElementById('laporanRealisasiForm');
-                    if (readOnly) {
+                    const isView = mode === 'view' || mode === 'admin' || mode === 'manage';
+                    const isEdit = mode === 'edit';
+                    if (isView) {
                         readOnlyWrap.classList.remove('d-none');
                         formWrap.classList.add('d-none');
                     } else {
@@ -3225,33 +3152,59 @@
                         document.getElementById('laporanAnggaran').value = 0;
                         document.getElementById('laporanCatatan').value = '';
                         document.getElementById('laporanFileLpj').value = '';
+                        document.getElementById('laporanIdLog').value = '';
+                        document.getElementById('laporanFileCurrent').classList.add('d-none');
+                        document.getElementById('laporanFileWajib').classList.remove('d-none');
+                        document.getElementById('btnSaveLaporanText').innerHTML = '<i class="fa-solid fa-plus"></i> Tambah Laporan';
+                        document.getElementById('btnBatalLaporan').onclick = function () { closeModal('modalLaporanRealisasi'); };
                     }
 
                     window._laporanRealisasiRefresh = function () {
                         apiService('getRealisasiLogByProker', { id_proker: idProker }).then(res => {
                             const list = document.getElementById('laporanRealisasiHistory');
                             const logs = (res.success && res.data) ? res.data : [];
-                            const totalJumlah = logs.reduce((sum, log) => sum + (parseFloat(log.jumlah_realisasi) || 0), 0);
-                            document.getElementById('laporanTotalRealisasi').innerText = totalJumlah;
+                            window._laporanLogsCache = {};
+                            logs.forEach(function (log) {
+                                window._laporanLogsCache[log.id_log] = log;
+                            });
+                            const totalDisetujui = logs.filter(l => l.status_approval === 'Disetujui').reduce((sum, log) => sum + (parseFloat(log.jumlah_realisasi) || 0), 0);
+                            document.getElementById('laporanTotalRealisasi').innerText = totalDisetujui;
 
                             if (logs.length === 0) {
                                 list.innerHTML = `<p class="text-xs text-gray-500 text-center py-4">Belum ada laporan realisasi.</p>`;
                                 return;
                             }
 
-                            list.innerHTML = logs.map(log => `
+                            list.innerHTML = logs.map(log => {
+                                const statusMap = {
+                                    'Menunggu Persetujuan': '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold border border-amber-200 text-amber-700 bg-amber-50">Menunggu</span>',
+                                    'Disetujui': '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold border border-emerald-200 text-emerald-700 bg-emerald-50">Disetujui</span>',
+                                    'Ditolak': '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold border border-rose-200 text-rose-700 bg-rose-50">Ditolak</span>'
+                                };
+                                const statusBadge = statusMap[log.status_approval] || statusMap['Menunggu Persetujuan'];
+                                const isAdminUser = Auth.getUser().role === 'Admin';
+                                const locked = !isAdminUser && log.status_approval === 'Disetujui';
+                                const canManage = mode === 'manage' && !locked;
+                                const canApprove = mode === 'admin' && log.status_approval === 'Menunggu Persetujuan';
+                                return `
                                 <div class="flex items-start justify-between gap-3 p-3 bg-white rounded-xl border border-wahdah-100">
                                     <div class="flex-1 min-w-0">
-                                        <p class="text-xs font-bold text-wahdah-900">${log.tanggal_realisasi || '-'}</p>
+                                        <p class="text-xs font-bold text-wahdah-900">${log.tanggal_realisasi || '-'} ${statusBadge}</p>
                                         <p class="text-[11px] text-wahdah-700">Jumlah: <b>${log.jumlah_realisasi}</b> | Anggaran: <b>${formatRp(log.anggaran_realisasi)}</b></p>
                                         ${log.catatan ? `<p class="text-[10px] text-gray-500 mt-0.5">${escapeHTML(log.catatan)}</p>` : ''}
                                         ${log.file_lpj ? `<a href="${escapeHTML(log.file_lpj)}" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-sky-600 font-semibold hover:underline mt-1"><i class="fa-solid fa-paperclip"></i> Lihat LPJ</a>` : `<span class="text-[10px] text-gray-400 italic block mt-0.5">LPJ belum ada</span>`}
+                                        ${log.status_approval === 'Ditolak' && log.catatan_admin ? `<p class="text-[10px] text-rose-600 italic mt-0.5"><i class="fa-solid fa-comment-dots"></i> Catatan Admin: ${escapeHTML(log.catatan_admin)}</p>` : ''}
                                     </div>
-                                    ${readOnly ? '' : `<button onclick="hapusLaporanRealisasi('${log.id_log}', '${idProker}')" class="shrink-0 w-8 h-8 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Hapus Laporan">
-                                        <i class="fa-solid fa-trash text-xs"></i>
-                                    </button>`}
+                                    <div class="flex items-center gap-1.5 shrink-0">
+                                        ${canApprove ? `<button onclick="approveLaporanAction('${log.id_log}', '${idProker}')" class="w-8 h-8 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Setujui"><i class="fa-solid fa-check text-xs"></i></button>` : ''}
+                                        ${canApprove ? `<button onclick="rejectLaporanAction('${log.id_log}', '${idProker}')" class="w-8 h-8 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Tolak"><i class="fa-solid fa-xmark text-xs"></i></button>` : ''}
+                                        ${canManage ? `<button onclick="editLaporanRealisasi('${log.id_log}', '${idProker}')" class="w-8 h-8 bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Edit Laporan"><i class="fa-solid fa-pen-to-square text-xs"></i></button>` : ''}
+                                        ${canManage ? `<button onclick="hapusLaporanRealisasi('${log.id_log}', '${idProker}')" class="w-8 h-8 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Hapus Laporan"><i class="fa-solid fa-trash text-xs"></i></button>` : ''}
+                                        ${locked ? `<span class="text-[10px] text-gray-400" title="Sudah disetujui, tidak dapat diubah"><i class="fa-solid fa-lock"></i></span>` : ''}
+                                    </div>
                                 </div>
-                            `).join('');
+                            `;
+                            }).join('');
                         });
                     };
 
@@ -3259,10 +3212,47 @@
                     openModal('modalLaporanRealisasi');
                 };
 
+                window.editLaporanRealisasi = function (idLog, idProker) {
+                    const log = window._laporanLogsCache && window._laporanLogsCache[idLog];
+                    if (!log) return;
+
+                    const readOnlyWrap = document.getElementById('laporanRealisasiReadOnly');
+                    const formWrap = document.getElementById('laporanRealisasiForm');
+                    readOnlyWrap.classList.add('d-none');
+                    formWrap.classList.remove('d-none');
+
+                    document.getElementById('laporanIdLog').value = idLog;
+                    document.getElementById('laporanIdProker').value = idProker;
+                    document.getElementById('laporanTanggal').value = log.tanggal_iso || '';
+                    document.getElementById('laporanJumlah').value = log.jumlah_realisasi || 0;
+                    document.getElementById('laporanAnggaran').value = log.anggaran_realisasi || 0;
+                    document.getElementById('laporanCatatan').value = log.catatan || '';
+                    document.getElementById('laporanFileLpj').value = '';
+
+                    const fileCurrent = document.getElementById('laporanFileCurrent');
+                    const fileLink = document.getElementById('laporanFileCurrentLink');
+                    if (log.file_lpj) {
+                        fileLink.href = log.file_lpj;
+                        fileCurrent.classList.remove('d-none');
+                    } else {
+                        fileCurrent.classList.add('d-none');
+                    }
+
+                    document.getElementById('laporanFileWajib').classList.add('d-none');
+                    document.getElementById('btnSaveLaporanText').innerHTML = '<i class="fa-solid fa-pen-to-square"></i> Simpan Perubahan';
+                    document.getElementById('btnBatalLaporan').onclick = function () {
+                        window._laporanRealisasiRefresh();
+                        readOnlyWrap.classList.remove('d-none');
+                        formWrap.classList.add('d-none');
+                    };
+                };
+
                 window.submitLaporanRealisasi = async function () {
                     const btn = document.getElementById('btnSaveLaporan');
                     const fileInput = document.getElementById('laporanFileLpj');
                     const idProker = document.getElementById('laporanIdProker').value;
+                    const idLog = document.getElementById('laporanIdLog').value;
+                    const isEdit = !!idLog;
 
                     let fileData = null, mimeType = null, fileName = null;
                     const getBase64 = (file) => new Promise((resolve, reject) => {
@@ -3277,37 +3267,40 @@
                         if (file.size > 8 * 1024 * 1024) {
                             return Swal.fire('Berkas Terlalu Besar', 'Ukuran berkas maksimal 8MB.', 'warning');
                         }
-                        showLoading('Memproses unggahan berkas LPJ...');
+                        showLoading('Memproses berkas LPJ...');
                         fileData = await getBase64(file);
                         mimeType = file.type;
                         fileName = file.name;
-                    } else {
+                    } else if (!isEdit) {
                         return Swal.fire('LPJ Diperlukan', 'File LPJ wajib diunggah untuk setiap laporan realisasi.', 'warning');
                     }
 
                     btn.disabled = true;
                     showLoading('Menyimpan laporan realisasi...');
 
-                    const payload = {
+                    const basePayload = {
                         id_proker: idProker,
                         tanggal_realisasi: document.getElementById('laporanTanggal').value,
                         jumlah_realisasi: document.getElementById('laporanJumlah').value,
                         anggaran_realisasi: document.getElementById('laporanAnggaran').value,
-                        catatan: document.getElementById('laporanCatatan').value,
-                        fileData: fileData,
-                        mimeType: mimeType,
-                        fileName: fileName
+                        catatan: document.getElementById('laporanCatatan').value
                     };
 
-                    const res = await apiService('addRealisasiLog', payload);
+                    const action = isEdit ? 'updateRealisasiLog' : 'addRealisasiLog';
+                    const payload = isEdit
+                        ? Object.assign({}, basePayload, { id_log: idLog, fileData: fileData, mimeType: mimeType, fileName: fileName })
+                        : Object.assign({}, basePayload, { fileData: fileData, mimeType: mimeType, fileName: fileName });
+
+                    const res = await apiService(action, payload);
                     hideLoading();
                     btn.disabled = false;
 
                     if (res.success) {
-                        toast(res.message || 'Laporan realisasi ditambahkan');
+                        toast(res.message || (isEdit ? 'Laporan berhasil diperbarui' : 'Laporan realisasi ditambahkan'));
                         document.getElementById('formLaporanRealisasi').reset();
                         document.getElementById('laporanIdProker').value = idProker;
-                        window._laporanRealisasiRefresh();
+                        document.getElementById('laporanIdLog').value = '';
+                        closeModal('modalLaporanRealisasi');
                         loadAppData();
                     } else {
                         Swal.fire('Gagal', res.message || 'Gagal menyimpan laporan', 'error');
@@ -3317,7 +3310,7 @@
                 window.hapusLaporanRealisasi = function (idLog, idProker) {
                     Swal.fire({
                         title: 'Hapus Laporan Realisasi?',
-                        text: 'Laporan ini akan dihapus dan total realisasi akan dihitung ulang.',
+                        text: 'Laporan beserta berkas LPJ-nya akan dihapus permanen dari daftar, spreadsheet, dan Google Drive. Total realisasi dihitung ulang.',
                         icon: 'question',
                         showCancelButton: true,
                         confirmButtonColor: '#c9a24b',
@@ -3338,6 +3331,63 @@
                     });
                 };
 
+                window.approveLaporanAction = function (idLog, idProker) {
+                    Swal.fire({
+                        title: 'Setujui Laporan Realisasi?',
+                        html: 'Laporan ini akan disetujui dan masuk ke dalam perhitungan total realisasi proker.',
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#177355',
+                        cancelButtonColor: '#6b7280',
+                        confirmButtonText: 'Ya, Setujui',
+                        cancelButtonText: 'Batal'
+                    }).then(async (r) => {
+                        if (r.isConfirmed) {
+                            showLoading('Menyetujui laporan...');
+                            const res = await apiService('approveRealisasiLog', { id_log: idLog });
+                            hideLoading();
+                            if (res.success) {
+                                toast(res.message || 'Laporan disetujui');
+                                loadAppData();
+                                if (window._laporanRealisasiRefresh) window._laporanRealisasiRefresh();
+                                renderPersetujuanProker();
+                            } else {
+                                Swal.fire('Gagal', res.message || 'Gagal menyetujui laporan', 'error');
+                            }
+                        }
+                    });
+                };
+
+                window.rejectLaporanAction = function (idLog, idProker) {
+                    Swal.fire({
+                        title: 'Tolak Laporan Realisasi?',
+                        html: 'Berikan alasan penolakan untuk laporan ini. Departemen akan diminta merevisi dan mengunggah ulang LPJ.',
+                        input: 'textarea',
+                        inputPlaceholder: 'Tuliskan alasan penolakan...',
+                        inputValidator: (value) => !value ? 'Alasan penolakan wajib diisi' : undefined,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#e11d48',
+                        cancelButtonColor: '#6b7280',
+                        confirmButtonText: 'Ya, Tolak',
+                        cancelButtonText: 'Batal'
+                    }).then(async (r) => {
+                        if (r.isConfirmed) {
+                            showLoading('Memproses penolakan...');
+                            const res = await apiService('rejectRealisasiLog', { id_log: idLog, catatan_admin: r.value });
+                            hideLoading();
+                            if (res.success) {
+                                toast(res.message || 'Laporan ditolak', 'info');
+                                loadAppData();
+                                if (window._laporanRealisasiRefresh) window._laporanRealisasiRefresh();
+                                renderPersetujuanProker();
+                            } else {
+                                Swal.fire('Gagal', res.message || 'Gagal menolak laporan', 'error');
+                            }
+                        }
+                    });
+                };
+
                 window.openUpdateProker = function (id) {
                     const p = appState.proker.find(x => x.id_proker === id);
                     if (p) {
@@ -3346,20 +3396,8 @@
                         document.getElementById('updTargetInfo').innerText = `${p.target_angka} ${p.satuan_target}`;
                         document.getElementById('updRealisasiAngka').value = p.realisasi_angka;
                         document.getElementById('updRealisasiAnggaran').value = p.anggaran_realisasi;
-                        const editableStatuses = ['Belum Mulai', 'Berjalan', 'Terkendala', 'Menunggu Persetujuan'];
+                        const editableStatuses = ['Belum Mulai', 'Berjalan', 'Terkendala'];
                         document.getElementById('updStatus').value = editableStatuses.includes(p.status_proker) ? p.status_proker : 'Berjalan';
-
-                        document.getElementById('updFileLpj').value = '';
-                        document.getElementById('updFileLpjOld').value = p.file_lpj || '';
-                        const currentFileText = document.getElementById('updFileLpjCurrent');
-                        const currentFileLink = document.getElementById('updFileLpjLink');
-
-                        if (p.file_lpj) {
-                            currentFileText.classList.remove('d-none');
-                            currentFileLink.href = p.file_lpj;
-                        } else {
-                            currentFileText.classList.add('d-none');
-                        }
 
                         openModal('modalUpdateProker');
                     }
@@ -3367,54 +3405,17 @@
 
                 window.submitUpdateProker = async function () {
                     const btn = document.getElementById('btnSaveUpdate');
-                    const fileInput = document.getElementById('updFileLpj');
                     const statusProker = document.getElementById('updStatus').value;
-                    const oldFile = document.getElementById('updFileLpjOld').value;
-
-                    // Requirement check: LPJ mandatory when submitting for Admin approval
-                    if (statusProker === 'Menunggu Persetujuan') {
-                        if (fileInput.files.length === 0 && !oldFile) {
-                            return Swal.fire({
-                                title: 'Unggah LPJ Diperlukan',
-                                text: 'Untuk mengajukan proker ke tahap persetujuan Admin, Anda wajib mengunggah berkas LPJ/Laporan pertanggungjawaban.',
-                                icon: 'warning',
-                                confirmButtonColor: '#177355'
-                            });
-                        }
-                    }
-
-                    let fileData = null, mimeType = null, fileName = null;
-
-                    const getBase64 = (file) => new Promise((resolve, reject) => {
-                        const reader = new FileReader();
-                        reader.readAsDataURL(file);
-                        reader.onload = () => resolve(reader.result.split(',')[1]);
-                        reader.onerror = error => reject(error);
-                    });
-
-                    if (fileInput.files.length > 0) {
-                        const file = fileInput.files[0];
-                        if (file.size > 8 * 1024 * 1024) {
-                            return Swal.fire('Berkas Terlalu Besar', 'Ukuran berkas maksimal 8MB.', 'warning');
-                        }
-                        showLoading('Memproses unggahan berkas LPJ...');
-                        fileData = await getBase64(file);
-                        mimeType = file.type;
-                        fileName = file.name;
-                    }
 
                     btn.disabled = true;
-                    showLoading('Menyimpan realisasi proker...');
+                    showLoading('Menyimpan perubahan status proker...');
 
                     const payload = {
                         id_proker: document.getElementById('updIdProker').value,
                         realisasi_angka: document.getElementById('updRealisasiAngka').value,
                         anggaran_realisasi: document.getElementById('updRealisasiAnggaran').value,
                         status_proker: statusProker,
-                        old_file_lpj: oldFile,
-                        fileData: fileData,
-                        mimeType: mimeType,
-                        fileName: fileName
+                        old_file_lpj: ''
                     };
 
                     const res = await apiService('updateProkerRealisasi', payload);
@@ -3422,7 +3423,7 @@
                     btn.disabled = false;
 
                     if (res.success) {
-                        toast(res.message || 'Realisasi berhasil diupdate');
+                        toast(res.message || 'Status proker berhasil diupdate');
                         closeModal('modalUpdateProker');
                         loadAppData();
                     } else {
@@ -3432,22 +3433,32 @@
 
                 window.deleteProker = function (id, nama) {
                     Swal.fire({
-                        title: 'Arsipkan Proker?',
-                        text: `Program kerja "${nama}" akan diarsipkan.`,
-                        icon: 'question',
+                        title: 'Hapus Proker Permanen?',
+                        text: `Program kerja "${nama}" beserta seluruh laporan realisasi dan berkas LPJ-nya akan dihapus PERMANEN dan tidak bisa dikembalikan.`,
+                        icon: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#177355',
-                        confirmButtonText: 'Ya, Arsipkan'
+                        confirmButtonColor: '#dc2626',
+                        confirmButtonText: 'Ya, Hapus Permanen'
                     }).then(async (r) => {
                         if (r.isConfirmed) {
-                            showLoading('Mengarsipkan program kerja...');
-                            const res = await apiService('softDeleteProker', { id_proker: id });
-                            hideLoading();
-                            if (res.success) {
-                                toast(res.message || 'Proker diarsipkan');
-                                loadAppData();
-                            } else {
-                                Swal.fire('Gagal', res.message || 'Gagal mengarsipkan proker', 'error');
+                            showLoading('Menghapus program kerja...');
+                            try {
+                                const res = await apiService('deleteProker', { id_proker: id });
+                                hideLoading();
+                                if (res.success) {
+                                    toast(res.message || 'Proker dihapus permanen');
+                                    await loadAppData();
+                                    const sel = document.getElementById('importProkerDeptSelect');
+                                    if (document.getElementById('viewImportProkerAdmin') && !document.getElementById('viewImportProkerAdmin').classList.contains('d-none') && sel && sel.value) {
+                                        renderImportProkerAdmin(sel.value);
+                                    }
+                                    renderPersetujuanProker();
+                                } else {
+                                    Swal.fire('Gagal', res.message || 'Gagal menghapus proker', 'error');
+                                }
+                            } catch (e) {
+                                hideLoading();
+                                Swal.fire('Gagal', e.message || 'Gagal menghapus proker', 'error');
                             }
                         }
                     });
@@ -3590,102 +3601,26 @@
                     const btn = document.getElementById('btnBulkImportProker');
                     btn.disabled = true;
                     showLoading('Mengimport program kerja...');
-                    const res = await apiService('bulkImportProker', { csv_data: text });
-                    hideLoading();
-                    btn.disabled = false;
-                    if (res.success) {
-                        toast(res.message || 'Import selesai');
-                        closeModal('modalBulkImportProker');
-                        document.getElementById('formBulkImportProker').reset();
-                        loadAppData();
-                    } else {
-                        Swal.fire('Gagal', res.message || 'Gagal import', 'error');
-                    }
-                };
-
-                // ==========================================
-                // MILESTONE
-                // ==========================================
-                window.openMilestoneModal = function (idProker) {
-                    document.getElementById('milestoneId').value = idProker;
-                    document.getElementById('formMilestone').reset();
-                    document.getElementById('milestoneId').value = idProker;
-                    openModal('modalMilestone');
-                };
-
-                window.submitMilestone = async function () {
-                    const idProker = document.getElementById('milestoneId').value;
-                    const payload = {
-                        id_proker: idProker,
-                        nama_tahapan: document.getElementById('milestoneNama').value.trim(),
-                        target_tanggal: document.getElementById('milestoneTarget').value,
-                        realisasi_tanggal: document.getElementById('milestoneRealisasi').value,
-                        status_tahapan: document.getElementById('milestoneStatus').value,
-                        catatan: document.getElementById('milestoneCatatan').value.trim()
-                    };
-                    const btn = document.getElementById('btnSaveMilestone');
-                    btn.disabled = true;
-                    showLoading('Menyimpan milestone...');
-                    const res = await apiService('addMilestone', payload);
-                    hideLoading();
-                    btn.disabled = false;
-                    if (res.success) {
-                        toast(res.message || 'Milestone ditambahkan');
-                        closeModal('modalMilestone');
-                        document.getElementById('formMilestone').reset();
-                    } else {
-                        Swal.fire('Gagal', res.message || 'Gagal menyimpan milestone', 'error');
+                    try {
+                        const res = await apiService('bulkImportProker', { csv_data: text });
+                        if (res.success) {
+                            toast(res.message || 'Import selesai');
+                            closeModal('modalBulkImportProker');
+                            document.getElementById('formBulkImportProker').reset();
+                            loadAppData();
+                        } else {
+                            Swal.fire('Gagal', res.message || 'Gagal import', 'error');
+                        }
+                    } finally {
+                        hideLoading();
+                        btn.disabled = false;
                     }
                 };
 
                 // ==========================================
                 // SOFT DELETE & RESTORE
                 // ==========================================
-                window.softDeleteProker = function (id, nama) {
-                    Swal.fire({
-                        title: 'Arsipkan Proker?',
-                        text: `Program kerja "${nama}" akan diarsipkan dan tidak ditampilkan.`,
-                        icon: 'question',
-                        showCancelButton: true,
-                        confirmButtonColor: '#177355',
-                        confirmButtonText: 'Ya, Arsipkan'
-                    }).then(async (r) => {
-                        if (r.isConfirmed) {
-                            showLoading('Mengarsipkan program kerja...');
-                            const res = await apiService('softDeleteProker', { id_proker: id });
-                            hideLoading();
-                            if (res.success) {
-                                toast(res.message || 'Proker diarsipkan');
-                                loadAppData();
-                            } else {
-                                Swal.fire('Gagal', res.message, 'error');
-                            }
-                        }
-                    });
-                };
 
-                window.restoreProker = function (id) {
-                    Swal.fire({
-                        title: 'Pulihkan Proker?',
-                        text: 'Program kerja akan ditampilkan kembali.',
-                        icon: 'question',
-                        showCancelButton: true,
-                        confirmButtonColor: '#177355',
-                        confirmButtonText: 'Ya, Pulihkan'
-                    }).then(async (r) => {
-                        if (r.isConfirmed) {
-                            showLoading('Memulihkan program kerja...');
-                            const res = await apiService('restoreProker', { id_proker: id });
-                            hideLoading();
-                            if (res.success) {
-                                toast(res.message || 'Proker dipulihkan');
-                                loadAppData();
-                            } else {
-                                Swal.fire('Gagal', res.message, 'error');
-                            }
-                        }
-                    });
-                };
 
                 window.softDeleteUser = function (id, nama) {
                     Swal.fire({
