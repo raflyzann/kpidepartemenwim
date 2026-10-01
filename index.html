@@ -279,6 +279,11 @@
                 </button>
                 <button type="button"
                     class="nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all"
+                    onclick="showPage('viewTimelineProker', this)">
+                    <i class="fa-solid fa-timeline w-5 text-center text-gold-400"></i> <span>Timeline Proker</span>
+                </button>
+                <button type="button"
+                    class="nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all"
                     onclick="showPage('viewEvaluasiAdmin', this)">
                     <i class="fa-solid fa-medal w-5 text-center text-gold-400"></i> <span>Evaluasi Kualitatif</span>
                 </button>
@@ -376,11 +381,24 @@
                     class="w-9 h-9 rounded-xl hover:bg-wahdah-50 text-wahdah-700 flex items-center justify-center transition-colors border border-wahdah-200 shrink-0">
                     <i class="fa-solid fa-arrows-rotate text-sm"></i>
                 </button>
-                <button type="button" onclick="toggleNotifications()" title="Notifikasi"
-                    class="w-9 h-9 rounded-xl hover:bg-wahdah-50 text-wahdah-700 flex items-center justify-center transition-colors border border-wahdah-200 shrink-0 relative">
-                    <i class="fa-solid fa-bell text-sm"></i>
-                    <span id="notifBadge" class="d-none absolute -top-1 -right-1 w-4 h-4 bg-rose-500 text-white text-[9px] font-bold rounded-full flex items-center justify-center">0</span>
-                </button>
+                <div class="relative shrink-0">
+                    <button type="button" onclick="toggleNotifications()" title="Notifikasi"
+                        class="w-9 h-9 rounded-xl hover:bg-wahdah-50 text-wahdah-700 flex items-center justify-center transition-colors border border-wahdah-200 relative">
+                        <i class="fa-solid fa-bell text-sm"></i>
+                        <span id="notifBadge" class="d-none absolute -top-1 -right-1 w-4 h-4 bg-rose-500 text-white text-[9px] font-bold rounded-full flex items-center justify-center">0</span>
+                    </button>
+                    <div id="notifDropdown" class="d-none absolute right-0 top-11 w-80 max-h-96 overflow-y-auto bg-white rounded-2xl border border-wahdah-100 shadow-card z-50">
+                        <div class="flex items-center justify-between px-4 py-3 border-b border-wahdah-50">
+                            <p class="text-sm font-bold text-wahdah-900">Notifikasi</p>
+                            <button type="button" onclick="clearNotifications()" class="text-[11px] font-semibold text-wahdah-500 hover:text-wahdah-700">Tandai semua dibaca</button>
+                        </div>
+                        <div id="notifList" class="divide-y divide-wahdah-50"></div>
+                        <div id="notifEmpty" class="px-4 py-8 text-center text-gray-400">
+                            <i class="fa-regular fa-bell-slash text-2xl mb-2"></i>
+                            <p class="text-xs font-medium">Belum ada notifikasi</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </header>
 
@@ -769,6 +787,79 @@
             </div>
 
             <!-- ========================================== -->
+            <!-- TIMELINE PROKER (ADMIN) -->
+            <!-- ========================================== -->
+            <div id="viewTimelineProker" class="app-page d-none view-fade max-w-5xl mx-auto space-y-6">
+                <div
+                    class="bg-gradient-to-br from-wahdah-900 via-wahdah-800 to-wahdah-950 rounded-3xl shadow-card p-6 md:p-8 text-white pattern-bg">
+                    <div>
+                        <span
+                            class="px-3 py-1 bg-gold-500/30 text-gold-300 border border-gold-400/30 rounded-full text-xs font-semibold uppercase tracking-wider">Gantt</span>
+                        <h2 class="text-2xl md:text-3xl font-extrabold mt-2 text-white">Timeline Program Kerja - Gantt Chart</h2>
+                        <p class="text-wahdah-200 text-xs mt-1">Rencana & realisasi pelaksanaan proker per bulan</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-card border border-wahdah-100/80 p-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <select id="timelineYearFilter" onchange="renderTimelineProker()"
+                        class="text-xs rounded-xl border border-wahdah-200 px-3 py-2 outline-none bg-white focus:ring-2 focus:ring-wahdah-500">
+                    </select>
+                    <select id="timelineDeptFilter" onchange="renderTimelineProker()"
+                        class="text-xs rounded-xl border border-wahdah-200 px-3 py-2 outline-none bg-white focus:ring-2 focus:ring-wahdah-500">
+                        <option value="">Semua Departemen</option>
+                    </select>
+                    <div class="relative flex-1">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-wahdah-400 text-xs"></i>
+                        <input type="text" id="timelineSearchInput" oninput="renderTimelineProker()"
+                            placeholder="Cari program kerja..."
+                            class="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-wahdah-200 focus:ring-2 focus:ring-wahdah-500 outline-none bg-white">
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-4 mt-3 text-[10px] text-gray-500">
+                    <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-600"></span> Terlambat, belum lapor</span>
+                    <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-300"></span> Rencana akan datang</span>
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-diamond text-[10px] text-emerald-300"></i> Sudah dilaporkan & disetujui</span>
+                </div>
+
+                <div class="overflow-x-auto rounded-2xl border border-wahdah-100 bg-white shadow-card mt-3">
+                    <table id="timelineGanttTable" class="min-w-[900px] w-full text-xs border-collapse">
+                        <thead class="bg-wahdah-50/70 border-b border-wahdah-100">
+                            <tr>
+                                <th rowspan="2" class="text-left font-bold px-4 py-3 min-w-[220px] bg-white sticky left-0 z-10">Nama Program</th>
+                                <th rowspan="2" class="text-left font-bold px-4 py-3 min-w-[140px] bg-white sticky left-[220px] z-10">Departemen</th>
+                                <th colspan="3" class="text-center font-bold px-2 py-2 bg-wahdah-800 text-white">Q1</th>
+                                <th colspan="3" class="text-center font-bold px-2 py-2 bg-wahdah-700 text-white">Q2</th>
+                                <th colspan="3" class="text-center font-bold px-2 py-2 bg-wahdah-600 text-white">Q3</th>
+                                <th colspan="3" class="text-center font-bold px-2 py-2 bg-wahdah-500 text-white">Q4</th>
+                                <th rowspan="2" class="text-center font-bold px-3 py-3 min-w-[56px] bg-white sticky right-0 z-10">Aksi</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Jan</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Feb</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Mar</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Apr</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Mei</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Jun</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Jul</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Agu</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Sep</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Okt</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Nov</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Des</th>
+                            </tr>
+                        </thead>
+                        <tbody id="timelineGanttBody" class="divide-y divide-wahdah-50 bg-white"></tbody>
+                    </table>
+                </div>
+
+                <div id="timelineProkerEmpty" class="d-none text-center py-16 text-gray-400">
+                    <i class="fa-solid fa-timeline text-3xl mb-3"></i>
+                    <p class="text-sm font-medium">Belum ada program kerja yang cocok.</p>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
             <!-- 5. PAGE: MANAJEMEN PROKER (USER / DEPARTEMEN) -->
             <!-- ========================================== -->
             <div id="viewManajemenProker" class="app-page d-none view-fade max-w-6xl mx-auto space-y-6">
@@ -1055,6 +1146,40 @@
                     <input type="number" id="addAnggaran" required placeholder="Contoh: 25000000"
                         class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
                 </div>
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Mode Penjadwalan</label>
+                    <div class="flex gap-4 text-xs">
+                        <label class="flex items-center gap-1.5">
+                            <input type="radio" name="addModeJadwal" value="rentang" checked onchange="toggleModeJadwal('add')"> Rentang (Mulai - Target Selesai)
+                        </label>
+                        <label class="flex items-center gap-1.5">
+                            <input type="radio" name="addModeJadwal" value="per_kali" onchange="toggleModeJadwal('add')"> Per Kali Pelaksanaan (banyak tanggal)
+                        </label>
+                    </div>
+                </div>
+                <div id="addRentangWrap" class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Tanggal Mulai (Rencana)</label>
+                        <input type="date" id="addTanggalMulai"
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Target Selesai (Rencana)</label>
+                        <input type="date" id="addTanggalSelesai"
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                    </div>
+                </div>
+                <div id="addPerKaliWrap" class="d-none">
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-xs font-bold text-wahdah-800">Jadwal Pelaksanaan (Rencana per Kali)</label>
+                        <button type="button" onclick="tambahBarisJadwalRencana('addJadwalRencanaList')"
+                            class="text-[11px] font-semibold text-wahdah-700 hover:text-wahdah-900 flex items-center gap-1">
+                            <i class="fa-solid fa-plus"></i> Tambah Tanggal
+                        </button>
+                    </div>
+                    <p class="text-[10px] text-gray-400 mb-2">Isi tanggal rencana tiap kali proker ini akan dilaksanakan (boleh lebih dari satu, sesuai target). Sistem akan mengingatkan di Timeline jika bulan tsb belum ada laporan realisasi.</p>
+                    <div id="addJadwalRencanaList" class="space-y-2"></div>
+                </div>
                 <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
                     <button type="button" onclick="closeModal('modalAddProker')"
                         class="px-5 py-2.5 border border-wahdah-200 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 hover:bg-wahdah-50 transition-colors">Batal</button>
@@ -1102,6 +1227,40 @@
                     <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Rencana Anggaran (Rp)</label>
                     <input type="number" id="editAnggaran" required
                         class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Mode Penjadwalan</label>
+                    <div class="flex gap-4 text-xs">
+                        <label class="flex items-center gap-1.5">
+                            <input type="radio" name="editModeJadwal" value="rentang" checked onchange="toggleModeJadwal('edit')"> Rentang (Mulai - Target Selesai)
+                        </label>
+                        <label class="flex items-center gap-1.5">
+                            <input type="radio" name="editModeJadwal" value="per_kali" onchange="toggleModeJadwal('edit')"> Per Kali Pelaksanaan (banyak tanggal)
+                        </label>
+                    </div>
+                </div>
+                <div id="editRentangWrap" class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Tanggal Mulai (Rencana)</label>
+                        <input type="date" id="editTanggalMulai"
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Target Selesai (Rencana)</label>
+                        <input type="date" id="editTanggalSelesai"
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                    </div>
+                </div>
+                <div id="editPerKaliWrap" class="d-none">
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-xs font-bold text-wahdah-800">Jadwal Pelaksanaan (Rencana per Kali)</label>
+                        <button type="button" onclick="tambahBarisJadwalRencana('editJadwalRencanaList')"
+                            class="text-[11px] font-semibold text-wahdah-700 hover:text-wahdah-900 flex items-center gap-1">
+                            <i class="fa-solid fa-plus"></i> Tambah Tanggal
+                        </button>
+                    </div>
+                    <p class="text-[10px] text-gray-400 mb-2">Isi tanggal rencana tiap kali proker ini akan dilaksanakan (boleh lebih dari satu, sesuai target). Sistem akan mengingatkan di Timeline jika bulan tsb belum ada laporan realisasi.</p>
+                    <div id="editJadwalRencanaList" class="space-y-2"></div>
                 </div>
                 <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
                     <button type="button" onclick="closeModal('modalEditProker')"
@@ -1173,6 +1332,71 @@
         </div>
     </div>
 
+    <!-- MODAL: EDIT TANGGAL RENCANA PROKER -->
+    <div id="modalEditTanggalRencana" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-5 border-b border-wahdah-100 pb-3">
+                <h3 class="text-base font-bold text-wahdah-900 flex items-center gap-2">
+                     <i class="fa-solid fa-pen-to-square text-wahdah-600"></i> Edit Rencana Tanggal Proker
+                </h3>
+                <button onclick="closeModal('modalEditTanggalRencana')"
+                    class="text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-lg flex items-center justify-center transition-colors">
+                    <i class="fas fa-times text-xs"></i>
+                </button>
+            </div>
+            <form id="formEditTanggalRencana" onsubmit="event.preventDefault(); submitEditTanggalRencana();" class="space-y-4">
+                <input type="hidden" id="rencanaIdProker">
+                <div class="p-3.5 bg-wahdah-50/70 rounded-2xl border border-wahdah-100 mb-2">
+                    <p class="text-[11px] text-wahdah-600 font-medium">Program Kerja:</p>
+                    <p class="text-sm font-extrabold text-wahdah-900 mt-0.5" id="rencanaNamaProgram">-</p>
+                    <p class="text-xs text-wahdah-700 mt-1">Departemen: <span id="rencanaDeptInfo" class="font-bold"></span></p>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Mode Penjadwalan</label>
+                    <div class="flex gap-4 text-xs">
+                        <label class="flex items-center gap-1.5">
+                            <input type="radio" name="rencanaModeJadwal" value="rentang" checked onchange="toggleModeJadwal('rencana')"> Rentang (Mulai - Target Selesai)
+                        </label>
+                        <label class="flex items-center gap-1.5">
+                            <input type="radio" name="rencanaModeJadwal" value="per_kali" onchange="toggleModeJadwal('rencana')"> Per Kali Pelaksanaan (banyak tanggal)
+                        </label>
+                    </div>
+                </div>
+                <div id="rencanaRentangWrap" class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Tanggal Mulai (Rencana)</label>
+                        <input type="date" id="rencanaTanggalMulai"
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Target Selesai (Rencana)</label>
+                        <input type="date" id="rencanaTanggalSelesai"
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                    </div>
+                </div>
+                <div id="rencanaPerKaliWrap">
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-xs font-bold text-wahdah-800">Jadwal Pelaksanaan (Rencana per Kali)</label>
+                        <button type="button" onclick="tambahBarisJadwalRencana('jadwalRencanaList')"
+                            class="text-[11px] font-semibold text-wahdah-700 hover:text-wahdah-900 flex items-center gap-1">
+                            <i class="fa-solid fa-plus"></i> Tambah Tanggal
+                        </button>
+                    </div>
+                    <p class="text-[10px] text-gray-400 mb-2">Isi tanggal rencana tiap kali proker ini akan dilaksanakan (boleh lebih dari satu, sesuai target). Sistem akan mengingatkan di Timeline jika bulan tsb belum ada laporan realisasi.</p>
+                    <div id="jadwalRencanaList" class="space-y-2"></div>
+                </div>
+                <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
+                    <button type="button" onclick="closeModal('modalEditTanggalRencana')"
+                        class="px-5 py-2.5 border border-wahdah-200 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 hover:bg-wahdah-50 transition-colors">Batal</button>
+                    <button type="submit" id="btnSaveRencanaTanggal"
+                        class="px-5 py-2.5 bg-wahdah-700 text-white rounded-xl text-xs sm:text-sm font-semibold hover:bg-wahdah-800 transition-colors flex items-center gap-2 shadow-sm">
+                        <i class="fa-solid fa-check"></i> Simpan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- MODAL: LAPORAN REALISASI BERTAHAP -->
     <div id="modalLaporanRealisasi" class="modal-overlay">
         <div class="modal-content" style="max-width: 640px;">
@@ -1190,6 +1414,7 @@
                     <p class="text-[11px] text-wahdah-600 font-medium">Program Kerja:</p>
                     <p class="text-sm font-extrabold text-wahdah-900 mt-0.5" id="laporanNamaProgram">-</p>
                     <p class="text-xs text-wahdah-700 mt-1">Total Realisasi Disetujui: <span id="laporanTotalRealisasi" class="font-bold">0</span> / <span id="laporanTargetInfo" class="font-bold"></span></p>
+                    <p id="laporanRencanaTanggal" class="text-[11px] text-wahdah-500 mt-1"></p>
                 </div>
                 <div id="laporanRealisasiHistory" class="space-y-2 max-h-[300px] overflow-y-auto"></div>
             </div>
@@ -1558,10 +1783,10 @@
                         { id_user: 'u3', nama_lengkap: 'Ketua Kaderisasi', email: 'kaderisasi', role: 'User', id_departemen: 'd2', is_deleted: 'false' }
                     ],
                     proker: [
-                        { id_proker: 'PROK-demo1', id_departemen: 'd1', nama_program: 'Tebar Dai Nusantara', target_angka: 50, satuan_target: 'Titik', realisasi_angka: 45, anggaran_rencana: 50000000, anggaran_realisasi: 45000000, status_proker: 'Berjalan', file_lpj: '', catatan_admin: '', updated_at: '2026-03-20 10:00:00', is_deleted: 'false' },
-                        { id_proker: 'PROK-demo2', id_departemen: 'd1', nama_program: 'Kajian Akbar Bulanan', target_angka: 12, satuan_target: 'Kegiatan', realisasi_angka: 12, anggaran_rencana: 15000000, anggaran_realisasi: 14500000, status_proker: 'Disetujui', file_lpj: 'https://drive.google.com', catatan_admin: '', updated_at: '2026-03-22 14:30:00', is_deleted: 'false' },
-                        { id_proker: 'PROK-demo3', id_departemen: 'd2', nama_program: 'Daurah Murabbi Dasar', target_angka: 100, satuan_target: 'Peserta', realisasi_angka: 60, anggaran_rencana: 25000000, anggaran_realisasi: 18000000, status_proker: 'Menunggu Persetujuan', file_lpj: 'https://drive.google.com', catatan_admin: '', updated_at: '2026-03-24 09:15:00', is_deleted: 'false' },
-                        { id_proker: 'PROK-demo4', id_departemen: 'd2', nama_program: 'Pelatihan Instruktur Nasional', target_angka: 30, satuan_target: 'Orang', realisasi_angka: 0, anggaran_rencana: 15000000, anggaran_realisasi: 0, status_proker: 'Belum Mulai', file_lpj: '', catatan_admin: '', updated_at: '2026-03-25 11:00:00', is_deleted: 'false' }
+                        { id_proker: 'PROK-demo1', id_departemen: 'd1', nama_program: 'Tebar Dai Nusantara', target_angka: 50, satuan_target: 'Titik', realisasi_angka: 45, anggaran_rencana: 50000000, anggaran_realisasi: 45000000, status_proker: 'Berjalan', file_lpj: '', catatan_admin: '', updated_at: '2026-03-20 10:00:00', is_deleted: 'false', jadwal_rencana: [] },
+                        { id_proker: 'PROK-demo2', id_departemen: 'd1', nama_program: 'Kajian Akbar Bulanan', target_angka: 12, satuan_target: 'Kegiatan', realisasi_angka: 12, anggaran_rencana: 15000000, anggaran_realisasi: 14500000, status_proker: 'Disetujui', file_lpj: 'https://drive.google.com', catatan_admin: '', updated_at: '2026-03-22 14:30:00', is_deleted: 'false', jadwal_rencana: [] },
+                        { id_proker: 'PROK-demo3', id_departemen: 'd2', nama_program: 'Daurah Murabbi Dasar', target_angka: 100, satuan_target: 'Peserta', realisasi_angka: 60, anggaran_rencana: 25000000, anggaran_realisasi: 18000000, status_proker: 'Menunggu Persetujuan', file_lpj: 'https://drive.google.com', catatan_admin: '', updated_at: '2026-03-24 09:15:00', is_deleted: 'false', jadwal_rencana: [] },
+                        { id_proker: 'PROK-demo4', id_departemen: 'd2', nama_program: 'Pelatihan Instruktur Nasional', target_angka: 30, satuan_target: 'Orang', realisasi_angka: 0, anggaran_rencana: 15000000, anggaran_realisasi: 0, status_proker: 'Belum Mulai', file_lpj: '', catatan_admin: '', updated_at: '2026-03-25 11:00:00', is_deleted: 'false', jadwal_rencana: [] }
                     ],
                     evaluasi: [
                         { id_evaluasi: 'EVAL-demo1', id_departemen: 'd1', periode: 'Q1-2026', nilai_soliditas: 9, nilai_kolaborasi: 8, catatan_pimpinan: 'Kinerja program dakwah sangat baik dan terstruktur.', updated_at: '2026-03-24 16:00:00' },
@@ -1675,6 +1900,16 @@
                                     p.anggaran_rencana = Number(payload.anggaran_rencana);
                                     res = { success: true, message: 'Proker berhasil diperbarui' };
                                 }
+                            } else if (action === 'editProkerTanggalRencana') {
+                                const p = MOCK_DB.proker.find(x => x.id_proker === payload.id_proker);
+                                if (p) {
+                                    p.tanggal_mulai = payload.tanggal_mulai || '';
+                                    p.tanggal_selesai = payload.tanggal_selesai || '';
+                                    if (payload.jadwal_rencana !== undefined) {
+                                        p.jadwal_rencana = Array.isArray(payload.jadwal_rencana) ? payload.jadwal_rencana.slice() : [];
+                                    }
+                                    res = { success: true, message: 'Tanggal rencana berhasil diperbarui' };
+                                }
                             } else if (action === 'updateProkerRealisasi') {
                                 const p = MOCK_DB.proker.find(x => x.id_proker === payload.id_proker);
                                 if (p) {
@@ -1775,12 +2010,6 @@
                                 res = { success: true, message: 'PIN direset', data: { pin_baru: newPin } };
                             } else if (action === 'changeOwnPassword') {
                                 res = { success: true, message: 'Password berhasil diperbarui' };
-                            } else if (action === 'softDeleteProker') {
-                                const pidx = MOCK_DB.proker.findIndex(x => x.id_proker === payload.id_proker);
-                                if (pidx > -1) { MOCK_DB.proker[pidx].is_deleted = 'true'; MOCK_DB.proker[pidx].status_proker = 'Dihapus'; res = { success: true, message: 'Proker diarsipkan' }; }
-                            } else if (action === 'restoreProker') {
-                                const pidx = MOCK_DB.proker.findIndex(x => x.id_proker === payload.id_proker);
-                                if (pidx > -1) { MOCK_DB.proker[pidx].is_deleted = 'false'; MOCK_DB.proker[pidx].status_proker = 'Belum Mulai'; res = { success: true, message: 'Proker dipulihkan' }; }
                             } else if (action === 'softDeleteUser') {
                                 const uidx = MOCK_DB.users.findIndex(x => x.id_user === payload.id_user);
                                 if (uidx > -1) { MOCK_DB.users[uidx].is_deleted = 'true'; res = { success: true, message: 'User diarsipkan' }; }
@@ -1962,6 +2191,37 @@
                         }
                     }
 
+                    if (pageId === 'viewTimelineProker') {
+                        const yearSel = document.getElementById('timelineYearFilter');
+                        const deptSel = document.getElementById('timelineDeptFilter');
+                        if (yearSel && yearSel.options.length === 0) {
+                            const years = new Set();
+                            (appState.proker || []).forEach(p => {
+                                if (p.tanggal_mulai) years.add(new Date(p.tanggal_mulai).getFullYear());
+                                if (p.tanggal_selesai) years.add(new Date(p.tanggal_selesai).getFullYear());
+                            });
+                            const now = new Date().getFullYear();
+                            for (let y = now - 2; y <= now + 1; y++) years.add(y);
+                            const sorted = Array.from(years).sort((a, b) => a - b);
+                            sorted.forEach(y => {
+                                const opt = document.createElement('option');
+                                opt.value = String(y);
+                                opt.textContent = String(y);
+                                yearSel.appendChild(opt);
+                            });
+                            yearSel.value = String(now);
+                        }
+                        if (deptSel && deptSel.options.length <= 1 && appState.departemen) {
+                            appState.departemen.forEach(d => {
+                                const opt = document.createElement('option');
+                                opt.value = d.id_departemen;
+                                opt.textContent = d.nama_departemen;
+                                deptSel.appendChild(opt);
+                            });
+                        }
+                        renderTimelineProker();
+                    }
+
                     const sidebar = document.getElementById('sidebar');
                     const overlay = document.getElementById('sidebarOverlay');
                     if (sidebar && overlay) {
@@ -2108,6 +2368,13 @@
                             renderUsersTable();
                             renderAuditLog();
                             renderLoginHistory();
+                            const importDeptSel = document.getElementById('importProkerDeptSelect');
+                            if (importDeptSel && importDeptSel.value) {
+                                renderImportProkerAdmin(importDeptSel.value);
+                            }
+                            if (document.getElementById('timelineGanttBody')) {
+                                renderTimelineProker();
+                            }
                             if (defaultView) {
                                 showPage(defaultView, document.querySelector(`.admin-only .nav-btn[onclick*="${defaultView}"]`) || document.querySelector('.admin-only .nav-btn'));
                             }
@@ -2118,10 +2385,42 @@
                                 showPage(defaultView, document.querySelector(`.user-only .nav-btn[onclick*="${defaultView}"]`) || document.querySelector('.user-only .nav-btn'));
                             }
                         }
+
+                        buildNotifications(user);
+                        updateNotifBadge();
                     } else {
                         toast('Gagal memuat data: ' + (res.message || ''), 'error');
                     }
                 };
+
+                function buildNotifications(user) {
+                    const logs = appState.realisasiLog || [];
+                    if (!user) return;
+
+                    if (user.role === 'Admin') {
+                        const pending = logs.filter(function(l) { return l.status_approval === 'Menunggu Persetujuan'; }).length;
+                        const prev = window._lastPendingCount || 0;
+                        if (pending > prev) {
+                            addNotification(pending - prev + ' laporan realisasi baru menunggu persetujuan', 'warning');
+                        }
+                        window._lastPendingCount = pending;
+                    } else if (user.role === 'User') {
+                        const myLogs = logs.filter(function(l) { return l.id_departemen === user.id_departemen; });
+                        const currentMap = {};
+                        myLogs.forEach(function(l) { currentMap[l.id_log] = l.status_approval; });
+                        const prevMap = window._lastLogStatusMap || {};
+                        Object.keys(currentMap).forEach(function(id) {
+                            const cur = currentMap[id] || '';
+                            const prev = prevMap[id] || '';
+                            if (prev === 'Menunggu Persetujuan' && cur && cur !== prev) {
+                                const p = appState.proker.find(function(x) { return x.id_proker === myLogs.find(function(l) { return l.id_log === id; }).id_proker; });
+                                const nama = p ? p.nama_program : 'Proker';
+                                addNotification('Laporan "' + nama + '" telah ' + cur, cur === 'Disetujui' ? 'success' : 'warning');
+                            }
+                        });
+                        window._lastLogStatusMap = currentMap;
+                    }
+                }
 
                 function populateDeptSelects() {
                     const options = appState.departemen.map(d => `<option value="${d.id_departemen}">${escapeHTML(d.nama_departemen)}</option>`).join('');
@@ -2376,6 +2675,140 @@
                     }
                 }
 
+                window.renderTimelineProker = function () {
+                    const tbody = document.getElementById('timelineGanttBody');
+                    const empty = document.getElementById('timelineProkerEmpty');
+                    if (!tbody) return;
+
+                    const yearFilter = String(document.getElementById('timelineYearFilter').value || '').trim();
+                    const search = String(document.getElementById('timelineSearchInput').value || '').toLowerCase().trim();
+                    const deptFilter = document.getElementById('timelineDeptFilter').value;
+
+                    let prokerList = (appState.proker || []).filter(p => String(p.is_deleted || 'false') !== 'true');
+
+                    if (search) {
+                        prokerList = prokerList.filter(p => String(p.nama_program || '').toLowerCase().includes(search));
+                    }
+                    if (deptFilter) {
+                        prokerList = prokerList.filter(p => p.id_departemen === deptFilter);
+                    }
+
+                    if (yearFilter) {
+                        const y = parseInt(yearFilter, 10);
+                        prokerList = prokerList.filter(p => {
+                            const mulai = p.tanggal_mulai || '';
+                            const selesai = p.tanggal_selesai || '';
+                            if (!mulai && !selesai) return true;
+                            const my = new Date(mulai || '0001-01-01').getFullYear();
+                            const sy = new Date(selesai || '9999-12-31').getFullYear();
+                            return my <= y && sy >= y;
+                        });
+                    }
+
+                    prokerList.forEach(p => {
+                        const logs = (appState.realisasiLog || []).filter(r => r.id_proker === p.id_proker).slice().sort((a, b) => {
+                            const ta = String(a.tanggal_iso || a.tanggal_realisasi || '');
+                            const tb = String(b.tanggal_iso || b.tanggal_realisasi || '');
+                            return ta.localeCompare(tb);
+                        });
+                        p._timelineLogs = logs;
+                    });
+
+                    prokerList.sort((a, b) => {
+                        if (a.id_departemen !== b.id_departemen) {
+                            return String(a.id_departemen).localeCompare(String(b.id_departemen));
+                        }
+                        const aMulai = a.tanggal_mulai || '9999-12-31';
+                        const bMulai = b.tanggal_mulai || '9999-12-31';
+                        return aMulai.localeCompare(bMulai);
+                    });
+
+                    if (prokerList.length === 0) {
+                        tbody.innerHTML = '';
+                        empty.classList.remove('d-none');
+                        return;
+                    }
+                    empty.classList.add('d-none');
+
+                    const year = yearFilter ? parseInt(yearFilter, 10) : new Date().getFullYear();
+                    const monthIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+                    const statusColor = {
+                        'Menunggu Persetujuan': 'text-amber-300',
+                        'Disetujui': 'text-emerald-300',
+                        'Ditolak': 'text-rose-300'
+                    };
+
+                    let html = '';
+                    prokerList.forEach(p => {
+                        const modeRentang = (p.mode_jadwal || 'rentang') === 'rentang';
+                        const hasMulai = !!p.tanggal_mulai;
+                        const hasSelesai = !!p.tanggal_selesai;
+                        const mulai = hasMulai ? new Date(p.tanggal_mulai) : (hasSelesai ? new Date(p.tanggal_selesai) : null);
+                        const selesai = hasSelesai ? new Date(p.tanggal_selesai) : (hasMulai ? new Date(p.tanggal_mulai) : null);
+                        const hasRencana = modeRentang && !!(mulai && selesai);
+                        const logs = p._timelineLogs || [];
+                        const logMap = {};
+                        logs.forEach(log => {
+                            const raw = String(log.tanggal_iso || log.tanggal_realisasi || '');
+                            const d = new Date(raw);
+                            if (!isNaN(d.getTime())) {
+                                const m = d.getMonth();
+                                if (!logMap[m]) logMap[m] = [];
+                                logMap[m].push(log);
+                            }
+                        });
+
+                        const today = new Date();
+                        const jadwalMonthMap = {};
+                        if (!modeRentang) {
+                            (Array.isArray(p.jadwal_rencana) ? p.jadwal_rencana : []).forEach(function(tgl) {
+                                const d = new Date(tgl);
+                                if (isNaN(d.getTime())) return;
+                                if (d.getFullYear() !== year) return;
+                                const m = d.getMonth();
+                                const overdue = d < new Date(today.getFullYear(), today.getMonth(), 1);
+                                if (!jadwalMonthMap[m] || overdue) jadwalMonthMap[m] = { tanggal: tgl, overdue: overdue };
+                            });
+                        }
+
+                        html += `<tr class="hover:bg-wahdah-50/50 transition-colors cursor-pointer" onclick="openLaporanRealisasiModal('${p.id_proker}', 'admin')">`;
+                        html += `<td class="px-4 py-3 bg-white sticky left-0 z-10 align-top">
+                            <p class="font-extrabold text-wahdah-900 text-xs leading-tight">${escapeHTML(p.nama_program)}</p>
+                            <p class="text-[10px] text-gray-400 font-mono mt-0.5">${escapeHTML(p.id_proker)}</p>
+                        </td>`;
+                        html += `<td class="px-4 py-3 bg-white sticky left-[220px] z-10 align-top text-xs font-semibold text-wahdah-800">${escapeHTML(getDeptName(p.id_departemen))}</td>`;
+
+                        monthIndices.forEach((m, idx) => {
+                            const cellDate = new Date(year, m, 1);
+                            const inRange = hasRencana &&
+                                cellDate >= new Date(mulai.getFullYear(), mulai.getMonth(), 1) &&
+                                cellDate <= new Date(selesai.getFullYear(), selesai.getMonth(), 1);
+                            const cellClass = inRange ? 'bg-sky-600' : 'bg-white';
+                            const roundLeft = (idx === 0 && inRange) ? 'rounded-l-md' : '';
+                            const roundRight = (idx === 11 && inRange) ? 'rounded-r-md' : '';
+                            const diamond = logMap[m] ? `<div class="relative flex items-center justify-center h-full" title="${logMap[m].length} laporan: ${logMap[m].map(l => l.tanggal_realisasi).join(', ')}"><i class="fa-solid fa-diamond text-[10px] ${statusColor[logMap[m][0].status_approval] || 'text-amber-300'}"></i></div>` : '';
+                            const sudahDilaporkan = !!logMap[m];
+                            const jadwalBulanIni = jadwalMonthMap[m];
+                            const reminder = (jadwalBulanIni && !sudahDilaporkan)
+                                ? `<div class="absolute inset-0 flex items-center justify-center" title="${jadwalBulanIni.overdue ? 'Terlambat! ' : 'Rencana: '}${jadwalBulanIni.tanggal} - belum ada laporan realisasi"><span class="block w-2.5 h-2.5 rounded-full ${jadwalBulanIni.overdue ? 'bg-rose-600 animate-pulse' : 'bg-rose-300'}"></span></div>`
+                                : '';
+                            html += `<td class="px-2 py-2 text-center align-middle border border-gray-100 ${cellClass} ${roundLeft} ${roundRight} relative">${diamond}${reminder}</td>`;
+                        });
+
+                        html += `<td class="px-2 py-3 text-center bg-white sticky right-0 z-10" onclick="event.stopPropagation()">
+                            <button onclick="openEditTanggalRencanaModal('${p.id_proker}')"
+                                class="w-7 h-7 bg-sky-50 hover:bg-sky-100 text-sky-600 rounded-lg inline-flex items-center justify-center transition-colors"
+                                title="Edit Tanggal Rencana">
+                                 <i class="fa-solid fa-pen-to-square text-[11px]"></i>
+                            </button>
+                        </td>`;
+
+                        html += `</tr>`;
+                    });
+
+                    tbody.innerHTML = html;
+                };
+
                 window.filterPersetujuanTable = function () {
                     const search = document.getElementById('searchPersetujuanInput').value.toLowerCase().trim();
                     const status = document.getElementById('filterPersetujuanStatus').value;
@@ -2390,59 +2823,6 @@
                         const matchStatus = !status || st === status;
                         const matchDept = !dept || dp === dept;
                         row.style.display = (matchName && matchStatus && matchDept) ? '' : 'none';
-                    });
-                };
-
-                window.approveProkerAction = function (id, nama) {
-                    Swal.fire({
-                        title: 'Setujui Program Kerja?',
-                        html: `Program kerja <b>${escapeHTML(nama)}</b> akan disetujui dan berstatus <b>Disetujui</b>.`,
-                        icon: 'question',
-                        showCancelButton: true,
-                        confirmButtonColor: '#177355',
-                        cancelButtonColor: '#6b7280',
-                        confirmButtonText: 'Ya, Setujui',
-                        cancelButtonText: 'Batal'
-                    }).then(async (r) => {
-                        if (r.isConfirmed) {
-                            showLoading('Menyetujui program kerja...');
-                            const res = await apiService('approveProker', { id_proker: id });
-                            hideLoading();
-                            if (res.success) {
-                                toast(res.message || 'Proker disetujui');
-                                loadAppData();
-                            } else {
-                                Swal.fire('Gagal', res.message || 'Gagal menyetujui proker', 'error');
-                            }
-                        }
-                    });
-                };
-
-                window.rejectProkerAction = function (id, nama) {
-                    Swal.fire({
-                        title: 'Tolak Program Kerja?',
-                        html: `Berikan alasan penolakan untuk <b>${escapeHTML(nama)}</b>. Departemen akan diminta merevisi dan mengunggah ulang LPJ.`,
-                        input: 'textarea',
-                        inputPlaceholder: 'Tuliskan alasan penolakan...',
-                        inputValidator: (value) => !value ? 'Alasan penolakan wajib diisi' : undefined,
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#e11d48',
-                        cancelButtonColor: '#6b7280',
-                        confirmButtonText: 'Ya, Tolak',
-                        cancelButtonText: 'Batal'
-                    }).then(async (r) => {
-                        if (r.isConfirmed) {
-                            showLoading('Memproses penolakan...');
-                            const res = await apiService('rejectProker', { id_proker: id, catatan_admin: r.value });
-                            hideLoading();
-                            if (res.success) {
-                                toast(res.message || 'Proker ditolak', 'info');
-                                loadAppData();
-                            } else {
-                                Swal.fire('Gagal', res.message || 'Gagal menolak proker', 'error');
-                            }
-                        }
                     });
                 };
 
@@ -3055,12 +3435,27 @@
                 window.submitAddProker = async function () {
                     const user = Auth.getUser();
                     const isAdminImport = user.role === 'Admin' && window.currentImportProkerDept;
+                    const tanggalMulai = document.getElementById('addTanggalMulai').value;
+                    const tanggalSelesai = document.getElementById('addTanggalSelesai').value;
+                    if (tanggalMulai && tanggalSelesai && tanggalSelesai < tanggalMulai) {
+                        Swal.fire('Tanggal tidak valid', 'Target Selesai tidak boleh sebelum Tanggal Mulai', 'warning');
+                        return;
+                    }
+                    const modeJadwal = document.querySelector('input[name="addModeJadwal"]:checked')?.value || 'rentang';
+                    const jadwalRencana = modeJadwal === 'per_kali'
+                        ? Array.from(document.querySelectorAll('#addJadwalRencanaList .jadwal-rencana-input'))
+                            .map(i => i.value).filter(v => v)
+                        : [];
                     const payload = {
                         id_departemen: isAdminImport ? window.currentImportProkerDept : user.id_departemen,
                         nama_program: document.getElementById('addNamaProgram').value.trim(),
                         target_angka: document.getElementById('addTargetAngka').value,
                         satuan_target: document.getElementById('addSatuan').value.trim(),
-                        anggaran_rencana: document.getElementById('addAnggaran').value
+                        anggaran_rencana: document.getElementById('addAnggaran').value,
+                        tanggal_mulai: tanggalMulai,
+                        tanggal_selesai: tanggalSelesai,
+                        mode_jadwal: modeJadwal,
+                        jadwal_rencana: jadwalRencana
                     };
 
                     const btn = document.getElementById('btnSaveProker');
@@ -3072,6 +3467,9 @@
                             toast(res.message || 'Proker ditambahkan');
                             closeModal('modalAddProker');
                             document.getElementById('formAddProker').reset();
+                            const addList = document.getElementById('addJadwalRencanaList');
+                            if (addList) { addList.innerHTML = ''; tambahBarisJadwalRencana('addJadwalRencanaList'); }
+                            toggleModeJadwal('add');
                             if (isAdminImport) {
                                 renderImportProkerAdmin(window.currentImportProkerDept);
                             } else {
@@ -3095,17 +3493,53 @@
                     document.getElementById('editTargetAngka').value = p.target_angka;
                     document.getElementById('editSatuan').value = p.satuan_target;
                     document.getElementById('editAnggaran').value = p.anggaran_rencana;
+                    document.getElementById('editTanggalMulai').value = p.tanggal_mulai || '';
+                    document.getElementById('editTanggalSelesai').value = p.tanggal_selesai || '';
+
+                    const mode = p.mode_jadwal === 'per_kali' ? 'per_kali' : 'rentang';
+                    const editModeRadio = document.querySelector('input[name="editModeJadwal"]');
+                    if (editModeRadio) {
+                        const target = document.querySelector('input[name="editModeJadwal"][value="' + mode + '"]');
+                        if (target) target.checked = true; else if (editModeRadio.form) { const f = editModeRadio.form; for (let i = 0; i < f.elements.length; i++) { const el = f.elements[i]; if (el.name === 'editModeJadwal') el.checked = el.value === mode; } }
+                    }
+                    toggleModeJadwal('edit');
+
+                    const editList = document.getElementById('editJadwalRencanaList');
+                    if (editList) {
+                        editList.innerHTML = '';
+                        const jadwal = Array.isArray(p.jadwal_rencana) ? p.jadwal_rencana : [];
+                        if (jadwal.length > 0) {
+                            jadwal.forEach(function(tgl) { tambahBarisJadwalRencana('editJadwalRencanaList', tgl); });
+                        } else {
+                            tambahBarisJadwalRencana('editJadwalRencanaList');
+                        }
+                    }
 
                     openModal('modalEditProker');
                 };
 
                 window.submitEditProker = async function () {
+                    const tanggalMulai = document.getElementById('editTanggalMulai').value;
+                    const tanggalSelesai = document.getElementById('editTanggalSelesai').value;
+                    if (tanggalMulai && tanggalSelesai && tanggalSelesai < tanggalMulai) {
+                        Swal.fire('Tanggal tidak valid', 'Target Selesai tidak boleh sebelum Tanggal Mulai', 'warning');
+                        return;
+                    }
+                    const modeJadwal = document.querySelector('input[name="editModeJadwal"]:checked')?.value || 'rentang';
+                    const jadwalRencana = modeJadwal === 'per_kali'
+                        ? Array.from(document.querySelectorAll('#editJadwalRencanaList .jadwal-rencana-input'))
+                            .map(i => i.value).filter(v => v)
+                        : [];
                     const payload = {
                         id_proker: document.getElementById('editIdProker').value,
                         nama_program: document.getElementById('editNamaProgram').value.trim(),
                         target_angka: document.getElementById('editTargetAngka').value,
                         satuan_target: document.getElementById('editSatuan').value.trim(),
-                        anggaran_rencana: document.getElementById('editAnggaran').value
+                        anggaran_rencana: document.getElementById('editAnggaran').value,
+                        tanggal_mulai: tanggalMulai,
+                        tanggal_selesai: tanggalSelesai,
+                        mode_jadwal: modeJadwal,
+                        jadwal_rencana: jadwalRencana
                     };
 
                     const btn = document.getElementById('btnSaveEditProker');
@@ -3124,18 +3558,112 @@
                     }
                 };
 
+                window.toggleModeJadwal = function (prefix) {
+                    const checked = document.querySelector('input[name="' + prefix + 'ModeJadwal"]:checked');
+                    if (!checked) return;
+                    const val = checked.value;
+                    const rentangWrap = document.getElementById(prefix + 'RentangWrap');
+                    const perKaliWrap = document.getElementById(prefix + 'PerKaliWrap');
+                    // .d-none memakai !important, jadi harus lewat classList (bukan style.display)
+                    if (rentangWrap) rentangWrap.classList.toggle('d-none', val !== 'rentang');
+                    if (perKaliWrap) perKaliWrap.classList.toggle('d-none', val !== 'per_kali');
+                    // Pastikan ada minimal 1 baris input saat mode Per Kali dipilih
+                    if (val === 'per_kali') {
+                        const listId = prefix === 'rencana' ? 'jadwalRencanaList' : prefix + 'JadwalRencanaList';
+                        const list = document.getElementById(listId);
+                        if (list && list.children.length === 0) tambahBarisJadwalRencana(listId);
+                    }
+                };
+
+                window.tambahBarisJadwalRencana = function (containerId, value = '') {
+                    const list = document.getElementById(containerId);
+                    if (!list) return;
+                    const row = document.createElement('div');
+                    row.className = 'flex items-center gap-2 jadwal-rencana-row';
+                    row.innerHTML = '<input type="date" value="' + value + '" class="jadwal-rencana-input flex-1 rounded-xl border border-wahdah-200 px-3.5 py-2 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">' +
+                        '<button type="button" onclick="this.closest(\'.jadwal-rencana-row\').remove()" class="w-8 h-8 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg flex items-center justify-center shrink-0" title="Hapus tanggal"><i class="fa-solid fa-trash text-xs"></i></button>';
+                    list.appendChild(row);
+                };
+
+                window.openEditTanggalRencanaModal = function (idProker) {
+                    const p = appState.proker.find(x => x.id_proker === idProker);
+                    if (!p) return;
+
+                    document.getElementById('rencanaIdProker').value = p.id_proker;
+                    document.getElementById('rencanaNamaProgram').innerText = p.nama_program;
+                    document.getElementById('rencanaDeptInfo').innerText = getDeptName(p.id_departemen);
+                    document.getElementById('rencanaTanggalMulai').value = p.tanggal_mulai || '';
+                    document.getElementById('rencanaTanggalSelesai').value = p.tanggal_selesai || '';
+
+                    const jadwalList = document.getElementById('jadwalRencanaList');
+                    jadwalList.innerHTML = '';
+                    const jadwal = Array.isArray(p.jadwal_rencana) ? p.jadwal_rencana : [];
+                    if (jadwal.length > 0) {
+                        jadwal.forEach(function(tgl) { tambahBarisJadwalRencana('jadwalRencanaList', tgl); });
+                    } else {
+                        tambahBarisJadwalRencana('jadwalRencanaList');
+                    }
+
+                    const mode = p.mode_jadwal === 'per_kali' ? 'per_kali' : 'rentang';
+                    const rencanaModeRadio = document.querySelector('input[name="rencanaModeJadwal"]');
+                    if (rencanaModeRadio) {
+                        const target = document.querySelector('input[name="rencanaModeJadwal"][value="' + mode + '"]');
+                        if (target) target.checked = true; else if (rencanaModeRadio.form) { const f = rencanaModeRadio.form; for (let i = 0; i < f.elements.length; i++) { const el = f.elements[i]; if (el.name === 'rencanaModeJadwal') el.checked = el.value === mode; } }
+                    }
+                    toggleModeJadwal('rencana');
+
+                    openModal('modalEditTanggalRencana');
+                };
+
+                window.submitEditTanggalRencana = async function () {
+                    const idProker = document.getElementById('rencanaIdProker').value;
+                    const tanggalMulai = document.getElementById('rencanaTanggalMulai').value;
+                    const tanggalSelesai = document.getElementById('rencanaTanggalSelesai').value;
+                    if (tanggalMulai && tanggalSelesai && tanggalSelesai < tanggalMulai) {
+                        Swal.fire('Tanggal tidak valid', 'Target Selesai tidak boleh sebelum Tanggal Mulai', 'warning');
+                        return;
+                    }
+                    const jadwalRencana = Array.from(document.querySelectorAll('#jadwalRencanaList .jadwal-rencana-input'))
+                        .map(function(el) { return String(el.value || '').trim(); })
+                        .filter(function(v) { return v; });
+                    const modeJadwal = document.querySelector('input[name="rencanaModeJadwal"]:checked')?.value || 'rentang';
+                    const btn = document.getElementById('btnSaveRencanaTanggal');
+                    btn.disabled = true;
+                    showLoading('Menyimpan tanggal rencana...');
+                    const res = await apiService('editProkerTanggalRencana', {
+                        id_proker: idProker,
+                        tanggal_mulai: tanggalMulai,
+                        tanggal_selesai: tanggalSelesai,
+                        jadwal_rencana: jadwalRencana,
+                        mode_jadwal: modeJadwal
+                    });
+                    hideLoading();
+                    btn.disabled = false;
+
+                    if (res.success) {
+                        toast(res.message || 'Tanggal rencana berhasil diperbarui');
+                        closeModal('modalEditTanggalRencana');
+                        loadAppData();
+                        renderTimelineProker();
+                    } else {
+                        Swal.fire('Gagal', res.message || 'Gagal menyimpan tanggal rencana', 'error');
+                    }
+                };
+
                 window.openLaporanRealisasiModal = function (idProker, mode) {
                     const p = appState.proker.find(x => x.id_proker === idProker);
                     if (!p) return;
 
-                    if (mode === true) mode = 'view';
                     if (!mode) mode = 'edit';
 
-                    document.getElementById('laporanIdProker').value = idProker;
-                    document.getElementById('laporanNamaProgram').innerText = p.nama_program;
-                    document.getElementById('laporanFormNamaProgram').innerText = p.nama_program;
-                    document.getElementById('laporanTargetInfo').innerText = `${p.target_angka} ${p.satuan_target}`;
-                    document.getElementById('laporanFormTargetInfo').innerText = `${p.target_angka} ${p.satuan_target}`;
+                     document.getElementById('laporanIdProker').value = idProker;
+                     document.getElementById('laporanNamaProgram').innerText = p.nama_program;
+                     document.getElementById('laporanFormNamaProgram').innerText = p.nama_program;
+                     document.getElementById('laporanTargetInfo').innerText = `${p.target_angka} ${p.satuan_target}`;
+                     document.getElementById('laporanFormTargetInfo').innerText = `${p.target_angka} ${p.satuan_target}`;
+                     const fmtTgl = (iso) => iso ? new Date(iso + 'T00:00:00').toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : '-';
+                     document.getElementById('laporanRencanaTanggal').innerText =
+                         (!p.tanggal_mulai && !p.tanggal_selesai) ? 'Rencana: Tanggal belum diatur' : `Rencana: ${fmtTgl(p.tanggal_mulai)} s/d ${fmtTgl(p.tanggal_selesai)}`;
 
                     const readOnlyWrap = document.getElementById('laporanRealisasiReadOnly');
                     const formWrap = document.getElementById('laporanRealisasiForm');
@@ -3553,12 +4081,13 @@
                 // NOTIFICATIONS
                 // ==========================================
                 window.toggleNotifications = function () {
+                    renderNotifList();
                     const list = document.getElementById('notifDropdown');
                     if (list) list.classList.toggle('d-none');
                 };
 
-                function addNotification(text, type = 'info') {
-                    appState.notifications.unshift({ text, type, time: new Date().toISOString() });
+                function addNotification(text, type = 'info', link) {
+                    appState.notifications.unshift({ text, type, time: new Date().toISOString(), link: link || '' });
                     updateNotifBadge();
                 }
 
@@ -3569,6 +4098,55 @@
                         badge.textContent = count > 9 ? '9+' : count;
                         badge.classList.toggle('d-none', count === 0);
                     }
+                }
+
+                window.clearNotifications = function () {
+                    appState.notifications = [];
+                    updateNotifBadge();
+                    renderNotifList();
+                };
+
+                function renderNotifList() {
+                    const list = document.getElementById('notifList');
+                    const empty = document.getElementById('notifEmpty');
+                    if (!list || !empty) return;
+
+                    const items = (appState.notifications || []).slice();
+                    if (items.length === 0) {
+                        list.innerHTML = '';
+                        empty.classList.remove('d-none');
+                        return;
+                    }
+                    empty.classList.add('d-none');
+
+                    const iconMap = {
+                        info: '<i class="fa-solid fa-circle-info text-sky-500"></i>',
+                        success: '<i class="fa-solid fa-circle-check text-emerald-500"></i>',
+                        warning: '<i class="fa-solid fa-triangle-exclamation text-amber-500"></i>'
+                    };
+                    list.innerHTML = items.map(function(n) {
+                        const rel = timeAgo(n.time);
+                        const clickable = n.link ? 'style="cursor:pointer;"' : '';
+                        const onclick = n.link ? 'onclick="' + n.link + '"' : '';
+                        return '<div class="px-4 py-3 flex items-start gap-2.5 hover:bg-wahdah-50/50 transition-colors" ' + clickable + ' ' + onclick + '>' +
+                            '<div class="mt-0.5">' + (iconMap[n.type] || iconMap.info) + '</div>' +
+                            '<div class="flex-1 min-w-0">' +
+                                '<p class="text-xs font-medium text-wahdah-900 leading-snug">' + escapeHTML(n.text) + '</p>' +
+                                '<p class="text-[10px] text-gray-400 mt-0.5">' + rel + '</p>' +
+                            '</div>' +
+                        '</div>';
+                    }).join('');
+                }
+
+                function timeAgo(iso) {
+                    const d = new Date(iso);
+                    if (isNaN(d.getTime())) return '';
+                    const now = new Date();
+                    const diff = Math.max(0, Math.floor((now - d) / 1000));
+                    if (diff < 60) return 'Baru saja';
+                    if (diff < 3600) return Math.floor(diff / 60) + ' menit lalu';
+                    if (diff < 86400) return Math.floor(diff / 3600) + ' jam lalu';
+                    return d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
                 }
 
                 // ==========================================
@@ -3740,6 +4318,17 @@
                     });
                     tbody.innerHTML = html || `<tr><td colspan="6" class="text-center py-6 text-gray-500">Belum ada riwayat login</td></tr>`;
                 }
+
+                // ==========================================
+                // NOTIFICATION CLICK OUTSIDE
+                // ==========================================
+                document.addEventListener('click', function (e) {
+                    const dropdown = document.getElementById('notifDropdown');
+                    const btn = e.target.closest('button[onclick="toggleNotifications()"]');
+                    if (dropdown && !dropdown.classList.contains('d-none') && !dropdown.contains(e.target) && !btn) {
+                        dropdown.classList.add('d-none');
+                    }
+                });
 
                 // ==========================================
                 // INITIALIZATION
