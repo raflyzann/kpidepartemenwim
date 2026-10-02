@@ -162,14 +162,34 @@
         }
 
         @media print {
-            .no-print { display: none !important; }
-            body { background: white !important; }
-            .shadow-card, .shadow-sm, .shadow-md, .shadow-lg { box-shadow: none !important; }
-            table { border: 1px solid #ccc !important; }
-            th, td { border: 1px solid #ccc !important; padding: 8px !important; }
+            .no-print {
+                display: none !important;
+            }
+
+            body {
+                background: white !important;
+            }
+
+            .shadow-card,
+            .shadow-sm,
+            .shadow-md,
+            .shadow-lg {
+                box-shadow: none !important;
+            }
+
+            table {
+                border: 1px solid #ccc !important;
+            }
+
+            th,
+            td {
+                border: 1px solid #ccc !important;
+                padding: 8px !important;
+            }
         }
 
-        .dark body, body.dark {
+        .dark body,
+        body.dark {
             background-color: #0f172a !important;
             color: #e2e8f0 !important;
         }
@@ -273,7 +293,8 @@
                 <button type="button"
                     class="nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all"
                     onclick="showPage('viewPersetujuanProker', this)">
-                    <i class="fa-solid fa-clipboard-check w-5 text-center text-gold-400"></i> <span>Persetujuan Proker</span>
+                    <i class="fa-solid fa-clipboard-check w-5 text-center text-gold-400"></i> <span>Persetujuan
+                        Proker</span>
                     <span id="navBadgeMenungguProker"
                         class="d-none ml-auto min-w-[20px] h-5 px-1.5 rounded-full bg-rose-500 text-white text-[10px] font-bold flex items-center justify-center"></span>
                 </button>
@@ -297,11 +318,11 @@
                     onclick="showPage('viewUsersAdmin', this)">
                     <i class="fa-solid fa-users-gear w-5 text-center text-gold-400"></i> <span>Kelola Pengguna</span>
                 </button>
-                    <button type="button"
-                        class="nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all"
-                        onclick="showPage('viewImportProkerAdmin', this)">
-                        <i class="fa-solid fa-file-import w-5 text-center text-gold-400"></i> <span>Import Proker</span>
-                    </button>
+                <button type="button"
+                    class="nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all"
+                    onclick="showPage('viewImportProkerAdmin', this)">
+                    <i class="fa-solid fa-file-import w-5 text-center text-gold-400"></i> <span>Import Proker</span>
+                </button>
                 <button type="button"
                     class="nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all"
                     onclick="showPage('viewAuditLog', this)">
@@ -310,7 +331,8 @@
                 <button type="button"
                     class="nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all"
                     onclick="showPage('viewLoginHistory', this)">
-                    <i class="fa-solid fa-clock-rotate-left w-5 text-center text-gold-400"></i> <span>Riwayat Login</span>
+                    <i class="fa-solid fa-clock-rotate-left w-5 text-center text-gold-400"></i> <span>Riwayat
+                        Login</span>
                 </button>
             </div>
 
@@ -339,7 +361,7 @@
             <div class="flex items-center gap-1.5">
                 <button
                     class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
-                    title="Ubah Password" onclick="openModal('modalChangePassword')">
+                    title="Ubah Password" onclick="openChangePasswordModal()">
                     <i class="fa-solid fa-key text-xs"></i>
                 </button>
                 <button
@@ -385,12 +407,16 @@
                     <button type="button" onclick="toggleNotifications()" title="Notifikasi"
                         class="w-9 h-9 rounded-xl hover:bg-wahdah-50 text-wahdah-700 flex items-center justify-center transition-colors border border-wahdah-200 relative">
                         <i class="fa-solid fa-bell text-sm"></i>
-                        <span id="notifBadge" class="d-none absolute -top-1 -right-1 w-4 h-4 bg-rose-500 text-white text-[9px] font-bold rounded-full flex items-center justify-center">0</span>
+                        <span id="notifBadge"
+                            class="d-none absolute -top-1 -right-1 w-4 h-4 bg-rose-500 text-white text-[9px] font-bold rounded-full flex items-center justify-center">0</span>
                     </button>
-                    <div id="notifDropdown" class="d-none absolute right-0 top-11 w-80 max-h-96 overflow-y-auto bg-white rounded-2xl border border-wahdah-100 shadow-card z-50">
+                    <div id="notifDropdown"
+                        class="d-none absolute right-0 top-11 w-80 max-h-96 overflow-y-auto bg-white rounded-2xl border border-wahdah-100 shadow-card z-50">
                         <div class="flex items-center justify-between px-4 py-3 border-b border-wahdah-50">
                             <p class="text-sm font-bold text-wahdah-900">Notifikasi</p>
-                            <button type="button" onclick="clearNotifications()" class="text-[11px] font-semibold text-wahdah-500 hover:text-wahdah-700">Tandai semua dibaca</button>
+                            <button type="button" onclick="clearNotifications()"
+                                class="text-[11px] font-semibold text-wahdah-500 hover:text-wahdah-700">Tandai semua
+                                dibaca</button>
                         </div>
                         <div id="notifList" class="divide-y divide-wahdah-50"></div>
                         <div id="notifEmpty" class="px-4 py-8 text-center text-gray-400">
@@ -656,7 +682,7 @@
                         <h3 class="text-base font-extrabold text-wahdah-900">Master Data Departemen</h3>
                         <p class="text-xs text-wahdah-600">Kelola departemen dan struktur organisasi</p>
                     </div>
-                    <button onclick="openModal('modalAddDepartemen')"
+                    <button onclick="openAddDepartemenModal()"
                         class="bg-gold-500 hover:bg-gold-600 text-white px-4 py-2.5 rounded-xl transition-all text-xs sm:text-sm font-bold flex items-center gap-2 shadow-sm">
                         <i class="fa-solid fa-plus"></i> Tambah Departemen
                     </button>
@@ -693,7 +719,7 @@
                         class="bg-gold-500 hover:bg-gold-600 text-white px-4 py-2.5 rounded-xl transition-all text-xs sm:text-sm font-bold flex items-center gap-2 shadow-sm">
                         <i class="fa-solid fa-user-plus"></i> Tambah Pengguna
                     </button>
-                    <button onclick="openModal('modalBulkImportUsers')"
+                    <button onclick="openBulkImportUsersModal()"
                         class="bg-wahdah-700 hover:bg-wahdah-800 text-white px-4 py-2.5 rounded-xl transition-all text-xs sm:text-sm font-bold flex items-center gap-2 shadow-sm">
                         <i class="fa-solid fa-file-import"></i> Import CSV
                     </button>
@@ -795,12 +821,14 @@
                     <div>
                         <span
                             class="px-3 py-1 bg-gold-500/30 text-gold-300 border border-gold-400/30 rounded-full text-xs font-semibold uppercase tracking-wider">Gantt</span>
-                        <h2 class="text-2xl md:text-3xl font-extrabold mt-2 text-white">Timeline Program Kerja - Gantt Chart</h2>
+                        <h2 class="text-2xl md:text-3xl font-extrabold mt-2 text-white">Timeline Program Kerja - Gantt
+                            Chart</h2>
                         <p class="text-wahdah-200 text-xs mt-1">Rencana & realisasi pelaksanaan proker per bulan</p>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-card border border-wahdah-100/80 p-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <div
+                    class="bg-white rounded-2xl shadow-card border border-wahdah-100/80 p-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                     <select id="timelineYearFilter" onchange="renderTimelineProker()"
                         class="text-xs rounded-xl border border-wahdah-200 px-3 py-2 outline-none bg-white focus:ring-2 focus:ring-wahdah-500">
                     </select>
@@ -809,7 +837,8 @@
                         <option value="">Semua Departemen</option>
                     </select>
                     <div class="relative flex-1">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-wahdah-400 text-xs"></i>
+                        <i
+                            class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-wahdah-400 text-xs"></i>
                         <input type="text" id="timelineSearchInput" oninput="renderTimelineProker()"
                             placeholder="Cari program kerja..."
                             class="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-wahdah-200 focus:ring-2 focus:ring-wahdah-500 outline-none bg-white">
@@ -817,36 +846,58 @@
                 </div>
 
                 <div class="flex flex-wrap items-center gap-4 mt-3 text-[10px] text-gray-500">
-                    <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-600"></span> Terlambat, belum lapor</span>
-                    <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-300"></span> Rencana akan datang</span>
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-diamond text-[10px] text-emerald-300"></i> Sudah dilaporkan & disetujui</span>
+                    <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-600"></span>
+                        Terlambat, belum lapor</span>
+                    <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-300"></span>
+                        Rencana akan datang</span>
+                    <span class="flex items-center gap-1.5"><i
+                            class="fa-solid fa-diamond text-[10px] text-emerald-300"></i> Sudah dilaporkan &
+                        disetujui</span>
                 </div>
 
                 <div class="overflow-x-auto rounded-2xl border border-wahdah-100 bg-white shadow-card mt-3">
                     <table id="timelineGanttTable" class="min-w-[900px] w-full text-xs border-collapse">
                         <thead class="bg-wahdah-50/70 border-b border-wahdah-100">
                             <tr>
-                                <th rowspan="2" class="text-left font-bold px-4 py-3 min-w-[220px] bg-white sticky left-0 z-10">Nama Program</th>
-                                <th rowspan="2" class="text-left font-bold px-4 py-3 min-w-[140px] bg-white sticky left-[220px] z-10">Departemen</th>
+                                <th rowspan="2"
+                                    class="text-left font-bold px-4 py-3 min-w-[220px] bg-white sticky left-0 z-10">Nama
+                                    Program</th>
+                                <th rowspan="2"
+                                    class="text-left font-bold px-4 py-3 min-w-[140px] bg-white sticky left-[220px] z-10">
+                                    Departemen</th>
                                 <th colspan="3" class="text-center font-bold px-2 py-2 bg-wahdah-800 text-white">Q1</th>
                                 <th colspan="3" class="text-center font-bold px-2 py-2 bg-wahdah-700 text-white">Q2</th>
                                 <th colspan="3" class="text-center font-bold px-2 py-2 bg-wahdah-600 text-white">Q3</th>
                                 <th colspan="3" class="text-center font-bold px-2 py-2 bg-wahdah-500 text-white">Q4</th>
-                                <th rowspan="2" class="text-center font-bold px-3 py-3 min-w-[56px] bg-white sticky right-0 z-10">Aksi</th>
+                                <th rowspan="2"
+                                    class="text-center font-bold px-3 py-3 min-w-[56px] bg-white sticky right-0 z-10">
+                                    Aksi</th>
                             </tr>
                             <tr>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Jan</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Feb</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Mar</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Apr</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Mei</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Jun</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Jul</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Agu</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Sep</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Okt</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Nov</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">Des</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                    Jan</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                    Feb</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                    Mar</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                    Apr</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                    Mei</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                    Jun</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                    Jul</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                    Agu</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                    Sep</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                    Okt</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                    Nov</th>
+                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                    Des</th>
                             </tr>
                         </thead>
                         <tbody id="timelineGanttBody" class="divide-y divide-wahdah-50 bg-white"></tbody>
@@ -884,7 +935,7 @@
                                 <span class="text-sm font-bold text-gold-400">%</span>
                             </div>
                         </div>
-                        <button onclick="openModal('modalAddProker')"
+                        <button onclick="openAddProkerModal()"
                             class="bg-gradient-to-r from-gold-500 to-amber-600 hover:from-gold-600 hover:to-amber-700 text-white px-5 py-3.5 rounded-2xl transition-all text-sm font-bold flex items-center justify-center gap-2 shadow-lg shadow-gold-600/20 w-full sm:w-auto">
                             <i class="fa-solid fa-plus"></i> Tambah Proker
                         </button>
@@ -951,7 +1002,8 @@
                         <span
                             class="px-3 py-1 bg-gold-500/30 text-gold-300 border border-gold-400/30 rounded-full text-xs font-semibold uppercase tracking-wider"
                             id="importProkerDeptBadge">Departemen</span>
-                        <h2 class="text-2xl md:text-3xl font-extrabold mt-2 text-white" id="importProkerDeptTitle">Program Kerja Departemen</h2>
+                        <h2 class="text-2xl md:text-3xl font-extrabold mt-2 text-white" id="importProkerDeptTitle">
+                            Program Kerja Departemen</h2>
                         <p class="text-wahdah-200 text-xs mt-1">Kelola program kerja untuk departemen yang dipilih</p>
                         <select id="importProkerDeptSelect" onchange="onImportProkerDeptChange()"
                             class="mt-3 text-xs rounded-xl border border-white/20 bg-white/10 text-white px-3 py-2 outline-none focus:ring-2 focus:ring-white/40 w-full sm:w-auto">
@@ -972,7 +1024,7 @@
                                 class="bg-gradient-to-r from-gold-500 to-amber-600 hover:from-gold-600 hover:to-amber-700 text-white px-5 py-3.5 rounded-2xl transition-all text-sm font-bold flex items-center justify-center gap-2 shadow-lg shadow-gold-600/20 w-full sm:w-auto">
                                 <i class="fa-solid fa-plus"></i> Tambah Proker
                             </button>
-                            <button onclick="openModal('modalBulkImportProker')"
+                            <button onclick="openBulkImportProkerModal()"
                                 class="bg-wahdah-700 hover:bg-wahdah-800 text-white px-5 py-3.5 rounded-2xl transition-all text-sm font-bold flex items-center justify-center gap-2 shadow-lg shadow-wahdah-800/20 w-full sm:w-auto">
                                 <i class="fa-solid fa-file-import"></i> Import CSV
                             </button>
@@ -1083,7 +1135,8 @@
                     <h3 class="text-base font-extrabold text-wahdah-900 flex items-center gap-2">
                         <i class="fa-solid fa-clock-rotate-left text-wahdah-600"></i> Riwayat Login Pengguna
                     </h3>
-                    <p class="text-xs text-wahdah-600 mt-0.5">Monitor aktivitas masuk dan keluar semua pengguna sistem</p>
+                    <p class="text-xs text-wahdah-600 mt-0.5">Monitor aktivitas masuk dan keluar semua pengguna sistem
+                    </p>
                 </div>
                 <div class="bg-white rounded-2xl shadow-card border border-wahdah-100/80 overflow-hidden">
                     <div class="overflow-x-auto">
@@ -1150,10 +1203,12 @@
                     <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Mode Penjadwalan</label>
                     <div class="flex gap-4 text-xs">
                         <label class="flex items-center gap-1.5">
-                            <input type="radio" name="addModeJadwal" value="rentang" checked onchange="toggleModeJadwal('add')"> Rentang (Mulai - Target Selesai)
+                            <input type="radio" name="addModeJadwal" value="rentang" checked
+                                onchange="toggleModeJadwal('add')"> Rentang (Mulai - Target Selesai)
                         </label>
                         <label class="flex items-center gap-1.5">
-                            <input type="radio" name="addModeJadwal" value="per_kali" onchange="toggleModeJadwal('add')"> Per Kali Pelaksanaan (banyak tanggal)
+                            <input type="radio" name="addModeJadwal" value="per_kali"
+                                onchange="toggleModeJadwal('add')"> Per Kali Pelaksanaan (banyak tanggal)
                         </label>
                     </div>
                 </div>
@@ -1171,13 +1226,16 @@
                 </div>
                 <div id="addPerKaliWrap" class="d-none">
                     <div class="flex items-center justify-between mb-1.5">
-                        <label class="block text-xs font-bold text-wahdah-800">Jadwal Pelaksanaan (Rencana per Kali)</label>
+                        <label class="block text-xs font-bold text-wahdah-800">Jadwal Pelaksanaan (Rencana per
+                            Kali)</label>
                         <button type="button" onclick="tambahBarisJadwalRencana('addJadwalRencanaList')"
                             class="text-[11px] font-semibold text-wahdah-700 hover:text-wahdah-900 flex items-center gap-1">
                             <i class="fa-solid fa-plus"></i> Tambah Tanggal
                         </button>
                     </div>
-                    <p class="text-[10px] text-gray-400 mb-2">Isi tanggal rencana tiap kali proker ini akan dilaksanakan (boleh lebih dari satu, sesuai target). Sistem akan mengingatkan di Timeline jika bulan tsb belum ada laporan realisasi.</p>
+                    <p class="text-[10px] text-gray-400 mb-2">Isi tanggal rencana tiap kali proker ini akan dilaksanakan
+                        (boleh lebih dari satu, sesuai target). Sistem akan mengingatkan di Timeline jika bulan tsb
+                        belum ada laporan realisasi.</p>
                     <div id="addJadwalRencanaList" class="space-y-2"></div>
                 </div>
                 <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
@@ -1232,10 +1290,12 @@
                     <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Mode Penjadwalan</label>
                     <div class="flex gap-4 text-xs">
                         <label class="flex items-center gap-1.5">
-                            <input type="radio" name="editModeJadwal" value="rentang" checked onchange="toggleModeJadwal('edit')"> Rentang (Mulai - Target Selesai)
+                            <input type="radio" name="editModeJadwal" value="rentang" checked
+                                onchange="toggleModeJadwal('edit')"> Rentang (Mulai - Target Selesai)
                         </label>
                         <label class="flex items-center gap-1.5">
-                            <input type="radio" name="editModeJadwal" value="per_kali" onchange="toggleModeJadwal('edit')"> Per Kali Pelaksanaan (banyak tanggal)
+                            <input type="radio" name="editModeJadwal" value="per_kali"
+                                onchange="toggleModeJadwal('edit')"> Per Kali Pelaksanaan (banyak tanggal)
                         </label>
                     </div>
                 </div>
@@ -1253,13 +1313,16 @@
                 </div>
                 <div id="editPerKaliWrap" class="d-none">
                     <div class="flex items-center justify-between mb-1.5">
-                        <label class="block text-xs font-bold text-wahdah-800">Jadwal Pelaksanaan (Rencana per Kali)</label>
+                        <label class="block text-xs font-bold text-wahdah-800">Jadwal Pelaksanaan (Rencana per
+                            Kali)</label>
                         <button type="button" onclick="tambahBarisJadwalRencana('editJadwalRencanaList')"
                             class="text-[11px] font-semibold text-wahdah-700 hover:text-wahdah-900 flex items-center gap-1">
                             <i class="fa-solid fa-plus"></i> Tambah Tanggal
                         </button>
                     </div>
-                    <p class="text-[10px] text-gray-400 mb-2">Isi tanggal rencana tiap kali proker ini akan dilaksanakan (boleh lebih dari satu, sesuai target). Sistem akan mengingatkan di Timeline jika bulan tsb belum ada laporan realisasi.</p>
+                    <p class="text-[10px] text-gray-400 mb-2">Isi tanggal rencana tiap kali proker ini akan dilaksanakan
+                        (boleh lebih dari satu, sesuai target). Sistem akan mengingatkan di Timeline jika bulan tsb
+                        belum ada laporan realisasi.</p>
                     <div id="editJadwalRencanaList" class="space-y-2"></div>
                 </div>
                 <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
@@ -1279,7 +1342,7 @@
         <div class="modal-content">
             <div class="flex justify-between items-center mb-5 border-b border-wahdah-100 pb-3">
                 <h3 class="text-base font-bold text-wahdah-900 flex items-center gap-2">
-                    <i class="fa-solid fa-pen-to-square text-wahdah-600"></i> Update Realisasi & Berkas LPJ
+                    <i class="fa-solid fa-pen-to-square text-wahdah-600"></i> Update Status Pelaksanaan Proker
                 </h3>
                 <button onclick="closeModal('modalUpdateProker')"
                     class="text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-lg flex items-center justify-center transition-colors">
@@ -1298,16 +1361,18 @@
 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Realisasi Angka Saat Ini</label>
+                        <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Realisasi Angka</label>
                         <input type="number" id="updRealisasiAngka" step="any" disabled
-                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none bg-gray-50">
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none bg-gray-50 text-gray-700">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Realisasi Anggaran (Rp)</label>
-                        <input type="number" id="updRealisasiAnggaran" required
-                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                        <input type="number" id="updRealisasiAnggaran" step="any" disabled
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none bg-gray-50 text-gray-700">
                     </div>
                 </div>
+                <p class="text-[11px] text-wahdah-600 -mt-2"><i class="fa-solid fa-circle-info"></i> Angka realisasi &
+                    anggaran dihitung otomatis dari Laporan Realisasi bertahap yang telah Disetujui.</p>
 
                 <div>
                     <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Status Pelaksanaan Proker</label>
@@ -1317,7 +1382,8 @@
                         <option value="Berjalan">Berjalan</option>
                         <option value="Terkendala">Terkendala</option>
                     </select>
-                    <p class="text-[11px] text-wahdah-500 mt-1.5">Ubah status manual jika diperlukan. Persetujuan Admin kini dilakukan per laporan realisasi.</p>
+                    <p class="text-[11px] text-wahdah-500 mt-1.5">Ubah status manual jika diperlukan. Persetujuan LPJ
+                        dilakukan per laporan realisasi bertahap.</p>
                 </div>
 
                 <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
@@ -1337,28 +1403,32 @@
         <div class="modal-content">
             <div class="flex justify-between items-center mb-5 border-b border-wahdah-100 pb-3">
                 <h3 class="text-base font-bold text-wahdah-900 flex items-center gap-2">
-                     <i class="fa-solid fa-pen-to-square text-wahdah-600"></i> Edit Rencana Tanggal Proker
+                    <i class="fa-solid fa-pen-to-square text-wahdah-600"></i> Edit Rencana Tanggal Proker
                 </h3>
                 <button onclick="closeModal('modalEditTanggalRencana')"
                     class="text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-lg flex items-center justify-center transition-colors">
                     <i class="fas fa-times text-xs"></i>
                 </button>
             </div>
-            <form id="formEditTanggalRencana" onsubmit="event.preventDefault(); submitEditTanggalRencana();" class="space-y-4">
+            <form id="formEditTanggalRencana" onsubmit="event.preventDefault(); submitEditTanggalRencana();"
+                class="space-y-4">
                 <input type="hidden" id="rencanaIdProker">
                 <div class="p-3.5 bg-wahdah-50/70 rounded-2xl border border-wahdah-100 mb-2">
                     <p class="text-[11px] text-wahdah-600 font-medium">Program Kerja:</p>
                     <p class="text-sm font-extrabold text-wahdah-900 mt-0.5" id="rencanaNamaProgram">-</p>
-                    <p class="text-xs text-wahdah-700 mt-1">Departemen: <span id="rencanaDeptInfo" class="font-bold"></span></p>
+                    <p class="text-xs text-wahdah-700 mt-1">Departemen: <span id="rencanaDeptInfo"
+                            class="font-bold"></span></p>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Mode Penjadwalan</label>
                     <div class="flex gap-4 text-xs">
                         <label class="flex items-center gap-1.5">
-                            <input type="radio" name="rencanaModeJadwal" value="rentang" checked onchange="toggleModeJadwal('rencana')"> Rentang (Mulai - Target Selesai)
+                            <input type="radio" name="rencanaModeJadwal" value="rentang" checked
+                                onchange="toggleModeJadwal('rencana')"> Rentang (Mulai - Target Selesai)
                         </label>
                         <label class="flex items-center gap-1.5">
-                            <input type="radio" name="rencanaModeJadwal" value="per_kali" onchange="toggleModeJadwal('rencana')"> Per Kali Pelaksanaan (banyak tanggal)
+                            <input type="radio" name="rencanaModeJadwal" value="per_kali"
+                                onchange="toggleModeJadwal('rencana')"> Per Kali Pelaksanaan (banyak tanggal)
                         </label>
                     </div>
                 </div>
@@ -1376,13 +1446,16 @@
                 </div>
                 <div id="rencanaPerKaliWrap">
                     <div class="flex items-center justify-between mb-1.5">
-                        <label class="block text-xs font-bold text-wahdah-800">Jadwal Pelaksanaan (Rencana per Kali)</label>
+                        <label class="block text-xs font-bold text-wahdah-800">Jadwal Pelaksanaan (Rencana per
+                            Kali)</label>
                         <button type="button" onclick="tambahBarisJadwalRencana('jadwalRencanaList')"
                             class="text-[11px] font-semibold text-wahdah-700 hover:text-wahdah-900 flex items-center gap-1">
                             <i class="fa-solid fa-plus"></i> Tambah Tanggal
                         </button>
                     </div>
-                    <p class="text-[10px] text-gray-400 mb-2">Isi tanggal rencana tiap kali proker ini akan dilaksanakan (boleh lebih dari satu, sesuai target). Sistem akan mengingatkan di Timeline jika bulan tsb belum ada laporan realisasi.</p>
+                    <p class="text-[10px] text-gray-400 mb-2">Isi tanggal rencana tiap kali proker ini akan dilaksanakan
+                        (boleh lebih dari satu, sesuai target). Sistem akan mengingatkan di Timeline jika bulan tsb
+                        belum ada laporan realisasi.</p>
                     <div id="jadwalRencanaList" class="space-y-2"></div>
                 </div>
                 <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
@@ -1413,7 +1486,8 @@
                 <div class="p-3.5 bg-wahdah-50/70 rounded-2xl border border-wahdah-100 mb-4">
                     <p class="text-[11px] text-wahdah-600 font-medium">Program Kerja:</p>
                     <p class="text-sm font-extrabold text-wahdah-900 mt-0.5" id="laporanNamaProgram">-</p>
-                    <p class="text-xs text-wahdah-700 mt-1">Total Realisasi Disetujui: <span id="laporanTotalRealisasi" class="font-bold">0</span> / <span id="laporanTargetInfo" class="font-bold"></span></p>
+                    <p class="text-xs text-wahdah-700 mt-1">Total Realisasi Disetujui: <span id="laporanTotalRealisasi"
+                            class="font-bold">0</span> / <span id="laporanTargetInfo" class="font-bold"></span></p>
                     <p id="laporanRencanaTanggal" class="text-[11px] text-wahdah-500 mt-1"></p>
                 </div>
                 <div id="laporanRealisasiHistory" class="space-y-2 max-h-[300px] overflow-y-auto"></div>
@@ -1422,9 +1496,11 @@
                 <div class="p-3.5 bg-wahdah-50/70 rounded-2xl border border-wahdah-100 mb-2">
                     <p class="text-[11px] text-wahdah-600 font-medium">Program Kerja:</p>
                     <p class="text-sm font-extrabold text-wahdah-900 mt-0.5" id="laporanFormNamaProgram">-</p>
-                    <p class="text-xs text-wahdah-700 mt-1">Target: <span id="laporanFormTargetInfo" class="font-bold"></span></p>
+                    <p class="text-xs text-wahdah-700 mt-1">Target: <span id="laporanFormTargetInfo"
+                            class="font-bold"></span></p>
                 </div>
-                <form id="formLaporanRealisasi" onsubmit="event.preventDefault(); submitLaporanRealisasi();" class="space-y-4">
+                <form id="formLaporanRealisasi" onsubmit="event.preventDefault(); submitLaporanRealisasi();"
+                    class="space-y-4">
                     <input type="hidden" id="laporanIdLog">
                     <input type="hidden" id="laporanIdProker">
                     <div class="grid grid-cols-2 gap-4">
@@ -1441,7 +1517,8 @@
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Anggaran Realisasi (Rp)</label>
+                            <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Anggaran Realisasi
+                                (Rp)</label>
                             <input type="number" id="laporanAnggaran" step="any" value="0"
                                 class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
                         </div>
@@ -1453,12 +1530,15 @@
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-wahdah-800 mb-1.5">
-                            Upload Berkas LPJ <span id="laporanFileWajib" class="text-red-500 font-semibold">(Wajib)</span>
+                            Upload Berkas LPJ <span id="laporanFileWajib"
+                                class="text-red-500 font-semibold">(Wajib)</span>
                         </label>
                         <input type="file" id="laporanFileLpj" accept=".pdf,.doc,.docx,.xlsx,.xls,.png,.jpg,.jpeg"
                             class="w-full rounded-xl border border-wahdah-200 px-3 py-2 text-xs focus:ring-2 focus:ring-wahdah-500 outline-none file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-wahdah-50 file:text-wahdah-700 hover:file:bg-wahdah-100 cursor-pointer">
                         <p id="laporanFileCurrent" class="d-none text-[11px] text-gray-500 mt-1">
-                            Berkas saat ini: <a id="laporanFileCurrentLink" href="#" target="_blank" class="text-sky-600 font-semibold hover:underline">Buka Berkas LPJ</a>. Kosongkan jika tidak ingin mengganti.
+                            Berkas saat ini: <a id="laporanFileCurrentLink" href="#" target="_blank"
+                                class="text-sky-600 font-semibold hover:underline">Buka Berkas LPJ</a>. Kosongkan jika
+                            tidak ingin mengganti.
                         </p>
                     </div>
                     <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
@@ -1651,20 +1731,38 @@
             <form id="formChangePassword" onsubmit="event.preventDefault(); submitChangePassword();" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-wahdah-800 mb-1.5">PIN Saat Ini</label>
-                    <input type="password" id="chgOldPin" required placeholder="••••••••"
-                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                    <div class="relative">
+                        <input type="password" id="chgOldPin" required placeholder="••••••"
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 pr-10 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                        <button type="button" onclick="togglePasswordVisibility('chgOldPin', this)"
+                            class="absolute right-3 top-1/2 -translate-y-1/2 text-wahdah-400 hover:text-wahdah-700 text-sm">
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
+                    </div>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-wahdah-800 mb-1.5">PIN Baru</label>
-                    <input type="password" id="chgNewPin" required placeholder="Minimal 6 angka"
-                        inputmode="numeric" pattern="\d{6}" maxlength="6" minlength="6"
-                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                    <div class="relative">
+                        <input type="password" id="chgNewPin" required placeholder="Minimal 6 angka" inputmode="numeric"
+                            pattern="\d{6}" maxlength="6" minlength="6"
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 pr-10 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                        <button type="button" onclick="togglePasswordVisibility('chgNewPin', this)"
+                            class="absolute right-3 top-1/2 -translate-y-1/2 text-wahdah-400 hover:text-wahdah-700 text-sm">
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
+                    </div>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Konfirmasi PIN Baru</label>
-                    <input type="password" id="chgConfirmPin" required placeholder="Ulangi PIN baru"
-                        inputmode="numeric" pattern="\d{6}" maxlength="6" minlength="6"
-                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                    <div class="relative">
+                        <input type="password" id="chgConfirmPin" required placeholder="Ulangi PIN baru"
+                            inputmode="numeric" pattern="\d{6}" maxlength="6" minlength="6"
+                            class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 pr-10 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
+                        <button type="button" onclick="togglePasswordVisibility('chgConfirmPin', this)"
+                            class="absolute right-3 top-1/2 -translate-y-1/2 text-wahdah-400 hover:text-wahdah-700 text-sm">
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
                     <button type="button" onclick="closeModal('modalChangePassword')"
@@ -1689,12 +1787,14 @@
                     <i class="fas fa-times text-xs"></i>
                 </button>
             </div>
-            <form id="formBulkImportUsers" onsubmit="event.preventDefault(); submitBulkImportUsers();" class="space-y-4">
+            <form id="formBulkImportUsers" onsubmit="event.preventDefault(); submitBulkImportUsers();"
+                class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-wahdah-800 mb-1.5">File CSV Pengguna</label>
                     <input type="file" id="bulkImportUsersFile" accept=".csv" required
                         class="w-full rounded-xl border border-wahdah-200 px-3 py-2 text-xs focus:ring-2 focus:ring-wahdah-500 outline-none file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-wahdah-50 file:text-wahdah-700 hover:file:bg-wahdah-100 cursor-pointer">
-                    <p class="text-[11px] text-wahdah-500 mt-1.5">Format: nama_lengkap, email, role, id_departemen (header baris pertama)</p>
+                    <p class="text-[11px] text-wahdah-500 mt-1.5">Format: nama_lengkap, email, role, id_departemen
+                        (header baris pertama)</p>
                 </div>
                 <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
                     <button type="button" onclick="closeModal('modalBulkImportUsers')"
@@ -1720,12 +1820,14 @@
                     <i class="fas fa-times text-xs"></i>
                 </button>
             </div>
-            <form id="formBulkImportProker" onsubmit="event.preventDefault(); submitBulkImportProker();" class="space-y-4">
+            <form id="formBulkImportProker" onsubmit="event.preventDefault(); submitBulkImportProker();"
+                class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-wahdah-800 mb-1.5">File CSV Proker</label>
                     <input type="file" id="bulkImportProkerFile" accept=".csv" required
                         class="w-full rounded-xl border border-wahdah-200 px-3 py-2 text-xs focus:ring-2 focus:ring-wahdah-500 outline-none file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-wahdah-50 file:text-wahdah-700 hover:file:bg-wahdah-100 cursor-pointer">
-                    <p class="text-[11px] text-wahdah-500 mt-1.5">Format: id_departemen, nama_program, target_angka, satuan_target, anggaran_rencana</p>
+                    <p class="text-[11px] text-wahdah-500 mt-1.5">Format: id_departemen, nama_program, target_angka,
+                        satuan_target, anggaran_rencana</p>
                 </div>
                 <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
                     <button type="button" onclick="closeModal('modalBulkImportProker')"
@@ -1811,7 +1913,7 @@
                                 .withSuccessHandler((res) => {
                                     if (res && res.sessionExpired) {
                                         handleSessionExpired();
-                                        resolve({ success: false, message: 'Sesi berakhir' });
+                                        resolve({ success: false, message: 'Sesi berakhir', sessionExpired: true });
                                     } else {
                                         resolve(res);
                                     }
@@ -1837,7 +1939,7 @@
                             const data = await response.json();
                             if (data.sessionExpired) {
                                 handleSessionExpired();
-                                return { success: false, message: 'Sesi habis' };
+                                return { success: false, message: 'Sesi habis', sessionExpired: true };
                             }
                             return data;
                         } catch (error) {
@@ -2114,6 +2216,28 @@
                     return Math.round((Number(realisasi) / Number(target)) * 100);
                 };
 
+                // Parse tanggal 'yyyy-MM-dd' sebagai waktu LOKAL (bukan UTC) supaya
+                // bulan/tahun tidak bergeser untuk pengguna di zona waktu tertentu.
+                const parseLocalDate = (val) => {
+                    if (!val) return null;
+                    if (val instanceof Date) return isNaN(val.getTime()) ? null : val;
+                    const s = String(val).trim();
+                    const m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+                    if (m) {
+                        const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+                        return isNaN(d.getTime()) ? null : d;
+                    }
+                    const d2 = new Date(s);
+                    return isNaN(d2.getTime()) ? null : d2;
+                };
+
+                // Menampilkan error dari API. Dialog "Sesi Berakhir" sudah ditampilkan
+                // oleh handleSessionExpired(), jadi jangan munculkan dialog kedua.
+                window.apiError = function (res, fallback) {
+                    if (res && res.sessionExpired) return;
+                    Swal.fire('Gagal', (res && res.message) ? res.message : (fallback || 'Terjadi kesalahan'), 'error');
+                };
+
                 const showLoading = (text = 'Memuat Data...') => {
                     document.getElementById('loadingText').innerText = text;
                     document.getElementById('fullPageLoading').classList.remove('d-none');
@@ -2184,41 +2308,59 @@
                     if (pageId === 'viewImportProkerAdmin') {
                         populateImportProkerDeptOptions();
                         const sel = document.getElementById('importProkerDeptSelect');
+                        // Sinkronkan dropdown dengan departemen yang benar-benar
+                        // ditampilkan: bila belum dipilih, pilih otomatis departemen
+                        // pertama supaya state dropdown & tabel tidak bertentangan.
+                        if (sel && !sel.value && sel.options.length > 1) {
+                            sel.value = sel.options[1].value;
+                        }
                         if (sel && sel.value) {
                             renderImportProkerAdmin(sel.value);
-                        } else if (sel && sel.options.length > 1) {
-                            renderImportProkerAdmin(sel.options[1].value);
                         }
                     }
 
                     if (pageId === 'viewTimelineProker') {
                         const yearSel = document.getElementById('timelineYearFilter');
                         const deptSel = document.getElementById('timelineDeptFilter');
-                        if (yearSel && yearSel.options.length === 0) {
+                        const prevYear = yearSel ? String(yearSel.value || '') : '';
+                        const prevDept = deptSel ? String(deptSel.value || '') : '';
+
+                        if (yearSel) {
                             const years = new Set();
                             (appState.proker || []).forEach(p => {
-                                if (p.tanggal_mulai) years.add(new Date(p.tanggal_mulai).getFullYear());
-                                if (p.tanggal_selesai) years.add(new Date(p.tanggal_selesai).getFullYear());
+                                const mulai = parseLocalDate(p.tanggal_mulai);
+                                const selesai = parseLocalDate(p.tanggal_selesai);
+                                if (mulai) years.add(mulai.getFullYear());
+                                if (selesai) years.add(selesai.getFullYear());
+                                (Array.isArray(p.jadwal_rencana) ? p.jadwal_rencana : []).forEach(t => {
+                                    const d = parseLocalDate(t);
+                                    if (d) years.add(d.getFullYear());
+                                });
                             });
                             const now = new Date().getFullYear();
                             for (let y = now - 2; y <= now + 1; y++) years.add(y);
                             const sorted = Array.from(years).sort((a, b) => a - b);
+                            yearSel.innerHTML = '';
                             sorted.forEach(y => {
                                 const opt = document.createElement('option');
                                 opt.value = String(y);
                                 opt.textContent = String(y);
                                 yearSel.appendChild(opt);
                             });
-                            yearSel.value = String(now);
+                            yearSel.value = prevYear && sorted.indexOf(parseInt(prevYear, 10)) !== -1 ? prevYear : String(now);
                         }
-                        if (deptSel && deptSel.options.length <= 1 && appState.departemen) {
-                            appState.departemen.forEach(d => {
+
+                        if (deptSel) {
+                            deptSel.innerHTML = '<option value="">Semua Departemen</option>';
+                            (appState.departemen || []).forEach(d => {
                                 const opt = document.createElement('option');
                                 opt.value = d.id_departemen;
                                 opt.textContent = d.nama_departemen;
                                 deptSel.appendChild(opt);
                             });
+                            deptSel.value = prevDept || '';
                         }
+
                         renderTimelineProker();
                     }
 
@@ -2243,6 +2385,32 @@
                     if (!modal) return;
                     modal.classList.remove('show');
                     document.body.style.overflow = '';
+                };
+
+                // Pembuka modal yang selalu mereset form-nya lebih dulu supaya data
+                // dari pemakaian sebelumnya tidak ikut terbawa ("nyangkut").
+                window.openAddDepartemenModal = function () {
+                    const f = document.getElementById('formAddDepartemen');
+                    if (f) f.reset();
+                    openModal('modalAddDepartemen');
+                };
+
+                window.openBulkImportUsersModal = function () {
+                    const f = document.getElementById('formBulkImportUsers');
+                    if (f) f.reset();
+                    openModal('modalBulkImportUsers');
+                };
+
+                window.openBulkImportProkerModal = function () {
+                    const f = document.getElementById('formBulkImportProker');
+                    if (f) f.reset();
+                    openModal('modalBulkImportProker');
+                };
+
+                window.openChangePasswordModal = function () {
+                    const f = document.getElementById('formChangePassword');
+                    if (f) f.reset();
+                    openModal('modalChangePassword');
                 };
 
                 window.handleSessionExpired = function () {
@@ -2275,7 +2443,7 @@
                             overlay.classList.add('d-none');
                         }
 
-                        document.getElementById('sidebarUserName').textContent = escapeHTML(user.nama_lengkap);
+                        document.getElementById('sidebarUserName').textContent = user.nama_lengkap;
 
                         document.querySelectorAll('.admin-only, .user-only').forEach(el => el.classList.add('d-none'));
 
@@ -2332,11 +2500,22 @@
                         cancelButtonColor: '#6b7280',
                         confirmButtonText: 'Ya, Keluar',
                         cancelButtonText: 'Batal'
-                    }).then((res) => {
+                    }).then(async (res) => {
                         if (res.isConfirmed) {
-                            apiService('logout');
-                            Auth.clear();
-                            checkLoginState();
+                            showLoading('Keluar dari sistem...');
+                            try {
+                                // Tunggu sampai sesi di server benar-benar dihapus.
+                                await apiService('logout');
+                            } finally {
+                                hideLoading();
+                                Auth.clear();
+                                // Reset penanda notifikasi agar tidak nyangkut ke sesi berikutnya.
+                                window._lastPendingCount = undefined;
+                                window._lastLogStatusMap = undefined;
+                                appState.notifications = [];
+                                updateNotifBadge();
+                                checkLoginState();
+                            }
                         }
                     });
                 };
@@ -2369,8 +2548,13 @@
                             renderAuditLog();
                             renderLoginHistory();
                             const importDeptSel = document.getElementById('importProkerDeptSelect');
-                            if (importDeptSel && importDeptSel.value) {
-                                renderImportProkerAdmin(importDeptSel.value);
+                            if (importDeptSel) {
+                                if (!importDeptSel.value && importDeptSel.options.length > 1) {
+                                    importDeptSel.value = importDeptSel.options[1].value;
+                                }
+                                if (importDeptSel.value) {
+                                    renderImportProkerAdmin(importDeptSel.value);
+                                }
                             }
                             if (document.getElementById('timelineGanttBody')) {
                                 renderTimelineProker();
@@ -2398,22 +2582,26 @@
                     if (!user) return;
 
                     if (user.role === 'Admin') {
-                        const pending = logs.filter(function(l) { return l.status_approval === 'Menunggu Persetujuan'; }).length;
+                        const pending = logs.filter(function (l) { return l.status_approval === 'Menunggu Persetujuan'; }).length;
+                        const pertamaKali = window._lastPendingCount === undefined;
                         const prev = window._lastPendingCount || 0;
-                        if (pending > prev) {
-                            addNotification(pending - prev + ' laporan realisasi baru menunggu persetujuan', 'warning');
+                        if (pending > 0 && (pertamaKali || pending > prev)) {
+                            const teks = pertamaKali
+                                ? pending + ' laporan realisasi menunggu persetujuan Anda'
+                                : (pending - prev) + ' laporan realisasi baru menunggu persetujuan';
+                            addNotification(teks, 'warning');
                         }
                         window._lastPendingCount = pending;
                     } else if (user.role === 'User') {
-                        const myLogs = logs.filter(function(l) { return l.id_departemen === user.id_departemen; });
+                        const myLogs = logs.filter(function (l) { return l.id_departemen === user.id_departemen; });
                         const currentMap = {};
-                        myLogs.forEach(function(l) { currentMap[l.id_log] = l.status_approval; });
+                        myLogs.forEach(function (l) { currentMap[l.id_log] = l.status_approval; });
                         const prevMap = window._lastLogStatusMap || {};
-                        Object.keys(currentMap).forEach(function(id) {
+                        Object.keys(currentMap).forEach(function (id) {
                             const cur = currentMap[id] || '';
                             const prev = prevMap[id] || '';
                             if (prev === 'Menunggu Persetujuan' && cur && cur !== prev) {
-                                const p = appState.proker.find(function(x) { return x.id_proker === myLogs.find(function(l) { return l.id_log === id; }).id_proker; });
+                                const p = appState.proker.find(function (x) { return x.id_proker === myLogs.find(function (l) { return l.id_log === id; }).id_proker; });
                                 const nama = p ? p.nama_program : 'Proker';
                                 addNotification('Laporan "' + nama + '" telah ' + cur, cur === 'Disetujui' ? 'success' : 'warning');
                             }
@@ -2621,8 +2809,8 @@
 
                         var laporanCount = logs.length;
                         var laporanBadge = laporanCount > 0
-                          ? `<span onclick="openLaporanRealisasiModal('${p.id_proker}', 'view')" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-sky-200 text-sky-700 bg-sky-50 cursor-pointer hover:bg-sky-100 transition-colors">${laporanCount} Laporan LPJ</span>`
-                          : `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-gray-200 text-gray-500 bg-gray-50">Belum ada LPJ</span>`;
+                            ? `<span onclick="openLaporanRealisasiModal('${p.id_proker}', 'view')" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-sky-200 text-sky-700 bg-sky-50 cursor-pointer hover:bg-sky-100 transition-colors">${laporanCount} Laporan LPJ</span>`
+                            : `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-gray-200 text-gray-500 bg-gray-50">Belum ada LPJ</span>`;
 
                         let aksi = `<span class="text-[11px] text-gray-400">-</span>`;
                         if (pendingLogs.length > 0) {
@@ -2673,6 +2861,7 @@
                         if (pendingCount > 0) { bannerCount.textContent = pendingCount; banner.classList.remove('d-none'); }
                         else { banner.classList.add('d-none'); }
                     }
+                    filterPersetujuanTable();
                 }
 
                 window.renderTimelineProker = function () {
@@ -2696,12 +2885,24 @@
                     if (yearFilter) {
                         const y = parseInt(yearFilter, 10);
                         prokerList = prokerList.filter(p => {
-                            const mulai = p.tanggal_mulai || '';
-                            const selesai = p.tanggal_selesai || '';
-                            if (!mulai && !selesai) return true;
-                            const my = new Date(mulai || '0001-01-01').getFullYear();
-                            const sy = new Date(selesai || '9999-12-31').getFullYear();
-                            return my <= y && sy >= y;
+                            const mulai = parseLocalDate(p.tanggal_mulai);
+                            const selesai = parseLocalDate(p.tanggal_selesai);
+                            const jadwal = (Array.isArray(p.jadwal_rencana) ? p.jadwal_rencana : [])
+                                .map(parseLocalDate)
+                                .filter(Boolean);
+                            // Mode rentang: pakai rentang tanggal rencana.
+                            if (mulai || selesai) {
+                                const my = (mulai || selesai).getFullYear();
+                                const sy = (selesai || mulai).getFullYear();
+                                return my <= y && sy >= y;
+                            }
+                            // Mode per kali / tanpa tanggal: pakai tahun jadwal rencana
+                            // bila ada. Proker tanpa tanggal sama sekali tetap ditampilkan
+                            // supaya user sadar jadwalnya belum diisi (tidak "hilang").
+                            if (jadwal.length > 0) {
+                                return jadwal.some(d => d.getFullYear() === y);
+                            }
+                            return true;
                         });
                     }
 
@@ -2761,7 +2962,7 @@
                         const today = new Date();
                         const jadwalMonthMap = {};
                         if (!modeRentang) {
-                            (Array.isArray(p.jadwal_rencana) ? p.jadwal_rencana : []).forEach(function(tgl) {
+                            (Array.isArray(p.jadwal_rencana) ? p.jadwal_rencana : []).forEach(function (tgl) {
                                 const d = new Date(tgl);
                                 if (isNaN(d.getTime())) return;
                                 if (d.getFullYear() !== year) return;
@@ -2786,11 +2987,18 @@
                             const cellClass = inRange ? 'bg-sky-600' : 'bg-white';
                             const roundLeft = (idx === 0 && inRange) ? 'rounded-l-md' : '';
                             const roundRight = (idx === 11 && inRange) ? 'rounded-r-md' : '';
-                            const diamond = logMap[m] ? `<div class="relative flex items-center justify-center h-full" title="${logMap[m].length} laporan: ${logMap[m].map(l => l.tanggal_realisasi).join(', ')}"><i class="fa-solid fa-diamond text-[10px] ${statusColor[logMap[m][0].status_approval] || 'text-amber-300'}"></i></div>` : '';
+                            const logBulanIni = logMap[m] || [];
+                            let statusBulanIni = '';
+                            if (logBulanIni.length > 0) {
+                                if (logBulanIni.every(l => l.status_approval === 'Disetujui')) statusBulanIni = 'Disetujui';
+                                else if (logBulanIni.some(l => l.status_approval === 'Menunggu Persetujuan')) statusBulanIni = 'Menunggu Persetujuan';
+                                else statusBulanIni = 'Ditolak';
+                            }
+                            const diamond = logBulanIni.length > 0 ? `<div class="relative flex items-center justify-center h-full" title="${logBulanIni.length} laporan: ${logBulanIni.map(l => l.tanggal_realisasi).join(', ')}"><i class="fa-solid fa-diamond text-[10px] ${statusColor[statusBulanIni] || 'text-amber-300'}"></i></div>` : '';
                             const sudahDilaporkan = !!logMap[m];
                             const jadwalBulanIni = jadwalMonthMap[m];
                             const reminder = (jadwalBulanIni && !sudahDilaporkan)
-                                ? `<div class="absolute inset-0 flex items-center justify-center" title="${jadwalBulanIni.overdue ? 'Terlambat! ' : 'Rencana: '}${jadwalBulanIni.tanggal} - belum ada laporan realisasi"><span class="block w-2.5 h-2.5 rounded-full ${jadwalBulanIni.overdue ? 'bg-rose-600 animate-pulse' : 'bg-rose-300'}"></span></div>`
+                                ? `<div class="relative flex items-center justify-center h-full"><span class="w-2 h-2 rounded-full ${jadwalBulanIni.overdue ? 'bg-rose-600 animate-pulse' : 'bg-rose-300'}" title="${jadwalBulanIni.overdue ? 'Terlambat! ' : 'Rencana: '}${jadwalBulanIni.tanggal} - belum ada laporan realisasi"></span></div>`
                                 : '';
                             html += `<td class="px-2 py-2 text-center align-middle border border-gray-100 ${cellClass} ${roundLeft} ${roundRight} relative">${diamond}${reminder}</td>`;
                         });
@@ -2875,7 +3083,7 @@
                         document.getElementById('formEvaluasi').reset();
                         loadAppData();
                     } else {
-                        Swal.fire('Gagal', res.message || 'Gagal menyimpan evaluasi', 'error');
+                        apiError(res, 'Gagal menyimpan evaluasi');
                     }
                 };
 
@@ -2896,7 +3104,7 @@
                                 toast(res.message || 'Evaluasi dihapus');
                                 loadAppData();
                             } else {
-                                Swal.fire('Gagal', res.message, 'error');
+                                apiError(res, 'Gagal');
                             }
                         }
                     });
@@ -2990,7 +3198,7 @@
                         document.getElementById('formAddDepartemen').reset();
                         loadAppData();
                     } else {
-                        Swal.fire('Gagal', res.message || 'Gagal menambahkan departemen', 'error');
+                        apiError(res, 'Gagal menambahkan departemen');
                     }
                 };
 
@@ -3016,14 +3224,29 @@
                         closeModal('modalEditDepartemen');
                         loadAppData();
                     } else {
-                        Swal.fire('Gagal', res.message || 'Gagal memperbarui departemen', 'error');
+                        apiError(res, 'Gagal memperbarui departemen');
                     }
                 };
 
                 window.deleteDepartemen = function (id) {
+                    const d = (appState.departemen || []).find(x => x.id_departemen === id) || {};
+                    const jumlahProker = (appState.proker || []).filter(p => p.id_departemen === id).length;
+                    const jumlahUser = (appState.users || []).filter(u => u.id_departemen === id).length;
+
+                    // Cegah data yatim: tolak lebih awal bila departemen masih dipakai.
+                    if (jumlahProker > 0 || jumlahUser > 0) {
+                        Swal.fire({
+                            title: 'Tidak Dapat Dihapus',
+                            html: `<b>${escapeHTML(d.nama_departemen || id)}</b> masih dipakai oleh <b>${jumlahProker}</b> program kerja dan <b>${jumlahUser}</b> pengguna.<br><span class="text-sm">Pindahkan atau hapus data tersebut terlebih dahulu.</span>`,
+                            icon: 'warning',
+                            confirmButtonColor: '#177355'
+                        });
+                        return;
+                    }
+
                     Swal.fire({
                         title: 'Hapus Departemen?',
-                        text: 'Departemen ini akan dihapus dari sistem. Pastikan proker terkait sudah dipindahkan atau dihapus.',
+                        html: `<b>${escapeHTML(d.nama_departemen || id)}</b> akan dihapus dari sistem.`,
                         icon: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#e11d48',
@@ -3037,7 +3260,7 @@
                                 toast(res.message || 'Departemen dihapus');
                                 loadAppData();
                             } else {
-                                Swal.fire('Gagal', res.message, 'error');
+                                apiError(res, 'Gagal');
                             }
                         }
                     });
@@ -3132,7 +3355,7 @@
                         });
                         loadAppData();
                     } else {
-                        Swal.fire('Gagal', res.message || 'Gagal menambahkan pengguna', 'error');
+                        apiError(res, 'Gagal menambahkan pengguna');
                     }
                 };
 
@@ -3173,7 +3396,7 @@
                         closeModal('modalEditUser');
                         loadAppData();
                     } else {
-                        Swal.fire('Gagal', res.message || 'Gagal memperbarui pengguna', 'error');
+                        apiError(res, 'Gagal memperbarui pengguna');
                     }
                 };
 
@@ -3203,34 +3426,14 @@
                                     confirmButtonColor: '#177355'
                                 });
                             } else {
-                                Swal.fire('Gagal', res.message, 'error');
+                                apiError(res, 'Gagal');
                             }
                         }
                     });
                 };
 
-                window.deleteUser = function (id, nama) {
-                    Swal.fire({
-                        title: 'Arsipkan Pengguna?',
-                        text: `Akun ${nama} akan diarsipkan.`,
-                        icon: 'question',
-                        showCancelButton: true,
-                        confirmButtonColor: '#177355',
-                        confirmButtonText: 'Ya, Arsipkan'
-                    }).then(async (r) => {
-                        if (r.isConfirmed) {
-                            showLoading('Mengarsipkan akun...');
-                            const res = await apiService('softDeleteUser', { id_user: id });
-                            hideLoading();
-                            if (res.success) {
-                                toast(res.message || 'Pengguna diarsipkan');
-                                loadAppData();
-                            } else {
-                                Swal.fire('Gagal', res.message || 'Gagal mengarsipkan pengguna', 'error');
-                            }
-                        }
-                    });
-                };
+                // Catatan: fungsi window.deleteUser yang duplikat & tidak dipakai sudah
+                // dihapus. Untuk mengarsipkan pengguna gunakan window.softDeleteUser.
 
                 // ==========================================
                 // 5. MANAJEMEN PROKER (USER / DEPARTEMEN)
@@ -3258,10 +3461,10 @@
                             ? `<p class="text-[11px] text-rose-600 italic mt-1"><i class="fa-solid fa-comment-dots"></i> Catatan Admin: ${escapeHTML(p.catatan_admin)}</p>`
                             : '';
 
-                        var laporanCount = (appState.realisasiLog || []).filter(function(r) { return r.id_proker === p.id_proker; }).length;
+                        var laporanCount = (appState.realisasiLog || []).filter(function (r) { return r.id_proker === p.id_proker; }).length;
                         var laporanBadge = laporanCount > 0
-                          ? `<span onclick="openLaporanRealisasiModal('${p.id_proker}', 'manage')" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-sky-200 text-sky-700 bg-sky-50 cursor-pointer hover:bg-sky-100 transition-colors">${laporanCount} Laporan LPJ</span>`
-                          : `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-gray-200 text-gray-500 bg-gray-50">Belum ada LPJ</span>`;
+                            ? `<span onclick="openLaporanRealisasiModal('${p.id_proker}', 'manage')" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-sky-200 text-sky-700 bg-sky-50 cursor-pointer hover:bg-sky-100 transition-colors">${laporanCount} Laporan LPJ</span>`
+                            : `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-gray-200 text-gray-500 bg-gray-50">Belum ada LPJ</span>`;
 
                         html += `
                         <tr class="hover:bg-wahdah-50/50 transition-colors proker-row" data-name="${escapeHTML(p.nama_program).toLowerCase()}" data-status="${escapeHTML(p.status_proker)}">
@@ -3307,12 +3510,13 @@
                     let avg = myProker.length > 0 ? Math.round(sumPersen / myProker.length) : 0;
                     document.getElementById('deptRataCapaian').innerText = avg;
                     tbody.innerHTML = html || `<tr><td colspan="8" class="text-center py-8 text-gray-500 font-medium">Belum ada Program Kerja. Silakan klik "Tambah Proker".</td></tr>`;
+                    filterProkerTable();
                 };
 
                 window.filterProkerTable = function () {
                     const search = document.getElementById('searchProkerInput').value.toLowerCase().trim();
                     const status = document.getElementById('filterProkerStatus').value;
-                    const rows = document.querySelectorAll('.proker-row');
+                    const rows = document.querySelectorAll('#prokerTableBody .proker-row');
 
                     rows.forEach(row => {
                         const name = row.getAttribute('data-name') || '';
@@ -3334,17 +3538,53 @@
                 window.onImportProkerDeptChange = function () {
                     const sel = document.getElementById('importProkerDeptSelect');
                     if (sel && sel.value) {
+                        window.currentImportProkerDept = sel.value;
                         renderImportProkerAdmin(sel.value);
                     }
                 };
 
-                window.openAddProkerForAdmin = function () {
-                    const sel = document.getElementById('importProkerDeptSelect');
-                    window.currentImportProkerDept = sel && sel.value ? sel.value : '';
+                window.openAddProkerModal = function () {
+                    const user = Auth.getUser() || {};
+                    if (user.role === 'Admin') {
+                        // Admin wajib memilih departemen tujuan lebih dahulu (dropdown
+                        // pada halaman Import Proker) agar proker tidak dibuat tanpa dept.
+                        const sel = document.getElementById('importProkerDeptSelect');
+                        if (!sel || !sel.value) {
+                            toast('Pilih departemen pada dropdown terlebih dahulu', 'warning');
+                            return;
+                        }
+                        window.currentImportProkerDept = sel.value;
+                    } else {
+                        window.currentImportProkerDept = '';
+                    }
+
+                    // Reset isian agar tidak ada data nyangkut dari pemakaian sebelumnya.
+                    const formAdd = document.getElementById('formAddProker');
+                    if (formAdd) formAdd.reset();
+                    const addList = document.getElementById('addJadwalRencanaList');
+                    if (addList) {
+                        addList.innerHTML = '';
+                        tambahBarisJadwalRencana('addJadwalRencanaList');
+                    }
+                    toggleModeJadwal('add');
                     openModal('modalAddProker');
                 };
 
+                window.openAddProkerForAdmin = function () {
+                    window.openAddProkerModal();
+                };
+
                 window.renderImportProkerAdmin = function (idDept) {
+                    if (!idDept) {
+                        const sel = document.getElementById('importProkerDeptSelect');
+                        if (sel && sel.value) idDept = sel.value;
+                        else if (sel && sel.options.length > 1) idDept = sel.options[1].value;
+                    }
+                    if (!idDept) return;
+                    window.currentImportProkerDept = idDept;
+                    const sel = document.getElementById('importProkerDeptSelect');
+                    if (sel && sel.value !== idDept) sel.value = idDept;
+
                     const tbody = document.getElementById('importProkerTableBody');
                     const myProker = appState.proker.filter(p => p.id_departemen === idDept);
                     let sumPersen = 0, html = '';
@@ -3367,10 +3607,10 @@
                             ? `<p class="text-[11px] text-rose-600 italic mt-1"><i class="fa-solid fa-comment-dots"></i> Catatan Admin: ${escapeHTML(p.catatan_admin)}</p>`
                             : '';
 
-                        var laporanCount = (appState.realisasiLog || []).filter(function(r) { return r.id_proker === p.id_proker; }).length;
+                        var laporanCount = (appState.realisasiLog || []).filter(function (r) { return r.id_proker === p.id_proker; }).length;
                         var laporanBadge = laporanCount > 0
-                          ? `<span onclick="openLaporanRealisasiModal('${p.id_proker}', 'manage')" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-sky-200 text-sky-700 bg-sky-50 cursor-pointer hover:bg-sky-100 transition-colors">${laporanCount} Laporan LPJ</span>`
-                          : `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-gray-200 text-gray-500 bg-gray-50">Belum ada LPJ</span>`;
+                            ? `<span onclick="openLaporanRealisasiModal('${p.id_proker}', 'manage')" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-sky-200 text-sky-700 bg-sky-50 cursor-pointer hover:bg-sky-100 transition-colors">${laporanCount} Laporan LPJ</span>`
+                            : `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border border-gray-200 text-gray-500 bg-gray-50">Belum ada LPJ</span>`;
 
                         html += `
                         <tr class="hover:bg-wahdah-50/50 transition-colors proker-row" data-name="${escapeHTML(p.nama_program).toLowerCase()}" data-status="${escapeHTML(p.status_proker)}">
@@ -3416,6 +3656,7 @@
                     let avg = myProker.length > 0 ? Math.round(sumPersen / myProker.length) : 0;
                     document.getElementById('importProkerRataCapaian').innerText = avg;
                     tbody.innerHTML = html || `<tr><td colspan="8" class="text-center py-8 text-gray-500 font-medium">Belum ada Program Kerja. Silakan klik "Tambah Proker".</td></tr>`;
+                    filterImportProkerTable();
                 };
 
                 window.filterImportProkerTable = function () {
@@ -3446,14 +3687,20 @@
                         ? Array.from(document.querySelectorAll('#addJadwalRencanaList .jadwal-rencana-input'))
                             .map(i => i.value).filter(v => v)
                         : [];
+                    if (modeJadwal === 'per_kali' && jadwalRencana.length === 0) {
+                        Swal.fire('Tanggal belum diisi', 'Mode "Per Kali" wajib memiliki minimal satu tanggal pelaksanaan.', 'warning');
+                        return;
+                    }
                     const payload = {
                         id_departemen: isAdminImport ? window.currentImportProkerDept : user.id_departemen,
                         nama_program: document.getElementById('addNamaProgram').value.trim(),
                         target_angka: document.getElementById('addTargetAngka').value,
                         satuan_target: document.getElementById('addSatuan').value.trim(),
                         anggaran_rencana: document.getElementById('addAnggaran').value,
-                        tanggal_mulai: tanggalMulai,
-                        tanggal_selesai: tanggalSelesai,
+                        // Field yang tidak relevan dengan mode yang dipilih tidak dikirim,
+                        // supaya data lama tidak bercampur di Gantt.
+                        tanggal_mulai: modeJadwal === 'per_kali' ? '' : tanggalMulai,
+                        tanggal_selesai: modeJadwal === 'per_kali' ? '' : tanggalSelesai,
                         mode_jadwal: modeJadwal,
                         jadwal_rencana: jadwalRencana
                     };
@@ -3469,14 +3716,14 @@
                             document.getElementById('formAddProker').reset();
                             const addList = document.getElementById('addJadwalRencanaList');
                             if (addList) { addList.innerHTML = ''; tambahBarisJadwalRencana('addJadwalRencanaList'); }
-                            toggleModeJadwal('add');
+                            // Selalu muat ulang seluruh data supaya Dashboard, Persetujuan,
+                            // Import Proker, dan Timeline ikut ter-update tanpa refresh manual.
+                            await loadAppData();
                             if (isAdminImport) {
                                 renderImportProkerAdmin(window.currentImportProkerDept);
-                            } else {
-                                loadAppData();
                             }
                         } else {
-                            Swal.fire('Gagal', res.message || 'Gagal menyimpan proker', 'error');
+                            apiError(res, 'Gagal menyimpan proker');
                         }
                     } finally {
                         hideLoading();
@@ -3509,7 +3756,7 @@
                         editList.innerHTML = '';
                         const jadwal = Array.isArray(p.jadwal_rencana) ? p.jadwal_rencana : [];
                         if (jadwal.length > 0) {
-                            jadwal.forEach(function(tgl) { tambahBarisJadwalRencana('editJadwalRencanaList', tgl); });
+                            jadwal.forEach(function (tgl) { tambahBarisJadwalRencana('editJadwalRencanaList', tgl); });
                         } else {
                             tambahBarisJadwalRencana('editJadwalRencanaList');
                         }
@@ -3530,14 +3777,19 @@
                         ? Array.from(document.querySelectorAll('#editJadwalRencanaList .jadwal-rencana-input'))
                             .map(i => i.value).filter(v => v)
                         : [];
+                    if (modeJadwal === 'per_kali' && jadwalRencana.length === 0) {
+                        Swal.fire('Tanggal belum diisi', 'Mode "Per Kali" wajib memiliki minimal satu tanggal pelaksanaan.', 'warning');
+                        return;
+                    }
                     const payload = {
                         id_proker: document.getElementById('editIdProker').value,
                         nama_program: document.getElementById('editNamaProgram').value.trim(),
                         target_angka: document.getElementById('editTargetAngka').value,
                         satuan_target: document.getElementById('editSatuan').value.trim(),
                         anggaran_rencana: document.getElementById('editAnggaran').value,
-                        tanggal_mulai: tanggalMulai,
-                        tanggal_selesai: tanggalSelesai,
+                        // Field yang tidak relevan dengan mode yang dipilih tidak dikirim.
+                        tanggal_mulai: modeJadwal === 'per_kali' ? '' : tanggalMulai,
+                        tanggal_selesai: modeJadwal === 'per_kali' ? '' : tanggalSelesai,
                         mode_jadwal: modeJadwal,
                         jadwal_rencana: jadwalRencana
                     };
@@ -3554,7 +3806,7 @@
                         closeModal('modalEditProker');
                         loadAppData();
                     } else {
-                        Swal.fire('Gagal', res.message || 'Gagal memperbarui proker', 'error');
+                        apiError(res, 'Gagal memperbarui proker');
                     }
                 };
 
@@ -3564,20 +3816,12 @@
                     const val = checked.value;
                     const rentangWrap = document.getElementById(prefix + 'RentangWrap');
                     const perKaliWrap = document.getElementById(prefix + 'PerKaliWrap');
-                    // .d-none memakai !important, jadi harus lewat classList (bukan style.display)
                     if (rentangWrap) rentangWrap.classList.toggle('d-none', val !== 'rentang');
                     if (perKaliWrap) perKaliWrap.classList.toggle('d-none', val !== 'per_kali');
-                    // Pastikan ada minimal 1 baris input saat mode Per Kali dipilih
-                    if (val === 'per_kali') {
-                        const listId = prefix === 'rencana' ? 'jadwalRencanaList' : prefix + 'JadwalRencanaList';
-                        const list = document.getElementById(listId);
-                        if (list && list.children.length === 0) tambahBarisJadwalRencana(listId);
-                    }
                 };
 
                 window.tambahBarisJadwalRencana = function (containerId, value = '') {
                     const list = document.getElementById(containerId);
-                    if (!list) return;
                     const row = document.createElement('div');
                     row.className = 'flex items-center gap-2 jadwal-rencana-row';
                     row.innerHTML = '<input type="date" value="' + value + '" class="jadwal-rencana-input flex-1 rounded-xl border border-wahdah-200 px-3.5 py-2 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">' +
@@ -3599,7 +3843,7 @@
                     jadwalList.innerHTML = '';
                     const jadwal = Array.isArray(p.jadwal_rencana) ? p.jadwal_rencana : [];
                     if (jadwal.length > 0) {
-                        jadwal.forEach(function(tgl) { tambahBarisJadwalRencana('jadwalRencanaList', tgl); });
+                        jadwal.forEach(function (tgl) { tambahBarisJadwalRencana('jadwalRencanaList', tgl); });
                     } else {
                         tambahBarisJadwalRencana('jadwalRencanaList');
                     }
@@ -3623,17 +3867,26 @@
                         Swal.fire('Tanggal tidak valid', 'Target Selesai tidak boleh sebelum Tanggal Mulai', 'warning');
                         return;
                     }
-                    const jadwalRencana = Array.from(document.querySelectorAll('#jadwalRencanaList .jadwal-rencana-input'))
-                        .map(function(el) { return String(el.value || '').trim(); })
-                        .filter(function(v) { return v; });
                     const modeJadwal = document.querySelector('input[name="rencanaModeJadwal"]:checked')?.value || 'rentang';
+                    // PENTING: selector harus di-scope ke container modal ini saja.
+                    // Tanpa scope, tanggal dari modal Add Proker / Edit Proker yang
+                    // (tersembunyi) masih terisi akan ikut tersimpan ke proker ini.
+                    const jadwalRencana = modeJadwal === 'per_kali'
+                        ? Array.from(document.querySelectorAll('#jadwalRencanaList .jadwal-rencana-input'))
+                            .map(function (el) { return String(el.value || '').trim(); })
+                            .filter(function (v) { return v; })
+                        : [];
+                    if (modeJadwal === 'per_kali' && jadwalRencana.length === 0) {
+                        Swal.fire('Tanggal belum diisi', 'Mode "Per Kali" wajib memiliki minimal satu tanggal pelaksanaan.', 'warning');
+                        return;
+                    }
                     const btn = document.getElementById('btnSaveRencanaTanggal');
                     btn.disabled = true;
                     showLoading('Menyimpan tanggal rencana...');
                     const res = await apiService('editProkerTanggalRencana', {
                         id_proker: idProker,
-                        tanggal_mulai: tanggalMulai,
-                        tanggal_selesai: tanggalSelesai,
+                        tanggal_mulai: modeJadwal === 'per_kali' ? '' : tanggalMulai,
+                        tanggal_selesai: modeJadwal === 'per_kali' ? '' : tanggalSelesai,
                         jadwal_rencana: jadwalRencana,
                         mode_jadwal: modeJadwal
                     });
@@ -3646,7 +3899,7 @@
                         loadAppData();
                         renderTimelineProker();
                     } else {
-                        Swal.fire('Gagal', res.message || 'Gagal menyimpan tanggal rencana', 'error');
+                        apiError(res, 'Gagal menyimpan tanggal rencana');
                     }
                 };
 
@@ -3656,14 +3909,14 @@
 
                     if (!mode) mode = 'edit';
 
-                     document.getElementById('laporanIdProker').value = idProker;
-                     document.getElementById('laporanNamaProgram').innerText = p.nama_program;
-                     document.getElementById('laporanFormNamaProgram').innerText = p.nama_program;
-                     document.getElementById('laporanTargetInfo').innerText = `${p.target_angka} ${p.satuan_target}`;
-                     document.getElementById('laporanFormTargetInfo').innerText = `${p.target_angka} ${p.satuan_target}`;
-                     const fmtTgl = (iso) => iso ? new Date(iso + 'T00:00:00').toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : '-';
-                     document.getElementById('laporanRencanaTanggal').innerText =
-                         (!p.tanggal_mulai && !p.tanggal_selesai) ? 'Rencana: Tanggal belum diatur' : `Rencana: ${fmtTgl(p.tanggal_mulai)} s/d ${fmtTgl(p.tanggal_selesai)}`;
+                    document.getElementById('laporanIdProker').value = idProker;
+                    document.getElementById('laporanNamaProgram').innerText = p.nama_program;
+                    document.getElementById('laporanFormNamaProgram').innerText = p.nama_program;
+                    document.getElementById('laporanTargetInfo').innerText = `${p.target_angka} ${p.satuan_target}`;
+                    document.getElementById('laporanFormTargetInfo').innerText = `${p.target_angka} ${p.satuan_target}`;
+                    const fmtTgl = (iso) => iso ? new Date(iso + 'T00:00:00').toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : '-';
+                    document.getElementById('laporanRencanaTanggal').innerText =
+                        (!p.tanggal_mulai && !p.tanggal_selesai) ? 'Rencana: Tanggal belum diatur' : `Rencana: ${fmtTgl(p.tanggal_mulai)} s/d ${fmtTgl(p.tanggal_selesai)}`;
 
                     const readOnlyWrap = document.getElementById('laporanRealisasiReadOnly');
                     const formWrap = document.getElementById('laporanRealisasiForm');
@@ -3831,7 +4084,7 @@
                         closeModal('modalLaporanRealisasi');
                         loadAppData();
                     } else {
-                        Swal.fire('Gagal', res.message || 'Gagal menyimpan laporan', 'error');
+                        apiError(res, 'Gagal menyimpan laporan');
                     }
                 };
 
@@ -3850,10 +4103,10 @@
                             hideLoading();
                             if (res.success) {
                                 toast(res.message || 'Laporan dihapus');
-                                window._laporanRealisasiRefresh();
-                                loadAppData();
+                                await loadAppData();
+                                if (window._laporanRealisasiRefresh) window._laporanRealisasiRefresh();
                             } else {
-                                Swal.fire('Gagal', res.message || 'Gagal menghapus laporan', 'error');
+                                apiError(res, 'Gagal menghapus laporan');
                             }
                         }
                     });
@@ -3876,11 +4129,11 @@
                             hideLoading();
                             if (res.success) {
                                 toast(res.message || 'Laporan disetujui');
-                                loadAppData();
+                                await loadAppData();
                                 if (window._laporanRealisasiRefresh) window._laporanRealisasiRefresh();
                                 renderPersetujuanProker();
                             } else {
-                                Swal.fire('Gagal', res.message || 'Gagal menyetujui laporan', 'error');
+                                apiError(res, 'Gagal menyetujui laporan');
                             }
                         }
                     });
@@ -3906,11 +4159,11 @@
                             hideLoading();
                             if (res.success) {
                                 toast(res.message || 'Laporan ditolak', 'info');
-                                loadAppData();
+                                await loadAppData();
                                 if (window._laporanRealisasiRefresh) window._laporanRealisasiRefresh();
                                 renderPersetujuanProker();
                             } else {
-                                Swal.fire('Gagal', res.message || 'Gagal menolak laporan', 'error');
+                                apiError(res, 'Gagal menolak laporan');
                             }
                         }
                     });
@@ -3940,10 +4193,11 @@
 
                     const payload = {
                         id_proker: document.getElementById('updIdProker').value,
-                        realisasi_angka: document.getElementById('updRealisasiAngka').value,
-                        anggaran_realisasi: document.getElementById('updRealisasiAnggaran').value,
                         status_proker: statusProker,
-                        old_file_lpj: ''
+                        // Modal ini tidak mengunggah berkas, jadi berkas LPJ lama
+                        // dipertahankan. realisasi & anggaran selalu dihitung ulang di
+                        // server dari laporan realisasi yang sudah disetujui.
+                        old_file_lpj: (appState.proker.find(x => x.id_proker === document.getElementById('updIdProker').value) || {}).file_lpj || ''
                     };
 
                     const res = await apiService('updateProkerRealisasi', payload);
@@ -3955,7 +4209,7 @@
                         closeModal('modalUpdateProker');
                         loadAppData();
                     } else {
-                        Swal.fire('Gagal', res.message || 'Gagal mengupdate proker', 'error');
+                        apiError(res, 'Gagal mengupdate proker');
                     }
                 };
 
@@ -3982,11 +4236,11 @@
                                     }
                                     renderPersetujuanProker();
                                 } else {
-                                    Swal.fire('Gagal', res.message || 'Gagal menghapus proker', 'error');
+                                    apiError(res, 'Gagal menghapus proker');
                                 }
                             } catch (e) {
                                 hideLoading();
-                                Swal.fire('Gagal', e.message || 'Gagal menghapus proker', 'error');
+                                apiError(e, 'Gagal menghapus proker');
                             }
                         }
                     });
@@ -4021,7 +4275,7 @@
                         document.getElementById('formChangePassword').reset();
                         Swal.fire('Berhasil!', res.message || 'PIN berhasil diperbarui', 'success');
                     } else {
-                        Swal.fire('Gagal', res.message || 'Gagal mengganti PIN', 'error');
+                        apiError(res, 'Gagal mengganti PIN');
                     }
                 };
 
@@ -4124,17 +4378,17 @@
                         success: '<i class="fa-solid fa-circle-check text-emerald-500"></i>',
                         warning: '<i class="fa-solid fa-triangle-exclamation text-amber-500"></i>'
                     };
-                    list.innerHTML = items.map(function(n) {
+                    list.innerHTML = items.map(function (n) {
                         const rel = timeAgo(n.time);
                         const clickable = n.link ? 'style="cursor:pointer;"' : '';
                         const onclick = n.link ? 'onclick="' + n.link + '"' : '';
                         return '<div class="px-4 py-3 flex items-start gap-2.5 hover:bg-wahdah-50/50 transition-colors" ' + clickable + ' ' + onclick + '>' +
                             '<div class="mt-0.5">' + (iconMap[n.type] || iconMap.info) + '</div>' +
                             '<div class="flex-1 min-w-0">' +
-                                '<p class="text-xs font-medium text-wahdah-900 leading-snug">' + escapeHTML(n.text) + '</p>' +
-                                '<p class="text-[10px] text-gray-400 mt-0.5">' + rel + '</p>' +
+                            '<p class="text-xs font-medium text-wahdah-900 leading-snug">' + escapeHTML(n.text) + '</p>' +
+                            '<p class="text-[10px] text-gray-400 mt-0.5">' + rel + '</p>' +
                             '</div>' +
-                        '</div>';
+                            '</div>';
                     }).join('');
                 }
 
@@ -4168,7 +4422,7 @@
                         document.getElementById('formBulkImportUsers').reset();
                         loadAppData();
                     } else {
-                        Swal.fire('Gagal', res.message || 'Gagal import', 'error');
+                        apiError(res, 'Gagal import');
                     }
                 };
 
@@ -4187,7 +4441,7 @@
                             document.getElementById('formBulkImportProker').reset();
                             loadAppData();
                         } else {
-                            Swal.fire('Gagal', res.message || 'Gagal import', 'error');
+                            apiError(res, 'Gagal import');
                         }
                     } finally {
                         hideLoading();
@@ -4217,7 +4471,7 @@
                                 toast(res.message || 'Pengguna diarsipkan');
                                 loadAppData();
                             } else {
-                                Swal.fire('Gagal', res.message, 'error');
+                                apiError(res, 'Gagal');
                             }
                         }
                     });
@@ -4240,7 +4494,7 @@
                                 toast(res.message || 'Pengguna dipulihkan');
                                 loadAppData();
                             } else {
-                                Swal.fire('Gagal', res.message, 'error');
+                                apiError(res, 'Gagal');
                             }
                         }
                     });
@@ -4257,7 +4511,7 @@
                         window.open(res.url, '_blank');
                         toast('Laporan berhasil dibuat');
                     } else {
-                        Swal.fire('Gagal', res.message || 'Gagal export', 'error');
+                        apiError(res, 'Gagal export');
                     }
                 };
 
@@ -4269,7 +4523,7 @@
                         window.open(res.url, '_blank');
                         toast('Laporan berhasil dibuat');
                     } else {
-                        Swal.fire('Gagal', res.message || 'Gagal export', 'error');
+                        apiError(res, 'Gagal export');
                     }
                 };
 
@@ -4328,6 +4582,24 @@
                     if (dropdown && !dropdown.classList.contains('d-none') && !dropdown.contains(e.target) && !btn) {
                         dropdown.classList.add('d-none');
                     }
+                });
+
+                // ==========================================
+                // VALIDASI ULANG SESI
+                // ==========================================
+                // Dipanggil saat tab kembali aktif atau halaman dipulihkan dari cache
+                // (bfcache). Bila sesi sudah dihapus (mis. logout di tab lain),
+                // apiService akan memicu handleSessionExpired() -> kembali ke login.
+                async function revalidateSession() {
+                    if (!Auth.getToken()) return;
+                    const res = await apiService('ping');
+                    if (res && res.sessionExpired) return; // sudah ditangani di apiService
+                }
+                document.addEventListener('visibilitychange', function () {
+                    if (document.visibilityState === 'visible') revalidateSession();
+                });
+                window.addEventListener('pageshow', function (evt) {
+                    if (evt.persisted) revalidateSession();
                 });
 
                 // ==========================================
