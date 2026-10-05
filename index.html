@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KPI Departemen - Wahdah Islamiyah</title>
+    <title>KPI Departemen Wahdah Islamiyah Makassar</title>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -112,6 +112,23 @@
             color: #c9a24b;
         }
 
+        .icon-badge-logo {
+            width: 68px;
+            height: 68px;
+            padding: 6px;
+            background: #ffffff;
+            border: 3px solid #e6c65c;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .icon-badge-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
         /* Modal Transitions */
         .modal-overlay {
             position: fixed;
@@ -187,12 +204,6 @@
                 padding: 8px !important;
             }
         }
-
-        .dark body,
-        body.dark {
-            background-color: #0f172a !important;
-            color: #e2e8f0 !important;
-        }
     </style>
 </head>
 
@@ -262,14 +273,15 @@
     <aside id="sidebar"
         class="fixed inset-y-0 left-0 z-40 w-72 -translate-x-full transition-transform duration-300 ease-in-out bg-wahdah-900 text-white flex flex-col shadow-2xl d-none">
         <!-- Sidebar Header -->
-        <div class="px-5 py-5 border-b border-white/10 flex items-center justify-between bg-wahdah-950/40">
+        <div class="px-4 py-4 border-b border-white/10 flex items-center justify-between bg-wahdah-950/40">
             <div class="flex items-center gap-3">
-                <div class="icon-badge">
-                    <i class="fa-solid fa-chart-pie"></i>
+                <div class="icon-badge icon-badge-logo">
+                    <img src="data:image/png;base64,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" alt="Logo Wahdah Islamiyah">
                 </div>
                 <div>
-                    <p class="font-extrabold leading-tight text-base tracking-wide text-white">Wahdah Islamiyah</p>
-                    <p class="text-gold-400 text-[10px] tracking-wider uppercase font-semibold">KPI & Kinerja</p>
+                    <p class="font-extrabold leading-tight text-[15px] text-white">Wahdah Islamiyah Makassar
+                    </p>
+                    <p class="text-gold-400 text-[10px] tracking-wider uppercase font-semibold">KPI Departemen</p>
                 </div>
             </div>
             <button type="button" onclick="toggleSidebar()"
@@ -281,7 +293,6 @@
 
         <!-- Sidebar Navigation -->
         <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
-            <!-- Menu Admin -->
             <div class="admin-only d-none space-y-1.5">
                 <p class="px-3 text-[10px] uppercase tracking-widest text-wahdah-300 font-bold mb-2">Menu Administrator
                 </p>
@@ -334,6 +345,12 @@
                     <i class="fa-solid fa-clock-rotate-left w-5 text-center text-gold-400"></i> <span>Riwayat
                         Login</span>
                 </button>
+                <!-- FEATURE #7: Profil Admin -->
+                <button type="button"
+                    class="nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all"
+                    onclick="showPage('viewProfilAdmin', this); renderProfil();">
+                    <i class="fa-solid fa-user-circle w-5 text-center text-gold-400"></i> <span>Profil Saya</span>
+                </button>
             </div>
 
             <!-- Menu User / Departemen -->
@@ -349,6 +366,12 @@
                     onclick="showPage('viewEvaluasiUser', this)">
                     <i class="fa-solid fa-star-half-stroke w-5 text-center text-gold-400"></i> <span>Feedback &
                         Evaluasi</span>
+                </button>
+                <!-- FEATURE #7: Profil User -->
+                <button type="button"
+                    class="nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all"
+                    onclick="showPage('viewProfilAdmin', this); renderProfil();">
+                    <i class="fa-solid fa-user-circle w-5 text-center text-gold-400"></i> <span>Profil Saya</span>
                 </button>
             </div>
         </nav>
@@ -395,10 +418,6 @@
                 <p id="pageSubtitle" class="text-wahdah-600 text-[11px] font-medium">Sistem Monitoring Kinerja</p>
             </div>
             <div class="ml-auto flex items-center gap-2">
-                <button type="button" onclick="toggleDarkMode()" title="Toggle Dark Mode"
-                    class="w-9 h-9 rounded-xl hover:bg-wahdah-50 text-wahdah-700 flex items-center justify-center transition-colors border border-wahdah-200 shrink-0">
-                    <i class="fa-solid fa-moon text-sm" id="darkModeIcon"></i>
-                </button>
                 <button type="button" onclick="loadAppData(null)" title="Segarkan Data"
                     class="w-9 h-9 rounded-xl hover:bg-wahdah-50 text-wahdah-700 flex items-center justify-center transition-colors border border-wahdah-200 shrink-0">
                     <i class="fa-solid fa-arrows-rotate text-sm"></i>
@@ -555,13 +574,19 @@
                             <i class="fa-solid fa-traffic-light text-wahdah-600"></i> Peringkat Kinerja & Traffic Light
                         </h3>
                         <div class="flex items-center gap-2">
+                            <!-- FEATURE #3: Filter Tahun Dashboard -->
+                            <select id="dashYearFilter" onchange="applyDashboardYearFilter()"
+                                class="text-xs rounded-xl border border-wahdah-200 px-3 py-1.5 outline-none bg-white focus:ring-2 focus:ring-wahdah-500 text-wahdah-700 font-semibold">
+                                <!-- Populated by JS -->
+                            </select>
                             <button onclick="exportProkerPDF()"
                                 class="px-3 py-1.5 bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 text-xs font-semibold rounded-lg border border-wahdah-200 transition-colors flex items-center gap-1.5">
                                 <i class="fa-solid fa-file-pdf"></i> Export PDF
                             </button>
-                            <button onclick="exportTableToCSV('adminTrafficTable', 'Kinerja_Departemen_Wahdah')"
-                                class="px-3 py-1.5 bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 text-xs font-semibold rounded-lg border border-wahdah-200 transition-colors flex items-center gap-1.5">
-                                <i class="fa-solid fa-file-csv"></i> Unduh CSV
+                            <!-- FEATURE #2: Export Excel -->
+                            <button onclick="exportProkerExcel()"
+                                class="px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-lg border border-emerald-200 transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-file-excel"></i> Export Excel
                             </button>
                         </div>
                     </div>
@@ -578,6 +603,21 @@
                             </thead>
                             <tbody id="adminTrafficTable" class="divide-y divide-wahdah-50 bg-white"></tbody>
                         </table>
+                    </div>
+                </div>
+
+                <!-- FEATURE #5: Grafik Tren Realisasi Bulanan -->
+                <div class="bg-white rounded-2xl shadow-card border border-wahdah-100/80 p-5 md:p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-sm font-bold text-wahdah-900 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-area text-wahdah-600"></i> Tren Realisasi Anggaran Bulanan
+                        </h3>
+                        <select id="trendYearFilter" onchange="renderTrendChart()"
+                            class="text-xs rounded-xl border border-wahdah-200 px-3 py-1.5 outline-none bg-white focus:ring-2 focus:ring-wahdah-500 text-wahdah-700 font-semibold">
+                        </select>
+                    </div>
+                    <div class="relative h-64 w-full">
+                        <canvas id="trendChart"></canvas>
                     </div>
                 </div>
             </div>
@@ -651,6 +691,11 @@
                             <button onclick="exportEvaluasiPDF()"
                                 class="px-3 py-1.5 bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 text-xs font-semibold rounded-lg border border-wahdah-200 transition-colors flex items-center gap-1.5">
                                 <i class="fa-solid fa-file-pdf"></i> Export PDF
+                            </button>
+                            <!-- FEATURE #2: Export Excel Evaluasi -->
+                            <button onclick="exportEvaluasiExcel()"
+                                class="px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-lg border border-emerald-200 transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-file-excel"></i> Export Excel
                             </button>
                         </div>
                     </div>
@@ -785,9 +830,10 @@
                                 <option value="Terkendala">Terkendala</option>
                             </select>
                         </div>
-                        <button onclick="exportTableToCSV('persetujuanProkerTableBody', 'Persetujuan_Proker_Wahdah')"
-                            class="px-3 py-1.5 bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 text-xs font-semibold rounded-lg border border-wahdah-200 transition-colors flex items-center gap-1.5 shrink-0 self-end sm:self-auto">
-                            <i class="fa-solid fa-file-csv"></i> Unduh CSV
+                        <!-- FEATURE #2: Excel export di Persetujuan -->
+                        <button onclick="exportProkerExcel()"
+                            class="px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-lg border border-emerald-200 transition-colors flex items-center gap-1.5 shrink-0 self-end sm:self-auto">
+                            <i class="fa-solid fa-file-excel"></i> Export Excel
                         </button>
                     </div>
 
@@ -846,12 +892,15 @@
                 </div>
 
                 <div class="flex flex-wrap items-center gap-4 mt-3 text-[10px] text-gray-500">
+                    <span class="flex items-center gap-1.5"><span
+                            class="w-2.5 h-2.5 rounded-full bg-sky-600 inline-block"></span> Rencana (rentang
+                        tanggal)</span>
                     <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-600"></span>
                         Terlambat, belum lapor</span>
                     <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-300"></span>
                         Rencana akan datang</span>
-                    <span class="flex items-center gap-1.5"><i
-                            class="fa-solid fa-diamond text-[10px] text-emerald-300"></i> Sudah dilaporkan &
+                    <span class="flex items-center gap-1.5"><span
+                            class="w-2.5 h-2.5 rounded-full bg-emerald-300 inline-block"></span> Sudah dilaporkan &
                         disetujui</span>
                 </div>
 
@@ -965,10 +1014,16 @@
                                 <option value="Terkendala">Terkendala</option>
                             </select>
                         </div>
-                        <button onclick="exportTableToCSV('prokerTableBody', 'Program_Kerja_Departemen')"
-                            class="px-3 py-1.5 bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 text-xs font-semibold rounded-lg border border-wahdah-200 transition-colors flex items-center gap-1.5 shrink-0 self-end sm:self-auto">
-                            <i class="fa-solid fa-file-csv"></i> Unduh CSV
-                        </button>
+                        <div class="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+                            <button onclick="exportProkerPDF()"
+                                class="px-3 py-1.5 bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 text-xs font-semibold rounded-lg border border-wahdah-200 transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-file-pdf"></i> Export PDF
+                            </button>
+                            <button onclick="exportProkerExcel()"
+                                class="px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-lg border border-emerald-200 transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-file-excel"></i> Export Excel
+                            </button>
+                        </div>
                     </div>
 
                     <div class="overflow-x-auto min-h-[300px]">
@@ -1055,10 +1110,16 @@
                                 <option value="Terkendala">Terkendala</option>
                             </select>
                         </div>
-                        <button onclick="exportTableToCSV('importProkerTableBody', 'Program_Kerja_Departemen')"
-                            class="px-3 py-1.5 bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 text-xs font-semibold rounded-lg border border-wahdah-200 transition-colors flex items-center gap-1.5 shrink-0 self-end sm:self-auto">
-                            <i class="fa-solid fa-file-csv"></i> Unduh CSV
-                        </button>
+                        <div class="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+                            <button onclick="exportProkerPDF()"
+                                class="px-3 py-1.5 bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 text-xs font-semibold rounded-lg border border-wahdah-200 transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-file-pdf"></i> Export PDF
+                            </button>
+                            <button onclick="exportProkerExcel()"
+                                class="px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-lg border border-emerald-200 transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-file-excel"></i> Export Excel
+                            </button>
+                        </div>
                     </div>
 
                     <div class="overflow-x-auto min-h-[300px]">
@@ -1152,6 +1213,138 @@
                                 </tr>
                             </thead>
                             <tbody id="loginHistoryTableBody" class="divide-y divide-wahdah-50 bg-white"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- 9. PAGE: PROFIL PENGGUNA (ADMIN & USER) -->
+            <!-- ========================================== -->
+            <div id="viewProfilAdmin" class="app-page d-none view-fade max-w-4xl mx-auto space-y-6">
+                <!-- Header Profil Card -->
+                <div
+                    class="bg-gradient-to-br from-wahdah-900 via-wahdah-800 to-wahdah-950 rounded-3xl shadow-card p-6 md:p-8 text-white pattern-bg flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                    <div
+                        class="w-20 h-20 rounded-2xl bg-white/10 border-2 border-gold-400 flex items-center justify-center text-3xl text-gold-400 shrink-0 shadow-lg">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <div class="text-center sm:text-left flex-1">
+                        <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-1">
+                            <span id="profilBadgeRole"
+                                class="px-3 py-1 bg-gold-500/20 text-gold-300 border border-gold-400/30 rounded-full text-xs font-bold uppercase tracking-wider">Admin</span>
+                            <span id="profilBadgeDept"
+                                class="px-3 py-1 bg-white/10 text-wahdah-100 border border-white/20 rounded-full text-xs font-semibold">Semua
+                                Departemen</span>
+                        </div>
+                        <h2 id="profilNamaLengkap" class="text-2xl font-extrabold text-white">Nama Pengguna</h2>
+                        <p id="profilEmailUsername" class="text-wahdah-200 text-sm font-mono mt-0.5">username@wahdah</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Detail Informasi Akun -->
+                    <div class="bg-white rounded-2xl shadow-card border border-wahdah-100/80 p-6 space-y-4">
+                        <h3
+                            class="text-sm font-bold text-wahdah-900 flex items-center gap-2 border-b border-wahdah-100 pb-3">
+                            <i class="fa-solid fa-id-card text-wahdah-600"></i> Informasi Akun
+                        </h3>
+                        <div class="space-y-3 text-xs">
+                            <div class="flex justify-between py-2 border-b border-gray-100">
+                                <span class="text-gray-500 font-medium">Nama Lengkap</span>
+                                <span id="profilInfoNama" class="font-bold text-wahdah-900">-</span>
+                            </div>
+                            <div class="flex justify-between py-2 border-b border-gray-100">
+                                <span class="text-gray-500 font-medium">Username / Email</span>
+                                <span id="profilInfoEmail" class="font-bold text-wahdah-900">-</span>
+                            </div>
+                            <div class="flex justify-between py-2 border-b border-gray-100">
+                                <span class="text-gray-500 font-medium">Role Akses</span>
+                                <span id="profilInfoRole" class="font-bold text-wahdah-900">-</span>
+                            </div>
+                            <div class="flex justify-between py-2 border-b border-gray-100">
+                                <span class="text-gray-500 font-medium">Departemen</span>
+                                <span id="profilInfoDept" class="font-bold text-wahdah-900">-</span>
+                            </div>
+                            <div class="flex justify-between py-2">
+                                <span class="text-gray-500 font-medium">Status Akun</span>
+                                <span class="font-bold text-emerald-600 flex items-center gap-1"><i
+                                        class="fa-solid fa-circle-check"></i> Aktif</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Ganti PIN / Password -->
+                    <div class="bg-white rounded-2xl shadow-card border border-wahdah-100/80 p-6 space-y-4">
+                        <h3
+                            class="text-sm font-bold text-wahdah-900 flex items-center gap-2 border-b border-wahdah-100 pb-3">
+                            <i class="fa-solid fa-key text-wahdah-600"></i> Perbarui PIN / Sandi
+                        </h3>
+                        <form id="formProfilGantiPin" onsubmit="event.preventDefault(); submitProfilGantiPin();"
+                            class="space-y-3">
+                            <div>
+                                <label class="block text-xs font-bold text-wahdah-800 mb-1">PIN / Sandi Saat Ini</label>
+                                <div class="relative">
+                                    <input type="password" id="inpProfilPinLama" required placeholder="PIN saat ini"
+                                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2 text-xs focus:ring-2 focus:ring-wahdah-500 outline-none pr-9">
+                                    <button type="button" onclick="togglePasswordVisibility('inpProfilPinLama', this)"
+                                        class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-xs">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-wahdah-800 mb-1">PIN / Sandi Baru</label>
+                                <div class="relative">
+                                    <input type="password" id="inpProfilPinBaru" required minlength="6"
+                                        placeholder="Minimal 6 karakter"
+                                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2 text-xs focus:ring-2 focus:ring-wahdah-500 outline-none pr-9">
+                                    <button type="button" onclick="togglePasswordVisibility('inpProfilPinBaru', this)"
+                                        class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-xs">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-wahdah-800 mb-1">Konfirmasi PIN Baru</label>
+                                <div class="relative">
+                                    <input type="password" id="inpProfilPinKonfirm" required minlength="6"
+                                        placeholder="Ulangi PIN baru"
+                                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2 text-xs focus:ring-2 focus:ring-wahdah-500 outline-none pr-9">
+                                    <button type="button"
+                                        onclick="togglePasswordVisibility('inpProfilPinKonfirm', this)"
+                                        class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-xs">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <button type="submit"
+                                class="w-full bg-wahdah-700 hover:bg-wahdah-800 text-white font-bold text-xs rounded-xl py-2.5 transition-colors shadow-sm mt-2 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-floppy-disk"></i> Simpan PIN Baru
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Riwayat Login Pribadi -->
+                <div class="bg-white rounded-2xl shadow-card border border-wahdah-100/80 overflow-hidden">
+                    <div
+                        class="px-6 py-4 border-b border-wahdah-100/80 bg-wahdah-50/40 flex items-center justify-between">
+                        <h3 class="text-sm font-bold text-wahdah-900 flex items-center gap-2">
+                            <i class="fa-solid fa-clock-rotate-left text-wahdah-600"></i> Riwayat Sesi Login Terakhir
+                            Anda
+                        </h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs">
+                            <thead class="bg-wahdah-50/70 border-b border-wahdah-100">
+                                <tr class="text-wahdah-800 uppercase tracking-wider">
+                                    <th class="text-left font-bold px-5 py-3">Waktu Masuk</th>
+                                    <th class="text-left font-bold px-5 py-3">Waktu Keluar</th>
+                                    <th class="text-center font-bold px-4 py-3">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="profilLoginHistoryTableBody" class="divide-y divide-wahdah-50 bg-white"></tbody>
                         </table>
                     </div>
                 </div>
@@ -1868,8 +2061,7 @@
                     loginHistory: [],
                     kpiChartInstance: null,
                     statusChartInstance: null,
-                    notifications: [],
-                    darkMode: localStorage.getItem('kpi_dark_mode') === 'true'
+                    notifications: []
                 };
 
                 // MOCK DATABASE FALLBACK (For offline browser preview / testing)
@@ -2192,6 +2384,29 @@
                 const formatRp = (angka) => 'Rp ' + Number(angka || 0).toLocaleString('id-ID');
                 const escapeHTML = (str) => String(str == null ? '' : str).replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag]));
 
+                function formatTanggalTampilan(value, withTime = false) {
+                    if (!value) return '-';
+                    let d;
+                    const s = String(value).trim();
+                    if (/^\d{4}-\d{2}-\d{2}/.test(s)) {
+                        // ISO "yyyy-MM-dd" atau "yyyy-MM-dd HH:mm:ss"
+                        d = new Date(s.replace(' ', 'T'));
+                    } else {
+                        d = new Date(s);
+                    }
+                    if (isNaN(d.getTime())) return s; // fallback: tampilkan apa adanya jika tak bisa diparse
+                    const mm = String(d.getMonth() + 1).padStart(2, '0');
+                    const dd = String(d.getDate()).padStart(2, '0');
+                    const yyyy = d.getFullYear();
+                    let hasil = `${mm}/${dd}/${yyyy}`;
+                    if (withTime) {
+                        const hh = String(d.getHours()).padStart(2, '0');
+                        const min = String(d.getMinutes()).padStart(2, '0');
+                        hasil += ` ${hh}:${min}`;
+                    }
+                    return hasil;
+                }
+
                 const getTrafficLightClasses = (persen) => {
                     if (persen >= 80) return 'bg-emerald-100 text-emerald-800 border-emerald-300';
                     if (persen >= 50) return 'bg-amber-100 text-amber-800 border-amber-300';
@@ -2362,6 +2577,10 @@
                         }
 
                         renderTimelineProker();
+                    }
+
+                    if (pageId === 'viewProfilAdmin') {
+                        renderProfil();
                     }
 
                     const sidebar = document.getElementById('sidebar');
@@ -2627,9 +2846,54 @@
                 }
 
                 // ==========================================
-                // 1. ADMIN DASHBOARD RENDERING
+                // 1. ADMIN DASHBOARD RENDERING & FILTERS
                 // ==========================================
+                function populateDashboardYearFilters() {
+                    const dashSel = document.getElementById('dashYearFilter');
+                    const trendSel = document.getElementById('trendYearFilter');
+                    if (!dashSel && !trendSel) return;
+
+                    const yearsSet = new Set();
+                    const currentYear = new Date().getFullYear();
+                    yearsSet.add(currentYear);
+
+                    (appState.proker || []).forEach(p => {
+                        if (p.updated_at) {
+                            const y = new Date(p.updated_at).getFullYear();
+                            if (!isNaN(y)) yearsSet.add(y);
+                        }
+                        if (p.tanggal_mulai) {
+                            const y = new Date(p.tanggal_mulai).getFullYear();
+                            if (!isNaN(y)) yearsSet.add(y);
+                        }
+                        if (p.tanggal_selesai) {
+                            const y = new Date(p.tanggal_selesai).getFullYear();
+                            if (!isNaN(y)) yearsSet.add(y);
+                        }
+                    });
+
+                    const sortedYears = Array.from(yearsSet).sort((a, b) => b - a);
+
+                    if (dashSel && dashSel.options.length <= 1) {
+                        const curVal = dashSel.value;
+                        dashSel.innerHTML = `<option value="">Semua Periode</option>` + sortedYears.map(y => `<option value="${y}">Tahun ${y}</option>`).join('');
+                        if (curVal) dashSel.value = curVal;
+                    }
+
+                    if (trendSel && trendSel.options.length === 0) {
+                        trendSel.innerHTML = sortedYears.map(y => `<option value="${y}">Tahun ${y}</option>`).join('');
+                    }
+                }
+
+                window.applyDashboardYearFilter = function () {
+                    renderDashboardAdmin();
+                };
+
                 function renderDashboardAdmin() {
+                    populateDashboardYearFilters();
+
+                    const filterYear = document.getElementById('dashYearFilter') ? document.getElementById('dashYearFilter').value : '';
+
                     let totalAnggaranRencana = 0, totalAnggaranRealisasi = 0, totalProkerAktif = 0;
                     let statusCounts = { 'Disetujui': 0, 'Menunggu Persetujuan': 0, 'Berjalan': 0, 'Belum Mulai': 0, 'Ditolak': 0, 'Terkendala': 0 };
                     let deptStats = {};
@@ -2645,12 +2909,21 @@
                         };
                     });
 
-                    appState.proker.forEach(p => {
+                    // Filter proker by selected year if any
+                    const prokerList = (appState.proker || []).filter(p => {
+                        if (!filterYear) return true;
+                        const dateStr = p.tanggal_mulai || p.tanggal_selesai || p.updated_at || '';
+                        if (!dateStr) return true;
+                        const y = new Date(dateStr).getFullYear();
+                        return isNaN(y) || String(y) === String(filterYear);
+                    });
+
+                    prokerList.forEach(p => {
                         totalAnggaranRencana += Number(p.anggaran_rencana || 0);
                         totalAnggaranRealisasi += Number(p.anggaran_realisasi || 0);
 
                         let st = p.status_proker || 'Belum Mulai';
-                        if (st === 'Selesai') st = 'Disetujui'; // legacy status from before approval workflow
+                        if (st === 'Selesai') st = 'Disetujui'; // legacy status
                         if (statusCounts[st] !== undefined) statusCounts[st]++;
                         if (st !== 'Belum Mulai') totalProkerAktif++;
 
@@ -2705,73 +2978,181 @@
                     let overallAvg = countWithProker > 0 ? Math.round(totalPersenAll / countWithProker) : 0;
                     let serapan = totalAnggaranRencana > 0 ? Math.round((totalAnggaranRealisasi / totalAnggaranRencana) * 100) : 0;
 
-                    document.getElementById('dashRataCapaian').innerText = overallAvg;
-                    document.getElementById('dashTotalProker').innerText = totalProkerAktif;
-                    document.getElementById('dashSerapanAnggaran').innerText = serapan;
-                    document.getElementById('dashTotalDept').innerText = appState.departemen.length;
-                    document.getElementById('adminTrafficTable').innerHTML = tableHtml || `<tr><td colspan="5" class="text-center py-6 text-gray-500">Belum ada data departemen</td></tr>`;
+                    const rataEl = document.getElementById('dashRataCapaian');
+                    if (rataEl) rataEl.innerText = overallAvg;
+                    const totalP = document.getElementById('dashTotalProker');
+                    if (totalP) totalP.innerText = totalProkerAktif;
+                    const serapanEl = document.getElementById('dashSerapanAnggaran');
+                    if (serapanEl) serapanEl.innerText = serapan;
+                    const totalD = document.getElementById('dashTotalDept');
+                    if (totalD) totalD.innerText = appState.departemen.length;
+                    const tableEl = document.getElementById('adminTrafficTable');
+                    if (tableEl) tableEl.innerHTML = tableHtml || `<tr><td colspan="5" class="text-center py-6 text-gray-500">Belum ada data departemen</td></tr>`;
 
                     // Render Bar Chart
-                    if (appState.kpiChartInstance) appState.kpiChartInstance.destroy();
-                    const ctx = document.getElementById('kpiChart').getContext('2d');
-                    appState.kpiChartInstance = new Chart(ctx, {
-                        type: 'bar',
+                    const chartCanvas = document.getElementById('kpiChart');
+                    if (chartCanvas) {
+                        if (appState.kpiChartInstance) appState.kpiChartInstance.destroy();
+                        const ctx = chartCanvas.getContext('2d');
+                        appState.kpiChartInstance = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: chartLabels,
+                                datasets: [{
+                                    label: 'Rata-rata Capaian (%)',
+                                    data: chartData,
+                                    backgroundColor: '#177355',
+                                    hoverBackgroundColor: '#0e3a2e',
+                                    borderRadius: 8,
+                                    barThickness: 28
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                scales: {
+                                    y: { beginAtZero: true, max: 100, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { callback: v => v + '%' } },
+                                    x: { grid: { display: false } }
+                                },
+                                plugins: {
+                                    legend: { display: false },
+                                    tooltip: { callbacks: { label: (ctx) => ` Capaian: ${ctx.raw}%` } }
+                                }
+                            }
+                        });
+                    }
+
+                    // Render Doughnut Chart for Proker Status
+                    const statusCanvas = document.getElementById('prokerStatusChart');
+                    if (statusCanvas) {
+                        if (appState.statusChartInstance) appState.statusChartInstance.destroy();
+                        const sCtx = statusCanvas.getContext('2d');
+                        appState.statusChartInstance = new Chart(sCtx, {
+                            type: 'doughnut',
+                            data: {
+                                labels: ['Disetujui', 'Menunggu Persetujuan', 'Berjalan', 'Belum Mulai', 'Ditolak', 'Terkendala'],
+                                datasets: [{
+                                    data: [statusCounts['Disetujui'], statusCounts['Menunggu Persetujuan'], statusCounts['Berjalan'], statusCounts['Belum Mulai'], statusCounts['Ditolak'], statusCounts['Terkendala']],
+                                    backgroundColor: ['#10b981', '#f59e0b', '#0284c7', '#9ca3af', '#f43f5e', '#dc2626'],
+                                    borderWidth: 2,
+                                    borderColor: '#ffffff'
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: { legend: { display: false } },
+                                cutout: '70%'
+                            }
+                        });
+                    }
+
+                    const legendEl = document.getElementById('prokerStatusLegend');
+                    if (legendEl) {
+                        legendEl.innerHTML = `
+                        <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Disetujui: <b>${statusCounts['Disetujui']}</b></div>
+                        <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Menunggu: <b>${statusCounts['Menunggu Persetujuan']}</b></div>
+                        <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-sky-500"></span> Berjalan: <b>${statusCounts['Berjalan']}</b></div>
+                        <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-gray-400"></span> Belum: <b>${statusCounts['Belum Mulai']}</b></div>
+                        <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> Ditolak: <b>${statusCounts['Ditolak']}</b></div>
+                        <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#dc2626"></span> Kendala: <b>${statusCounts['Terkendala']}</b></div>
+                        `;
+                    }
+
+                    // Render Monthly Trend Chart
+                    renderTrendChart();
+                }
+
+                window.renderTrendChart = function () {
+                    const canvas = document.getElementById('trendChart');
+                    if (!canvas) return;
+
+                    const trendYear = (document.getElementById('trendYearFilter') && document.getElementById('trendYearFilter').value) || new Date().getFullYear();
+                    const monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+                    const monthlyRealisasi = new Array(12).fill(0);
+                    const monthlyRencana = new Array(12).fill(0);
+
+                    (appState.realisasiLog || []).forEach(log => {
+                        if (log.status_approval === 'Disetujui' && log.tanggal_realisasi) {
+                            const d = new Date(log.tanggal_realisasi);
+                            if (!isNaN(d.getTime()) && String(d.getFullYear()) === String(trendYear)) {
+                                const m = d.getMonth();
+                                monthlyRealisasi[m] += Number(log.anggaran_realisasi || 0);
+                            }
+                        }
+                    });
+
+                    (appState.proker || []).forEach(p => {
+                        if (p.tanggal_mulai) {
+                            const d = new Date(p.tanggal_mulai);
+                            if (!isNaN(d.getTime()) && String(d.getFullYear()) === String(trendYear)) {
+                                const m = d.getMonth();
+                                monthlyRencana[m] += Number(p.anggaran_rencana || 0);
+                            }
+                        }
+                    });
+
+                    if (appState.trendChartInstance) appState.trendChartInstance.destroy();
+                    const ctx = canvas.getContext('2d');
+                    appState.trendChartInstance = new Chart(ctx, {
+                        type: 'line',
                         data: {
-                            labels: chartLabels,
-                            datasets: [{
-                                label: 'Rata-rata Capaian (%)',
-                                data: chartData,
-                                backgroundColor: '#177355',
-                                hoverBackgroundColor: '#0e3a2e',
-                                borderRadius: 8,
-                                barThickness: 28
-                            }]
+                            labels: monthLabels,
+                            datasets: [
+                                {
+                                    label: 'Realisasi Anggaran (Rp)',
+                                    data: monthlyRealisasi,
+                                    borderColor: '#177355',
+                                    backgroundColor: 'rgba(23, 115, 85, 0.1)',
+                                    fill: true,
+                                    tension: 0.3,
+                                    borderWidth: 2.5,
+                                    pointBackgroundColor: '#177355',
+                                    pointRadius: 4
+                                },
+                                {
+                                    label: 'Target Rencana (Rp)',
+                                    data: monthlyRencana,
+                                    borderColor: '#c9a24b',
+                                    borderDash: [5, 5],
+                                    fill: false,
+                                    tension: 0.3,
+                                    borderWidth: 2,
+                                    pointBackgroundColor: '#c9a24b',
+                                    pointRadius: 3
+                                }
+                            ]
                         },
                         options: {
                             responsive: true,
                             maintainAspectRatio: false,
                             scales: {
-                                y: { beginAtZero: true, max: 100, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { callback: v => v + '%' } },
+                                y: {
+                                    beginAtZero: true,
+                                    grid: { color: 'rgba(0,0,0,0.05)' },
+                                    ticks: {
+                                        callback: function (val) {
+                                            if (val >= 1000000000) return (val / 1000000000).toFixed(1) + 'M';
+                                            if (val >= 1000000) return (val / 1000000).toFixed(0) + 'Jt';
+                                            return val;
+                                        }
+                                    }
+                                },
                                 x: { grid: { display: false } }
                             },
                             plugins: {
-                                legend: { display: false },
-                                tooltip: { callbacks: { label: (ctx) => ` Capaian: ${ctx.raw}%` } }
+                                legend: { position: 'top', labels: { boxWidth: 12, font: { size: 11 } } },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function (context) {
+                                            return ' ' + context.dataset.label + ': ' + formatRp(context.raw);
+                                        }
+                                    }
+                                }
                             }
                         }
                     });
-
-                    // Render Doughnut Chart for Proker Status
-                    if (appState.statusChartInstance) appState.statusChartInstance.destroy();
-                    const sCtx = document.getElementById('prokerStatusChart').getContext('2d');
-                    appState.statusChartInstance = new Chart(sCtx, {
-                        type: 'doughnut',
-                        data: {
-                            labels: ['Disetujui', 'Menunggu Persetujuan', 'Berjalan', 'Belum Mulai', 'Ditolak', 'Terkendala'],
-                            datasets: [{
-                                data: [statusCounts['Disetujui'], statusCounts['Menunggu Persetujuan'], statusCounts['Berjalan'], statusCounts['Belum Mulai'], statusCounts['Ditolak'], statusCounts['Terkendala']],
-                                backgroundColor: ['#10b981', '#f59e0b', '#0284c7', '#9ca3af', '#f43f5e', '#dc2626'],
-                                borderWidth: 2,
-                                borderColor: '#ffffff'
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: { legend: { display: false } },
-                            cutout: '70%'
-                        }
-                    });
-
-                    document.getElementById('prokerStatusLegend').innerHTML = `
-                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Disetujui: <b>${statusCounts['Disetujui']}</b></div>
-                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Menunggu: <b>${statusCounts['Menunggu Persetujuan']}</b></div>
-                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-sky-500"></span> Berjalan: <b>${statusCounts['Berjalan']}</b></div>
-                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-gray-400"></span> Belum: <b>${statusCounts['Belum Mulai']}</b></div>
-                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> Ditolak: <b>${statusCounts['Ditolak']}</b></div>
-                    <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#dc2626"></span> Kendala: <b>${statusCounts['Terkendala']}</b></div>
-                `;
-                }
+                };
 
                 // ==========================================
                 // 1B. PERSETUJUAN PROKER (ADMIN)
@@ -2984,9 +3365,10 @@
                             const inRange = hasRencana &&
                                 cellDate >= new Date(mulai.getFullYear(), mulai.getMonth(), 1) &&
                                 cellDate <= new Date(selesai.getFullYear(), selesai.getMonth(), 1);
-                            const cellClass = inRange ? 'bg-sky-600' : 'bg-white';
-                            const roundLeft = (idx === 0 && inRange) ? 'rounded-l-md' : '';
-                            const roundRight = (idx === 11 && inRange) ? 'rounded-r-md' : '';
+                            const cellClass = 'bg-white';
+                            const rentangDot = inRange
+                                ? `<div class="relative flex items-center justify-center h-full"><span class="w-2.5 h-2.5 rounded-full bg-sky-600" title="Rencana pelaksanaan (rentang)"></span></div>`
+                                : '';
                             const logBulanIni = logMap[m] || [];
                             let statusBulanIni = '';
                             if (logBulanIni.length > 0) {
@@ -2994,13 +3376,14 @@
                                 else if (logBulanIni.some(l => l.status_approval === 'Menunggu Persetujuan')) statusBulanIni = 'Menunggu Persetujuan';
                                 else statusBulanIni = 'Ditolak';
                             }
-                            const diamond = logBulanIni.length > 0 ? `<div class="relative flex items-center justify-center h-full" title="${logBulanIni.length} laporan: ${logBulanIni.map(l => l.tanggal_realisasi).join(', ')}"><i class="fa-solid fa-diamond text-[10px] ${statusColor[statusBulanIni] || 'text-amber-300'}"></i></div>` : '';
+                            const dotColorClass = (statusColor[statusBulanIni] || 'text-amber-300').replace('text-', 'bg-');
+                            const diamond = logBulanIni.length > 0 ? `<div class="relative flex items-center justify-center h-full" title="${logBulanIni.length} laporan: ${logBulanIni.map(l => formatTanggalTampilan(l.tanggal_iso || l.tanggal_realisasi)).join(', ')}"><span class="w-2.5 h-2.5 rounded-full ${dotColorClass}"></span></div>` : '';
                             const sudahDilaporkan = !!logMap[m];
                             const jadwalBulanIni = jadwalMonthMap[m];
                             const reminder = (jadwalBulanIni && !sudahDilaporkan)
-                                ? `<div class="relative flex items-center justify-center h-full"><span class="w-2 h-2 rounded-full ${jadwalBulanIni.overdue ? 'bg-rose-600 animate-pulse' : 'bg-rose-300'}" title="${jadwalBulanIni.overdue ? 'Terlambat! ' : 'Rencana: '}${jadwalBulanIni.tanggal} - belum ada laporan realisasi"></span></div>`
+                                ? `<div class="relative flex items-center justify-center h-full"><span class="w-2.5 h-2.5 rounded-full ${jadwalBulanIni.overdue ? 'bg-rose-600 animate-pulse' : 'bg-rose-300'}" title="${jadwalBulanIni.overdue ? 'Terlambat! ' : 'Rencana: '}${formatTanggalTampilan(jadwalBulanIni.tanggal)} - belum ada laporan realisasi"></span></div>`
                                 : '';
-                            html += `<td class="px-2 py-2 text-center align-middle border border-gray-100 ${cellClass} ${roundLeft} ${roundRight} relative">${diamond}${reminder}</td>`;
+                            html += `<td class="px-2 py-2 text-center align-middle border border-gray-100 ${cellClass} relative">${rentangDot}${diamond}${reminder}</td>`;
                         });
 
                         html += `<td class="px-2 py-3 text-center bg-white sticky right-0 z-10" onclick="event.stopPropagation()">
@@ -3130,7 +3513,7 @@
                         <div class="flex items-center justify-between border-b border-wahdah-50 pb-3">
                             <div>
                                 <span class="px-3 py-1 bg-wahdah-50 text-wahdah-800 border border-wahdah-200 rounded-full text-xs font-bold uppercase tracking-wider">${escapeHTML(e.periode)}</span>
-                                <span class="text-xs text-gray-400 ml-2">${escapeHTML(e.updated_at || '')}</span>
+                                <span class="text-xs text-gray-400 ml-2">${escapeHTML(formatTanggalTampilan(e.updated_at, true))}</span>
                             </div>
                             <div class="flex items-center gap-3">
                                 <div class="text-right">
@@ -3489,6 +3872,9 @@
                             <td class="px-4 py-4 text-center">${laporanBadge}</td>
                             <td class="px-6 py-4 text-center">
                                 <div class="flex items-center justify-center gap-1.5">
+                                    <button onclick="openDuplicateProkerModal('${p.id_proker}', '${escapeHTML(p.nama_program)}')" class="w-8 h-8 bg-sky-50 hover:bg-sky-100 text-sky-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Duplikasi Proker ke Periode Baru">
+                                        <i class="fa-solid fa-clone text-xs"></i>
+                                    </button>
                                     <button onclick="openUpdateProker('${p.id_proker}')" class="w-8 h-8 bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Update Realisasi & LPJ">
                                         <i class="fa-solid fa-pen-to-square text-xs"></i>
                                     </button>
@@ -3635,6 +4021,9 @@
                             <td class="px-4 py-4 text-center">${laporanBadge}</td>
                             <td class="px-6 py-4 text-center">
                                 <div class="flex items-center justify-center gap-1.5">
+                                    <button onclick="openDuplicateProkerModal('${p.id_proker}', '${escapeHTML(p.nama_program)}')" class="w-8 h-8 bg-sky-50 hover:bg-sky-100 text-sky-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Duplikasi Proker ke Periode Baru">
+                                        <i class="fa-solid fa-clone text-xs"></i>
+                                    </button>
                                     <button onclick="openUpdateProker('${p.id_proker}')" class="w-8 h-8 bg-wahdah-50 hover:bg-wahdah-100 text-wahdah-700 rounded-lg flex items-center justify-center transition-colors shadow-sm" title="Update Realisasi & LPJ">
                                         <i class="fa-solid fa-pen-to-square text-xs"></i>
                                     </button>
@@ -3914,9 +4303,18 @@
                     document.getElementById('laporanFormNamaProgram').innerText = p.nama_program;
                     document.getElementById('laporanTargetInfo').innerText = `${p.target_angka} ${p.satuan_target}`;
                     document.getElementById('laporanFormTargetInfo').innerText = `${p.target_angka} ${p.satuan_target}`;
-                    const fmtTgl = (iso) => iso ? new Date(iso + 'T00:00:00').toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : '-';
-                    document.getElementById('laporanRencanaTanggal').innerText =
-                        (!p.tanggal_mulai && !p.tanggal_selesai) ? 'Rencana: Tanggal belum diatur' : `Rencana: ${fmtTgl(p.tanggal_mulai)} s/d ${fmtTgl(p.tanggal_selesai)}`;
+                    const fmtTgl = (iso) => formatTanggalTampilan(iso);
+                    const rencanaEl = document.getElementById('laporanRencanaTanggal');
+                    if (p.mode_jadwal === 'per_kali') {
+                        const jadwalArr = Array.isArray(p.jadwal_rencana) ? p.jadwal_rencana : [];
+                        rencanaEl.innerText = jadwalArr.length > 0
+                            ? `Rencana: ${jadwalArr.length} kali (${jadwalArr.map(t => fmtTgl(t)).join(', ')})`
+                            : 'Rencana: Jadwal belum diatur';
+                    } else {
+                        rencanaEl.innerText = (!p.tanggal_mulai && !p.tanggal_selesai)
+                            ? 'Rencana: Tanggal belum diatur'
+                            : `Rencana: ${fmtTgl(p.tanggal_mulai)} s/d ${fmtTgl(p.tanggal_selesai)}`;
+                    }
 
                     const readOnlyWrap = document.getElementById('laporanRealisasiReadOnly');
                     const formWrap = document.getElementById('laporanRealisasiForm');
@@ -3970,7 +4368,7 @@
                                 return `
                                 <div class="flex items-start justify-between gap-3 p-3 bg-white rounded-xl border border-wahdah-100">
                                     <div class="flex-1 min-w-0">
-                                        <p class="text-xs font-bold text-wahdah-900">${log.tanggal_realisasi || '-'} ${statusBadge}</p>
+                                        <p class="text-xs font-bold text-wahdah-900">${formatTanggalTampilan(log.tanggal_iso || log.tanggal_realisasi)} ${statusBadge}</p>
                                         <p class="text-[11px] text-wahdah-700">Jumlah: <b>${log.jumlah_realisasi}</b> | Anggaran: <b>${formatRp(log.anggaran_realisasi)}</b></p>
                                         ${log.catatan ? `<p class="text-[10px] text-gray-500 mt-0.5">${escapeHTML(log.catatan)}</p>` : ''}
                                         ${log.file_lpj ? `<a href="${escapeHTML(log.file_lpj)}" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-sky-600 font-semibold hover:underline mt-1"><i class="fa-solid fa-paperclip"></i> Lihat LPJ</a>` : `<span class="text-[10px] text-gray-400 italic block mt-0.5">LPJ belum ada</span>`}
@@ -4311,25 +4709,6 @@
                     document.body.removeChild(link);
                 };
 
-                // ==========================================
-                // DARK MODE
-                // ==========================================
-                window.toggleDarkMode = function () {
-                    appState.darkMode = !appState.darkMode;
-                    localStorage.setItem('kpi_dark_mode', appState.darkMode);
-                    applyDarkMode();
-                };
-
-                function applyDarkMode() {
-                    const icon = document.getElementById('darkModeIcon');
-                    if (appState.darkMode) {
-                        document.body.classList.add('dark');
-                        if (icon) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
-                    } else {
-                        document.body.classList.remove('dark');
-                        if (icon) { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
-                    }
-                }
 
                 // ==========================================
                 // NOTIFICATIONS
@@ -4400,7 +4779,7 @@
                     if (diff < 60) return 'Baru saja';
                     if (diff < 3600) return Math.floor(diff / 60) + ' menit lalu';
                     if (diff < 86400) return Math.floor(diff / 3600) + ' jam lalu';
-                    return d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+                    return formatTanggalTampilan(iso);
                 }
 
                 // ==========================================
@@ -4528,6 +4907,164 @@
                 };
 
                 // ==========================================
+                // EXCEL EXPORT (FEATURE #2)
+                // ==========================================
+                window.exportProkerExcel = async function () {
+                    showLoading('Membuat file Excel Proker...');
+                    const res = await apiService('exportProkerToExcel');
+                    hideLoading();
+                    if (res && res.success && res.url) {
+                        window.open(res.url, '_blank');
+                        toast('File Excel berhasil dibuat');
+                    } else {
+                        apiError(res, 'Gagal export Excel');
+                    }
+                };
+
+                window.exportEvaluasiExcel = async function () {
+                    showLoading('Membuat file Excel Evaluasi...');
+                    const res = await apiService('exportEvaluasiToExcel');
+                    hideLoading();
+                    if (res && res.success && res.url) {
+                        window.open(res.url, '_blank');
+                        toast('File Excel berhasil dibuat');
+                    } else {
+                        apiError(res, 'Gagal export Excel');
+                    }
+                };
+
+                // ==========================================
+                // DUPLIKASI PROKER (FEATURE #6)
+                // ==========================================
+                window.openDuplicateProkerModal = async function (idProker, namaProgram) {
+                    const { value: namaBaru } = await Swal.fire({
+                        title: 'Duplikasi Program Kerja',
+                        html: `<p class="text-xs text-gray-500 mb-2">Program kerja akan disalin ke periode baru dengan realisasi di-reset ke 0.</p>`,
+                        input: 'text',
+                        inputLabel: 'Nama Program Baru',
+                        inputValue: '[Salinan] ' + (namaProgram || ''),
+                        inputPlaceholder: 'Masukkan nama program baru',
+                        showCancelButton: true,
+                        confirmButtonText: 'Duplikasi Sekarang',
+                        cancelButtonText: 'Batal',
+                        confirmButtonColor: '#25906a',
+                        cancelButtonColor: '#6b7280',
+                        inputValidator: (value) => {
+                            if (!value || !value.trim()) {
+                                return 'Nama program tidak boleh kosong!';
+                            }
+                        }
+                    });
+
+                    if (namaBaru) {
+                        showLoading('Menduplikasi program kerja...');
+                        const res = await apiService('duplicateProker', { id_proker: idProker, nama_baru: namaBaru.trim() });
+                        hideLoading();
+                        if (res && res.success) {
+                            toast(res.message || 'Program kerja berhasil diduplikasi');
+                            await loadAppData();
+                        } else {
+                            apiError(res, 'Gagal menduplikasi proker');
+                        }
+                    }
+                };
+
+                // ==========================================
+                // PROFIL PENGGUNA (FEATURE #7)
+                // ==========================================
+                window.renderProfil = function () {
+                    const user = Auth.getUser();
+                    if (!user) return;
+                    const deptName = user.id_departemen ? getDeptName(user.id_departemen) : 'Semua Departemen (Pusat)';
+
+                    const roleBadge = document.getElementById('profilBadgeRole');
+                    if (roleBadge) roleBadge.innerText = user.role || 'User';
+                    const deptBadge = document.getElementById('profilBadgeDept');
+                    if (deptBadge) deptBadge.innerText = deptName;
+                    const namaEl = document.getElementById('profilNamaLengkap');
+                    if (namaEl) namaEl.innerText = user.nama_lengkap || user.email || 'Pengguna';
+                    const emailEl = document.getElementById('profilEmailUsername');
+                    if (emailEl) emailEl.innerText = user.email || '-';
+
+                    const infoNama = document.getElementById('profilInfoNama');
+                    if (infoNama) infoNama.innerText = user.nama_lengkap || '-';
+                    const infoEmail = document.getElementById('profilInfoEmail');
+                    if (infoEmail) infoEmail.innerText = user.email || '-';
+                    const infoRole = document.getElementById('profilInfoRole');
+                    if (infoRole) infoRole.innerText = user.role || '-';
+                    const infoDept = document.getElementById('profilInfoDept');
+                    if (infoDept) infoDept.innerText = deptName;
+
+                    const tbody = document.getElementById('profilLoginHistoryTableBody');
+                    if (tbody) {
+                        const myHistory = (appState.loginHistory || []).filter(l =>
+                            String(l.email || '').toLowerCase() === String(user.email || '').toLowerCase() ||
+                            String(l.nama_user || '').toLowerCase() === String(user.nama_lengkap || '').toLowerCase()
+                        );
+                        let html = '';
+                        myHistory.slice(0, 10).forEach(l => {
+                            html += `
+                                <tr class="hover:bg-wahdah-50/50 transition-colors">
+                                    <td class="px-5 py-2.5 font-medium text-wahdah-900">${formatTanggalTampilan(l.waktu_login, true)}</td>
+                                    <td class="px-5 py-2.5 text-gray-500">${formatTanggalTampilan(l.waktu_logout, true)}</td>
+                                    <td class="px-4 py-2.5 text-center"><span class="px-2 py-0.5 text-[10px] font-bold rounded-full border ${l.status === 'Login' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-gray-50 text-gray-600 border-gray-200'}">${escapeHTML(l.status || 'Selesai')}</span></td>
+                                </tr>
+                            `;
+                        });
+                        tbody.innerHTML = html || `<tr><td colspan="3" class="text-center py-4 text-gray-400">Belum ada riwayat sesi tercatat</td></tr>`;
+                    }
+                };
+
+                window.submitProfilGantiPin = async function () {
+                    const pinLama = document.getElementById('inpProfilPinLama').value;
+                    const pinBaru = document.getElementById('inpProfilPinBaru').value;
+                    const pinKonfirm = document.getElementById('inpProfilPinKonfirm').value;
+
+                    if (!pinLama || !pinBaru || !pinKonfirm) {
+                        toast('Mohon lengkapi semua field PIN', 'warning');
+                        return;
+                    }
+                    if (pinBaru !== pinKonfirm) {
+                        toast('Konfirmasi PIN baru tidak cocok!', 'error');
+                        return;
+                    }
+                    if (pinBaru.length < 6) {
+                        toast('PIN baru minimal 6 karakter', 'warning');
+                        return;
+                    }
+
+                    showLoading('Memperbarui PIN...');
+                    const res = await apiService('changePin', { pin_lama: pinLama, pin_baru: pinBaru });
+                    hideLoading();
+                    if (res && res.success) {
+                        Swal.fire({
+                            title: 'Berhasil!',
+                            text: 'PIN akun Anda berhasil diperbarui.',
+                            icon: 'success',
+                            confirmButtonColor: '#177355'
+                        });
+                        document.getElementById('formProfilGantiPin').reset();
+                    } else {
+                        apiError(res, 'Gagal memperbarui PIN');
+                    }
+                };
+
+                // Polling background setiap 2 menit untuk notifikasi & sinkronisasi berkala
+                setInterval(async function () {
+                    if (Auth.getToken()) {
+                        const user = Auth.getUser();
+                        if (user) {
+                            const res = await apiService('getAllData');
+                            if (res && res.success && res.data) {
+                                appState = Object.assign(appState, res.data);
+                                buildNotifications(user);
+                                updateNotifBadge();
+                            }
+                        }
+                    }
+                }, 120000);
+
+                // ==========================================
                 // AUDIT LOG RENDERING
                 // ==========================================
                 function renderAuditLog() {
@@ -4538,7 +5075,7 @@
                     data.forEach(a => {
                         html += `
                         <tr class="hover:bg-wahdah-50/50 transition-colors">
-                            <td class="px-6 py-4 text-xs text-wahdah-700">${escapeHTML(a.waktu || '')}</td>
+                            <td class="px-6 py-4 text-xs text-wahdah-700">${formatTanggalTampilan(a.waktu, true)}</td>
                             <td class="px-6 py-4 font-bold text-wahdah-900">${escapeHTML(a.nama_user || '-')}</td>
                             <td class="px-4 py-4 text-center"><span class="px-2.5 py-1 text-[10px] font-bold rounded-full border ${a.role === 'Admin' ? 'bg-purple-100 text-purple-800 border-purple-200' : 'bg-emerald-100 text-emerald-800 border-emerald-200'}">${escapeHTML(a.role)}</span></td>
                             <td class="px-6 py-4 text-xs font-semibold text-wahdah-800">${escapeHTML(a.aksi)}</td>
@@ -4561,8 +5098,8 @@
                     data.forEach(l => {
                         html += `
                         <tr class="hover:bg-wahdah-50/50 transition-colors">
-                            <td class="px-6 py-4 text-xs text-wahdah-700">${escapeHTML(l.waktu_login || '-')}</td>
-                            <td class="px-6 py-4 text-xs text-wahdah-700">${escapeHTML(l.waktu_logout || '-')}</td>
+                            <td class="px-6 py-4 text-xs text-wahdah-700">${formatTanggalTampilan(l.waktu_login, true)}</td>
+                            <td class="px-6 py-4 text-xs text-wahdah-700">${formatTanggalTampilan(l.waktu_logout, true)}</td>
                             <td class="px-6 py-4 font-bold text-wahdah-900">${escapeHTML(l.nama_user || '-')}</td>
                             <td class="px-6 py-4 text-xs text-wahdah-700">${escapeHTML(l.email || '-')}</td>
                             <td class="px-4 py-4 text-center"><span class="px-2.5 py-1 text-[10px] font-bold rounded-full border ${l.role === 'Admin' ? 'bg-purple-100 text-purple-800 border-purple-200' : 'bg-emerald-100 text-emerald-800 border-emerald-200'}">${escapeHTML(l.role)}</span></td>
@@ -4605,7 +5142,6 @@
                 // ==========================================
                 // INITIALIZATION
                 // ==========================================
-                applyDarkMode();
                 document.addEventListener("DOMContentLoaded", checkLoginState);
             })();
     </script>
