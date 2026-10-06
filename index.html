@@ -373,7 +373,8 @@
                     target="_blank" rel="noopener noreferrer"
                     onclick="const sb=document.getElementById('sidebar'),ov=document.getElementById('sidebarOverlay');if(sb&&ov){sb.classList.add('-translate-x-full');sb.classList.remove('translate-x-0');ov.classList.add('d-none');}"
                     class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all">
-                    <i class="fa-solid fa-file-arrow-down w-5 text-center text-gold-400"></i> <span>Download Format LPJ</span>
+                    <i class="fa-solid fa-file-arrow-down w-5 text-center text-gold-400"></i> <span>Download Format
+                        LPJ</span>
                 </a>
                 <!-- FEATURE #7: Profil User -->
                 <button type="button"
@@ -912,48 +913,50 @@
                         disetujui</span>
                 </div>
 
+                <p class="md:hidden text-[10px] text-gray-400 mt-2">Geser ke samping untuk melihat bulan &#8594;</p>
+
                 <div class="overflow-x-auto rounded-2xl border border-wahdah-100 bg-white shadow-card mt-3">
-                    <table id="timelineGanttTable" class="min-w-[900px] w-full text-xs border-collapse">
+                    <table id="timelineGanttTable" class="min-w-[700px] w-full text-xs border-collapse">
                         <thead class="bg-wahdah-50/70 border-b border-wahdah-100">
                             <tr>
                                 <th rowspan="2"
-                                    class="text-left font-bold px-4 py-3 min-w-[220px] bg-white sticky left-0 z-10">Nama
+                                    class="text-left font-bold px-2 py-3 min-w-[140px] max-w-[140px] md:min-w-[220px] md:max-w-none md:px-4 bg-white sticky left-0 z-10 shadow-[2px_0_4px_-2px_rgba(0,0,0,0.08)]">Nama
                                     Program</th>
                                 <th rowspan="2"
-                                    class="text-left font-bold px-4 py-3 min-w-[140px] bg-white sticky left-[220px] z-10">
+                                    class="text-left font-bold px-4 py-3 min-w-[140px] bg-white md:sticky md:left-[220px] md:z-10">
                                     Departemen</th>
                                 <th colspan="3" class="text-center font-bold px-2 py-2 bg-wahdah-800 text-white">Q1</th>
                                 <th colspan="3" class="text-center font-bold px-2 py-2 bg-wahdah-700 text-white">Q2</th>
                                 <th colspan="3" class="text-center font-bold px-2 py-2 bg-wahdah-600 text-white">Q3</th>
                                 <th colspan="3" class="text-center font-bold px-2 py-2 bg-wahdah-500 text-white">Q4</th>
                                 <th rowspan="2"
-                                    class="text-center font-bold px-3 py-3 min-w-[56px] bg-white sticky right-0 z-10">
+                                    class="text-center font-bold px-3 py-3 min-w-[56px] bg-white md:sticky md:right-0 md:z-10">
                                     Aksi</th>
                             </tr>
                             <tr>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                <th class="text-center font-bold px-1 py-2 min-w-[44px] bg-wahdah-100 text-wahdah-800 text-[10px]">
                                     Jan</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                <th class="text-center font-bold px-1 py-2 min-w-[44px] bg-wahdah-100 text-wahdah-800 text-[10px]">
                                     Feb</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                <th class="text-center font-bold px-1 py-2 min-w-[44px] bg-wahdah-100 text-wahdah-800 text-[10px]">
                                     Mar</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                <th class="text-center font-bold px-1 py-2 min-w-[44px] bg-wahdah-100 text-wahdah-800 text-[10px]">
                                     Apr</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                <th class="text-center font-bold px-1 py-2 min-w-[44px] bg-wahdah-100 text-wahdah-800 text-[10px]">
                                     Mei</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                <th class="text-center font-bold px-1 py-2 min-w-[44px] bg-wahdah-100 text-wahdah-800 text-[10px]">
                                     Jun</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                <th class="text-center font-bold px-1 py-2 min-w-[44px] bg-wahdah-100 text-wahdah-800 text-[10px]">
                                     Jul</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                <th class="text-center font-bold px-1 py-2 min-w-[44px] bg-wahdah-100 text-wahdah-800 text-[10px]">
                                     Agu</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                <th class="text-center font-bold px-1 py-2 min-w-[44px] bg-wahdah-100 text-wahdah-800 text-[10px]">
                                     Sep</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                <th class="text-center font-bold px-1 py-2 min-w-[44px] bg-wahdah-100 text-wahdah-800 text-[10px]">
                                     Okt</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                <th class="text-center font-bold px-1 py-2 min-w-[44px] bg-wahdah-100 text-wahdah-800 text-[10px]">
                                     Nov</th>
-                                <th class="text-center font-bold px-2 py-2 bg-wahdah-100 text-wahdah-800 text-[10px]">
+                                <th class="text-center font-bold px-1 py-2 min-w-[44px] bg-wahdah-100 text-wahdah-800 text-[10px]">
                                     Des</th>
                             </tr>
                         </thead>
@@ -2498,35 +2501,10 @@
                     }
 
                     if (pageId === 'viewTimelineProker') {
-                        const yearSel = document.getElementById('timelineYearFilter');
                         const deptSel = document.getElementById('timelineDeptFilter');
-                        const prevYear = yearSel ? String(yearSel.value || '') : '';
                         const prevDept = deptSel ? String(deptSel.value || '') : '';
 
-                        if (yearSel) {
-                            const years = new Set();
-                            (appState.proker || []).forEach(p => {
-                                const mulai = parseLocalDate(p.tanggal_mulai);
-                                const selesai = parseLocalDate(p.tanggal_selesai);
-                                if (mulai) years.add(mulai.getFullYear());
-                                if (selesai) years.add(selesai.getFullYear());
-                                (Array.isArray(p.jadwal_rencana) ? p.jadwal_rencana : []).forEach(t => {
-                                    const d = parseLocalDate(t);
-                                    if (d) years.add(d.getFullYear());
-                                });
-                            });
-                            const now = new Date().getFullYear();
-                            for (let y = now - 2; y <= now + 1; y++) years.add(y);
-                            const sorted = Array.from(years).sort((a, b) => a - b);
-                            yearSel.innerHTML = '';
-                            sorted.forEach(y => {
-                                const opt = document.createElement('option');
-                                opt.value = String(y);
-                                opt.textContent = String(y);
-                                yearSel.appendChild(opt);
-                            });
-                            yearSel.value = prevYear && sorted.indexOf(parseInt(prevYear, 10)) !== -1 ? prevYear : String(now);
-                        }
+                        populateTimelineYearFilter();
 
                         if (deptSel) {
                             deptSel.innerHTML = '<option value="">Semua Departemen</option>';
@@ -2739,6 +2717,7 @@
                                 }
                             }
                             if (document.getElementById('timelineGanttBody')) {
+                                populateTimelineYearFilter();
                                 renderTimelineProker();
                             }
                             if (defaultView) {
@@ -3208,6 +3187,51 @@
                     filterPersetujuanTable();
                 }
 
+                window.populateTimelineYearFilter = function () {
+                    const yearSel = document.getElementById('timelineYearFilter');
+                    if (!yearSel) return;
+                    const prevYear = String(yearSel.value || '');
+                    const now = new Date().getFullYear();
+                    const years = new Set();
+                    (appState.proker || []).forEach(p => {
+                        if (String(p.is_deleted || 'false') === 'true') return;
+                        const mulai = parseLocalDate(p.tanggal_mulai);
+                        const selesai = parseLocalDate(p.tanggal_selesai);
+                        // Mode rentang: tambahkan semua tahun dari mulai sampai selesai
+                        if (mulai && selesai) {
+                            for (let y = mulai.getFullYear(); y <= selesai.getFullYear(); y++) years.add(y);
+                        } else {
+                            if (mulai) years.add(mulai.getFullYear());
+                            if (selesai) years.add(selesai.getFullYear());
+                        }
+                        (Array.isArray(p.jadwal_rencana) ? p.jadwal_rencana : []).forEach(t => {
+                            const d = parseLocalDate(t);
+                            if (d) years.add(d.getFullYear());
+                        });
+                    });
+                    // Fallback: jika belum ada proker bertanggal, pakai tahun berjalan
+                    if (years.size === 0) years.add(now);
+                    const sorted = Array.from(years).sort((a, b) => a - b);
+                    yearSel.innerHTML = '';
+                    sorted.forEach(y => {
+                        const opt = document.createElement('option');
+                        opt.value = String(y);
+                        opt.textContent = String(y);
+                        yearSel.appendChild(opt);
+                    });
+                    // Pilih nilai: pertahankan prevYear jika masih ada, lalu tahun berjalan, lalu yang terdekat
+                    const prevInt = parseInt(prevYear, 10);
+                    if (prevYear && sorted.includes(prevInt)) {
+                        yearSel.value = prevYear;
+                    } else if (sorted.includes(now)) {
+                        yearSel.value = String(now);
+                    } else {
+                        // Pilih tahun terdekat dari tahun berjalan
+                        const closest = sorted.reduce((a, b) => Math.abs(b - now) < Math.abs(a - now) ? b : a);
+                        yearSel.value = String(closest);
+                    }
+                };
+
                 window.renderTimelineProker = function () {
                     const tbody = document.getElementById('timelineGanttBody');
                     const empty = document.getElementById('timelineProkerEmpty');
@@ -3317,11 +3341,11 @@
                         }
 
                         html += `<tr class="hover:bg-wahdah-50/50 transition-colors cursor-pointer" onclick="openLaporanRealisasiModal('${p.id_proker}', 'admin')">`;
-                        html += `<td class="px-4 py-3 bg-white sticky left-0 z-10 align-top">
-                            <p class="font-extrabold text-wahdah-900 text-xs leading-tight">${escapeHTML(p.nama_program)}</p>
-                            <p class="text-[10px] text-gray-400 font-mono mt-0.5">${escapeHTML(p.id_proker)}</p>
+                        html += `<td class="px-2 md:px-4 py-3 bg-white sticky left-0 z-10 align-top shadow-[2px_0_4px_-2px_rgba(0,0,0,0.08)] min-w-[140px] max-w-[140px] md:min-w-[220px] md:max-w-none">
+                            <p class="font-extrabold text-wahdah-900 text-xs leading-tight whitespace-normal break-words">${escapeHTML(p.nama_program)}</p>
+                            <p class="text-[10px] text-gray-400 font-mono mt-0.5 break-all">${escapeHTML(p.id_proker)}</p>
                         </td>`;
-                        html += `<td class="px-4 py-3 bg-white sticky left-[220px] z-10 align-top text-xs font-semibold text-wahdah-800">${escapeHTML(getDeptName(p.id_departemen))}</td>`;
+                        html += `<td class="px-4 py-3 bg-white md:sticky md:left-[220px] md:z-10 align-top text-xs font-semibold text-wahdah-800 whitespace-normal break-words">${escapeHTML(getDeptName(p.id_departemen))}</td>`;
 
                         monthIndices.forEach((m, idx) => {
                             const cellDate = new Date(year, m, 1);
@@ -3346,10 +3370,10 @@
                             const reminder = (jadwalBulanIni && !sudahDilaporkan)
                                 ? `<div class="relative flex items-center justify-center h-full"><span class="w-2.5 h-2.5 rounded-full ${jadwalBulanIni.overdue ? 'bg-rose-600 animate-pulse' : 'bg-rose-300'}" title="${jadwalBulanIni.overdue ? 'Terlambat! ' : 'Rencana: '}${formatTanggalTampilan(jadwalBulanIni.tanggal)} - belum ada laporan realisasi"></span></div>`
                                 : '';
-                            html += `<td class="px-2 py-2 text-center align-middle border border-gray-100 ${cellClass} relative">${rentangDot}${diamond}${reminder}</td>`;
+                            html += `<td class="px-2 py-2 text-center align-middle border border-gray-100 ${cellClass} relative min-w-[44px]">${rentangDot}${diamond}${reminder}</td>`;
                         });
 
-                        html += `<td class="px-2 py-3 text-center bg-white sticky right-0 z-10" onclick="event.stopPropagation()">
+                        html += `<td class="px-2 py-3 text-center bg-white md:sticky md:right-0 md:z-10" onclick="event.stopPropagation()">
                             <button onclick="openEditTanggalRencanaModal('${p.id_proker}')"
                                 class="w-7 h-7 bg-sky-50 hover:bg-sky-100 text-sky-600 rounded-lg inline-flex items-center justify-center transition-colors"
                                 title="Edit Tanggal Rencana">
@@ -4249,6 +4273,7 @@
                         toast(res.message || 'Tanggal rencana berhasil diperbarui');
                         closeModal('modalEditTanggalRencana');
                         loadAppData();
+                        populateTimelineYearFilter();
                         renderTimelineProker();
                     } else {
                         apiError(res, 'Gagal menyimpan tanggal rencana');
