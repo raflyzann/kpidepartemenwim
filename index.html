@@ -368,6 +368,13 @@
                     <i class="fa-solid fa-star-half-stroke w-5 text-center text-gold-400"></i> <span>Feedback &
                         Evaluasi</span>
                 </button>
+                <!-- Menu Download Format LPJ -->
+                <a href="https://drive.google.com/drive/folders/1ARd8msvuGFT3mxkyNhWU7VPhEyBn1zDZ?usp=sharing"
+                    target="_blank" rel="noopener noreferrer"
+                    onclick="const sb=document.getElementById('sidebar'),ov=document.getElementById('sidebarOverlay');if(sb&&ov){sb.classList.add('-translate-x-full');sb.classList.remove('translate-x-0');ov.classList.add('d-none');}"
+                    class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all">
+                    <i class="fa-solid fa-file-arrow-down w-5 text-center text-gold-400"></i> <span>Download Format LPJ</span>
+                </a>
                 <!-- FEATURE #7: Profil User -->
                 <button type="button"
                     class="nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-wahdah-100 hover:bg-white/10 hover:text-white transition-all"
@@ -1243,7 +1250,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 gap-6">
                     <!-- Detail Informasi Akun -->
                     <div class="bg-white rounded-2xl shadow-card border border-wahdah-100/80 p-6 space-y-4">
                         <h3
@@ -1275,56 +1282,7 @@
                         </div>
                     </div>
 
-                    <!-- Form Ganti PIN / Password -->
-                    <div class="bg-white rounded-2xl shadow-card border border-wahdah-100/80 p-6 space-y-4">
-                        <h3
-                            class="text-sm font-bold text-wahdah-900 flex items-center gap-2 border-b border-wahdah-100 pb-3">
-                            <i class="fa-solid fa-key text-wahdah-600"></i> Perbarui PIN / Sandi
-                        </h3>
-                        <form id="formProfilGantiPin" onsubmit="event.preventDefault(); submitProfilGantiPin();"
-                            class="space-y-3">
-                            <div>
-                                <label class="block text-xs font-bold text-wahdah-800 mb-1">PIN / Sandi Saat Ini</label>
-                                <div class="relative">
-                                    <input type="password" id="inpProfilPinLama" required placeholder="PIN saat ini"
-                                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2 text-xs focus:ring-2 focus:ring-wahdah-500 outline-none pr-9">
-                                    <button type="button" onclick="togglePasswordVisibility('inpProfilPinLama', this)"
-                                        class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-xs">
-                                        <i class="fa-regular fa-eye"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-wahdah-800 mb-1">PIN / Sandi Baru</label>
-                                <div class="relative">
-                                    <input type="password" id="inpProfilPinBaru" required minlength="6"
-                                        placeholder="Minimal 6 karakter"
-                                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2 text-xs focus:ring-2 focus:ring-wahdah-500 outline-none pr-9">
-                                    <button type="button" onclick="togglePasswordVisibility('inpProfilPinBaru', this)"
-                                        class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-xs">
-                                        <i class="fa-regular fa-eye"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-wahdah-800 mb-1">Konfirmasi PIN Baru</label>
-                                <div class="relative">
-                                    <input type="password" id="inpProfilPinKonfirm" required minlength="6"
-                                        placeholder="Ulangi PIN baru"
-                                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2 text-xs focus:ring-2 focus:ring-wahdah-500 outline-none pr-9">
-                                    <button type="button"
-                                        onclick="togglePasswordVisibility('inpProfilPinKonfirm', this)"
-                                        class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-xs">
-                                        <i class="fa-regular fa-eye"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <button type="submit"
-                                class="w-full bg-wahdah-700 hover:bg-wahdah-800 text-white font-bold text-xs rounded-xl py-2.5 transition-colors shadow-sm mt-2 flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-floppy-disk"></i> Simpan PIN Baru
-                            </button>
-                        </form>
-                    </div>
+
                 </div>
 
                 <!-- Riwayat Login Pribadi -->
@@ -5046,39 +5004,7 @@
                     }
                 };
 
-                window.submitProfilGantiPin = async function () {
-                    const pinLama = document.getElementById('inpProfilPinLama').value;
-                    const pinBaru = document.getElementById('inpProfilPinBaru').value;
-                    const pinKonfirm = document.getElementById('inpProfilPinKonfirm').value;
 
-                    if (!pinLama || !pinBaru || !pinKonfirm) {
-                        toast('Mohon lengkapi semua field PIN', 'warning');
-                        return;
-                    }
-                    if (pinBaru !== pinKonfirm) {
-                        toast('Konfirmasi PIN baru tidak cocok!', 'error');
-                        return;
-                    }
-                    if (pinBaru.length < 6) {
-                        toast('PIN baru minimal 6 karakter', 'warning');
-                        return;
-                    }
-
-                    showLoading('Memperbarui PIN...');
-                    const res = await apiService('changePin', { pin_lama: pinLama, pin_baru: pinBaru });
-                    hideLoading();
-                    if (res && res.success) {
-                        Swal.fire({
-                            title: 'Berhasil!',
-                            text: 'PIN akun Anda berhasil diperbarui.',
-                            icon: 'success',
-                            confirmButtonColor: '#177355'
-                        });
-                        document.getElementById('formProfilGantiPin').reset();
-                    } else {
-                        apiError(res, 'Gagal memperbarui PIN');
-                    }
-                };
 
                 // Polling background setiap 2 menit untuk notifikasi & sinkronisasi berkala
                 setInterval(async function () {
