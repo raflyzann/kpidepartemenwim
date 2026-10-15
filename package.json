@@ -1,0 +1,12 @@
+{
+  "name": "kpi-departemen-wim",
+  "version": "2.0.0",
+  "description": "KPI Departemen Wahdah Islamiyah Makassar - WebApp",
+  "scripts": {
+    "build:css": "tailwindcss -i ./input.css -o ./dist/output.css --minify",
+    "watch:css": "tailwindcss -i ./input.css -o ./dist/output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}
