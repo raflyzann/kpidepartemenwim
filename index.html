@@ -2185,8 +2185,7 @@
                     <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Ketua Departemen</label>
                     <select id="editKetuaDepartemen"
                         class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm bg-white focus:ring-2 focus:ring-wahdah-500 outline-none"></select>
-                    <p class="text-[11px] text-wahdah-500 mt-1.5">Ketua menerima email notifikasi saat LPJ disetujui
-                        atau ditolak. Hanya pengguna aktif dari departemen ini yang dapat dipilih.</p>
+                    <p class="text-[11px] text-wahdah-500 mt-1.5">Hanya pengguna aktif dari departemen ini yang dapat dipilih sebagai ketua.</p>
                 </div>
                 <div
                     class="rounded-xl bg-sky-50 border border-sky-200 px-3.5 py-2.5 text-[11px] text-sky-800 leading-relaxed">
@@ -2226,14 +2225,6 @@
                     <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Username Login</label>
                     <input type="text" id="addUEmail" required placeholder="Contoh: dakwah2 atau user@wahdah.or.id"
                         class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Email Notifikasi <span
-                            class="font-normal text-wahdah-500">(opsional)</span></label>
-                    <input type="email" id="addUEmailNotif" placeholder="Contoh: ketua.dakwah@gmail.com"
-                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
-                    <p class="text-[11px] text-wahdah-500 mt-1.5">Alamat email sebenarnya untuk menerima notifikasi
-                        status LPJ. Terpisah dari username login.</p>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
@@ -2289,14 +2280,6 @@
                     <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Email / Username</label>
                     <input type="text" id="editUEmail" required
                         class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-wahdah-800 mb-1.5">Email Notifikasi <span
-                            class="font-normal text-wahdah-500">(opsional)</span></label>
-                    <input type="email" id="editUEmailNotif" placeholder="Contoh: ketua.dakwah@gmail.com"
-                        class="w-full rounded-xl border border-wahdah-200 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-wahdah-500 outline-none">
-                    <p class="text-[11px] text-wahdah-500 mt-1.5">Alamat email sebenarnya untuk menerima notifikasi
-                        status LPJ. Terpisah dari username login.</p>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
@@ -2402,9 +2385,7 @@
                     <input type="file" id="bulkImportUsersFile" accept=".csv" required
                         onchange="validateCsvFileInput(this)"
                         class="w-full rounded-xl border border-wahdah-200 px-3 py-2 text-xs focus:ring-2 focus:ring-wahdah-500 outline-none file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-wahdah-50 file:text-wahdah-700 hover:file:bg-wahdah-100 cursor-pointer">
-                    <p class="text-[11px] text-wahdah-500 mt-1.5">Format: nama_lengkap, email, role, id_departemen
-                        (opsional: email_notifikasi)
-                        (header baris pertama)</p>
+                    <p class="text-[11px] text-wahdah-500 mt-1.5">Format: nama_lengkap, email, role, id_departemen (header baris pertama)</p>
                 </div>
                 <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-wahdah-50">
                     <button type="button" onclick="closeModal('modalBulkImportUsers')"
@@ -4352,6 +4333,12 @@
                         if (d) years.add(d.getFullYear());
                     });
                 });
+                const targetProkerIds = prokerList ? new Set(prokerList.map(p => p.id_proker)) : null;
+                (appState.realisasiLog || []).forEach(r => {
+                    if (targetProkerIds && !targetProkerIds.has(r.id_proker)) return;
+                    const d = parseLocalDate(r.tanggal_iso || r.tanggal_realisasi);
+                    if (d) years.add(d.getFullYear());
+                });
                 // Fallback: jika belum ada proker bertanggal, pakai tahun berjalan
                 if (years.size === 0) years.add(now);
                 const sorted = Array.from(years).sort((a, b) => a - b);
@@ -4393,6 +4380,13 @@
                     prokerList = prokerList.filter(p => p.id_departemen === deptFilter);
                 }
 
+                // Pre-index logs by id_proker in O(M)
+                const logsByProker = {};
+                (appState.realisasiLog || []).forEach(r => {
+                    if (!logsByProker[r.id_proker]) logsByProker[r.id_proker] = [];
+                    logsByProker[r.id_proker].push(r);
+                });
+
                 if (yearFilter) {
                     const y = parseInt(yearFilter, 10);
                     prokerList = prokerList.filter(p => {
@@ -4405,24 +4399,28 @@
                         if (mulai || selesai) {
                             const my = (mulai || selesai).getFullYear();
                             const sy = (selesai || mulai).getFullYear();
-                            return my <= y && sy >= y;
+                            if (my <= y && sy >= y) return true;
                         }
-                        // Mode per kali / tanpa tanggal: pakai tahun jadwal rencana
-                        // bila ada. Proker tanpa tanggal sama sekali tetap ditampilkan
+                        // Mode per kali / tanpa tanggal: pakai tahun jadwal rencana bila ada.
+                        if (jadwal.length > 0 && jadwal.some(d => d.getFullYear() === y)) {
+                            return true;
+                        }
+                        // Cek apakah ada log realisasi pada tahun yang dipilih
+                        const logs = logsByProker[p.id_proker] || [];
+                        if (logs.some(l => {
+                            const d = parseLocalDate(l.tanggal_iso || l.tanggal_realisasi);
+                            return d && d.getFullYear() === y;
+                        })) {
+                            return true;
+                        }
+                        // Proker tanpa tanggal sama sekali tetap ditampilkan
                         // supaya user sadar jadwalnya belum diisi (tidak "hilang").
-                        if (jadwal.length > 0) {
-                            return jadwal.some(d => d.getFullYear() === y);
+                        if (!mulai && !selesai && jadwal.length === 0) {
+                            return true;
                         }
-                        return true;
+                        return false;
                     });
                 }
-
-                // Pre-index logs by id_proker in O(M)
-                const logsByProker = {};
-                (appState.realisasiLog || []).forEach(r => {
-                    if (!logsByProker[r.id_proker]) logsByProker[r.id_proker] = [];
-                    logsByProker[r.id_proker].push(r);
-                });
 
                 prokerList.forEach(p => {
                     const logs = (logsByProker[p.id_proker] || []).slice().sort((a, b) => {
@@ -4465,15 +4463,15 @@
                     const modeRentang = (p.mode_jadwal || 'rentang') === 'rentang';
                     const hasMulai = !!p.tanggal_mulai;
                     const hasSelesai = !!p.tanggal_selesai;
-                    const mulai = hasMulai ? new Date(p.tanggal_mulai) : (hasSelesai ? new Date(p.tanggal_selesai) : null);
-                    const selesai = hasSelesai ? new Date(p.tanggal_selesai) : (hasMulai ? new Date(p.tanggal_mulai) : null);
+                    const mulai = hasMulai ? parseLocalDate(p.tanggal_mulai) : (hasSelesai ? parseLocalDate(p.tanggal_selesai) : null);
+                    const selesai = hasSelesai ? parseLocalDate(p.tanggal_selesai) : (hasMulai ? parseLocalDate(p.tanggal_mulai) : null);
                     const hasRencana = modeRentang && !!(mulai && selesai);
                     const logs = p._timelineLogs || [];
                     const logMap = {};
                     logs.forEach(log => {
                         const raw = String(log.tanggal_iso || log.tanggal_realisasi || '');
-                        const d = new Date(raw);
-                        if (!isNaN(d.getTime())) {
+                        const d = parseLocalDate(raw);
+                        if (d && d.getFullYear() === year) {
                             const m = d.getMonth();
                             if (!logMap[m]) logMap[m] = [];
                             logMap[m].push(log);
@@ -4484,9 +4482,8 @@
                     const jadwalMonthMap = {};
                     if (!modeRentang) {
                         (Array.isArray(p.jadwal_rencana) ? p.jadwal_rencana : []).forEach(function (tgl) {
-                            const d = new Date(tgl);
-                            if (isNaN(d.getTime())) return;
-                            if (d.getFullYear() !== year) return;
+                            const d = parseLocalDate(tgl);
+                            if (!d || d.getFullYear() !== year) return;
                             const m = d.getMonth();
                             const overdue = d < new Date(today.getFullYear(), today.getMonth(), 1);
                             if (!jadwalMonthMap[m] || overdue) jadwalMonthMap[m] = { tanggal: tgl, overdue: overdue };
@@ -4574,6 +4571,16 @@
                     prokerList = prokerList.filter(p => String(p.nama_program || '').toLowerCase().includes(search));
                 }
 
+                // Pre-index logs by id_proker HANYA untuk proker departemen ini tanpa mencemari appState
+                const deptProkerIds = new Set(prokerList.map(p => p.id_proker));
+                const logsByProker = {};
+                (appState.realisasiLog || []).forEach(r => {
+                    if (r && deptProkerIds.has(r.id_proker)) {
+                        if (!logsByProker[r.id_proker]) logsByProker[r.id_proker] = [];
+                        logsByProker[r.id_proker].push(r);
+                    }
+                });
+
                 if (yearFilter) {
                     const y = parseInt(yearFilter, 10);
                     prokerList = prokerList.filter(p => {
@@ -4586,27 +4593,28 @@
                         if (mulai || selesai) {
                             const my = (mulai || selesai).getFullYear();
                             const sy = (selesai || mulai).getFullYear();
-                            return my <= y && sy >= y;
+                            if (my <= y && sy >= y) return true;
                         }
-                        // Mode per kali / tanpa tanggal: pakai tahun jadwal rencana
-                        // bila ada. Proker tanpa tanggal sama sekali tetap ditampilkan
+                        // Mode per kali / tanpa tanggal: pakai tahun jadwal rencana bila ada.
+                        if (jadwal.length > 0 && jadwal.some(d => d.getFullYear() === y)) {
+                            return true;
+                        }
+                        // Cek apakah ada log realisasi pada tahun yang dipilih
+                        const logs = logsByProker[p.id_proker] || [];
+                        if (logs.some(l => {
+                            const d = parseLocalDate(l.tanggal_iso || l.tanggal_realisasi);
+                            return d && d.getFullYear() === y;
+                        })) {
+                            return true;
+                        }
+                        // Proker tanpa tanggal sama sekali tetap ditampilkan
                         // supaya user sadar jadwalnya belum diisi (tidak "hilang").
-                        if (jadwal.length > 0) {
-                            return jadwal.some(d => d.getFullYear() === y);
+                        if (!mulai && !selesai && jadwal.length === 0) {
+                            return true;
                         }
-                        return true;
+                        return false;
                     });
                 }
-
-                // Pre-index logs by id_proker HANYA untuk proker departemen ini tanpa mencemari appState
-                const deptProkerIds = new Set(prokerList.map(p => p.id_proker));
-                const logsByProker = {};
-                (appState.realisasiLog || []).forEach(r => {
-                    if (r && deptProkerIds.has(r.id_proker)) {
-                        if (!logsByProker[r.id_proker]) logsByProker[r.id_proker] = [];
-                        logsByProker[r.id_proker].push(r);
-                    }
-                });
 
                 const prokerLogsMap = {};
                 prokerList.forEach(p => {
@@ -4646,15 +4654,15 @@
                     const modeRentang = (p.mode_jadwal || 'rentang') === 'rentang';
                     const hasMulai = !!p.tanggal_mulai;
                     const hasSelesai = !!p.tanggal_selesai;
-                    const mulai = hasMulai ? new Date(p.tanggal_mulai) : (hasSelesai ? new Date(p.tanggal_selesai) : null);
-                    const selesai = hasSelesai ? new Date(p.tanggal_selesai) : (hasMulai ? new Date(p.tanggal_mulai) : null);
+                    const mulai = hasMulai ? parseLocalDate(p.tanggal_mulai) : (hasSelesai ? parseLocalDate(p.tanggal_selesai) : null);
+                    const selesai = hasSelesai ? parseLocalDate(p.tanggal_selesai) : (hasMulai ? parseLocalDate(p.tanggal_mulai) : null);
                     const hasRencana = modeRentang && !!(mulai && selesai);
                     const logs = prokerLogsMap[p.id_proker] || [];
                     const logMap = {};
                     logs.forEach(log => {
                         const raw = String(log.tanggal_iso || log.tanggal_realisasi || '');
-                        const d = new Date(raw);
-                        if (!isNaN(d.getTime())) {
+                        const d = parseLocalDate(raw);
+                        if (d && d.getFullYear() === year) {
                             const m = d.getMonth();
                             if (!logMap[m]) logMap[m] = [];
                             logMap[m].push(log);
@@ -4665,9 +4673,8 @@
                     const jadwalMonthMap = {};
                     if (!modeRentang) {
                         (Array.isArray(p.jadwal_rencana) ? p.jadwal_rencana : []).forEach(function (tgl) {
-                            const d = new Date(tgl);
-                            if (isNaN(d.getTime())) return;
-                            if (d.getFullYear() !== year) return;
+                            const d = parseLocalDate(tgl);
+                            if (!d || d.getFullYear() !== year) return;
                             const m = d.getMonth();
                             const overdue = d < new Date(today.getFullYear(), today.getMonth(), 1);
                             if (!jadwalMonthMap[m] || overdue) jadwalMonthMap[m] = { tanggal: tgl, overdue: overdue };
@@ -4928,14 +4935,6 @@
             // ==========================================
             // 3. MASTER DEPARTEMEN CRUD
             // ==========================================
-            // Alamat email tujuan notifikasi: email_notifikasi, atau email login bila berformat email.
-            function getNotifEmail(u) {
-                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (u && re.test(String(u.email_notifikasi || '').trim())) return String(u.email_notifikasi).trim();
-                if (u && re.test(String(u.email || '').trim())) return String(u.email).trim();
-                return '';
-            }
-
             function renderDepartemenTable() {
                 const tbody = document.getElementById('departemenTableBody');
                 if (!tbody) return;
@@ -4968,14 +4967,11 @@
                     const ketuaUser = d.id_ketua ? userMap[d.id_ketua] : null;
                     let ketuaDisplay;
                     if (!d.id_ketua) {
-                        ketuaDisplay = '<span class="inline-flex items-center gap-1 text-[11px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-2 py-1 rounded-lg" title="Email notifikasi LPJ tidak akan terkirim"><i class="fa-solid fa-triangle-exclamation"></i> Belum ditetapkan</span>';
+                        ketuaDisplay = '<span class="inline-flex items-center gap-1 text-[11px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-2 py-1 rounded-lg"><i class="fa-solid fa-circle-question"></i> Belum ditetapkan</span>';
                     } else if (!ketuaUser || String(ketuaUser.is_deleted || 'false') === 'true') {
-                        ketuaDisplay = '<span class="inline-flex items-center gap-1 text-[11px] font-semibold text-rose-700 bg-rose-50 border border-rose-200 px-2 py-1 rounded-lg" title="Akun ketua tidak ditemukan / diarsipkan"><i class="fa-solid fa-triangle-exclamation"></i> Akun tidak valid</span>';
+                        ketuaDisplay = '<span class="inline-flex items-center gap-1 text-[11px] font-semibold text-rose-700 bg-rose-50 border border-rose-200 px-2 py-1 rounded-lg"><i class="fa-solid fa-triangle-exclamation"></i> Akun tidak valid</span>';
                     } else {
                         ketuaDisplay = `<span class="font-semibold text-wahdah-900">${escapeHTML(ketuaUser.nama_lengkap)}</span>`;
-                        if (!getNotifEmail(ketuaUser)) {
-                            ketuaDisplay += '<div class="mt-1 inline-flex items-center gap-1 text-[10px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-1.5 py-0.5 rounded-md" title="Isi Email Notifikasi pada akun ketua agar email LPJ terkirim"><i class="fa-solid fa-envelope-circle-check"></i> Email notifikasi belum diisi</div>';
-                        }
                     }
                     html += `
                         <tr class="hover:bg-wahdah-50/50 transition-colors">
@@ -5176,7 +5172,7 @@
                     html += `
                         <tr class="hover:bg-wahdah-50/50 transition-colors ${isDeleted ? 'opacity-60 bg-gray-50' : ''}">
                             <td class="px-6 py-4 font-bold text-wahdah-900">${escapeHTML(u.nama_lengkap)} ${isDeleted ? '<span class="text-[10px] text-gray-400">(Diarsipkan)</span>' : ''}</td>
-                            <td class="px-6 py-4 font-mono text-xs text-wahdah-700">${escapeHTML(u.email)}${u.email_notifikasi ? `<div class="font-sans text-[10px] text-gray-400 mt-0.5"><i class="fa-regular fa-envelope mr-1"></i>${escapeHTML(u.email_notifikasi)}</div>` : ''}</td>
+                            <td class="px-6 py-4 font-mono text-xs text-wahdah-700">${escapeHTML(u.email)}</td>
                             <td class="px-4 py-4 text-center"><span class="px-2.5 py-1 text-[11px] font-bold rounded-full border ${roleBadge}">${escapeHTML(u.role)}</span></td>
                             <td class="px-6 py-4 text-xs font-semibold text-wahdah-800">${deptLabel}</td>
                             <td class="px-6 py-4 text-center">
@@ -5233,7 +5229,7 @@
                 const payload = {
                     nama_lengkap: document.getElementById('addUNama').value.trim(),
                     email: document.getElementById('addUEmail').value.trim(),
-                    email_notifikasi: document.getElementById('addUEmailNotif').value.trim(),
+                    email_notifikasi: '',
                     role: role,
                     id_departemen: role === 'User' ? document.getElementById('addUDept').value : ''
                 };
@@ -5281,7 +5277,6 @@
                 document.getElementById('editUId').value = u.id_user;
                 document.getElementById('editUNama').value = u.nama_lengkap;
                 document.getElementById('editUEmail').value = u.email;
-                document.getElementById('editUEmailNotif').value = u.email_notifikasi || '';
                 document.getElementById('editURole').value = u.role;
                 document.getElementById('editUDept').value = u.id_departemen || '';
                 toggleEditUserDeptWrap(u.role);
@@ -5295,7 +5290,7 @@
                     id_user: document.getElementById('editUId').value,
                     nama_lengkap: document.getElementById('editUNama').value.trim(),
                     email: document.getElementById('editUEmail').value.trim(),
-                    email_notifikasi: document.getElementById('editUEmailNotif').value.trim(),
+                    email_notifikasi: '',
                     role: role,
                     id_departemen: role === 'User' ? document.getElementById('editUDept').value : ''
                 };
